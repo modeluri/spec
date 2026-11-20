@@ -7,3 +7,8 @@
 
 # Design hook suppressions, local only
 /.impeccable
+
+# The site is maintained locally, not in this repository
+/site
+/draft
+/wrangler.jsonc

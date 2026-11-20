@@ -50,13 +50,10 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `tools/` | Builds `registry.json` from the models.dev catalogue |
 | `aliases/` | Gateway alias files generated from the registry |
 | `SIGNATORIES.md` | People and organisations who signed |
-| `site/` | The static page served at modeluri.org |
-
-The site has no build step, no JavaScript and no tracking.
 
 ## Licence
 
-The specification and the site are under [CC BY 4.0](LICENSE). The registry (`registry.json`) is dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+The specification is under [CC BY 4.0](LICENSE). The registry (`registry.json`) is dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## Citation
 
