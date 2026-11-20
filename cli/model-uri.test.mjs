@@ -88,7 +88,7 @@ test("registry: at most one current model per rung", () => {
 });
 
 test("registry: every plain versioned text example of SPEC.md section 8 is there", () => {
-  // shortcut: Mythos is in the spec examples but not in the catalogue yet; drop this once the spec or the registry settles it.
+  // Mythos is restricted to selected operators, so the registry does not list it; the spec keeps it as an example of the `restricted` suffix.
   const known = ["model:anthropic/text/max-restricted:5.2"];
   const wanted = examples.filter((u) => /^model:(openai|google|anthropic)\/text\/[a-z-]+:[0-9.]+$/.test(u) && !known.includes(u));
   assert.ok(wanted.length >= 10);

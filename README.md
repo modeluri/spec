@@ -7,7 +7,7 @@ model:anthropic/text/core:5.5@bedrock
 ```
 
 - Site: <https://sanemodeluri.org>
-- Specification: [SPEC.md](SPEC.md), working draft 0.1.1
+- Specification: [SPEC.md](SPEC.md), working draft 0.1.2
 - Signatories: [SIGNATORIES.md](SIGNATORIES.md)
 - Registry: [registry.json](registry.json)
 

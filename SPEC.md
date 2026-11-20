@@ -1,6 +1,6 @@
 # Sane Model URI
 
-Working draft 0.1.1, 20 November 2026
+Working draft 0.1.2, 20 November 2026
 
 A sane, canonical URI for any AI model.
 
@@ -215,6 +215,7 @@ Each entry holds:
 - `license`: the SPDX identifier of the licence, or the name of the publisher's own terms. It justifies the `weights` suffix.
 - `tier_source`: `publisher` if the tier is declared, `registry` if it is assigned with the rule in section 3.2.
 - `evidence`: a link to the price list, model card or announcement that justifies the tier.
+- `current`: `true` if the model is on sale and holds its rung, so that a model URI without a version resolves to it. At most one entry per rung is current. A pinned URI resolves to any entry, current or not.
 
 Example entry:
 
@@ -225,7 +226,8 @@ Example entry:
   "released": "2026-01-15",
   "license": "proprietary",
   "tier_source": "registry",
-  "evidence": "https://example.com/pricing"
+  "evidence": "https://example.com/pricing",
+  "current": true
 }
 ```
 
@@ -237,7 +239,7 @@ Governance:
 - Adding a value takes an issue and a new minor version.
 - The specification follows semantic versioning and stays `0.x` while it is a draft.
 
-Seed data should not be compiled by hand. Open catalogues such as [models.dev](https://github.com/sst/models.dev) already hold native identifiers, prices and capabilities. The registry adds only the classification on top.
+Seed data should not be compiled by hand. Open catalogues such as [models.dev](https://github.com/anomalyco/models.dev) already hold native identifiers, prices and capabilities. The registry adds only the classification on top.
 
 ## 6. Security considerations
 
@@ -264,7 +266,7 @@ Existing identifiers say which model it is, but to know its role you still need 
 | [purl](https://github.com/package-url/purl-spec) | `pkg:huggingface/org/model@commit` | Identity for software inventories and SBOMs | No classification |
 | Ollama | `model:tag` | Size and quantisation in the tag | Informal convention, commercial name |
 | MLflow | `models:/name/version` | Points into a model registry | Unregistered scheme, local to one registry |
-| [models.dev](https://github.com/sst/models.dev) | `provider/model` plus metadata | A catalogue of prices, limits and capabilities | A database, not a naming scheme |
+| [models.dev](https://github.com/anomalyco/models.dev) | `provider/model` plus metadata | A catalogue of prices, limits and capabilities | A database, not a naming scheme |
 
 The `native` field of the registry points to these identifiers. A model URI always translates into one of them.
 
@@ -282,11 +284,12 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Gemini 4 Argon | `model:google/text/ultra:4` | |
 | Gemini 4 Neon | `model:google/text/high:4` | Three Gemini 4 models share version `4`; the tier keeps them apart |
 | Gemini 4 Hydrogen | `model:google/text/core:4` | Built "for everyday coding and agentic workflows" |
+| Gemini 3.8 Flash | `model:google/text/light:3.8` | Older line, still on sale: it fills `light` |
 | Claude Haiku 5.5 | `model:anthropic/text/light:5.5` | |
 | Claude Sonnet 5.5 | `model:anthropic/text/core:5.5` | |
 | Claude Opus 5.5 | `model:anthropic/text/high:5.5` | The rung closest to `core` is filled first |
 | Claude Fable 5.2 | `model:anthropic/text/max:5.2` | |
-| Claude Mythos 5.2 | `model:anthropic/text/max-restricted:5.2` | Same rung, selected operators only |
+| Claude Mythos 5.2 | `model:anthropic/text/max-restricted:5.2` | Same rung, selected operators only; not in the registry, which lists models on sale |
 | Claude Sonnet 5.5 on Bedrock | `model:anthropic/text/core:5.5@bedrock` | Publisher and host are separate |
 | A government-only edition | `model:example/text/core-gov:2.0` | Access reserved to government bodies |
 | A model used inside its publisher | `model:example/text/max-internal:3.0` | Not released |
@@ -308,7 +311,7 @@ The `weights` and `open` suffixes follow the licences as commonly reported and m
 | Everyday default | `model:openai/text/core` | `model:google/text/core` | `model:anthropic/text/core` |
 | Fast and inexpensive | `model:openai/text/light` | `model:google/text/light` | `model:anthropic/text/light` |
 
-Google has no `light` model in its current Gemini 4 lineup, so a resolver reports that the rung is empty instead of guessing.
+The `nano` rung is not filled everywhere: Google has only older Flash-Lite releases and Anthropic has none, so a resolver reports that the rung has no current model instead of guessing. A pinned version, such as `model:google/text/nano:3.5`, still resolves.
 
 ## 9. The `model` scheme
 
