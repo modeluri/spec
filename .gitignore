@@ -4,3 +4,6 @@
 # Local CLI state
 /.cloudflare
 /.wrangler
+
+# Design hook suppressions, local only
+/.impeccable

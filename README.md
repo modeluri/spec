@@ -36,6 +36,6 @@ The site has no build step, no JavaScript and no tracking.
 
 ## Licence
 
-To be decided. The current proposal is CC BY 4.0 for the specification and CC0 for the registry.
+The specification and the site are under [CC BY 4.0](LICENSE). The registry (`registry.json`) is dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 Initiated by [Franz Mozzi](https://franzmozzi.github.io/).

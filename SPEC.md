@@ -66,6 +66,8 @@ kind       = "abliterated" / "ft" / "merge" / "distill"
 host       = LOWER *( LOWER / DIGIT )      ; "local", "edge" or a registered host
 ```
 
+A size always starts with a digit and a quantisation always starts with a letter, so a parser tells them apart without a vocabulary, also when only one of the two is present.
+
 Reference regex:
 
 ```text
@@ -317,10 +319,10 @@ RFC 7595 recommends avoiding very general scheme names. The name `model` is gene
 ## 10. Open questions
 
 - Are six rungs enough, and are `high` and `max` acceptable names when at least one publisher also uses them as levels of reasoning effort?
+- Will two publishers with four models each place them on the same rungs? The line between `high` and `ultra` is thin, and the rule "fill the rungs closest to `core` first" may not be enough.
 - Should an empty rung fall back to the nearest filled one, or always be reported as empty?
 - Are the `weights` and `open` suffixes enough to separate the closed and downloadable families of one publisher, or does the syntax need a "family" part?
 - Tier of open-weights models: role within the publisher's family, or fixed bands by parameter count?
 - Third-party quantisations: whoever quantised the weights does not appear. Should it?
 - Is the list of derivation kinds complete, and how are chained derivations written?
 - Access: should research previews have their own value?
-- Licences for the specification and the registry.
