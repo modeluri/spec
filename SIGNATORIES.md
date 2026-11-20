@@ -1,6 +1,6 @@
 # Signatories
 
-By signing you state that AI model naming needs a canonical identifier, and that you will use model URIs in your own configuration files and documentation.
+By signing you ask AI model publishers, routers, gateways and inference engines to adopt the commitments of the moratorium, and you state that you will use model URIs in your own configuration files and documentation, with the native name as a fallback until both sides support them.
 
 To sign, add one line at the end of the list and open a pull request. Format:
 
