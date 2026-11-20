@@ -208,3 +208,31 @@ model_list:
     litellm_params:
       model: "openai/gpt-5.3-codex"
       api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:xai/text/max"
+    litellm_params:
+      model: "xai/grok-4.7"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/max:4.7"
+    litellm_params:
+      model: "xai/grok-4.7"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/max:4.6"
+    litellm_params:
+      model: "xai/grok-4.6"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/max:4.5"
+    litellm_params:
+      model: "xai/grok-4.5"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/core"
+    litellm_params:
+      model: "xai/grok-4.3"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/core:4.3"
+    litellm_params:
+      model: "xai/grok-4.3"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/text/core:4.20"
+    litellm_params:
+      model: "xai/grok-4.20-0309-reasoning"
+      api_key: os.environ/XAI_API_KEY

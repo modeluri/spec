@@ -505,6 +505,65 @@
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/4faf622d1efc54d6dc8e3eba5d3c082029d6b3b5/providers/openai/models/gpt-5.3-codex.toml",
       "current": false
+    },
+    {
+      "uri": "model:xai/text/max:4.7",
+      "native": {
+        "xai": "grok-4.7",
+        "azure": "grok-4.7"
+      },
+      "released": "2026-09-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/ce2cb0547484fb62bee8813352123d5a6a5f550b/providers/xai/models/grok-4.7.toml",
+      "current": true
+    },
+    {
+      "uri": "model:xai/text/max:4.6",
+      "native": {
+        "xai": "grok-4.6",
+        "bedrock": "xai.grok-4.6",
+        "azure": "grok-4.6"
+      },
+      "released": "2026-08-12",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2f038556752cc5c05febea83789e266903738491/providers/xai/models/grok-4.6.toml",
+      "current": false
+    },
+    {
+      "uri": "model:xai/text/max:4.5",
+      "native": {
+        "xai": "grok-4.5"
+      },
+      "released": "2026-07-08",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/4e4161773e2e0e7ff02b4b4a89e6e7b3be81de98/providers/xai/models/grok-4.5.toml",
+      "current": false
+    },
+    {
+      "uri": "model:xai/text/core:4.3",
+      "native": {
+        "xai": "grok-4.3",
+        "bedrock": "xai.grok-4.3"
+      },
+      "released": "2026-04-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/ca380a136e365d8abb776010e07ef992fcf65072/providers/xai/models/grok-4.3.toml",
+      "current": true
+    },
+    {
+      "uri": "model:xai/text/core:4.20",
+      "native": {
+        "xai": "grok-4.20-0309-reasoning"
+      },
+      "released": "2026-03-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/ad34d7948c9b214995006e1cf33fccff20c60c3a/providers/xai/models/grok-4.20-0309-reasoning.toml",
+      "current": false
     }
   ]
 }

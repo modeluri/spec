@@ -44,4 +44,9 @@ export const CLASSIFICATION = [
   ["google", "gemini-3.5-flash", "model:google/text/core:3.5", false, "462c7877d9a701d03165c36043e536410eded886"],
   ["google", "gemini-3.5-flash-lite", "model:google/text/nano:3.5", false, "7a344d915594369b0cea32cc64c61699cdf20095"],
   ["google", "gemini-3.1-flash-lite", "model:google/text/nano:3.1", false, "92e19432d3611dbbcb9f73a3011786d35e597a3d"],
+  ["xai", "grok-4.7", "model:xai/text/max:4.7", true, "ce2cb0547484fb62bee8813352123d5a6a5f550b"],
+  ["xai", "grok-4.6", "model:xai/text/max:4.6", false, "2f038556752cc5c05febea83789e266903738491"],
+  ["xai", "grok-4.5", "model:xai/text/max:4.5", false, "4e4161773e2e0e7ff02b4b4a89e6e7b3be81de98"],
+  ["xai", "grok-4.3", "model:xai/text/core:4.3", true, "ca380a136e365d8abb776010e07ef992fcf65072"],
+  ["xai", "grok-4.20-0309-reasoning", "model:xai/text/core:4.20", false, "ad34d7948c9b214995006e1cf33fccff20c60c3a"],
 ]

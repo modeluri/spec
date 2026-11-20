@@ -59,7 +59,7 @@ export function resolve(registry, input) {
 
 // LiteLLM proxy model_list: one alias per pinned URI, plus the version-less one for current models.
 // Publisher APIs only: bedrock, vertex and azure need account settings (region, project, deployment) that a registry cannot hold.
-const LITELLM = { anthropic: ["anthropic", "ANTHROPIC_API_KEY"], openai: ["openai", "OPENAI_API_KEY"], google: ["gemini", "GEMINI_API_KEY"] };
+const LITELLM = { anthropic: ["anthropic", "ANTHROPIC_API_KEY"], openai: ["openai", "OPENAI_API_KEY"], google: ["gemini", "GEMINI_API_KEY"], xai: ["xai", "XAI_API_KEY"] };
 
 export function litellmAliases(registry) {
   const q = JSON.stringify;
