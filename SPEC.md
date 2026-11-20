@@ -1,6 +1,6 @@
 # Sane Model URI
 
-Working draft 0.1, 20 November 2026
+Working draft 0.1.1, 20 November 2026
 
 A sane, canonical URI for any AI model.
 
