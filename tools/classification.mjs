@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 // Hand-made part of the registry: which catalogue model gets which model URI.
 // Tiers are assigned with the rule in SPEC.md section 3.2 on 20 November 2026 and are frozen from then on.
 // `current` marks the models on sale today; a model URI without a version resolves only to those.

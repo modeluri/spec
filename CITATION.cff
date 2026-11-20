@@ -8,7 +8,10 @@ authors:
     given-names: Franz
     email: admin@modeluri.org
     orcid: "https://orcid.org/0009-0000-5937-0899"
-license: CC-BY-4.0
+license:
+  - CC-BY-4.0
+  - MIT
+  - CC0-1.0
 version: "0.1.2"
 date-released: 2026-11-20
 url: "https://modeluri.org"

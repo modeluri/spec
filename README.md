@@ -53,7 +53,9 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 
 ## Licence
 
-The specification is under [CC BY 4.0](LICENSE). The registry (`registry.json`) is dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- Specification (`SPEC.md`): [CC BY 4.0](LICENSE).
+- Registry (`registry.json`, `tools/classification.mjs`) and generated alias files (`aliases/`): dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- Code (`cli/`, `tools/build-registry.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
 
 ## Citation
 

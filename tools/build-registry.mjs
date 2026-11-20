@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // Builds registry.json from the models.dev catalogue and the hand-made table in classification.mjs.
 // Usage: node tools/build-registry.mjs [--catalog <api.json>]   (default: download https://models.dev/api.json)
 import { readFile, writeFile } from "node:fs/promises";

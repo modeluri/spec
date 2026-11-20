@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// SPDX-License-Identifier: MIT
 // Resolves a model URI to the native name of the model on a host, using registry.json.
 // Usage: model-uri.mjs <model-uri> [--json] [--registry <file>]
 //        model-uri.mjs aliases --format litellm [--registry <file>]
