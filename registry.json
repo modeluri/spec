@@ -2,6 +2,509 @@
   "spec": "0.1.1",
   "updated": "2026-11-20",
   "license": "CC0-1.0",
-  "note": "Empty on purpose. Entries are added through pull requests and need an evidence link for every registry-assigned tier. See SPEC.md, section 5.",
-  "entries": []
+  "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2, as of 2026-11-20, and frozen from then on. `current` marks the models on sale on that date. Native names come from https://models.dev; on bedrock the bare model id is listed, and the bedrock-runtime endpoint needs a geographic or global inference profile (us., eu., global.) in front of it. Entries are added through pull requests and need an evidence link for every registry-assigned tier. See SPEC.md, section 5.",
+  "entries": [
+    {
+      "uri": "model:anthropic/text/max:5.2",
+      "native": {
+        "anthropic": "claude-fable-5-2",
+        "bedrock": "anthropic.claude-fable-5-2",
+        "azure": "claude-fable-5-2",
+        "vertex": "claude-fable-5-2@default"
+      },
+      "released": "2026-11-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/20cc6a0bfceda65d7532dbe46986dee119573a8f/providers/anthropic/models/claude-fable-5-2.toml",
+      "current": true
+    },
+    {
+      "uri": "model:anthropic/text/light:5.5",
+      "native": {
+        "anthropic": "claude-haiku-5-5",
+        "bedrock": "anthropic.claude-haiku-5-5",
+        "azure": "claude-haiku-5-5",
+        "vertex": "claude-haiku-5-5@default"
+      },
+      "released": "2026-10-07",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/bde18f10ee3da7d5eb4cc07bfd3d374a93a8f025/providers/anthropic/models/claude-haiku-5-5.toml",
+      "current": true
+    },
+    {
+      "uri": "model:anthropic/text/core:5.5",
+      "native": {
+        "anthropic": "claude-sonnet-5-5",
+        "bedrock": "anthropic.claude-sonnet-5-5",
+        "azure": "claude-sonnet-5-5",
+        "vertex": "claude-sonnet-5-5@default"
+      },
+      "released": "2026-09-28",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/3a3d83e481d959331605c5c8374a1fe7cc803cb4/providers/anthropic/models/claude-sonnet-5-5.toml",
+      "current": true
+    },
+    {
+      "uri": "model:anthropic/text/high:5.5",
+      "native": {
+        "anthropic": "claude-opus-5-5",
+        "bedrock": "anthropic.claude-opus-5-5",
+        "azure": "claude-opus-5-5",
+        "vertex": "claude-opus-5-5@default"
+      },
+      "released": "2026-09-22",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/1ba7a9dff9a2be54e824d7211475b8d9d3b4c5de/providers/anthropic/models/claude-opus-5-5.toml",
+      "current": true
+    },
+    {
+      "uri": "model:anthropic/text/max:5.1",
+      "native": {
+        "anthropic": "claude-fable-5-1",
+        "bedrock": "anthropic.claude-fable-5-1",
+        "azure": "claude-fable-5-1",
+        "vertex": "claude-fable-5-1@default"
+      },
+      "released": "2026-09-01",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/bf06cd2a3ae2922acd435ddc441ca5874f93ee8a/providers/anthropic/models/claude-fable-5-1.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/high:5",
+      "native": {
+        "anthropic": "claude-opus-5",
+        "bedrock": "anthropic.claude-opus-5",
+        "azure": "claude-opus-5",
+        "vertex": "claude-opus-5@default"
+      },
+      "released": "2026-07-24",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/342b5572a06735d0efa8c3c419589051199459d8/providers/anthropic/models/claude-opus-5.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/core:5",
+      "native": {
+        "anthropic": "claude-sonnet-5",
+        "bedrock": "anthropic.claude-sonnet-5",
+        "azure": "claude-sonnet-5",
+        "vertex": "claude-sonnet-5@default"
+      },
+      "released": "2026-06-29",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/486f75b371490ec33adbb60c532c1007221d40af/providers/anthropic/models/claude-sonnet-5.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/max:5",
+      "native": {
+        "anthropic": "claude-fable-5",
+        "bedrock": "anthropic.claude-fable-5",
+        "azure": "claude-fable-5",
+        "vertex": "claude-fable-5@default"
+      },
+      "released": "2026-06-07",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/259aff58eb67f6b5f2ef3841c887cd8d8ffb2120/providers/anthropic/models/claude-fable-5.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/max:4.8",
+      "native": {
+        "anthropic": "claude-opus-4-8",
+        "bedrock": "anthropic.claude-opus-4-8",
+        "azure": "claude-opus-4-8",
+        "vertex": "claude-opus-4-8@default"
+      },
+      "released": "2026-05-28",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/1c71b1bf177f16268b4f728ad4cfbe57e0c57c77/providers/anthropic/models/claude-opus-4-8.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/max:4.7",
+      "native": {
+        "anthropic": "claude-opus-4-7",
+        "bedrock": "anthropic.claude-opus-4-7",
+        "azure": "claude-opus-4-7",
+        "vertex": "claude-opus-4-7@default"
+      },
+      "released": "2026-04-14",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2f954fc83804884368081cfb6820804eab620a1e/providers/anthropic/models/claude-opus-4-7.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/core:4.6",
+      "native": {
+        "anthropic": "claude-sonnet-4-6",
+        "bedrock": "anthropic.claude-sonnet-4-6",
+        "azure": "claude-sonnet-4-6",
+        "vertex": "claude-sonnet-4-6@default"
+      },
+      "released": "2026-02-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/128615ddd7b1a39812fc7d17cf731307dacf1bec/providers/anthropic/models/claude-sonnet-4-6.toml",
+      "current": false
+    },
+    {
+      "uri": "model:anthropic/text/max:4.6",
+      "native": {
+        "anthropic": "claude-opus-4-6",
+        "azure": "claude-opus-4-6",
+        "vertex": "claude-opus-4-6@default"
+      },
+      "released": "2026-02-04",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/61c8d50df21422b2d84990c2e61ddce1d2bd58b2/providers/anthropic/models/claude-opus-4-6.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/high:4",
+      "native": {
+        "google": "gemini-4-neon",
+        "vertex": "gemini-4-neon"
+      },
+      "released": "2026-11-18",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/af07617a53ad7356cb355ce5a4fcc7e30efffb92/providers/google/models/gemini-4-neon.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/core:4",
+      "native": {
+        "google": "gemini-4-hydrogen",
+        "vertex": "gemini-4-hydrogen"
+      },
+      "released": "2026-11-12",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/736acb896c605c1fbafb31f17d40c9dae8c93ebf/providers/google/models/gemini-4-hydrogen.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/max:4",
+      "native": {
+        "google": "gemini-4-carbon",
+        "vertex": "gemini-4-carbon"
+      },
+      "released": "2026-11-10",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/ca0dc2a7341b733fc30aa21831333632e615ea65/providers/google/models/gemini-4-carbon.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/ultra:4",
+      "native": {
+        "google": "gemini-4-argon",
+        "vertex": "gemini-4-argon"
+      },
+      "released": "2026-10-13",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/0da444719383739ca9d06adbcd429b508eac80d3/providers/google/models/gemini-4-argon.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/light:3.8",
+      "native": {
+        "google": "gemini-3.8-flash",
+        "vertex": "gemini-3.8-flash"
+      },
+      "released": "2026-09-02",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/552d456df7a35929cff2c1a9595ed7b48fe0f0e5/providers/google/models/gemini-3.8-flash.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/light:3.7",
+      "native": {
+        "google": "gemini-3.7-flash",
+        "vertex": "gemini-3.7-flash"
+      },
+      "released": "2026-08-13",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/0012011936a24dcd24b0d4242ed9be27e2b77495/providers/google/models/gemini-3.7-flash.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/light:3.6",
+      "native": {
+        "google": "gemini-3.6-flash",
+        "vertex": "gemini-3.6-flash"
+      },
+      "released": "2026-07-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/7a344d915594369b0cea32cc64c61699cdf20095/providers/google/models/gemini-3.6-flash.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/nano:3.5",
+      "native": {
+        "google": "gemini-3.5-flash-lite",
+        "vertex": "gemini-3.5-flash-lite"
+      },
+      "released": "2026-07-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/7a344d915594369b0cea32cc64c61699cdf20095/providers/google/models/gemini-3.5-flash-lite.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/core:3.5",
+      "native": {
+        "google": "gemini-3.5-flash",
+        "vertex": "gemini-3.5-flash"
+      },
+      "released": "2026-05-19",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/462c7877d9a701d03165c36043e536410eded886/providers/google/models/gemini-3.5-flash.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/nano:3.1",
+      "native": {
+        "google": "gemini-3.1-flash-lite",
+        "vertex": "gemini-3.1-flash-lite"
+      },
+      "released": "2026-05-07",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/92e19432d3611dbbcb9f73a3011786d35e597a3d/providers/google/models/gemini-3.1-flash-lite.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core:6.2",
+      "native": {
+        "openai": "gpt-6.2-sol",
+        "bedrock": "openai.gpt-6.2-sol",
+        "azure": "gpt-6.2-sol"
+      },
+      "released": "2026-11-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2dbda9a2febeb5f62e116729ea0288ca75230129/providers/openai/models/gpt-6.2-sol.toml",
+      "current": true
+    },
+    {
+      "uri": "model:openai/text/max:6.2",
+      "native": {
+        "openai": "gpt-6.2-astra",
+        "bedrock": "openai.gpt-6.2-astra",
+        "azure": "gpt-6.2-astra"
+      },
+      "released": "2026-11-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2dbda9a2febeb5f62e116729ea0288ca75230129/providers/openai/models/gpt-6.2-astra.toml",
+      "current": true
+    },
+    {
+      "uri": "model:openai/text/light:6.1",
+      "native": {
+        "openai": "gpt-6.1-terra",
+        "bedrock": "openai.gpt-6.1-terra",
+        "azure": "gpt-6.1-terra"
+      },
+      "released": "2026-10-26",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/f290f5f68cd5592b3f77d7a359fc20ce4148e5e4/providers/openai/models/gpt-6.1-terra.toml",
+      "current": true
+    },
+    {
+      "uri": "model:openai/text/core:6.1",
+      "native": {
+        "openai": "gpt-6.1-sol",
+        "bedrock": "openai.gpt-6.1-sol",
+        "azure": "gpt-6.1-sol"
+      },
+      "released": "2026-09-29",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/ae762dbd8d0e185e831d37a696199ac28c979aa6/providers/openai/models/gpt-6.1-sol.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core:6",
+      "native": {
+        "openai": "gpt-6-sol",
+        "bedrock": "openai.gpt-6-sol",
+        "azure": "gpt-6-sol"
+      },
+      "released": "2026-09-22",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/67cb71f2b5ea59a6d076a70a509cdbe663e152c7/providers/openai/models/gpt-6-sol.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/nano:6",
+      "native": {
+        "openai": "gpt-6-luna",
+        "bedrock": "openai.gpt-6-luna",
+        "azure": "gpt-6-luna"
+      },
+      "released": "2026-09-22",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/67cb71f2b5ea59a6d076a70a509cdbe663e152c7/providers/openai/models/gpt-6-luna.toml",
+      "current": true
+    },
+    {
+      "uri": "model:openai/text/max:6",
+      "native": {
+        "openai": "gpt-6-astra",
+        "bedrock": "openai.gpt-6-astra",
+        "azure": "gpt-6-astra"
+      },
+      "released": "2026-09-04",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/fe5b09c6ea3ffd4f82e72b3d4bb6a8b670688b56/providers/openai/models/gpt-6-astra.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core:5.6",
+      "native": {
+        "openai": "gpt-5.6-terra",
+        "bedrock": "openai.gpt-5.6-terra",
+        "azure": "gpt-5.6-terra"
+      },
+      "released": "2026-07-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/6dfc39c81b6cd57a91c155aa7b4f68ed1b360da0/providers/openai/models/gpt-5.6-terra.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/light:5.6",
+      "native": {
+        "openai": "gpt-5.6-luna",
+        "bedrock": "openai.gpt-5.6-luna",
+        "azure": "gpt-5.6-luna"
+      },
+      "released": "2026-07-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/6dfc39c81b6cd57a91c155aa7b4f68ed1b360da0/providers/openai/models/gpt-5.6-luna.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/max:5.6",
+      "native": {
+        "openai": "gpt-5.6-sol",
+        "bedrock": "openai.gpt-5.6-sol",
+        "azure": "gpt-5.6-sol"
+      },
+      "released": "2026-07-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/6dfc39c81b6cd57a91c155aa7b4f68ed1b360da0/providers/openai/models/gpt-5.6-sol.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core:5.5",
+      "native": {
+        "openai": "gpt-5.5",
+        "bedrock": "openai.gpt-5.5",
+        "azure": "gpt-5.5"
+      },
+      "released": "2026-04-23",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/3e0fe362f296489da0781df7f62531e05bcf7dc9/providers/openai/models/gpt-5.5.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/max:5.5",
+      "native": {
+        "openai": "gpt-5.5-pro"
+      },
+      "released": "2026-04-23",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/f1cad8fdc08f08eacbdee195b0a87908cd088943/providers/openai/models/gpt-5.5-pro.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/light:5.4",
+      "native": {
+        "openai": "gpt-5.4-mini",
+        "azure": "gpt-5.4-mini"
+      },
+      "released": "2026-03-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d839cd37d4fa79a0fb59180a15070e921eda6880/providers/openai/models/gpt-5.4-mini.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/nano:5.4",
+      "native": {
+        "openai": "gpt-5.4-nano",
+        "azure": "gpt-5.4-nano"
+      },
+      "released": "2026-03-17",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d839cd37d4fa79a0fb59180a15070e921eda6880/providers/openai/models/gpt-5.4-nano.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core:5.4",
+      "native": {
+        "openai": "gpt-5.4",
+        "bedrock": "openai.gpt-5.4",
+        "azure": "gpt-5.4"
+      },
+      "released": "2026-03-05",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/e11ad7c01a9ed6989222bc30b0c062b595f60838/providers/openai/models/gpt-5.4.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/max:5.4",
+      "native": {
+        "openai": "gpt-5.4-pro",
+        "azure": "gpt-5.4-pro"
+      },
+      "released": "2026-03-05",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/e11ad7c01a9ed6989222bc30b0c062b595f60838/providers/openai/models/gpt-5.4-pro.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/core-code:5.3",
+      "native": {
+        "openai": "gpt-5.3-codex",
+        "azure": "gpt-5.3-codex"
+      },
+      "released": "2026-02-05",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/4faf622d1efc54d6dc8e3eba5d3c082029d6b3b5/providers/openai/models/gpt-5.3-codex.toml",
+      "current": false
+    }
+  ]
 }
