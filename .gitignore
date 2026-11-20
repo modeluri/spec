@@ -1,2 +1,6 @@
 # Working notes, not part of the public repository
 /note
+
+# Local CLI state
+/.cloudflare
+/.wrangler
