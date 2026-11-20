@@ -1,0 +1,33 @@
+name: Objection
+description: A real model the grammar cannot express, a collision, or a wrong tier
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - A real model the grammar cannot express
+        - Two real models collide on the same model URI
+        - A tier the price-list rule gets wrong
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: models
+    attributes:
+      label: The real model or models
+      description: Name and a link to the publisher's own page.
+    validations:
+      required: true
+  - type: input
+    id: uri
+    attributes:
+      label: The model URI involved
+      description: The one you tried to write, or the one that collides.
+      placeholder: "model:publisher/text/core:1"
+  - type: textarea
+    id: problem
+    attributes:
+      label: What does not work, and what would you expect?
+    validations:
+      required: true
