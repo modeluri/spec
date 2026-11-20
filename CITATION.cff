@@ -6,7 +6,7 @@ abstract: "A sane, canonical URI for any AI model. Working draft."
 authors:
   - family-names: Mozzi
     given-names: Franz
-    email: admin@sanemodeluri.org
+    email: admin@modeluri.org
     orcid: "https://orcid.org/0009-0000-5937-0899"
 license: CC-BY-4.0
 version: "0.1.2"
