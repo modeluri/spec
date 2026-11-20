@@ -1,10 +1,10 @@
-# Sane Model URI
+# Model URI
 
 Working draft 0.1.2, 20 November 2026
 
 A sane, canonical URI for any AI model.
 
-This is a working draft. Everything here can change. Objections and edge cases are welcome as [issues](https://github.com/sanemodeluri/spec/issues).
+This is a working draft. Everything here can change. Objections and edge cases are welcome as [issues](https://github.com/modeluri/spec/issues).
 
 ## 1. Purpose
 
@@ -257,7 +257,7 @@ A model URI contains no personal data.
 
 ## 7. Relation to existing identifiers
 
-Existing identifiers say which model it is, but to know its role you still need to know the commercial name, and to switch publisher you need a new one. Sane Model URI adds only that, and relies on them for everything else.
+Existing identifiers say which model it is, but to know its role you still need to know the commercial name, and to switch publisher you need a new one. Model URI adds only that, and relies on them for everything else.
 
 | System | Form | What it solves | What it leaves open |
 | --- | --- | --- | --- |

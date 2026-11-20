@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you cite this specification, please cite the version you read."
 type: software
-title: "Sane Model URI"
+title: "Model URI"
 abstract: "A sane, canonical URI for any AI model. Working draft."
 authors:
   - family-names: Mozzi
@@ -11,5 +11,5 @@ authors:
 license: CC-BY-4.0
 version: "0.1.2"
 date-released: 2026-11-20
-url: "https://sanemodeluri.org"
-repository-code: "https://github.com/sanemodeluri/spec"
+url: "https://modeluri.org"
+repository-code: "https://github.com/modeluri/spec"
