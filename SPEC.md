@@ -170,6 +170,8 @@ Initial registered values (maintained in `registry.json` under `specials`):
 - `voiceclone`: voice cloning from a reference speaker sample (on `tts`).
 - `voicedesign`: generating a synthetic voice from a text description (on `tts`).
 
+Instruction-tuned models are the default and carry no suffix; `base` marks the exception for general-use pre-trained checkpoints. `special` takes at most one value by design so identifiers stay short and unambiguous: when a publisher ships both an instruction-tuned and a base checkpoint of a specialised model (for example Qwen2.5-Coder-32B-Instruct and Qwen2.5-Coder-32B), the instruction-tuned model holds the `-code` slot (`model:alibaba/text/core-code-open/32b:2.5`) and the raw base checkpoint stays out of the registry as `slot-collision` (section 5.1).
+
 **Access: who may use it?**
 
 - `restricted`: granted to selected operators only.
