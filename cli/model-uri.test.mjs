@@ -29,8 +29,8 @@ test("size starts with a digit and quant with a letter, so one alone is unambigu
 });
 
 test("trillion-parameter sizes parse and unsupported size units are rejected", () => {
-  assert.equal(parse("model:mistral/text/max/1t:4").size, "1t");
-  assert.equal(parse("model:alibaba/text/max-weights/2.4t-a95b:3.8").size, "2.4t-a95b");
+  assert.equal(parse("model:mistral/text/ultra/1t:4").size, "1t");
+  assert.equal(parse("model:alibaba/text/ultra-weights/2.4t-a95b:3.8").size, "2.4t-a95b");
   assert.equal(parse("model:example/text/max/2.4t-a1.2t").size, "2.4t-a1.2t");
   assert.equal(parse("model:example/text/nano/500k"), null);
   assert.equal(parse("model:example/text/core/2.4g"), null);
@@ -200,7 +200,7 @@ test("registry: at most one current model per rung", () => {
 
 test("registry: every plain versioned text example of SPEC.md section 8 is there", () => {
   // Mythos is restricted to selected operators, so the registry does not list it; the spec keeps it as an example of the `restricted` suffix.
-  const known = ["model:anthropic/text/max-restricted:5.2"];
+  const known = ["model:anthropic/text/ultra-restricted:5.2"];
   const wanted = examples.filter((u) => /^model:(openai|google|anthropic)\/text\/[a-z-]+:[0-9.]+$/.test(u) && !known.includes(u));
   assert.ok(wanted.length >= 10);
   for (const u of wanted) assert.ok(registry.entries.some((x) => x.uri === u), `${u} is in the spec but not in the registry`);
@@ -208,7 +208,7 @@ test("registry: every plain versioned text example of SPEC.md section 8 is there
 
 test("the cross-publisher switch table resolves, and the empty rung reports itself", () => {
   for (const p of ["openai", "google", "anthropic"])
-    for (const t of ["max", "core"]) assert.equal(resolve(registry, `model:${p}/text/${t}`).ok, true, `${p} ${t}`);
+    for (const t of ["ultra", "core"]) assert.equal(resolve(registry, `model:${p}/text/${t}`).ok, true, `${p} ${t}`);
   assert.match(resolve(registry, "model:google/text/nano").error, /only older releases/);
 });
 

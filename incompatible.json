@@ -57,7 +57,7 @@
       "publisher": "alibaba",
       "name": "Qwen3 235B-A22B Thinking 2507",
       "reason": "parameter-split",
-      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+      "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
       "detail": "Thinking/reasoning mode split of Qwen3 235B-A22B 2507 alongside the instruct release.",
       "evidence": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507"
     },
@@ -84,8 +84,8 @@
       "publisher": "alibaba",
       "name": "Qwen3 VL 235B A22B Instruct",
       "reason": "slot-collision",
-      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
-      "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/max-open/235b-a22b slot with Qwen3 235B-A22B.",
+      "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
+      "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/ultra-open/235b-a22b slot with Qwen3 235B-A22B.",
       "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct"
     },
     {
@@ -93,7 +93,7 @@
       "publisher": "alibaba",
       "name": "Qwen3 VL 235B A22B Thinking",
       "reason": "parameter-split",
-      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+      "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
       "detail": "Thinking/reasoning mode split of Qwen3-VL 235B-A22B alongside the instruct release.",
       "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking"
     },
@@ -119,7 +119,7 @@
       "publisher": "alibaba",
       "name": "Qwen 3.8 Max Prime",
       "reason": "parameter-split",
-      "conflicts_with": "model:alibaba/text/max:3.8",
+      "conflicts_with": "model:alibaba/text/ultra:3.8",
       "detail": "High-throughput serving edition of Qwen3.8 Max; deployment/throughput variant rather than a distinct model tier.",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.8-max-prime.toml"
     },
@@ -342,7 +342,7 @@
       "publisher": "google",
       "name": "Gemini 3.1 Pro Preview Custom Tools",
       "reason": "parameter-split",
-      "conflicts_with": "model:google/text/max:3.1",
+      "conflicts_with": "model:google/text/ultra:3.1",
       "detail": "Tool-use parameter/behaviour variant of Gemini 3.1 Pro Preview rather than a separate tier or release.",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3.1-pro-preview-customtools.toml"
     },
@@ -630,8 +630,8 @@
       "publisher": "mistral",
       "name": "Pixtral Large (25.02)",
       "reason": "slot-collision",
-      "conflicts_with": "model:mistral/text/max:4",
-      "detail": "Parallel closed vision-language flagship family (pixtral-large) occupying the same model:mistral/text/max slot as mistral-large.",
+      "conflicts_with": "model:mistral/text/ultra:4",
+      "detail": "Parallel closed vision-language flagship family (pixtral-large) occupying the same model:mistral/text/ultra slot as mistral-large.",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/pixtral-large-2502.toml"
     },
     {
@@ -951,7 +951,7 @@
       "publisher": "openai",
       "name": "GPT-6 Astra (Fast)",
       "reason": "parameter-split",
-      "conflicts_with": "model:openai/text/max:6",
+      "conflicts_with": "model:openai/text/ultra:6",
       "detail": "Low-latency serving variant of GPT-6 Astra exposed as a separate model ID (SPEC.md section 3.3 / 5.1).",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-6-astra-fast.toml"
     },

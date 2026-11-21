@@ -13,7 +13,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "ai21/jamba-large",
-    "uri": "model:ai21/text/max-weights:1.7",
+    "uri": "model:ai21/text/ultra-weights:1.7",
     "license": "Jamba Open Model License Agreement",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/ai21labs/AI21-Jamba-Large-1.7",
@@ -333,7 +333,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3-coder-480b-a35b-instruct",
-    "uri": "model:alibaba/text/max-code-open/480b-a35b:3",
+    "uri": "model:alibaba/text/ultra-code-open/480b-a35b:3",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
@@ -341,7 +341,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3-235b-a22b",
-    "uri": "model:alibaba/text/max-open/235b-a22b:3",
+    "uri": "model:alibaba/text/ultra-open/235b-a22b:3",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
@@ -349,7 +349,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3-235b-a22b-instruct-2507",
-    "uri": "model:alibaba/text/max-open/235b-a22b:3.2507",
+    "uri": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
@@ -357,7 +357,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3.5-397b-a17b",
-    "uri": "model:alibaba/text/max-open/397b-a17b:3.5",
+    "uri": "model:alibaba/text/ultra-open/397b-a17b:3.5",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B",
@@ -365,7 +365,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3.8-2.4t-a95b",
-    "uri": "model:alibaba/text/max-weights/2.4t-a95b:3.8",
+    "uri": "model:alibaba/text/ultra-weights/2.4t-a95b:3.8",
     "license": "Qwen3.8-Max License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
@@ -373,7 +373,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3-max",
-    "uri": "model:alibaba/text/max:3",
+    "uri": "model:alibaba/text/ultra:3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3-max.toml",
@@ -381,7 +381,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3.6-max-preview",
-    "uri": "model:alibaba/text/max:3.6",
+    "uri": "model:alibaba/text/ultra:3.6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.6-max-preview.toml",
@@ -389,7 +389,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3.7-max",
-    "uri": "model:alibaba/text/max:3.7",
+    "uri": "model:alibaba/text/ultra:3.7",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.7-max.toml",
@@ -397,7 +397,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen3.8-max",
-    "uri": "model:alibaba/text/max:3.8",
+    "uri": "model:alibaba/text/ultra:3.8",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.8-max.toml",
@@ -405,7 +405,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "alibaba/qwen4-max",
-    "uri": "model:alibaba/text/max:4",
+    "uri": "model:alibaba/text/ultra:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen4-max.toml",
@@ -477,7 +477,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "amazon/nova-premier",
-    "uri": "model:amazon/text/max:1",
+    "uri": "model:amazon/text/ultra:1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/amazon/nova-premier.toml",
@@ -597,7 +597,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-0",
-    "uri": "model:anthropic/text/max:4",
+    "uri": "model:anthropic/text/ultra:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/anthropic/claude-opus-4-0.toml",
@@ -605,7 +605,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-1",
-    "uri": "model:anthropic/text/max:4.1",
+    "uri": "model:anthropic/text/ultra:4.1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/anthropic/claude-opus-4-1.toml",
@@ -613,7 +613,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-5",
-    "uri": "model:anthropic/text/max:4.5",
+    "uri": "model:anthropic/text/ultra:4.5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/anthropic/claude-opus-4-5.toml",
@@ -621,7 +621,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-6",
-    "uri": "model:anthropic/text/max:4.6",
+    "uri": "model:anthropic/text/ultra:4.6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/61c8d50df21422b2d84990c2e61ddce1d2bd58b2/providers/anthropic/models/claude-opus-4-6.toml",
@@ -629,7 +629,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-7",
-    "uri": "model:anthropic/text/max:4.7",
+    "uri": "model:anthropic/text/ultra:4.7",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/2f954fc83804884368081cfb6820804eab620a1e/providers/anthropic/models/claude-opus-4-7.toml",
@@ -637,7 +637,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-opus-4-8",
-    "uri": "model:anthropic/text/max:4.8",
+    "uri": "model:anthropic/text/ultra:4.8",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/1c71b1bf177f16268b4f728ad4cfbe57e0c57c77/providers/anthropic/models/claude-opus-4-8.toml",
@@ -645,7 +645,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-fable-5",
-    "uri": "model:anthropic/text/max:5",
+    "uri": "model:anthropic/text/ultra:5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/259aff58eb67f6b5f2ef3841c887cd8d8ffb2120/providers/anthropic/models/claude-fable-5.toml",
@@ -653,7 +653,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-fable-5-1",
-    "uri": "model:anthropic/text/max:5.1",
+    "uri": "model:anthropic/text/ultra:5.1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/bf06cd2a3ae2922acd435ddc441ca5874f93ee8a/providers/anthropic/models/claude-fable-5-1.toml",
@@ -661,7 +661,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "anthropic/claude-fable-5-2",
-    "uri": "model:anthropic/text/max:5.2",
+    "uri": "model:anthropic/text/ultra:5.2",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/20cc6a0bfceda65d7532dbe46986dee119573a8f/providers/anthropic/models/claude-fable-5-2.toml",
@@ -685,7 +685,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "arcee-ai/trinity-large-thinking",
-    "uri": "model:arcee-ai/text/max-weights:1",
+    "uri": "model:arcee-ai/text/ultra-weights:1",
     "license": "OpenMDW-1.1",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/arcee-ai/Trinity-Large-Thinking",
@@ -693,7 +693,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "arcee-ai/trinity-large-preview",
-    "uri": "model:arcee-ai/text/max-weights:1preview",
+    "uri": "model:arcee-ai/text/ultra-weights:1preview",
     "license": "OpenMDW-1.1",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/arcee-ai/Trinity-Large-Preview",
@@ -757,7 +757,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "baidu/ernie-4.5-300b-a47b",
-    "uri": "model:baidu/text/max-open/300b-a47b:4.5",
+    "uri": "model:baidu/text/ultra-open/300b-a47b:4.5",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/baidu/ERNIE-4.5-300B-A47B-Paddle",
@@ -853,7 +853,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "bytedance-seed/seed-2.0-pro",
-    "uri": "model:bytedance-seed/text/max:2.0",
+    "uri": "model:bytedance-seed/text/ultra:2.0",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-2.0-pro.toml",
@@ -861,7 +861,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "bytedance-seed/seed-2.1-pro",
-    "uri": "model:bytedance-seed/text/max:2.1",
+    "uri": "model:bytedance-seed/text/ultra:2.1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-2.1-pro.toml",
@@ -957,7 +957,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "cohere/command-r-plus-08-2024",
-    "uri": "model:cohere/text/max-weights:2408",
+    "uri": "model:cohere/text/ultra-weights:2408",
     "license": "CC-BY-NC-4.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/CohereLabs/c4ai-command-r-plus-08-2024",
@@ -965,7 +965,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "cohere/command-a-03-2025",
-    "uri": "model:cohere/text/max-weights:2503",
+    "uri": "model:cohere/text/ultra-weights:2503",
     "license": "CC-BY-NC-4.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025",
@@ -1005,7 +1005,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "deepreinforce/ornith-1.5-122b",
-    "uri": "model:deepreinforce/text/max-code-open:1.5",
+    "uri": "model:deepreinforce/text/ultra-code-open:1.5",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/deepreinforce/ornith-1.5-122b.toml",
@@ -1013,7 +1013,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "deepreinforce/ornith-1.0-397b",
-    "uri": "model:deepreinforce/text/max-code-open/397b:1.0",
+    "uri": "model:deepreinforce/text/ultra-code-open/397b:1.0",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-397B",
@@ -1069,7 +1069,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "deepseek/deepseek-v4-pro",
-    "uri": "model:deepseek/text/max-open:4",
+    "uri": "model:deepseek/text/ultra-open:4",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
@@ -1077,7 +1077,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "deepseek/deepseek-r1",
-    "uri": "model:deepseek/text/max-open:r1",
+    "uri": "model:deepseek/text/ultra-open:r1",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
@@ -1085,7 +1085,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "deepseek/deepseek-r1-0528",
-    "uri": "model:deepseek/text/max-open:r1.0528",
+    "uri": "model:deepseek/text/ultra-open:r1.0528",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
@@ -1157,7 +1157,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-3-pro-image",
-    "uri": "model:google/image/max:3",
+    "uri": "model:google/image/ultra:3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3-pro-image.toml",
@@ -1309,7 +1309,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemma-4-31b-it",
-    "uri": "model:google/text/max-open/31b:4",
+    "uri": "model:google/text/ultra-open/31b:4",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/google/gemma-4-31B-it",
@@ -1317,7 +1317,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/deep-research-max-preview-04-2026",
-    "uri": "model:google/text/max-research:2026.04",
+    "uri": "model:google/text/ultra-research:2026.04",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-max-preview-04-2026.toml",
@@ -1325,7 +1325,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemma-3-27b-it",
-    "uri": "model:google/text/max-weights/27b:3",
+    "uri": "model:google/text/ultra-weights/27b:3",
     "license": "Gemma Terms of Use",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/google/gemma-3-27b-it",
@@ -1333,7 +1333,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-2.5-pro",
-    "uri": "model:google/text/max:2.5",
+    "uri": "model:google/text/ultra:2.5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-pro.toml",
@@ -1341,7 +1341,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-3-pro-preview",
-    "uri": "model:google/text/max:3",
+    "uri": "model:google/text/ultra:3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3-pro-preview.toml",
@@ -1349,7 +1349,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-3.1-pro-preview",
-    "uri": "model:google/text/max:3.1",
+    "uri": "model:google/text/ultra:3.1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3.1-pro-preview.toml",
@@ -1357,7 +1357,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-4-carbon",
-    "uri": "model:google/text/max:4",
+    "uri": "model:google/text/ultra:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/ca0dc2a7341b733fc30aa21831333632e615ea65/providers/google/models/gemini-4-carbon.toml",
@@ -1405,7 +1405,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "google/gemini-4-argon",
-    "uri": "model:google/text/ultra:4",
+    "uri": "model:google/text/max:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/0da444719383739ca9d06adbcd429b508eac80d3/providers/google/models/gemini-4-argon.toml",
@@ -1741,7 +1741,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "meta/muse-wonder-1.0",
-    "uri": "model:meta/text/max:1.0",
+    "uri": "model:meta/text/ultra:1.0",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://research.meta.ai/blog/muse-wonder",
@@ -2053,7 +2053,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "mistral/mistral-large-2512",
-    "uri": "model:mistral/text/max-open:3",
+    "uri": "model:mistral/text/ultra-open:3",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
@@ -2061,7 +2061,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "mistral/mistral-large-2407",
-    "uri": "model:mistral/text/max-weights:2",
+    "uri": "model:mistral/text/ultra-weights:2",
     "license": "Mistral Research License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
@@ -2069,7 +2069,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "mistral/mistral-large-2411",
-    "uri": "model:mistral/text/max-weights:2.1",
+    "uri": "model:mistral/text/ultra-weights:2.1",
     "license": "Mistral Research License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2411",
@@ -2077,7 +2077,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "mistral/mistral-large",
-    "uri": "model:mistral/text/max:1",
+    "uri": "model:mistral/text/ultra:1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-large.toml",
@@ -2085,7 +2085,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "mistral/mistral-large-4",
-    "uri": "model:mistral/text/max:4",
+    "uri": "model:mistral/text/ultra:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-large-4.toml",
@@ -2157,7 +2157,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "moonshotai/kimi-k3.1-pro",
-    "uri": "model:moonshotai/text/max-weights:3.1",
+    "uri": "model:moonshotai/text/ultra-weights:3.1",
     "license": "Kimi K3.1-Pro License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
@@ -2173,7 +2173,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "morph/morph-v3-large",
-    "uri": "model:morph/text/max:3",
+    "uri": "model:morph/text/ultra:3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/morph/morph-v3-large.toml",
@@ -2549,7 +2549,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.1-codex-max",
-    "uri": "model:openai/text/max-code:5.1",
+    "uri": "model:openai/text/ultra-code:5.1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.1-codex-max.toml",
@@ -2557,7 +2557,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.6-cyber",
-    "uri": "model:openai/text/max-restricted:5.6",
+    "uri": "model:openai/text/ultra-restricted:5.6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.6-cyber.toml",
@@ -2565,7 +2565,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5-pro",
-    "uri": "model:openai/text/max:5",
+    "uri": "model:openai/text/ultra:5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5-pro.toml",
@@ -2573,7 +2573,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.2-pro",
-    "uri": "model:openai/text/max:5.2",
+    "uri": "model:openai/text/ultra:5.2",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.2-pro.toml",
@@ -2581,7 +2581,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.4-pro",
-    "uri": "model:openai/text/max:5.4",
+    "uri": "model:openai/text/ultra:5.4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/e11ad7c01a9ed6989222bc30b0c062b595f60838/providers/openai/models/gpt-5.4-pro.toml",
@@ -2589,7 +2589,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.5-pro",
-    "uri": "model:openai/text/max:5.5",
+    "uri": "model:openai/text/ultra:5.5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/f1cad8fdc08f08eacbdee195b0a87908cd088943/providers/openai/models/gpt-5.5-pro.toml",
@@ -2597,7 +2597,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-5.6-sol",
-    "uri": "model:openai/text/max:5.6",
+    "uri": "model:openai/text/ultra:5.6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/6dfc39c81b6cd57a91c155aa7b4f68ed1b360da0/providers/openai/models/gpt-5.6-sol.toml",
@@ -2605,7 +2605,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-6-astra",
-    "uri": "model:openai/text/max:6",
+    "uri": "model:openai/text/ultra:6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/fe5b09c6ea3ffd4f82e72b3d4bb6a8b670688b56/providers/openai/models/gpt-6-astra.toml",
@@ -2613,7 +2613,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/gpt-6.2-astra",
-    "uri": "model:openai/text/max:6.2",
+    "uri": "model:openai/text/ultra:6.2",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/2dbda9a2febeb5f62e116729ea0288ca75230129/providers/openai/models/gpt-6.2-astra.toml",
@@ -2621,7 +2621,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/o1-pro",
-    "uri": "model:openai/text/max:o1",
+    "uri": "model:openai/text/ultra:o1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o1-pro.toml",
@@ -2629,7 +2629,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "openai/o3-pro",
-    "uri": "model:openai/text/max:o3",
+    "uri": "model:openai/text/ultra:o3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o3-pro.toml",
@@ -2853,7 +2853,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "sakana/fugu-ultra",
-    "uri": "model:sakana/text/max:1",
+    "uri": "model:sakana/text/ultra:1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://raw.githubusercontent.com/SakanaAI/fugu/refs/heads/main/configs/files/fugu.json",
@@ -2861,7 +2861,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "sakana/fugu-ultra-v2",
-    "uri": "model:sakana/text/max:2",
+    "uri": "model:sakana/text/ultra:2",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sakana/fugu-ultra-v2.toml",
@@ -2901,7 +2901,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "swiss-ai/apertus-70b",
-    "uri": "model:swiss-ai/text/max-open/70b:1",
+    "uri": "model:swiss-ai/text/ultra-open/70b:1",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/swiss-ai/Apertus-70B-Instruct-2509",
@@ -2909,7 +2909,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "swiss-ai/apertus-v1.5-70b",
-    "uri": "model:swiss-ai/text/max-open/70b:1.5",
+    "uri": "model:swiss-ai/text/ultra-open/70b:1.5",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/swiss-ai/Apertus-v1.5-70B",
@@ -2957,7 +2957,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "thinkingmachines/inkling",
-    "uri": "model:thinkingmachines/text/max-open/975b-a41b:1",
+    "uri": "model:thinkingmachines/text/ultra-open/975b-a41b:1",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/thinkingmachines/Inkling",
@@ -3005,7 +3005,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "upstage/solar-pro2",
-    "uri": "model:upstage/text/max:2",
+    "uri": "model:upstage/text/ultra:2",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/upstage/solar-pro2.toml",
@@ -3013,7 +3013,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "upstage/solar-pro3",
-    "uri": "model:upstage/text/max:3",
+    "uri": "model:upstage/text/ultra:3",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/upstage/solar-pro3.toml",
@@ -3021,7 +3021,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "upstage/solar-pro4",
-    "uri": "model:upstage/text/max:4",
+    "uri": "model:upstage/text/ultra:4",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/upstage/solar-pro4.toml",
@@ -3045,7 +3045,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "vispark/vision-large",
-    "uri": "model:vispark/text/max:1",
+    "uri": "model:vispark/text/ultra:1",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/vispark/vision-large.toml",
@@ -3149,7 +3149,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "xai/grok-4.5",
-    "uri": "model:xai/text/max:4.5",
+    "uri": "model:xai/text/ultra:4.5",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/4e4161773e2e0e7ff02b4b4a89e6e7b3be81de98/providers/xai/models/grok-4.5.toml",
@@ -3157,7 +3157,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "xai/grok-4.6",
-    "uri": "model:xai/text/max:4.6",
+    "uri": "model:xai/text/ultra:4.6",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/2f038556752cc5c05febea83789e266903738491/providers/xai/models/grok-4.6.toml",
@@ -3165,7 +3165,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "xai/grok-4.7",
-    "uri": "model:xai/text/max:4.7",
+    "uri": "model:xai/text/ultra:4.7",
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/ce2cb0547484fb62bee8813352123d5a6a5f550b/providers/xai/models/grok-4.7.toml",
@@ -3365,7 +3365,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "zhipuai/glm-5",
-    "uri": "model:zhipuai/text/max-open:5",
+    "uri": "model:zhipuai/text/ultra-open:5",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5",
@@ -3373,7 +3373,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "zhipuai/glm-5.1",
-    "uri": "model:zhipuai/text/max-open:5.1",
+    "uri": "model:zhipuai/text/ultra-open:5.1",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5.1",
@@ -3381,7 +3381,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "zhipuai/glm-5.2",
-    "uri": "model:zhipuai/text/max-open:5.2",
+    "uri": "model:zhipuai/text/ultra-open:5.2",
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5.2",
@@ -3389,7 +3389,7 @@ export const CLASSIFICATION = [
   },
   {
     "id": "zhipuai/glm-5.3",
-    "uri": "model:zhipuai/text/max-weights:5.3",
+    "uri": "model:zhipuai/text/ultra-weights:5.3",
     "license": "GLM-5.3 License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5.3",
@@ -3467,7 +3467,7 @@ export const INCOMPATIBLE = [
     "publisher": "alibaba",
     "name": "Qwen3 235B-A22B Thinking 2507",
     "reason": "parameter-split",
-    "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+    "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
     "detail": "Thinking/reasoning mode split of Qwen3 235B-A22B 2507 alongside the instruct release.",
     "evidence": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507"
   },
@@ -3494,8 +3494,8 @@ export const INCOMPATIBLE = [
     "publisher": "alibaba",
     "name": "Qwen3 VL 235B A22B Instruct",
     "reason": "slot-collision",
-    "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
-    "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/max-open/235b-a22b slot with Qwen3 235B-A22B.",
+    "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
+    "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/ultra-open/235b-a22b slot with Qwen3 235B-A22B.",
     "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct"
   },
   {
@@ -3503,7 +3503,7 @@ export const INCOMPATIBLE = [
     "publisher": "alibaba",
     "name": "Qwen3 VL 235B A22B Thinking",
     "reason": "parameter-split",
-    "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+    "conflicts_with": "model:alibaba/text/ultra-open/235b-a22b:3.2507",
     "detail": "Thinking/reasoning mode split of Qwen3-VL 235B-A22B alongside the instruct release.",
     "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking"
   },
@@ -3529,7 +3529,7 @@ export const INCOMPATIBLE = [
     "publisher": "alibaba",
     "name": "Qwen 3.8 Max Prime",
     "reason": "parameter-split",
-    "conflicts_with": "model:alibaba/text/max:3.8",
+    "conflicts_with": "model:alibaba/text/ultra:3.8",
     "detail": "High-throughput serving edition of Qwen3.8 Max; deployment/throughput variant rather than a distinct model tier.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.8-max-prime.toml"
   },
@@ -3752,7 +3752,7 @@ export const INCOMPATIBLE = [
     "publisher": "google",
     "name": "Gemini 3.1 Pro Preview Custom Tools",
     "reason": "parameter-split",
-    "conflicts_with": "model:google/text/max:3.1",
+    "conflicts_with": "model:google/text/ultra:3.1",
     "detail": "Tool-use parameter/behaviour variant of Gemini 3.1 Pro Preview rather than a separate tier or release.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3.1-pro-preview-customtools.toml"
   },
@@ -4040,8 +4040,8 @@ export const INCOMPATIBLE = [
     "publisher": "mistral",
     "name": "Pixtral Large (25.02)",
     "reason": "slot-collision",
-    "conflicts_with": "model:mistral/text/max:4",
-    "detail": "Parallel closed vision-language flagship family (pixtral-large) occupying the same model:mistral/text/max slot as mistral-large.",
+    "conflicts_with": "model:mistral/text/ultra:4",
+    "detail": "Parallel closed vision-language flagship family (pixtral-large) occupying the same model:mistral/text/ultra slot as mistral-large.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/pixtral-large-2502.toml"
   },
   {
@@ -4361,7 +4361,7 @@ export const INCOMPATIBLE = [
     "publisher": "openai",
     "name": "GPT-6 Astra (Fast)",
     "reason": "parameter-split",
-    "conflicts_with": "model:openai/text/max:6",
+    "conflicts_with": "model:openai/text/ultra:6",
     "detail": "Low-latency serving variant of GPT-6 Astra exposed as a separate model ID (SPEC.md section 3.3 / 5.1).",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-6-astra-fast.toml"
   },
@@ -4644,17 +4644,17 @@ export const SKIPPED = [
   {
     "id": "alibaba/qwen3-max-preview",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Superseded pre-release preview snapshot of Qwen3 Max (model:alibaba/text/max:3) with no first-party or extended-host listing."
+    "detail": "Superseded pre-release preview snapshot of Qwen3 Max (model:alibaba/text/ultra:3) with no first-party or extended-host listing."
   },
   {
     "id": "alibaba/qwen3.8-max-0902",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Dated snapshot (0902) of Qwen3.8 Max already registered as model:alibaba/text/max:3.8."
+    "detail": "Dated snapshot (0902) of Qwen3.8 Max already registered as model:alibaba/text/ultra:3.8."
   },
   {
     "id": "alibaba/qwen3.8-max-preview",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Superseded pre-release preview snapshot of Qwen3.8 Max (model:alibaba/text/max:3.8) with no first-party or extended-host listing."
+    "detail": "Superseded pre-release preview snapshot of Qwen3.8 Max (model:alibaba/text/ultra:3.8) with no first-party or extended-host listing."
   },
   {
     "id": "amazon/nova-2-lite-v1",
@@ -4764,12 +4764,12 @@ export const SKIPPED = [
   {
     "id": "deepseek/deepseek-v4-pro-0423",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Dated initial snapshot (0423) duplicating the undated deepseek/deepseek-v4-pro release (model:deepseek/text/max-open:4)."
+    "detail": "Dated initial snapshot (0423) duplicating the undated deepseek/deepseek-v4-pro release (model:deepseek/text/ultra-open:4)."
   },
   {
     "id": "deepseek/deepseek-v4-pro-0813",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Dated snapshot (0813) duplicating the undated deepseek/deepseek-v4-pro release (model:deepseek/text/max-open:4)."
+    "detail": "Dated snapshot (0813) duplicating the undated deepseek/deepseek-v4-pro release (model:deepseek/text/ultra-open:4)."
   },
   {
     "id": "deepseek/deepseek-v4.1-flash-1017",
@@ -4799,12 +4799,12 @@ export const SKIPPED = [
   {
     "id": "google/gemini-2.5-pro-preview",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Dated preview snapshot (`06-05`) of `google/gemini-2.5-pro` (`model:google/text/max:2.5`)."
+    "detail": "Dated preview snapshot (`06-05`) of `google/gemini-2.5-pro` (`model:google/text/ultra:2.5`)."
   },
   {
     "id": "google/gemini-3-pro-image-preview",
     "skip_reason": "snapshot-duplicate",
-    "detail": "Pre-GA preview snapshot superseded by `google/gemini-3-pro-image` (`model:google/image/max:3`)."
+    "detail": "Pre-GA preview snapshot superseded by `google/gemini-3-pro-image` (`model:google/image/ultra:3`)."
   },
   {
     "id": "google/gemini-3.1-flash-image-preview",

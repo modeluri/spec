@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 // SPEC.md section 2, reference regex.
-export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
+export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
 
 // Self-hosted inference: the weights must be downloadable (SPEC.md 3.8 and rule 8).
 export const SELF_HOSTED = new Set(["local", "edge"]);

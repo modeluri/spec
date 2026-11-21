@@ -52,7 +52,7 @@ model-uri  = "model:" publisher "/" scope "/" tier
              [ ":" version ] [ "~" derivation ] [ "@" host ]
 publisher  = LOWER *( LOWER / DIGIT / "-" )
 scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision"
-tier       = "nano" / "light" / "core" / "high" / "ultra" / "max"
+tier       = "nano" / "light" / "core" / "high" / "max" / "ultra"
 special    = "code" / "rt" / "base" / "guard" / "ocr" / "translate" / "research" / "gui" / "robotics" / "roleplay" / "medical" / "finance" / "legal" / "voiceclone" / "voicedesign"
 access     = "restricted" / "gov" / "internal"
 weights    = "weights" / "open"
@@ -71,7 +71,7 @@ A size always starts with a digit and a quantisation always starts with a letter
 Reference regex:
 
 ```text
-^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
+^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
 ```
 
 Under RFC 3986 a model URI has the scheme `model`, no authority and a rootless path. The form `model://` is not a model URI.
@@ -84,7 +84,7 @@ Lowercase ASCII only, 128 characters at most. One rule sits outside the regex: `
 | --- | --- | --- | --- |
 | `publisher` | Who made the model? | A registered organisation name: `anthropic`, `google`, `alibaba` | Registry |
 | `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision` | Specification |
-| `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `ultra`, `max` | Publisher, otherwise registry |
+| `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `max`, `ultra` | Publisher, otherwise registry |
 | `special` | What is it published for? | `code`, `rt`, `base`, `guard`, `ocr`, `translate`, `research`, `gui`, `robotics`, `roleplay`, `medical`, `finance`, `legal`, `voiceclone`, `voicedesign`; absent means general use | Publisher |
 | `access` | Who may use it? | `restricted`, `gov`, `internal`; absent means anyone | Publisher |
 | `weights` | Can the weights be downloaded, under which kind of licence? | `weights`, `open`; absent means closed | The licence |
@@ -94,7 +94,7 @@ Lowercase ASCII only, 128 characters at most. One rule sits outside the regex: `
 | `derivation` | Did a third party modify it, and how? | Author and kind: `huihui-abliterated` | Whoever derived it |
 | `host` | Where does it run? | `local`, `edge`, or a registered host; absent means the publisher's API | Whoever deploys |
 
-`publisher` is always the publishing organisation, never a model brand or family: `alibaba` rather than `qwen`, `google` rather than `gemini` or `gemma`, `meta` rather than `llama` or `muse`, `moonshotai` rather than `kimi`. The registry assigns one canonical lowercase slug per organisation and freezes it.
+`publisher` is always the operating organisation that publishes the model and signs its model cards and licence, never a model brand, family or parent holding company: `alibaba` rather than `qwen`, `google` rather than `alphabet`, `gemini` or `gemma`, `meta` rather than `llama` or `muse`, `deepseek` rather than `high-flyer`, `moonshotai` rather than `kimi`. The registry assigns one canonical lowercase slug per organisation and freezes it.
 
 There is no `family` component. Adding commercial family names would break portability across publishers (principle 1). `scope`, `tier`, `special`, `weights` (`-open`/`-weights`/closed) and `size` separate a publisher's models; when two parallel families from the same publisher still collide on the same slot (for example `codestral` and `devstral`, or separate vision-only and text-only checkpoints of the same release), the primary model holds the slot and the overlapping sibling stays out of the registry as `slot-collision` (section 5.1).
 
@@ -127,12 +127,12 @@ The tier is a role in the lineup, on one scale shared by every publisher.
 | `light` | Fast and inexpensive |
 | `core` | The publisher's everyday default |
 | `high` | A step above the default, for harder work |
-| `ultra` | Just below the flagship |
-| `max` | The publisher's flagship |
+| `max` | Just below the flagship |
+| `ultra` | The publisher's flagship |
 
-`core` and `max` anchor the scale. The other rungs may stay empty.
+`core` and `ultra` anchor the scale. The other rungs may stay empty.
 
-A **slot** is everything in a model URI before the version: publisher, scope, tier, suffixes, size and quantisation. `model:anthropic/text/max` and `model:anthropic/text/max-restricted` are two slots on the same rung, and so are `model:alibaba/text/core-open/27b` and `model:alibaba/text/core-open/35b-a3b`.
+A **slot** is everything in a model URI before the version: publisher, scope, tier, suffixes, size and quantisation. `model:anthropic/text/ultra` and `model:anthropic/text/ultra-restricted` are two slots on the same rung, and so are `model:alibaba/text/core-open/27b` and `model:alibaba/text/core-open/35b-a3b`.
 
 A publisher that adopts the standard:
 
@@ -140,7 +140,7 @@ A publisher that adopts the standard:
 - keeps at most one generally available model per slot, so that a new model in an occupied slot replaces the previous one;
 - fits its lineup to the scale, and not the other way round. A lineup that needs more than six rungs in one scope is too crowded to be understood.
 
-For a publisher that has not adopted it, the registry assigns the tier: `core` is the model the publisher presents as its everyday default, `max` is its flagship, and the others are placed by list price of output tokens, filling first the rungs closest to `core`. Where there is no price list, parameter count is used. When two models cost the same, the publisher's own description decides.
+For a publisher that has not adopted it, the registry assigns the tier: `core` is the model the publisher presents as its everyday default, `ultra` is its flagship, and the others are placed by list price of output tokens, filling first the rungs closest to `core`. Where there is no price list, parameter count is used. When two models cost the same, the publisher's own description decides.
 
 **Same rung, same role.** Moving from `model:openai/text/core` to `model:google/text/core` gives you the other publisher's everyday default. Quality, price and behaviour still differ, and the registry records them.
 
@@ -361,23 +361,23 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 
 | Model | Model URI | What it shows |
 | --- | --- | --- |
-| GPT-6.2 Astra | `model:openai/text/max:6.2` | "Our most capable model": the flagship |
+| GPT-6.2 Astra | `model:openai/text/ultra:6.2` | "Our most capable model": the flagship |
 | GPT-6.2 Sol | `model:openai/text/core:6.2` | "Our go-to model for everyday work": the default |
 | GPT-6.1 Terra | `model:openai/text/light:6.1` | |
-| GPT-6 Luna | `model:openai/text/nano:6` | `high` and `ultra` stay empty |
-| Gemini 4 Carbon | `model:google/text/max:4` | "Our strongest reasoning model" |
-| Gemini 4 Argon | `model:google/text/ultra:4` | |
+| GPT-6 Luna | `model:openai/text/nano:6` | `high` and `max` stay empty |
+| Gemini 4 Carbon | `model:google/text/ultra:4` | "Our strongest reasoning model" |
+| Gemini 4 Argon | `model:google/text/max:4` | |
 | Gemini 4 Neon | `model:google/text/high:4` | Three Gemini 4 models share version `4`; the tier keeps them apart |
 | Gemini 4 Hydrogen | `model:google/text/core:4` | Built "for everyday coding and agentic workflows" |
 | Gemini 3.8 Flash | `model:google/text/light:3.8` | Older line, still on sale: it fills `light` |
 | Claude Haiku 5.5 | `model:anthropic/text/light:5.5` | |
 | Claude Sonnet 5.5 | `model:anthropic/text/core:5.5` | |
 | Claude Opus 5.5 | `model:anthropic/text/high:5.5` | The rung closest to `core` is filled first |
-| Claude Fable 5.2 | `model:anthropic/text/max:5.2` | |
-| Claude Mythos 5.2 | `model:anthropic/text/max-restricted:5.2` | Same rung, selected operators only; not in the registry, which lists models on sale |
+| Claude Fable 5.2 | `model:anthropic/text/ultra:5.2` | |
+| Claude Mythos 5.2 | `model:anthropic/text/ultra-restricted:5.2` | Same rung, selected operators only; not in the registry, which lists models on sale |
 | Claude Sonnet 5.5 on Bedrock | `model:anthropic/text/core:5.5@bedrock` | Publisher and host are separate |
 | A government-only edition | `model:example/text/core-gov:2.0` | Access reserved to government bodies |
-| A model used inside its publisher | `model:example/text/max-internal:3.0` | Not released |
+| A model used inside its publisher | `model:example/text/ultra-internal:3.0` | Not released |
 | Mistral Codestral, current | `model:mistral/text/core-code` | Specialisation, no version |
 | Meta Llama Guard 4, 12B | `model:meta/text/core-guard-weights/12b:4@local` | Safety guardrail (`guard`) |
 | LightOnOCR 3, 0.8B | `model:lightonai/text/core-ocr-open/0.8b:3@local` | Document OCR (`ocr`) |
@@ -411,7 +411,7 @@ Every pinned model URI in this table is in the registry, except the illustrative
 
 | Role | OpenAI | Google | Anthropic |
 | --- | --- | --- | --- |
-| Flagship | `model:openai/text/max` | `model:google/text/max` | `model:anthropic/text/max` |
+| Flagship | `model:openai/text/ultra` | `model:google/text/ultra` | `model:anthropic/text/ultra` |
 | Everyday default | `model:openai/text/core` | `model:google/text/core` | `model:anthropic/text/core` |
 | Fast and inexpensive | `model:openai/text/light` | `model:google/text/light` | `model:anthropic/text/light` |
 
@@ -426,7 +426,7 @@ RFC 7595 recommends avoiding very general scheme names. The name `model` is gene
 ## 10. Open questions
 
 - Are six rungs enough, and are `high` and `max` acceptable names when at least one publisher also uses them as levels of reasoning effort?
-- Will two publishers with four models each place them on the same rungs? The line between `high` and `ultra` is thin, and the rule "fill the rungs closest to `core` first" may not be enough.
+- Will two publishers with four models each place them on the same rungs? The line between `high` and `max` is thin, and the rule "fill the rungs closest to `core` first" may not be enough.
 - Should an empty rung fall back to the nearest filled one, or always be reported as empty?
 - Tier of open-weights models: role within the publisher's family, or fixed bands by parameter count?
 - Third-party quantisations: whoever quantised the weights does not appear. Should it?
