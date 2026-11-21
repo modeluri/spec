@@ -3,6 +3,23 @@
   "updated": "2026-11-21",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
+  "specials": {
+    "code": "Published as specialised for code.",
+    "rt": "Real-time streaming or duplex interaction (such as live voice on omni or streaming speech-to-text on transcribe).",
+    "base": "Pre-trained weights without instruction tuning.",
+    "guard": "Safety, content moderation or prompt-injection guardrails.",
+    "ocr": "Document optical character recognition and layout extraction.",
+    "translate": "Dedicated machine translation.",
+    "research": "Autonomous multi-step deep research and report synthesis.",
+    "gui": "Graphical user interface grounding and control (desktop computer use, browser automation and mobile device agents).",
+    "robotics": "Embodied robotics reasoning and physical-world control.",
+    "roleplay": "Character-driven dialogue and interactive roleplay.",
+    "medical": "Clinical, healthcare and biomedical specialisation.",
+    "finance": "Financial analysis, markets and accounting specialisation.",
+    "legal": "Legal reasoning, statutory analysis and compliance specialisation.",
+    "voiceclone": "Voice cloning from a reference speaker sample (on tts).",
+    "voicedesign": "Generating a synthetic voice from a text description (on tts)."
+  },
   "entries": [
     {
       "uri": "model:ai21/text/light-open:2",

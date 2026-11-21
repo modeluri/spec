@@ -64,8 +64,8 @@ test("non-standard publisher size notations are rejected as size", () => {
   assert.equal(parse("model:google/text/light-weights/e4b:4")?.size, undefined);
 });
 
-test("all supported special suffixes parse and out-of-spec specialisations are rejected", () => {
-  for (const sp of ["code", "rt", "base", "guard", "ocr", "translate", "research", "gui", "robotics", "roleplay", "medical", "finance", "legal", "voiceclone", "voicedesign"]) {
+test("special parses syntactically without colliding with access/weights, and registry rejects unregistered specials", () => {
+  for (const sp of Object.keys(registry.specials)) {
     assert.equal(parse(`model:example/text/core-${sp}`)?.special, sp, sp);
   }
   const guard = parse("model:meta/text/core-guard-weights/12b:4@local");
@@ -84,8 +84,24 @@ test("all supported special suffixes parse and out-of-spec specialisations are r
   assert.equal(voiceclone?.scope, "tts");
   assert.equal(voiceclone?.special, "voiceclone");
   assert.equal(voiceclone?.version, "2.5");
-  for (const bad of ["fast", "thinking", "reasoning", "cyber", "med", "fin", "marketing", "hr"]) {
-    assert.equal(parse(`model:example/text/core-${bad}`), null, bad);
+  // Unregistered domains parse syntactically (SPEC.md rule 7) and do not eat access/weights keywords.
+  const cyber = parse("model:example/text/ultra-cybersec-restricted");
+  assert.equal(cyber?.special, "cybersec");
+  assert.equal(cyber?.access, "restricted");
+  const openmath = parse("model:example/text/core-openmath-open");
+  assert.equal(openmath?.special, "openmath");
+  assert.equal(openmath?.weights, "open");
+  assert.equal(parse("model:example/text/core-open")?.special, undefined);
+  assert.equal(parse("model:example/text/core-open")?.weights, "open");
+  // Invalid special syntax (digits, uppercase, wrong suffix order) is still rejected by the parser.
+  for (const bad of ["model:example/text/core-code2", "model:example/text/core-Code", "model:example/text/core-open-code", "model:example/text/core-restricted-code"]) {
+    assert.equal(parse(bad), null, bad);
+  }
+  // Unregistered specials are flagged by the resolver against registry.specials.
+  for (const unreg of ["fast", "thinking", "reasoning", "cybersec", "math"]) {
+    const r = resolve(registry, `model:openai/text/core-${unreg}`);
+    assert.equal(r.code, 1, unreg);
+    assert.match(r.error, /unregistered special/, unreg);
   }
 });
 
@@ -178,9 +194,11 @@ const slotOf = (uri) => uri.slice(0, uri.indexOf(":", 6));
 test("registry: valid, unique, with evidence, tier source and native name", () => {
   const uris = registry.entries.map((x) => x.uri);
   assert.equal(new Set(uris).size, uris.length);
+  assert.ok(registry.specials && typeof registry.specials === "object" && Object.keys(registry.specials).length >= 15);
   for (const x of registry.entries) {
     const g = parse(x.uri);
     assert.ok(g?.version, x.uri);
+    if (g.special) assert.ok(g.special in registry.specials, `${x.uri} uses unregistered special: ${g.special}`);
     assert.match(x.evidence, /^https:\/\//, x.uri);
     assert.equal(x.tier_source, "registry");
     const hostKeys = Object.keys(x.native);

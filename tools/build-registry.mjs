@@ -2,7 +2,7 @@
 // Builds registry.json and incompatible.json from the local models.dev snapshot and classification.mjs.
 // Usage: node tools/build-registry.mjs [--catalog <catalog.json>] [--fetch]
 import { readFile, writeFile } from "node:fs/promises";
-import { CLASSIFICATION, INCOMPATIBLE, SKIPPED } from "./classification.mjs";
+import { CLASSIFICATION, INCOMPATIBLE, SKIPPED, SPECIALS } from "./classification.mjs";
 import { URI_RE, parse } from "../cli/model-uri.mjs";
 import { DEFAULT_CATALOG_PATH, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
 import { checkLicenseConsistency } from "./licenses.mjs";
@@ -52,6 +52,16 @@ function claimId(id, bucket) {
   return catalog.models[id];
 }
 
+const RESERVED_SUFFIXES = new Set(["restricted", "gov", "internal", "weights", "open"]);
+for (const [k, desc] of Object.entries(SPECIALS)) {
+  if (!/^[a-z]+$/.test(k) || RESERVED_SUFFIXES.has(k)) {
+    throw new Error(`[specials] invalid special key: ${k}`);
+  }
+  if (typeof desc !== "string" || !desc.trim()) {
+    throw new Error(`[specials] missing description for ${k}`);
+  }
+}
+
 const seenUris = new Set();
 const registeredPublisherNative = new Set();
 const incompatibleIds = new Set(INCOMPATIBLE.map((x) => x.id));
@@ -62,6 +72,9 @@ const entries = CLASSIFICATION.map((item) => {
   }
   const g = parse(item.uri);
   if (!g?.version) throw new Error(`[registry] URI must be pinned with a version: ${item.uri}`);
+  if (g.special && !(g.special in SPECIALS)) {
+    throw new Error(`[registry] unregistered special "${g.special}" on ${item.id}: ${item.uri}`);
+  }
   const catalogPub = item.id.split("/")[0];
   if (g.publisher !== catalogPub) {
     throw new Error(`[registry] publisher mismatch on ${item.id}: expected ${catalogPub}, got ${g.publisher}`);
@@ -172,6 +185,7 @@ const registryDoc = {
   updated,
   license: "CC0-1.0",
   note: "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
+  specials: SPECIALS,
   entries,
 };
 

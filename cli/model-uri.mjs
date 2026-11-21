@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 // SPEC.md section 2, reference regex.
-export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
+export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>(?!(?:restricted|gov|internal|weights|open)(?=[-/:~@]|$))[a-z]+))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
 
 // Self-hosted inference: the weights must be downloadable (SPEC.md 3.8 and rule 8).
 export const SELF_HOSTED = new Set(["local", "edge"]);
@@ -42,6 +42,9 @@ export function resolve(registry, input) {
     return { ok: false, code: 2, error };
   }
   if (g.author) return { ok: false, code: 1, error: "derived models are not in the registry" };
+  if (g.special && registry.specials && !(g.special in registry.specials)) {
+    return { ok: false, code: 1, error: `unregistered special: ${g.special}` };
+  }
 
   const selfHosted = SELF_HOSTED.has(g.host);
   const find = (q) => {

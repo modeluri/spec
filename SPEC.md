@@ -53,7 +53,7 @@ model-uri  = "model:" publisher "/" scope "/" tier
 publisher  = LOWER *( LOWER / DIGIT / "-" )
 scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision"
 tier       = "nano" / "light" / "core" / "high" / "max" / "ultra"
-special    = "code" / "rt" / "base" / "guard" / "ocr" / "translate" / "research" / "gui" / "robotics" / "roleplay" / "medical" / "finance" / "legal" / "voiceclone" / "voicedesign"
+special    = 1*LOWER                       ; registered in the registry, not an access or weights keyword
 access     = "restricted" / "gov" / "internal"
 weights    = "weights" / "open"
 size       = params [ "-a" params ]        ; total, then active: 35b-a3b
@@ -71,7 +71,7 @@ A size always starts with a digit and a quantisation always starts with a letter
 Reference regex:
 
 ```text
-^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
+^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>(?!(?:restricted|gov|internal|weights|open)(?=[-/:~@]|$))[a-z]+))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
 ```
 
 Under RFC 3986 a model URI has the scheme `model`, no authority and a rootless path. The form `model://` is not a model URI.
@@ -85,7 +85,7 @@ Lowercase ASCII only, 128 characters at most. One rule sits outside the regex: `
 | `publisher` | Who made the model? | A registered organisation name: `anthropic`, `google`, `alibaba` | Registry |
 | `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision` | Specification |
 | `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `max`, `ultra` | Publisher, otherwise registry |
-| `special` | What is it published for? | `code`, `rt`, `base`, `guard`, `ocr`, `translate`, `research`, `gui`, `robotics`, `roleplay`, `medical`, `finance`, `legal`, `voiceclone`, `voicedesign`; absent means general use | Publisher |
+| `special` | What is it published for? | A registered specialisation: `code`, `rt`, `base`, `guard`, `ocr`, `translate`, `research`, `gui`, `robotics`, `roleplay`, `medical`, `finance`, `legal`, `voiceclone`, `voicedesign`; absent means general use | Registry |
 | `access` | Who may use it? | `restricted`, `gov`, `internal`; absent means anyone | Publisher |
 | `weights` | Can the weights be downloaded, under which kind of licence? | `weights`, `open`; absent means closed | The licence |
 | `size` | How big is it? | Total parameters, plus active ones for MoE: `35b-a3b` | Publisher |
@@ -148,9 +148,11 @@ The tier is a role and nothing else. Who may use a model and how it is licensed 
 
 ### 3.3 Suffixes: special, access, weights
 
-After the tier come up to three suffixes. Each belongs to a closed family, answers one question and has a fixed position: `special`, then `access`, then `weights`. A parser returns them as three separate fields.
+After the tier come up to three suffixes. Each answers one question and has a fixed position: `special`, then `access`, then `weights`. `access` and `weights` are closed vocabularies in this specification; `special` is a controlled vocabulary maintained in the registry (`specials`, section 5), so new real-world specialisations (such as `cybersec` or `math`) can be registered without changing the grammar or breaking parsers. A parser returns them as three separate fields.
 
 **Special: what is it published for?**
+
+Initial registered values (maintained in `registry.json` under `specials`):
 
 - `code`: published as specialised for code.
 - `rt`: real-time streaming or duplex interaction (such as live voice on `omni` or streaming speech-to-text on `transcribe`).
@@ -183,7 +185,7 @@ A model with no access suffix is available to anyone who can pay for it or downl
 
 A model with no weights suffix is closed and reachable through an API only. The suffix is mandatory whenever it applies. The exact licence goes in the registry as a canonical SPDX identifier when one exists (for example `Apache-2.0`, `MIT`, `CC-BY-NC-4.0`), or the publisher's own licence name otherwise, and `"proprietary"` for closed models. If a downloadable model has no verifiable licence, it stays out of the registry (section 5.1).
 
-Extended reasoning and serving latency modes (such as fast or high-speed tiers) are request or deployment parameters, and vision input is registry data; none of them belongs in the identifier. Specialisations outside the closed `special` set stay out of the registry (section 5.1) rather than colliding with the general lineup.
+Extended reasoning and serving latency modes (such as fast or high-speed tiers) are request or deployment parameters, and vision input is registry data; none of them belongs in the identifier. A new `special` value is added to the registry only when at least one real published model needs it to avoid colliding with the general lineup; unregistered specialisations stay out of the registry (section 5.1) until registered.
 
 ### 3.4 Size
 
@@ -238,14 +240,14 @@ An environment with compliance requirements is a host of its own, for example `a
 4. **No version means the current model.** With size and quantisation, it follows both: `model:alibaba/text/core-open/35b-a3b/mxfp4@local` is the newest release with those parameters at that precision, and it stays where it is if the next generation drops that size. A resolver always reports the pinned model URI it resolved to, and says so when a sized alias has stopped moving.
 5. **Same rung, same role.** Changing the publisher keeps the role, not the results.
 6. **Canonical form.** All lowercase, scheme `model:` always present, suffixes in the fixed order `special`, `access`, `weights`, version left out when it means the current model, host left out when it is the publisher's own API.
-7. **Unknown values.** A parser rejects scopes, tiers and suffixes it does not know. It accepts hosts that are syntactically valid but unregistered, and flags them.
+7. **Unknown values.** A parser rejects scopes, tiers, access values and weights values it does not know. It accepts `publisher`, `special` and `host` names that are syntactically valid but unregistered, and flags them.
 8. **Self-hosting needs weights.** `@local` and `@edge` are valid only together with `-open` or `-weights`. A parser rejects them on a closed model.
 
 ## 5. Registry
 
-The registry covers what the identifier leaves out: the native name to call, the licence, and the tiers of publishers that have not adopted the standard. It is the file [`registry.json`](registry.json) in this repository: an object with the specification version it follows (`spec`), the snapshot date (`updated`), its licence (`license`), a `note` and the list of `entries`.
+The registry covers what the identifier leaves out: the native name to call, the licence, the controlled vocabulary of `special` values, and the tiers of publishers that have not adopted the standard. It is the file [`registry.json`](registry.json) in this repository: an object with the specification version it follows (`spec`), the snapshot date (`updated`), its licence (`license`), a `note`, the registered `specials` map and the list of `entries`.
 
-`registry.json` and `incompatible.json` are generated by `tools/build-registry.mjs` from the classification table `tools/classification.mjs` and a snapshot of the models.dev catalogue. Changes go through pull requests on the classification table, never on the generated files. The build rejects invalid or unpinned model URIs, missing evidence, a licence that contradicts the `weights` suffix, two current models in one slot, and catalogue models that are not accounted for.
+`registry.json` and `incompatible.json` are generated by `tools/build-registry.mjs` from the classification table `tools/classification.mjs` and a snapshot of the models.dev catalogue. Changes go through pull requests on the classification table, never on the generated files. The build rejects invalid or unpinned model URIs, unregistered `special` values, missing evidence, a licence that contradicts the `weights` suffix, two current models in one slot, and catalogue models that are not accounted for.
 
 Each entry holds:
 
@@ -275,8 +277,8 @@ Governance:
 
 - A tier assigned by the registry without `evidence` is not accepted.
 - A publisher can always replace a registry-assigned tier with its own. This applies to future releases only.
-- The lists of scopes, tiers and suffixes are closed and part of the specification. Hosts are registered names.
-- Adding a value takes an issue and a new minor version.
+- The lists of scopes, tiers, access values and weights values are closed and part of the specification. Publishers, specialisations (`special`) and hosts are registered names.
+- Adding a scope, tier, access or weights value takes an issue and a new minor version. Adding a `special` value takes a pull request on the registry with at least one real published model that would otherwise collide with the general lineup.
 - The specification follows semantic versioning and stays `0.x` while it is a draft.
 
 Seed data should not be compiled by hand. Open catalogues such as [models.dev](https://github.com/anomalyco/models.dev) already hold native identifiers, prices and capabilities. The registry adds only the classification on top.
@@ -303,7 +305,7 @@ Closed list of `reason` values:
 | `opaque-size` | Non-physical or proprietary parameter label (such as `E4B` or `8x7b`) where verifiable counts are absent and size is needed to distinguish the release |
 | `parameter-split` | A request parameter or serving mode (such as reasoning toggle or latency tier) exposed as a separate model ID |
 | `slot-collision` | Two distinct models or parallel families from the same publisher occupy the same slot without a distinguishing component, or a lineup exceeds six rungs in one scope |
-| `unmapped-special` | Specialisation outside the closed `special` set (section 3.3) that would otherwise collide with the general lineup |
+| `unmapped-special` | Specialisation not in the registry's `specials` vocabulary (section 3.3) that would otherwise collide with the general lineup |
 | `unmapped-scope` | Output contract outside the closed `scope` set |
 | `missing-evidence` | Verifiable tier, licence or model-card facts are absent, so the tier or `weights`/`open` suffix cannot be assigned honestly |
 
@@ -432,3 +434,4 @@ RFC 7595 recommends avoiding very general scheme names. The name `model` is gene
 - Third-party quantisations: whoever quantised the weights does not appear. Should it?
 - Is the list of derivation kinds complete, and how are chained derivations written?
 - Access: should research previews have their own value?
+- Should `special` remain single, or allow multiple values in alphabetical order (for example `-base-code` or `-rt-voiceclone`)?

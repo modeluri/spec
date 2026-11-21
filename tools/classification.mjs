@@ -2,6 +2,26 @@
 // Classification table mapping models.dev canonical IDs to Model URIs, incompatible entries, or skipped out-of-scope records.
 // Tiers are assigned under SPEC.md section 3.2 and frozen at release; rebuilt deterministically by tools/build-registry.mjs.
 
+// Controlled vocabulary of registered `special` suffixes (SPEC.md sections 3.3 and 5).
+// A value is added only when at least one real published model needs it to avoid colliding with the general lineup.
+export const SPECIALS = {
+  code: "Published as specialised for code.",
+  rt: "Real-time streaming or duplex interaction (such as live voice on omni or streaming speech-to-text on transcribe).",
+  base: "Pre-trained weights without instruction tuning.",
+  guard: "Safety, content moderation or prompt-injection guardrails.",
+  ocr: "Document optical character recognition and layout extraction.",
+  translate: "Dedicated machine translation.",
+  research: "Autonomous multi-step deep research and report synthesis.",
+  gui: "Graphical user interface grounding and control (desktop computer use, browser automation and mobile device agents).",
+  robotics: "Embodied robotics reasoning and physical-world control.",
+  roleplay: "Character-driven dialogue and interactive roleplay.",
+  medical: "Clinical, healthcare and biomedical specialisation.",
+  finance: "Financial analysis, markets and accounting specialisation.",
+  legal: "Legal reasoning, statutory analysis and compliance specialisation.",
+  voiceclone: "Voice cloning from a reference speaker sample (on tts).",
+  voicedesign: "Generating a synthetic voice from a text description (on tts).",
+};
+
 export const CLASSIFICATION = [
   {
     "id": "ai21/jamba-mini",
