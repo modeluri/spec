@@ -23,13 +23,23 @@ anthropic.claude-sonnet-5-5
 note: bedrock-runtime needs a geographic or global inference profile in front of this id (us., eu., global.); the bare id works on bedrock-mantle only.
 ```
 
+For self-hosted inference, `@local` returns the repository of the published weights:
+
+```text
+$ node cli/model-uri.mjs model:baai/embed/core-open:m3@local
+model:baai/embed/core-open:m3@local
+BAAI/bge-m3
+```
+
 `node cli/model-uri.mjs aliases --format litellm` prints a [LiteLLM](https://docs.litellm.ai) proxy `model_list` that makes every model URI in the registry usable as a model name. The generated file is [`aliases/litellm.yaml`](aliases/litellm.yaml). It covers the publishers' own APIs only, and it was checked with LiteLLM 1.110.2 (proxy and `Router`, backend mocked: names with `:` and `/` load and route, calls to the real APIs were not made).
 
 The registry is a first seed: tiers are assigned by the rule in SPEC.md section 3.2 from the [models.dev](https://models.dev) catalogue, and none is declared by a publisher.
 
+`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs --fetch` (or `--catalog <catalog.json>` with a local snapshot). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix and two current models in one slot.
+
 ## Sign
 
-The moratorium is an appeal. By signing, developers ask publishers, routers, gateways and inference engines to adopt the four commitments listed on the [site](https://modeluri.org), and adopt model URIs in their own configuration files and documentation, with the native name as a fallback until both sides support them.
+The moratorium is an appeal. By signing, developers ask publishers, routers, gateways and inference engines to adopt the four commitments listed on the [site](https://modeluri.org/#moratorium), and adopt model URIs in their own configuration files and documentation, with the native name as a fallback until both sides support them.
 
 To sign, add one line to [SIGNATORIES.md](SIGNATORIES.md) and open a pull request.
 
@@ -39,7 +49,8 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 
 - a real model the grammar cannot express;
 - two real models that collide on the same model URI;
-- a tier the price-list rule gets wrong.
+- a tier the price-list rule gets wrong;
+- a model in `incompatible.json` that does fit, or a registry entry that should not be there.
 
 ## Repository layout
 
@@ -49,7 +60,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `registry.json` | The public registry of model URIs |
 | `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
 | `cli/` | The resolver (`model-uri.mjs`) and its tests: `node --test cli/` |
-| `tools/` | Builds `registry.json` and `incompatible.json` from the models.dev catalogue |
+| `tools/` | The classification table (`classification.mjs`) and the build that turns it into `registry.json` and `incompatible.json` |
 | `aliases/` | Gateway alias files generated from the registry |
 | `SIGNATORIES.md` | People and organisations who signed |
 

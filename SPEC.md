@@ -8,7 +8,7 @@ This is a working draft. Everything here can change. Objections and edge cases a
 
 ## 1. Purpose
 
-A model URI says what role a model plays in its publisher's lineup, who may use it and where it runs, in words that mean the same thing at every publisher. Change the publisher, keep the rest, and you get that publisher's equivalent model.
+A model URI says what role a model plays in its publisher's lineup, who may use it, how it is licensed and where it runs, in words that mean the same thing at every publisher. Change the publisher, keep the rest, and you get that publisher's equivalent model.
 
 ```text
 model:openai/text/core
@@ -53,7 +53,7 @@ model-uri  = "model:" publisher "/" scope "/" tier
 publisher  = LOWER *( LOWER / DIGIT / "-" )
 scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision"
 tier       = "nano" / "light" / "core" / "high" / "ultra" / "max"
-special    = "code" / "rt" / "base" / "guard" / "ocr" / "translate"
+special    = "code" / "rt" / "base" / "guard" / "ocr" / "translate" / "research" / "gui" / "robotics" / "roleplay" / "medical" / "finance" / "legal" / "voiceclone" / "voicedesign"
 access     = "restricted" / "gov" / "internal"
 weights    = "weights" / "open"
 size       = params [ "-a" params ]        ; total, then active: 35b-a3b
@@ -71,12 +71,12 @@ A size always starts with a digit and a quantisation always starts with a letter
 Reference regex:
 
 ```text
-^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
+^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
 ```
 
 Under RFC 3986 a model URI has the scheme `model`, no authority and a rootless path. The form `model://` is not a model URI.
 
-Lowercase ASCII only, 128 characters at most. After the scheme, the separators `/`, `:`, `~` and `@` never appear inside a part, so parsing is unambiguous.
+Lowercase ASCII only, 128 characters at most. One rule sits outside the regex: `local` and `edge` hosts need a `weights` suffix (section 4, rule 8). After the scheme, the separators `/`, `:`, `~` and `@` never appear inside a part, so parsing is unambiguous.
 
 ## 3. Components
 
@@ -85,7 +85,7 @@ Lowercase ASCII only, 128 characters at most. After the scheme, the separators `
 | `publisher` | Who made the model? | A registered organisation name: `anthropic`, `google`, `alibaba` | Registry |
 | `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision` | Specification |
 | `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `ultra`, `max` | Publisher, otherwise registry |
-| `special` | What is it published for? | `code`, `rt`, `base`, `guard`, `ocr`, `translate`; absent means general use | Publisher |
+| `special` | What is it published for? | `code`, `rt`, `base`, `guard`, `ocr`, `translate`, `research`, `gui`, `robotics`, `roleplay`, `medical`, `finance`, `legal`, `voiceclone`, `voicedesign`; absent means general use | Publisher |
 | `access` | Who may use it? | `restricted`, `gov`, `internal`; absent means anyone | Publisher |
 | `weights` | Can the weights be downloaded, under which kind of licence? | `weights`, `open`; absent means closed | The licence |
 | `size` | How big is it? | Total parameters, plus active ones for MoE: `35b-a3b` | Publisher |
@@ -132,10 +132,12 @@ The tier is a role in the lineup, on one scale shared by every publisher.
 
 `core` and `max` anchor the scale. The other rungs may stay empty.
 
+A **slot** is everything in a model URI before the version: publisher, scope, tier, suffixes, size and quantisation. `model:anthropic/text/max` and `model:anthropic/text/max-restricted` are two slots on the same rung, and so are `model:alibaba/text/core-open/27b` and `model:alibaba/text/core-open/35b-a3b`.
+
 A publisher that adopts the standard:
 
 - declares the tier of every model at release;
-- keeps at most one generally available model per rung, scope and combination of suffixes, so that a new model on an occupied rung replaces the previous one;
+- keeps at most one generally available model per slot, so that a new model in an occupied slot replaces the previous one;
 - fits its lineup to the scale, and not the other way round. A lineup that needs more than six rungs in one scope is too crowded to be understood.
 
 For a publisher that has not adopted it, the registry assigns the tier: `core` is the model the publisher presents as its everyday default, `max` is its flagship, and the others are placed by list price of output tokens, filling first the rungs closest to `core`. Where there is no price list, parameter count is used. When two models cost the same, the publisher's own description decides.
@@ -156,6 +158,15 @@ After the tier come up to three suffixes. Each belongs to a closed family, answe
 - `guard`: safety, content moderation or prompt-injection guardrails.
 - `ocr`: document optical character recognition and layout extraction.
 - `translate`: dedicated machine translation.
+- `research`: autonomous multi-step deep research and report synthesis.
+- `gui`: graphical user interface grounding and control (desktop computer use, browser automation and mobile device agents).
+- `robotics`: embodied robotics reasoning and physical-world control.
+- `roleplay`: character-driven dialogue and interactive roleplay.
+- `medical`: clinical, healthcare and biomedical specialisation.
+- `finance`: financial analysis, markets and accounting specialisation.
+- `legal`: legal reasoning, statutory analysis and compliance specialisation.
+- `voiceclone`: voice cloning from a reference speaker sample (on `tts`).
+- `voicedesign`: generating a synthetic voice from a text description (on `tts`).
 
 **Access: who may use it?**
 
@@ -172,11 +183,11 @@ A model with no access suffix is available to anyone who can pay for it or downl
 
 A model with no weights suffix is closed and reachable through an API only. The suffix is mandatory whenever it applies. The exact licence goes in the registry as a canonical SPDX identifier when one exists (for example `Apache-2.0`, `MIT`, `CC-BY-NC-4.0`), or the publisher's own licence name otherwise, and `"proprietary"` for closed models. If a downloadable model has no verifiable licence, it stays out of the registry (section 5.1).
 
-Extended reasoning and serving latency modes (such as fast or high-speed tiers) are request or deployment parameters, and vision input is registry data; none of them belongs in the identifier. Narrow vertical domains (such as medicine, finance or robotics) are outside the closed `special` set and stay out of the registry (section 5.1).
+Extended reasoning and serving latency modes (such as fast or high-speed tiers) are request or deployment parameters, and vision input is registry data; none of them belongs in the identifier. Specialisations outside the closed `special` set stay out of the registry (section 5.1) rather than colliding with the general lineup.
 
 ### 3.4 Size
 
-The size is the parameter count in millions (`m`), billions (`b`) or trillions (`t`), and it is optional. It is used where one release ships in several sizes and the tier alone cannot tell them apart.
+The size is the parameter count in millions (`m`), billions (`b`) or trillions (`t`), and it is optional. It is used where one release ships in several sizes and the tier alone cannot tell them apart. Each size is a slot of its own, so a 27b and a 35b-a3b model can both be current on `core`.
 
 - A size without `-a` is a dense model: `32b`, `1t`.
 - A size with `-a` is a mixture of experts, total then active: `35b-a3b`, `2.4t-a95b`.
@@ -213,33 +224,38 @@ Labels such as "uncensored" are not accepted, because they do not name a verifia
 
 ### 3.8 Host
 
-When the host is missing, the model runs on the publisher's own API. `local` and `edge` mean self-hosted inference. Other hosts are registered names: `bedrock`, `vertex`, `azure`.
+When the host is missing, the model runs on the publisher's own API. Other hosts are registered names: the keys of `native` in the registry, such as `bedrock`, `vertex`, `azure`, `openrouter`, `together` or `groq`.
+
+`local` and `edge` mean self-hosted inference, on your own hardware or on a device. They apply only to models with a `weights` suffix, because a closed model cannot be self-hosted: `model:openai/text/core@local` is not a valid model URI. A resolver turns them into the repository the weights are published in, the registry key `huggingface`. When the URI asks for a quantisation the registry does not list, the resolver returns the weights as released and says so, because whoever self-hosts chooses the precision (section 3.5).
 
 An environment with compliance requirements is a host of its own, for example `azuregov`. That is different from the `gov` access suffix: the host says where an ordinary model runs, the suffix says the edition itself is reserved.
 
 ## 4. Rules
 
-1. **One rung, one model.** For a publisher that adopts the standard, a model URI without a version points to exactly one model at any time, and one with a version points to exactly one release forever.
+1. **One slot, one model.** For a publisher that adopts the standard, a model URI without a version points to exactly one model at any time, and one with a version points to exactly one release forever.
 2. **Pinned versions never change.** An updated model gets a new version. Silent updates under an existing version are not allowed.
 3. **Frozen tier.** A pinned model URI keeps the tier of its release forever. Logs, configurations and benchmarks do not break.
 4. **No version means the current model.** With size and quantisation, it follows both: `model:alibaba/text/core-open/35b-a3b/mxfp4@local` is the newest release with those parameters at that precision, and it stays where it is if the next generation drops that size. A resolver always reports the pinned model URI it resolved to, and says so when a sized alias has stopped moving.
 5. **Same rung, same role.** Changing the publisher keeps the role, not the results.
 6. **Canonical form.** All lowercase, scheme `model:` always present, suffixes in the fixed order `special`, `access`, `weights`, version left out when it means the current model, host left out when it is the publisher's own API.
 7. **Unknown values.** A parser rejects scopes, tiers and suffixes it does not know. It accepts hosts that are syntactically valid but unregistered, and flags them.
+8. **Self-hosting needs weights.** `@local` and `@edge` are valid only together with `-open` or `-weights`. A parser rejects them on a closed model.
 
 ## 5. Registry
 
-The registry covers what the identifier leaves out: the native name to call, the licence, and the tiers of publishers that have not adopted the standard. It is the file [`registry.json`](registry.json) in this repository, changed through pull requests.
+The registry covers what the identifier leaves out: the native name to call, the licence, and the tiers of publishers that have not adopted the standard. It is the file [`registry.json`](registry.json) in this repository: an object with the specification version it follows (`spec`), the snapshot date (`updated`), its licence (`license`), a `note` and the list of `entries`.
+
+`registry.json` and `incompatible.json` are generated by `tools/build-registry.mjs` from the classification table `tools/classification.mjs` and a snapshot of the models.dev catalogue. Changes go through pull requests on the classification table, never on the generated files. The build rejects invalid or unpinned model URIs, missing evidence, a licence that contradicts the `weights` suffix, two current models in one slot, and catalogue models that are not accounted for.
 
 Each entry holds:
 
 - `uri`: the pinned model URI.
-- `native`: the real identifier for each host, for example the string passed to the API.
+- `native`: the real identifier for each host, for example the string passed to the API. The key is the host name; the publisher's own API uses the publisher's name. For downloadable models, `huggingface` holds the repository of the published weights, which is also what `@local` and `@edge` resolve to.
 - `released`: the release date.
 - `license`: `"proprietary"` for closed models (no weights suffix); a canonical SPDX identifier of an unmodified OSI-approved licence for `-open` models; or an SPDX identifier / the publisher's exact licence name for `-weights` models. It justifies the `weights` suffix.
 - `tier_source`: `publisher` if the tier is declared, `registry` if it is assigned with the rule in section 3.2.
 - `evidence`: a link to the price list, model card or announcement that justifies the tier.
-- `current`: `true` if the model is on sale and holds its rung, so that a model URI without a version resolves to it. At most one entry per rung is current. A pinned URI resolves to any entry, current or not.
+- `current`: `true` if the model is on sale and holds its slot, so that a model URI without a version resolves to it. At most one entry per slot is current. A pinned URI resolves to any entry, current or not.
 
 Example entry:
 
@@ -287,7 +303,7 @@ Closed list of `reason` values:
 | `opaque-size` | Non-physical or proprietary parameter label (such as `E4B` or `8x7b`) where verifiable counts are absent and size is needed to distinguish the release |
 | `parameter-split` | A request parameter or serving mode (such as reasoning toggle or latency tier) exposed as a separate model ID |
 | `slot-collision` | Two distinct models or parallel families from the same publisher occupy the same slot without a distinguishing component, or a lineup exceeds six rungs in one scope |
-| `unmapped-special` | Specialisation outside the closed `special` set (`code`, `rt`, `base`, `guard`, `ocr`, `translate`) that would otherwise collide with the general lineup |
+| `unmapped-special` | Specialisation outside the closed `special` set (section 3.3) that would otherwise collide with the general lineup |
 | `unmapped-scope` | Output contract outside the closed `scope` set |
 | `missing-evidence` | Verifiable tier, licence or model-card facts are absent, so the tier or `weights`/`open` suffix cannot be assigned honestly |
 
@@ -307,7 +323,7 @@ Example entry:
 Rules:
 
 - **Mutual exclusion.** A model must not appear in both `registry.json` and `incompatible.json`.
-- **Not for out-of-scope records.** Third-party derivations (`~author-kind`), dated snapshot duplicates of an already-registered release, and private or restricted models that are expressible by the grammar but not publicly on sale do not belong in `incompatible.json`.
+- **Not for out-of-scope records.** Third-party derivations (`~author-kind`), dated snapshot duplicates of an already-registered release, and private or restricted models that are expressible by the grammar but not publicly on sale do not belong in `incompatible.json`. The classification table lists them as skipped, so that every catalogue model is accounted for, and they are not published.
 - **Exit path.** When a publisher publishes verifiable facts or a clean versioned ID, or a future minor version of this specification expands a closed vocabulary, the entry moves from `incompatible.json` to `registry.json`.
 
 ## 6. Security considerations
@@ -341,7 +357,7 @@ The `native` field of the registry points to these identifiers. A model URI alwa
 
 ## 8. Examples
 
-Tiers are assigned with the registry rule from the publishers' own descriptions and price lists as of 20 November 2026. No publisher has declared them.
+Tiers are assigned with the registry rule from the publishers' own descriptions and price lists as of 21 November 2026. No publisher has declared them.
 
 | Model | Model URI | What it shows |
 | --- | --- | --- |
@@ -365,20 +381,31 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Mistral Codestral, current | `model:mistral/text/core-code` | Specialisation, no version |
 | Meta Llama Guard 4, 12B | `model:meta/text/core-guard-weights/12b:4@local` | Safety guardrail (`guard`) |
 | LightOnOCR 3, 0.8B | `model:lightonai/text/core-ocr-open/0.8b:3@local` | Document OCR (`ocr`) |
-| Cohere Command A Translate, current | `model:cohere/text/core-translate` | Dedicated translation (`translate`) |
+| Cohere North Small Translate 1.0 | `model:cohere/text/light-translate-weights:1.0` | Dedicated translation (`translate`), non-commercial licence (`weights`) |
+| Gemini 3.5 Live Translate Preview | `model:google/omni/core-translate:3.5` | Live speech translation (`omni` + `translate`) |
+| Gemini Deep Research Preview | `model:google/text/core-research:2026.04` | Autonomous deep research (`research`) |
+| Gemini 2.5 Computer Use | `model:google/text/core-gui:2.5` | GUI and computer control (`gui`) |
+| Gemini Robotics-ER 1.6 | `model:google/text/core-robotics:1.6` | Embodied robotics (`robotics`) |
+| Baichuan M2, 32B | `model:baichuan/text/core-medical-open/32b:2@local` | Medical domain (`medical`) |
+| Ling 3.0 Flash Fin | `model:inclusionai/text/core-finance-open:3.0` | Finance domain (`finance`) |
+| Doubao Seed Character | `model:bytedance-seed/text/core-roleplay:26.06` | Character dialogue (`roleplay`) |
+| Qwen 3.5 MoE base, 35B total, 3B active | `model:alibaba/text/core-base-open/35b-a3b:3.5` | Pre-trained weights without instruction tuning (`base`) |
 | Qwen 3.6 MoE, 35B total, 3B active, MXFP4 | `model:alibaba/text/core-open/35b-a3b/mxfp4:3.6@local` | Open licence, size, precision, version and host, each on its own |
 | The newest Qwen at that size and precision | `model:alibaba/text/core-open/35b-a3b/mxfp4@local` | Follows new releases and keeps the hardware footprint |
 | The same model, abliterated by a third party | `model:alibaba/text/core-open/35b-a3b/q4:3.6~huihui-abliterated@local` | Derivation |
-| Gemma 4, 26B total, 4B active, Q4 | `model:google/text/core-weights/26b-a4b/q4:4@local` | Downloadable under the publisher's own terms |
+| Gemma 4, 26B total, 4B active, Q4 | `model:google/text/core-open/26b-a4b/q4:4@local` | Downloadable under Apache-2.0 (`open`) |
+| Meta Llama 4 Maverick | `model:meta/text/core-weights:4@local` | Downloadable under the publisher's community licence (`weights`) |
 | Whisper large-v3, FP16 | `model:openai/transcribe/high-open/fp16:3@local` | Speech-to-text (`transcribe`) |
 | Gemini 3.5 Transcribe Live | `model:google/transcribe/core-rt:3.5` | Streaming speech-to-text (`-rt`) |
-| Gemini 3.8 Flash TTS | `model:google/tts/core:3.8` | Text-to-speech (`tts`) |
-| Lyria 3.5 | `model:google/audio/core:3.5` | Non-speech audio and music (`audio`) |
+| Gemini 3.1 Flash TTS Preview | `model:google/tts/core:3.1` | Text-to-speech (`tts`) |
+| MiMo-V2.5-TTS VoiceClone | `model:xiaomi/tts/core-voiceclone:2.5` | Voice cloning (`tts` + `voiceclone`) |
+| MiMo-V2.5-TTS VoiceDesign | `model:xiaomi/tts/core-voicedesign:2.5` | A voice generated from a text description (`tts` + `voicedesign`) |
+| Lyria 3 Pro Preview | `model:google/audio/core:3` | Non-speech audio and music (`audio`) |
 | GPT Realtime 2.1 | `model:openai/omni/core-rt:2.1` | Real-time duplex voice (`omni` + `-rt`) |
-| Gemini Decision 1 | `model:google/decision/core:1` | Typed probabilistic decision (`decision`) |
+| Liquid d1 | `model:liquid/decision/core:1` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 
-The `weights` and `open` suffixes follow the licences as commonly reported and must be checked against each model card.
+Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. Whisper large-v3 is not in the models.dev catalogue and is illustrative too. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.
 
 ### Switching publisher
 

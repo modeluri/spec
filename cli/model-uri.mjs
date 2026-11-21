@@ -8,13 +8,18 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 // SPEC.md section 2, reference regex.
-export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
+export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate|research|gui|robotics|roleplay|medical|finance|legal|voiceclone|voicedesign))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
+
+// Self-hosted inference: the weights must be downloadable (SPEC.md 3.8 and rule 8).
+export const SELF_HOSTED = new Set(["local", "edge"]);
+const closedSelfHosted = (g) => SELF_HOSTED.has(g.host) && !g.weights;
 
 export function parse(uri) {
   if (uri.length > 128) return null;
   const m = URI_RE.exec(uri);
   if (!m) return null;
   const g = { ...m.groups };
+  if (closedSelfHosted(g)) return null;
   if (g.version === "latest") g.version = undefined; // `:latest` means no version (SPEC.md 3.6)
   return g;
 }
@@ -29,14 +34,29 @@ const HINTS = {
 /** @returns {{ok: true, uri: string, native: string, hint?: string} | {ok: false, code: 1 | 2, error: string}} */
 export function resolve(registry, input) {
   const g = parse(input);
-  if (!g) return { ok: false, code: 2, error: `not a valid model URI: ${input}` };
+  if (!g) {
+    const raw = input.length <= 128 && URI_RE.exec(input)?.groups;
+    const error = raw && closedSelfHosted(raw)
+      ? `closed model, no downloadable weights: @${raw.host} needs -open or -weights`
+      : `not a valid model URI: ${input}`;
+    return { ok: false, code: 2, error };
+  }
   if (g.author) return { ok: false, code: 1, error: "derived models are not in the registry" };
 
-  const slot = slotOf(g);
-  const inSlot = registry.entries.filter((e) => slotOf(parse(e.uri)) === slot);
-  const entry = g.version
-    ? inSlot.find((e) => parse(e.uri).version === g.version)
-    : inSlot.find((e) => e.current);
+  const selfHosted = SELF_HOSTED.has(g.host);
+  const find = (q) => {
+    const slot = slotOf(q);
+    const inSlot = registry.entries.filter((e) => slotOf(parse(e.uri)) === slot);
+    const hit = q.version ? inSlot.find((e) => parse(e.uri).version === q.version) : inSlot.find((e) => e.current);
+    return { inSlot, hit };
+  };
+  let { inSlot, hit: entry } = find(g);
+  // Whoever self-hosts picks the precision (SPEC.md 3.5): without a published quantisation, fall back to the weights as released.
+  let quantFallback = false;
+  if (!entry && selfHosted && g.quant) {
+    const plain = find({ ...g, quant: undefined });
+    if (plain.hit) ({ inSlot, hit: entry } = plain), (quantFallback = true);
+  }
   if (!entry) {
     const what = g.version
       ? `no release ${g.version} on this rung`
@@ -46,15 +66,22 @@ export function resolve(registry, input) {
     return { ok: false, code: 1, error: `${what}: ${input.split("@")[0]}` };
   }
 
-  const host = g.host ?? g.publisher;
+  // local and edge resolve to the repository the weights are published in.
+  const host = selfHosted ? "huggingface" : (g.host ?? g.publisher);
   const native = entry.native[host];
-  const pinned = entry.uri + (g.host ? `@${g.host}` : "");
+  const base = quantFallback ? entry.uri.replace(/:(?=[^:]*$)/, `/${g.quant}:`) : entry.uri;
+  const pinned = base + (g.host ? `@${g.host}` : "");
   if (!native) {
     const known = registry.entries.some((e) => g.host in e.native);
-    const why = !g.host ? "no native name for the publisher's own API" : known ? `${entry.uri} is not served on ${g.host} in the registry` : `unregistered host: ${g.host}`;
+    const why = selfHosted
+      ? `${entry.uri} has no published weights repository in the registry`
+      : !g.host ? "no native name for the publisher's own API" : known ? `${entry.uri} is not served on ${g.host} in the registry` : `unregistered host: ${g.host}`;
     return { ok: false, code: 1, error: why };
   }
-  return { ok: true, uri: pinned, native, ...(HINTS[g.host] && { hint: HINTS[g.host] }) };
+  const hint = quantFallback
+    ? `the registry lists no ${g.quant} release; this is the repository of the weights as published, quantise them yourself or pick a ${g.quant} build`
+    : HINTS[g.host];
+  return { ok: true, uri: pinned, native, ...(hint && { hint }) };
 }
 
 // LiteLLM proxy model_list: one alias per pinned URI, plus the version-less one for current models.

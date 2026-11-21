@@ -66,6 +66,15 @@ const ALIASES = new Map([
   ["llama2", "Llama 2 Community License"],
   ["modified-mit", "Modified MIT"],
   ["modified mit", "Modified MIT"],
+  ["jamba-open-model-license", "Jamba Open Model License Agreement"],
+  ["qwen-research", "Qwen Research License Agreement"],
+  ["qwen", "Qwen License Agreement"],
+  ["qwen-community-1.0", "Qwen Community License 1.0"],
+  ["qwen3.8-max", "Qwen3.8-Max License"],
+  ["minimax-community", "MiniMax Community License"],
+  ["kimi-k3.1-pro", "Kimi K3.1-Pro License"],
+  ["nvidia-open-model-license", "NVIDIA Open Model License Agreement"],
+  ["glm-5.3", "GLM-5.3 License"],
   ["proprietary", "proprietary"],
 ]);
 
@@ -98,6 +107,10 @@ export function weightsSuffixFor(raw) {
 export function checkLicenseConsistency(weightsSuffix, license) {
   if (typeof license !== "string" || normalizeLicense(license) !== license) {
     return { ok: false, error: `unnormalised or missing license: ${license}` };
+  }
+  // A bare lowercase slug (for example a Hugging Face license_name) is neither SPDX nor the licence's own title.
+  if (license !== "proprietary" && /^[a-z0-9][a-z0-9.-]*$/.test(license)) {
+    return { ok: false, error: `licence slug instead of an SPDX identifier or the licence title: ${license}` };
   }
   if (!weightsSuffix) {
     return license === "proprietary"

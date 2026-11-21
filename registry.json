@@ -23,7 +23,7 @@
         "huggingface": "ai21labs/AI21-Jamba-Large-1.7"
       },
       "released": "2025-07-03",
-      "license": "jamba-open-model-license",
+      "license": "Jamba Open Model License Agreement",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/ai21labs/AI21-Jamba-Large-1.7",
       "current": true
@@ -91,7 +91,7 @@
         "huggingface": "Qwen/Qwen-Image-2.1"
       },
       "released": "2026-09-14",
-      "license": "qwen-research",
+      "license": "Qwen Research License Agreement",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/Qwen/Qwen-Image-2.1",
       "current": true
@@ -102,7 +102,7 @@
         "huggingface": "Qwen/Qwen3.8-Flash-Next"
       },
       "released": "2026-08-27",
-      "license": "qwen-community-1.0",
+      "license": "Qwen Community License 1.0",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
       "current": true
@@ -146,7 +146,7 @@
         "fireworks": "accounts/fireworks/models/qwen3p8-2p4t-a95b"
       },
       "released": "2026-08-12",
-      "license": "qwen3.8-max",
+      "license": "Qwen3.8-Max License",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
       "current": true
@@ -653,7 +653,7 @@
         "huggingface": "Qwen/Qwen2.5-VL-72B-Instruct"
       },
       "released": "2025-01-26",
-      "license": "qwen",
+      "license": "Qwen License Agreement",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct",
       "current": true
@@ -1171,6 +1171,17 @@
       "current": true
     },
     {
+      "uri": "model:baichuan/text/core-medical-open/32b:2",
+      "native": {
+        "huggingface": "baichuan-inc/Baichuan-M2-32B"
+      },
+      "released": "2025-08-13",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B",
+      "current": true
+    },
+    {
       "uri": "model:baidu/text/core-code:1",
       "native": {
         "novitaai": "baidu/cobuddy"
@@ -1245,6 +1256,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5",
+      "current": true
+    },
+    {
+      "uri": "model:bytedance-seed/text/core-roleplay:26.06",
+      "native": {
+        "bytedance-seed": "doubao-seed-character-260628"
+      },
+      "released": "2026-06-23",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-character.toml",
       "current": true
     },
     {
@@ -1934,6 +1956,28 @@
       "current": true
     },
     {
+      "uri": "model:google/text/core-research:2026.04",
+      "native": {
+        "google": "deep-research-preview-04-2026"
+      },
+      "released": "2026-04-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-preview-04-2026.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/max-research:2026.04",
+      "native": {
+        "google": "deep-research-max-preview-04-2026"
+      },
+      "released": "2026-04-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-max-preview-04-2026.toml",
+      "current": true
+    },
+    {
       "uri": "model:google/tts/core:3.1",
       "native": {
         "google": "gemini-3.1-flash-tts-preview"
@@ -1942,6 +1986,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3.1-flash-tts-preview.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/core-robotics:1.6",
+      "native": {
+        "orcarouter": "google/gemini-robotics-er-1.6-preview"
+      },
+      "released": "2026-04-14",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-robotics-er-1.6-preview.toml",
       "current": true
     },
     {
@@ -2071,6 +2126,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/veo-3.1-generate-preview.toml",
+      "current": true
+    },
+    {
+      "uri": "model:google/text/core-gui:2.5",
+      "native": {
+        "google": "gemini-2.5-computer-use-preview-10-2025"
+      },
+      "released": "2025-10-07",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-computer-use-preview-10-2025.toml",
       "current": true
     },
     {
@@ -2313,6 +2379,29 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.2-flash.toml",
+      "current": true
+    },
+    {
+      "uri": "model:inclusionai/text/core-medical:3.0",
+      "native": {
+        "vercel": "inclusionai/ling-3.0-flash-sante"
+      },
+      "released": "2026-09-04",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.0-flash-sante.toml",
+      "current": true
+    },
+    {
+      "uri": "model:inclusionai/text/core-finance-open:3.0",
+      "native": {
+        "vercel": "inclusionai/ling-3.0-flash-fin",
+        "huggingface": "inclusionAI/Ling-3.0-flash-Fin"
+      },
+      "released": "2026-08-27",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin",
       "current": true
     },
     {
@@ -2781,7 +2870,7 @@
         "ollama": "minimax-m3.1-flash"
       },
       "released": "2026-10-19",
-      "license": "minimax-community",
+      "license": "MiniMax Community License",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
       "current": true
@@ -2811,7 +2900,7 @@
         "ollama": "minimax-m3"
       },
       "released": "2026-06-01",
-      "license": "minimax-community",
+      "license": "MiniMax Community License",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
       "current": true
@@ -2832,6 +2921,17 @@
       "tier_source": "registry",
       "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
       "current": false
+    },
+    {
+      "uri": "model:minimax/text/core-roleplay:2",
+      "native": {
+        "ofox": "minimax/m2-her"
+      },
+      "released": "2026-01-23",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/minimax/MiniMax-M2-Her.toml",
+      "current": true
     },
     {
       "uri": "model:minimax/text/core-weights:2.1",
@@ -3209,7 +3309,7 @@
         "ollama": "kimi-k3.1-pro"
       },
       "released": "2026-10-23",
-      "license": "kimi-k3.1-pro",
+      "license": "Kimi K3.1-Pro License",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
       "current": true
@@ -3377,7 +3477,7 @@
         "huggingface": "nvidia/llama-nemotron-embed-1b-v2"
       },
       "released": "2025-10-16",
-      "license": "nvidia-open-model-license",
+      "license": "NVIDIA Open Model License Agreement",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/nvidia/llama-nemotron-embed-1b-v2",
       "current": true
@@ -3928,6 +4028,28 @@
       "current": true
     },
     {
+      "uri": "model:openai/text/core-research:o3",
+      "native": {
+        "poe": "openai/o3-deep-research"
+      },
+      "released": "2025-06-26",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o3-deep-research.toml",
+      "current": false
+    },
+    {
+      "uri": "model:openai/text/light-research:o4",
+      "native": {
+        "poe": "openai/o4-mini-deep-research"
+      },
+      "released": "2025-06-26",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o4-mini-deep-research.toml",
+      "current": false
+    },
+    {
       "uri": "model:openai/text/max:o3",
       "native": {
         "openai": "o3-pro",
@@ -4194,6 +4316,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perceptron/perceptron-mk1.toml",
+      "current": false
+    },
+    {
+      "uri": "model:perplexity/text/core-research:1",
+      "native": {
+        "perplexity": "sonar-deep-research"
+      },
+      "released": "2025-02-01",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-deep-research.toml",
       "current": false
     },
     {
@@ -4960,6 +5093,28 @@
       "current": false
     },
     {
+      "uri": "model:xiaomi/tts/core-voiceclone:2.5",
+      "native": {
+        "xiaomi": "mimo-v2.5-tts-voiceclone"
+      },
+      "released": "2026-04-22",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voiceclone.toml",
+      "current": true
+    },
+    {
+      "uri": "model:xiaomi/tts/core-voicedesign:2.5",
+      "native": {
+        "xiaomi": "mimo-v2.5-tts-voicedesign"
+      },
+      "released": "2026-04-22",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voicedesign.toml",
+      "current": true
+    },
+    {
       "uri": "model:xiaomi/tts/core:2.5",
       "native": {
         "xiaomi": "mimo-v2.5-tts"
@@ -5035,7 +5190,7 @@
         "ollama": "glm-5.3"
       },
       "released": "2026-08-14",
-      "license": "glm-5.3",
+      "license": "GLM-5.3 License",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/zai-org/GLM-5.3",
       "current": true
@@ -5159,6 +5314,17 @@
       "license": "MIT",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/zai-org/GLM-4.7",
+      "current": true
+    },
+    {
+      "uri": "model:zhipuai/text/core-gui-open/9b:1",
+      "native": {
+        "huggingface": "zai-org/AutoGLM-Phone-9B-Multilingual"
+      },
+      "released": "2025-12-10",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/zai-org/AutoGLM-Phone-9B-Multilingual",
       "current": true
     },
     {

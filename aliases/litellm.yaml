@@ -176,6 +176,22 @@ model_list:
     litellm_params:
       model: "gemini/gemini-embedding-2"
       api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-research"
+    litellm_params:
+      model: "gemini/deep-research-preview-04-2026"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-research:2026.04"
+    litellm_params:
+      model: "gemini/deep-research-preview-04-2026"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max-research"
+    litellm_params:
+      model: "gemini/deep-research-max-preview-04-2026"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max-research:2026.04"
+    litellm_params:
+      model: "gemini/deep-research-max-preview-04-2026"
+      api_key: os.environ/GEMINI_API_KEY
   - model_name: "model:google/tts/core"
     litellm_params:
       model: "gemini/gemini-3.1-flash-tts-preview"
@@ -231,6 +247,14 @@ model_list:
   - model_name: "model:google/text/light:3"
     litellm_params:
       model: "gemini/gemini-3-flash-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-gui"
+    litellm_params:
+      model: "gemini/gemini-2.5-computer-use-preview-10-2025"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-gui:2.5"
+    litellm_params:
+      model: "gemini/gemini-2.5-computer-use-preview-10-2025"
       api_key: os.environ/GEMINI_API_KEY
   - model_name: "model:google/image/core:2.5"
     litellm_params:

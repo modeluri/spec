@@ -65,7 +65,7 @@ test("non-standard publisher size notations are rejected as size", () => {
 });
 
 test("all supported special suffixes parse and out-of-spec specialisations are rejected", () => {
-  for (const sp of ["code", "rt", "base", "guard", "ocr", "translate"]) {
+  for (const sp of ["code", "rt", "base", "guard", "ocr", "translate", "research", "gui", "robotics", "roleplay", "medical", "finance", "legal", "voiceclone", "voicedesign"]) {
     assert.equal(parse(`model:example/text/core-${sp}`)?.special, sp, sp);
   }
   const guard = parse("model:meta/text/core-guard-weights/12b:4@local");
@@ -74,7 +74,17 @@ test("all supported special suffixes parse and out-of-spec specialisations are r
   assert.equal(guard?.size, "12b");
   assert.equal(guard?.version, "4");
   assert.equal(guard?.host, "local");
-  for (const bad of ["fast", "thinking", "reasoning", "cyber", "med", "fin", "research"]) {
+  const medical = parse("model:baichuan/text/core-medical-open/32b:2@local");
+  assert.equal(medical?.special, "medical");
+  assert.equal(medical?.weights, "open");
+  assert.equal(medical?.size, "32b");
+  assert.equal(medical?.version, "2");
+  assert.equal(medical?.host, "local");
+  const voiceclone = parse("model:xiaomi/tts/core-voiceclone:2.5");
+  assert.equal(voiceclone?.scope, "tts");
+  assert.equal(voiceclone?.special, "voiceclone");
+  assert.equal(voiceclone?.version, "2.5");
+  for (const bad of ["fast", "thinking", "reasoning", "cyber", "med", "fin", "marketing", "hr"]) {
     assert.equal(parse(`model:example/text/core-${bad}`), null, bad);
   }
 });
@@ -115,6 +125,46 @@ test("an empty rung, an unserved host and an unknown host are not guessed", () =
 test("size and quant select their own slot", () => {
   assert.equal(resolve(fixture, "model:p/text/core-open/35b-a3b/q4").native, "p-q4");
   assert.equal(resolve(fixture, "model:p/text/core-open/35b-a3b/q8").code, 1);
+});
+
+test("local and edge resolve to the published weights repository", () => {
+  const reg = { entries: [
+    e("model:q/text/core-open/35b-a3b:3", true, { q: "q-3", huggingface: "Q/Q-3-35B-A3B" }),
+    e("model:q/text/core-open/35b-a3b:2", false, { huggingface: "Q/Q-2-35B-A3B" }),
+    e("model:q/text/core-open/35b-a3b/q4:3", true, { huggingface: "Q/Q-3-35B-A3B-Q4" }),
+    e("model:q/text/light-weights:1", true, { q: "q-light" }),
+    e("model:q/text/max:1", true, { q: "q-max" }),
+  ] };
+  assert.deepEqual(resolve(reg, "model:q/text/core-open/35b-a3b@local"), { ok: true, uri: "model:q/text/core-open/35b-a3b:3@local", native: "Q/Q-3-35B-A3B" });
+  assert.equal(resolve(reg, "model:q/text/core-open/35b-a3b:2@edge").native, "Q/Q-2-35B-A3B");
+  // A published quantisation wins; otherwise the weights as released, with a note.
+  assert.equal(resolve(reg, "model:q/text/core-open/35b-a3b/q4@local").native, "Q/Q-3-35B-A3B-Q4");
+  const mx = resolve(reg, "model:q/text/core-open/35b-a3b/mxfp4@local");
+  assert.equal(mx.uri, "model:q/text/core-open/35b-a3b/mxfp4:3@local");
+  assert.equal(mx.native, "Q/Q-3-35B-A3B");
+  assert.match(mx.hint, /no mxfp4 release/);
+  // Hosted quantisations are not guessed.
+  assert.equal(resolve(reg, "model:q/text/core-open/35b-a3b/mxfp4@bedrock").code, 1);
+  assert.match(resolve(reg, "model:q/text/light-weights@local").error, /no published weights repository/);
+});
+
+test("a closed model cannot be self-hosted", () => {
+  for (const u of ["model:q/text/max@local", "model:q/text/max:1@edge", "model:q/text/core-restricted@local"]) {
+    assert.equal(parse(u), null, u);
+    const r = resolve(fixture, u);
+    assert.equal(r.code, 2, u);
+    assert.match(r.error, /closed model, no downloadable weights/, u);
+  }
+  assert.ok(parse("model:q/text/core-open@local"));
+  assert.ok(parse("model:q/text/max@somehost"));
+});
+
+test("registry: local resolves for downloadable models", () => {
+  assert.equal(resolve(registry, "model:baai/embed/core-open:m3@local").native, "BAAI/bge-m3");
+  const qwen = resolve(registry, "model:alibaba/text/core-open/35b-a3b/mxfp4@local");
+  assert.equal(qwen.ok, true, qwen.error);
+  assert.match(qwen.uri, /^model:alibaba\/text\/core-open\/35b-a3b\/mxfp4:[0-9.]+@local$/);
+  assert.equal(resolve(registry, "model:openai/text/core@local").code, 2);
 });
 
 test("derived models and invalid input are refused", () => {

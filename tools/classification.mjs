@@ -14,7 +14,7 @@ export const CLASSIFICATION = [
   {
     "id": "ai21/jamba-large",
     "uri": "model:ai21/text/max-weights:1.7",
-    "license": "jamba-open-model-license",
+    "license": "Jamba Open Model License Agreement",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/ai21labs/AI21-Jamba-Large-1.7",
     "current": true
@@ -62,7 +62,7 @@ export const CLASSIFICATION = [
   {
     "id": "alibaba/qwen-image-2.1",
     "uri": "model:alibaba/image/core-weights:2.1",
-    "license": "qwen-research",
+    "license": "Qwen Research License Agreement",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen-Image-2.1",
     "current": true
@@ -222,7 +222,7 @@ export const CLASSIFICATION = [
   {
     "id": "alibaba/qwen2-5-vl-72b-instruct",
     "uri": "model:alibaba/text/high-weights/72b:2.5",
-    "license": "qwen",
+    "license": "Qwen License Agreement",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct",
     "current": true
@@ -294,7 +294,7 @@ export const CLASSIFICATION = [
   {
     "id": "alibaba/qwen3.8-flash-next",
     "uri": "model:alibaba/text/light-weights/125b-a6b:3.8",
-    "license": "qwen-community-1.0",
+    "license": "Qwen Community License 1.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
     "current": true
@@ -366,7 +366,7 @@ export const CLASSIFICATION = [
   {
     "id": "alibaba/qwen3.8-2.4t-a95b",
     "uri": "model:alibaba/text/max-weights/2.4t-a95b:3.8",
-    "license": "qwen3.8-max",
+    "license": "Qwen3.8-Max License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
     "current": true
@@ -732,6 +732,14 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "baichuan/baichuan-m2-32b",
+    "uri": "model:baichuan/text/core-medical-open/32b:2",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B",
+    "current": true
+  },
+  {
     "id": "baidu/cobuddy",
     "uri": "model:baidu/text/core-code:1",
     "license": "proprietary",
@@ -785,6 +793,14 @@ export const CLASSIFICATION = [
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/ByteDance-Seed/Seed-OSS-36B-Instruct",
+    "current": true
+  },
+  {
+    "id": "bytedance-seed/seed-character",
+    "uri": "model:bytedance-seed/text/core-roleplay:26.06",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-character.toml",
     "current": true
   },
   {
@@ -1164,11 +1180,35 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "google/gemini-2.5-computer-use-preview-10-2025",
+    "uri": "model:google/text/core-gui:2.5",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-computer-use-preview-10-2025.toml",
+    "current": true
+  },
+  {
     "id": "google/gemma-4-26b-a4b-it",
     "uri": "model:google/text/core-open/26b-a4b:4",
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+    "current": true
+  },
+  {
+    "id": "google/deep-research-preview-04-2026",
+    "uri": "model:google/text/core-research:2026.04",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-preview-04-2026.toml",
+    "current": true
+  },
+  {
+    "id": "google/gemini-robotics-er-1.6-preview",
+    "uri": "model:google/text/core-robotics:1.6",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-robotics-er-1.6-preview.toml",
     "current": true
   },
   {
@@ -1273,6 +1313,14 @@ export const CLASSIFICATION = [
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/google/gemma-4-31B-it",
+    "current": true
+  },
+  {
+    "id": "google/deep-research-max-preview-04-2026",
+    "uri": "model:google/text/max-research:2026.04",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-max-preview-04-2026.toml",
     "current": true
   },
   {
@@ -1457,6 +1505,22 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inception/mercury-3.toml",
+    "current": true
+  },
+  {
+    "id": "inclusionai/ling-3.0-flash-fin",
+    "uri": "model:inclusionai/text/core-finance-open:3.0",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin",
+    "current": true
+  },
+  {
+    "id": "inclusionai/ling-3.0-flash-sante",
+    "uri": "model:inclusionai/text/core-medical:3.0",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.0-flash-sante.toml",
     "current": true
   },
   {
@@ -1772,6 +1836,14 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "minimax/MiniMax-M2-Her",
+    "uri": "model:minimax/text/core-roleplay:2",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/minimax/MiniMax-M2-Her.toml",
+    "current": true
+  },
+  {
     "id": "minimax/MiniMax-M2",
     "uri": "model:minimax/text/core-weights:2",
     "license": "Modified MIT",
@@ -1798,7 +1870,7 @@ export const CLASSIFICATION = [
   {
     "id": "minimax/MiniMax-M3",
     "uri": "model:minimax/text/core-weights:3",
-    "license": "minimax-community",
+    "license": "MiniMax Community License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
     "current": true
@@ -1806,7 +1878,7 @@ export const CLASSIFICATION = [
   {
     "id": "minimax/MiniMax-M3.1-Flash",
     "uri": "model:minimax/text/light-weights:3.1",
-    "license": "minimax-community",
+    "license": "MiniMax Community License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
     "current": true
@@ -2086,7 +2158,7 @@ export const CLASSIFICATION = [
   {
     "id": "moonshotai/kimi-k3.1-pro",
     "uri": "model:moonshotai/text/max-weights:3.1",
-    "license": "kimi-k3.1-pro",
+    "license": "Kimi K3.1-Pro License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
     "current": true
@@ -2142,7 +2214,7 @@ export const CLASSIFICATION = [
   {
     "id": "nvidia/llama-nemotron-embed-1b-v2",
     "uri": "model:nvidia/embed/core-weights/1b:2",
-    "license": "nvidia-open-model-license",
+    "license": "NVIDIA Open Model License Agreement",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/nvidia/llama-nemotron-embed-1b-v2",
     "current": true
@@ -2242,6 +2314,14 @@ export const CLASSIFICATION = [
     "tier_source": "registry",
     "evidence": "https://huggingface.co/openai/gpt-oss-120b",
     "current": true
+  },
+  {
+    "id": "openai/o3-deep-research",
+    "uri": "model:openai/text/core-research:o3",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o3-deep-research.toml",
+    "current": false
   },
   {
     "id": "openai/gpt-3.5-turbo",
@@ -2386,6 +2466,14 @@ export const CLASSIFICATION = [
     "tier_source": "registry",
     "evidence": "https://huggingface.co/openai/gpt-oss-20b",
     "current": true
+  },
+  {
+    "id": "openai/o4-mini-deep-research",
+    "uri": "model:openai/text/light-research:o4",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o4-mini-deep-research.toml",
+    "current": false
   },
   {
     "id": "openai/gpt-4-turbo",
@@ -2642,6 +2730,14 @@ export const CLASSIFICATION = [
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perceptron/perceptron-mk1.5.toml",
     "current": true
+  },
+  {
+    "id": "perplexity/sonar-deep-research",
+    "uri": "model:perplexity/text/core-research:1",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-deep-research.toml",
+    "current": false
   },
   {
     "id": "perplexity/sonar",
@@ -3164,6 +3260,22 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "xiaomi/mimo-v2.5-tts-voiceclone",
+    "uri": "model:xiaomi/tts/core-voiceclone:2.5",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voiceclone.toml",
+    "current": true
+  },
+  {
+    "id": "xiaomi/mimo-v2.5-tts-voicedesign",
+    "uri": "model:xiaomi/tts/core-voicedesign:2.5",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voicedesign.toml",
+    "current": true
+  },
+  {
     "id": "xiaomi/mimo-v2.5-tts",
     "uri": "model:xiaomi/tts/core:2.5",
     "license": "proprietary",
@@ -3177,6 +3289,14 @@ export const CLASSIFICATION = [
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-Image",
+    "current": true
+  },
+  {
+    "id": "zhipuai/autoglm-phone-9b-multilingual",
+    "uri": "model:zhipuai/text/core-gui-open/9b:1",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/zai-org/AutoGLM-Phone-9B-Multilingual",
     "current": true
   },
   {
@@ -3270,7 +3390,7 @@ export const CLASSIFICATION = [
   {
     "id": "zhipuai/glm-5.3",
     "uri": "model:zhipuai/text/max-weights:5.3",
-    "license": "glm-5.3",
+    "license": "GLM-5.3 License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5.3",
     "current": true
@@ -3441,14 +3561,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwq-plus.toml"
   },
   {
-    "id": "baichuan/baichuan-m2-32b",
-    "publisher": "baichuan",
-    "name": "Baichuan M2 32B",
-    "reason": "unmapped-special",
-    "detail": "Medical domain model for clinical reasoning and patient interaction; medicine is outside the closed `special` set (SPEC.md §3.3).",
-    "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B"
-  },
-  {
     "id": "baidu/ernie-4.5-vl-424b-a47b",
     "publisher": "baidu",
     "name": "ERNIE 4.5 VL 424B A47B ",
@@ -3473,14 +3585,6 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:bytedance-seed/text/core:1.6",
     "detail": "Separate vision checkpoint of the Seed 1.6 release at identical pricing ($0.11875/$1.18747), colliding with primary `bytedance-seed/seed-1-6` on `model:bytedance-seed/text/core:1.6`.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-1-6-vision.toml"
-  },
-  {
-    "id": "bytedance-seed/seed-character",
-    "publisher": "bytedance-seed",
-    "name": "Seed Character",
-    "reason": "unmapped-special",
-    "detail": "Character-driven dialogue and roleplay specialisation is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-character.toml"
   },
   {
     "id": "bytedance-seed/seed-evolving",
@@ -3635,22 +3739,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
   },
   {
-    "id": "google/deep-research-max-preview-04-2026",
-    "publisher": "google",
-    "name": "Deep Research Max Preview",
-    "reason": "unmapped-special",
-    "detail": "Agentic deep-research workflow vertical is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-max-preview-04-2026.toml"
-  },
-  {
-    "id": "google/deep-research-preview-04-2026",
-    "publisher": "google",
-    "name": "Gemini Deep Research Preview",
-    "reason": "unmapped-special",
-    "detail": "Agentic deep-research workflow vertical is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-preview-04-2026.toml"
-  },
-  {
     "id": "google/diffusiongemma-26b-a4b-it",
     "publisher": "google",
     "name": "DiffusionGemma 26B A4B IT",
@@ -3658,14 +3746,6 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:google/text/core-open/26b-a4b:4",
     "detail": "Parallel discrete-diffusion family (`diffusiongemma`) collides on the same `google/text/*-open/26b-a4b` slot as Gemma 4 26B A4B.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/diffusiongemma-26b-a4b-it.toml"
-  },
-  {
-    "id": "google/gemini-2.5-computer-use-preview-10-2025",
-    "publisher": "google",
-    "name": "Gemini 2.5 Computer Use Preview",
-    "reason": "unmapped-special",
-    "detail": "Browser/UI computer-use vertical is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-computer-use-preview-10-2025.toml"
   },
   {
     "id": "google/gemini-3.1-pro-preview-customtools",
@@ -3718,14 +3798,6 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:google/video/light",
     "detail": "Parallel `gemini-omni` video family collides on Google's `video` lineup held by primary `veo`.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-omni-flash-preview.toml"
-  },
-  {
-    "id": "google/gemini-robotics-er-1.6-preview",
-    "publisher": "google",
-    "name": "Gemini Robotics-ER 1.6 Preview",
-    "reason": "unmapped-special",
-    "detail": "Embodied robotics domain (`gemini-robotics-er`) is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-robotics-er-1.6-preview.toml"
   },
   {
     "id": "google/gemma-2-27b-it",
@@ -3801,22 +3873,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/ibm/granite-4.2-8b.toml"
   },
   {
-    "id": "inclusionai/ling-3.0-flash-fin",
-    "publisher": "inclusionai",
-    "name": "Ling 3.0 Flash Fin",
-    "reason": "unmapped-special",
-    "detail": "Finance domain specialisation (`fin`) is outside the closed `special` vocabulary.",
-    "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin"
-  },
-  {
-    "id": "inclusionai/ling-3.0-flash-sante",
-    "publisher": "inclusionai",
-    "name": "Ling 3.0 Flash Sante",
-    "reason": "unmapped-special",
-    "detail": "Health and medical specialisation (`sante`) is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.0-flash-sante.toml"
-  },
-  {
     "id": "inclusionai/ling-3.0-flash-vl",
     "publisher": "inclusionai",
     "name": "Ling 3.0 Flash VL",
@@ -3848,14 +3904,6 @@ export const INCOMPATIBLE = [
     "reason": "missing-evidence",
     "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
     "evidence": "https://huggingface.co/microsoft/Phi-4-mini-instruct"
-  },
-  {
-    "id": "minimax/MiniMax-M2-Her",
-    "publisher": "minimax",
-    "name": "MiniMax-M2 Her",
-    "reason": "unmapped-special",
-    "detail": "Conversational and character-driven roleplay edition (`Her`) is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/minimax/MiniMax-M2-Her.toml"
   },
   {
     "id": "minimax/MiniMax-M2.5-highspeed",
@@ -4334,22 +4382,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-image-2.5-sunburst.toml"
   },
   {
-    "id": "openai/o3-deep-research",
-    "publisher": "openai",
-    "name": "o3-deep-research",
-    "reason": "unmapped-special",
-    "detail": "Deep-research specialisation outside the closed special vocabulary (code|rt|base|guard|ocr|translate).",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o3-deep-research.toml"
-  },
-  {
-    "id": "openai/o4-mini-deep-research",
-    "publisher": "openai",
-    "name": "o4-mini-deep-research",
-    "reason": "unmapped-special",
-    "detail": "Deep-research specialisation outside the closed special vocabulary (code|rt|base|guard|ocr|translate).",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o4-mini-deep-research.toml"
-  },
-  {
     "id": "openai/whisper-large-v3",
     "publisher": "openai",
     "name": "Whisper 3 Large",
@@ -4373,14 +4405,6 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:openbmb/text/nano-open/1b:5",
     "detail": "Parallel 1B vision-language family (minicpm-v) with text output collides on the openbmb/text/nano-open/1b slot held by primary minicpm5-1b.",
     "evidence": "https://huggingface.co/openbmb/MiniCPM-V-4.7-1B"
-  },
-  {
-    "id": "perplexity/sonar-deep-research",
-    "publisher": "perplexity",
-    "name": "Sonar Deep Research",
-    "reason": "unmapped-special",
-    "detail": "Autonomous deep-research report vertical is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-deep-research.toml"
   },
   {
     "id": "perplexity/sonar-reasoning-pro",
@@ -4564,22 +4588,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-pro-ultraspeed.toml"
   },
   {
-    "id": "xiaomi/mimo-v2.5-tts-voiceclone",
-    "publisher": "xiaomi",
-    "name": "MiMo-V2.5-TTS-VoiceClone",
-    "reason": "unmapped-special",
-    "detail": "Voice cloning specialisation on `tts` is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voiceclone.toml"
-  },
-  {
-    "id": "xiaomi/mimo-v2.5-tts-voicedesign",
-    "publisher": "xiaomi",
-    "name": "MiMo-V2.5-TTS-VoiceDesign",
-    "reason": "unmapped-special",
-    "detail": "Prompt-driven voice design specialisation on `tts` is outside the closed `special` vocabulary.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voicedesign.toml"
-  },
-  {
     "id": "xiaomi/mimo-v2.6-pro-ultraspeed",
     "publisher": "xiaomi",
     "name": "MiMo-V2.6-Pro-UltraSpeed",
@@ -4587,14 +4595,6 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:xiaomi/text/high-open:2.6",
     "detail": "Ultra-low-latency serving tier of MiMo-V2.6-Pro exposed as a separate model ID rather than a deployment parameter.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.6-pro-ultraspeed.toml"
-  },
-  {
-    "id": "zhipuai/autoglm-phone-9b-multilingual",
-    "publisher": "zhipuai",
-    "name": "AutoGLM Phone 9B Multilingual",
-    "reason": "unmapped-special",
-    "detail": "Specialized mobile GUI/phone-agent model outside the closed SPEC special set (code, rt, base, guard, ocr, translate).",
-    "evidence": "https://huggingface.co/zai-org/AutoGLM-Phone-9B-Multilingual"
   },
   {
     "id": "zhipuai/glm-4.5v",
