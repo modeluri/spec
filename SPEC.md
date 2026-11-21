@@ -1,6 +1,6 @@
 # Model URI
 
-Working draft 0.1.2, 20 November 2026
+Working draft 0.2.0, 21 November 2026
 
 A sane, canonical URI for any AI model.
 
@@ -51,13 +51,13 @@ model-uri  = "model:" publisher "/" scope "/" tier
              [ "/" size ] [ "/" quant ]
              [ ":" version ] [ "~" derivation ] [ "@" host ]
 publisher  = LOWER *( LOWER / DIGIT / "-" )
-scope      = "text" / "omni" / "image" / "video" / "audio" / "embed" / "rerank"
+scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision"
 tier       = "nano" / "light" / "core" / "high" / "ultra" / "max"
-special    = "code" / "rt" / "base"
+special    = "code" / "rt" / "base" / "guard" / "ocr" / "translate"
 access     = "restricted" / "gov" / "internal"
 weights    = "weights" / "open"
 size       = params [ "-a" params ]        ; total, then active: 35b-a3b
-params     = 1*DIGIT [ "." 1*DIGIT ] ( "m" / "b" )
+params     = 1*DIGIT [ "." 1*DIGIT ] ( "m" / "b" / "t" )
 quant      = 1*LOWER 1*DIGIT *( LOWER / DIGIT )   ; q4, q8, fp8, fp16, mxfp4, int4
 version    = "latest" / 1*( LOWER / DIGIT / "." )
 derivation = author "-" kind
@@ -71,7 +71,7 @@ A size always starts with a digit and a quantisation always starts with a letter
 Reference regex:
 
 ```text
-^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|embed|rerank)/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mb](?:-a\d+(?:\.\d+)?[mb])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
+^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|ultra|max)(?:-(?<special>code|rt|base|guard|ocr|translate))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
 ```
 
 Under RFC 3986 a model URI has the scheme `model`, no authority and a rootless path. The form `model://` is not a model URI.
@@ -82,10 +82,10 @@ Lowercase ASCII only, 128 characters at most. After the scheme, the separators `
 
 | Part | Question it answers | Values | Decided by |
 | --- | --- | --- | --- |
-| `publisher` | Who made the model? | A registered name: `anthropic`, `google`, `qwen` | Registry |
-| `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `embed`, `rerank` | Specification |
+| `publisher` | Who made the model? | A registered organisation name: `anthropic`, `google`, `alibaba` | Registry |
+| `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision` | Specification |
 | `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `ultra`, `max` | Publisher, otherwise registry |
-| `special` | What is it published for? | `code`, `rt`, `base`; absent means general use | Publisher |
+| `special` | What is it published for? | `code`, `rt`, `base`, `guard`, `ocr`, `translate`; absent means general use | Publisher |
 | `access` | Who may use it? | `restricted`, `gov`, `internal`; absent means anyone | Publisher |
 | `weights` | Can the weights be downloaded, under which kind of licence? | `weights`, `open`; absent means closed | The licence |
 | `size` | How big is it? | Total parameters, plus active ones for MoE: `35b-a3b` | Publisher |
@@ -94,9 +94,28 @@ Lowercase ASCII only, 128 characters at most. After the scheme, the separators `
 | `derivation` | Did a third party modify it, and how? | Author and kind: `huihui-abliterated` | Whoever derived it |
 | `host` | Where does it run? | `local`, `edge`, or a registered host; absent means the publisher's API | Whoever deploys |
 
+`publisher` is always the publishing organisation, never a model brand or family: `alibaba` rather than `qwen`, `google` rather than `gemini` or `gemma`, `meta` rather than `llama` or `muse`, `moonshotai` rather than `kimi`. The registry assigns one canonical lowercase slug per organisation and freezes it.
+
+There is no `family` component. Adding commercial family names would break portability across publishers (principle 1). `scope`, `tier`, `special`, `weights` (`-open`/`-weights`/closed) and `size` separate a publisher's models; when two parallel families from the same publisher still collide on the same slot (for example `codestral` and `devstral`, or separate vision-only and text-only checkpoints of the same release), the primary model holds the slot and the overlapping sibling stays out of the registry as `slot-collision` (section 5.1).
+
 ### 3.1 Scope
 
-The primary output decides the scope. `text` covers every language model, whatever inputs it accepts. `omni` is only for native input and output across several modalities.
+The scope names the model's primary output contract, so that two models on the same publisher and rung never collide across incompatible tasks.
+
+| Scope | Contract |
+| --- | --- |
+| `text` | Language generation, whatever inputs it accepts (including vision or audio input with text output) |
+| `omni` | Native input and output across several modalities (for example text and audio, or with `-rt` for real-time duplex voice) |
+| `image` | Image generation or editing |
+| `video` | Video generation (including synchronised audio) |
+| `audio` | Non-speech audio and music generation |
+| `tts` | Text-to-speech synthesis |
+| `transcribe` | Speech-to-text transcription (batch, or streaming with `-rt`) |
+| `embed` | Vector embeddings |
+| `rerank` | Relevance scoring and reranking |
+| `decision` | Calibrated probabilities or typed discrete decisions (yes/no, choice, score, tag) without free-text generation |
+
+A general language model that accepts audio input for chat or tool use stays `text`; `transcribe` is only for dedicated speech-to-text models. A model whose primary output is images or video stays `image` or `video` even when it also emits text or a soundtrack.
 
 ### 3.2 Tier
 
@@ -132,8 +151,11 @@ After the tier come up to three suffixes. Each belongs to a closed family, answe
 **Special: what is it published for?**
 
 - `code`: published as specialised for code.
-- `rt`: real-time speech input and output.
+- `rt`: real-time streaming or duplex interaction (such as live voice on `omni` or streaming speech-to-text on `transcribe`).
 - `base`: pre-trained weights without instruction tuning.
+- `guard`: safety, content moderation or prompt-injection guardrails.
+- `ocr`: document optical character recognition and layout extraction.
+- `translate`: dedicated machine translation.
 
 **Access: who may use it?**
 
@@ -145,27 +167,29 @@ A model with no access suffix is available to anyone who can pay for it or downl
 
 **Weights: can they be downloaded, and under which kind of licence?**
 
-- `weights`: downloadable, under a licence that restricts use, such as non-commercial terms or the publisher's own conditions.
-- `open`: downloadable, under a licence approved by the Open Source Initiative, such as Apache 2.0 or MIT.
+- `open`: downloadable, under an unmodified licence approved by the Open Source Initiative (such as `Apache-2.0`, `MIT` or `AGPL-3.0-only`).
+- `weights`: downloadable, under any other licence (such as non-commercial terms, RAIL, modified OSI licences like Modified MIT, model-specific licences like `OpenMDW-1.1`, or the publisher's own terms).
 
-A model with no weights suffix is closed and reachable through an API only. The suffix is mandatory whenever it applies. The exact licence goes in the registry.
+A model with no weights suffix is closed and reachable through an API only. The suffix is mandatory whenever it applies. The exact licence goes in the registry as a canonical SPDX identifier when one exists (for example `Apache-2.0`, `MIT`, `CC-BY-NC-4.0`), or the publisher's own licence name otherwise, and `"proprietary"` for closed models. If a downloadable model has no verifiable licence, it stays out of the registry (section 5.1).
 
-Extended reasoning is a request parameter in most APIs, and vision input is registry data. Neither is part of the identifier.
+Extended reasoning and serving latency modes (such as fast or high-speed tiers) are request or deployment parameters, and vision input is registry data; none of them belongs in the identifier. Narrow vertical domains (such as medicine, finance or robotics) are outside the closed `special` set and stay out of the registry (section 5.1).
 
 ### 3.4 Size
 
-The size is the parameter count, and it is optional. It is used where one release ships in several sizes and the tier alone cannot tell them apart.
+The size is the parameter count in millions (`m`), billions (`b`) or trillions (`t`), and it is optional. It is used where one release ships in several sizes and the tier alone cannot tell them apart.
 
-- A size without `-a` is a dense model: `32b`.
-- A size with `-a` is a mixture of experts, total then active: `35b-a3b`.
+- A size without `-a` is a dense model: `32b`, `1t`.
+- A size with `-a` is a mixture of experts, total then active: `35b-a3b`, `2.4t-a95b`.
 
 Architecture is therefore read from the size. There is no `moe` or `dense` suffix.
+
+`size` records verifiable physical parameter counts only: total parameters, and active parameters after `-a` when sparse. Expert-count shorthands (such as `8x7b` instead of `47b-a13b`) and proprietary "effective" counts (such as `E4B`) are not valid sizes. If a publisher does not disclose verifiable counts, omit `size` when the tier alone distinguishes the release, or leave the model out of the registry as incompatible (section 5.1) rather than bending the grammar.
 
 ### 3.5 Quant
 
 The quantisation is a property of the weights being run, not of the place where they run. It is omitted when the weights run at the precision the publisher released.
 
-It applies to any host. `model:qwen/text/core-open/35b-a3b/fp8:3.6@somehost` says that a hosting provider serves quantised weights.
+It applies to any host. `model:alibaba/text/core-open/35b-a3b/fp8:3.6@somehost` says that a hosting provider serves quantised weights.
 
 ### 3.6 Version
 
@@ -198,7 +222,7 @@ An environment with compliance requirements is a host of its own, for example `a
 1. **One rung, one model.** For a publisher that adopts the standard, a model URI without a version points to exactly one model at any time, and one with a version points to exactly one release forever.
 2. **Pinned versions never change.** An updated model gets a new version. Silent updates under an existing version are not allowed.
 3. **Frozen tier.** A pinned model URI keeps the tier of its release forever. Logs, configurations and benchmarks do not break.
-4. **No version means the current model.** With size and quantisation, it follows both: `model:qwen/text/core-open/35b-a3b/mxfp4@local` is the newest release with those parameters at that precision, and it stays where it is if the next generation drops that size. A resolver always reports the pinned model URI it resolved to, and says so when a sized alias has stopped moving.
+4. **No version means the current model.** With size and quantisation, it follows both: `model:alibaba/text/core-open/35b-a3b/mxfp4@local` is the newest release with those parameters at that precision, and it stays where it is if the next generation drops that size. A resolver always reports the pinned model URI it resolved to, and says so when a sized alias has stopped moving.
 5. **Same rung, same role.** Changing the publisher keeps the role, not the results.
 6. **Canonical form.** All lowercase, scheme `model:` always present, suffixes in the fixed order `special`, `access`, `weights`, version left out when it means the current model, host left out when it is the publisher's own API.
 7. **Unknown values.** A parser rejects scopes, tiers and suffixes it does not know. It accepts hosts that are syntactically valid but unregistered, and flags them.
@@ -212,7 +236,7 @@ Each entry holds:
 - `uri`: the pinned model URI.
 - `native`: the real identifier for each host, for example the string passed to the API.
 - `released`: the release date.
-- `license`: the SPDX identifier of the licence, or the name of the publisher's own terms. It justifies the `weights` suffix.
+- `license`: `"proprietary"` for closed models (no weights suffix); a canonical SPDX identifier of an unmodified OSI-approved licence for `-open` models; or an SPDX identifier / the publisher's exact licence name for `-weights` models. It justifies the `weights` suffix.
 - `tier_source`: `publisher` if the tier is declared, `registry` if it is assigned with the rule in section 3.2.
 - `evidence`: a link to the price list, model card or announcement that justifies the tier.
 - `current`: `true` if the model is on sale and holds its rung, so that a model URI without a version resolves to it. At most one entry per rung is current. A pinned URI resolves to any entry, current or not.
@@ -240,6 +264,51 @@ Governance:
 - The specification follows semantic versioning and stays `0.x` while it is a draft.
 
 Seed data should not be compiled by hand. Open catalogues such as [models.dev](https://github.com/anomalyco/models.dev) already hold native identifiers, prices and capabilities. The registry adds only the classification on top.
+
+### 5.1 Incompatible models
+
+Models from external catalogues that cannot be assigned a canonical model URI without bending the grammar or guessing unverifiable facts are recorded in [`incompatible.json`](incompatible.json) rather than forced into the registry. A resolver never resolves entries from `incompatible.json`.
+
+Each entry holds:
+
+- `id`: the external catalogue identifier (for example `org/model`), unique across the file.
+- `publisher`: the publisher's slug (`publisher` grammar rule).
+- `name`: optional human-readable model name.
+- `reason`: one value from the closed list below.
+- `conflicts_with`: the model URI (pinned or unversioned slot) that the model collides with; required when `reason` is `slot-collision` or `parameter-split`.
+- `detail`: a short factual explanation of why the model does not fit.
+- `evidence`: an HTTPS link to the model card, price list or catalogue record that supports the classification.
+
+Closed list of `reason` values:
+
+| Reason | Meaning |
+| --- | --- |
+| `rolling-alias` | Unpinned pointer whose underlying model changes silently (violates rule 2) |
+| `opaque-size` | Non-physical or proprietary parameter label (such as `E4B` or `8x7b`) where verifiable counts are absent and size is needed to distinguish the release |
+| `parameter-split` | A request parameter or serving mode (such as reasoning toggle or latency tier) exposed as a separate model ID |
+| `slot-collision` | Two distinct models or parallel families from the same publisher occupy the same slot without a distinguishing component, or a lineup exceeds six rungs in one scope |
+| `unmapped-special` | Specialisation outside the closed `special` set (`code`, `rt`, `base`, `guard`, `ocr`, `translate`) that would otherwise collide with the general lineup |
+| `unmapped-scope` | Output contract outside the closed `scope` set |
+| `missing-evidence` | Verifiable tier, licence or model-card facts are absent, so the tier or `weights`/`open` suffix cannot be assigned honestly |
+
+Example entry:
+
+```json
+{
+  "id": "google/gemma-4-E4B-it",
+  "publisher": "google",
+  "name": "Gemma 4 E4B IT",
+  "reason": "opaque-size",
+  "detail": "Published with a proprietary effective-parameter label (E4B) rather than verifiable total and active parameter counts.",
+  "evidence": "https://huggingface.co/google/gemma-4-E4B-it"
+}
+```
+
+Rules:
+
+- **Mutual exclusion.** A model must not appear in both `registry.json` and `incompatible.json`.
+- **Not for out-of-scope records.** Third-party derivations (`~author-kind`), dated snapshot duplicates of an already-registered release, and private or restricted models that are expressible by the grammar but not publicly on sale do not belong in `incompatible.json`.
+- **Exit path.** When a publisher publishes verifiable facts or a clean versioned ID, or a future minor version of this specification expands a closed vocabulary, the entry moves from `incompatible.json` to `registry.json`.
 
 ## 6. Security considerations
 
@@ -294,11 +363,19 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | A government-only edition | `model:example/text/core-gov:2.0` | Access reserved to government bodies |
 | A model used inside its publisher | `model:example/text/max-internal:3.0` | Not released |
 | Mistral Codestral, current | `model:mistral/text/core-code` | Specialisation, no version |
-| Qwen 3.6 MoE, 35B total, 3B active, MXFP4 | `model:qwen/text/core-open/35b-a3b/mxfp4:3.6@local` | Open licence, size, precision, version and host, each on its own |
-| The newest Qwen at that size and precision | `model:qwen/text/core-open/35b-a3b/mxfp4@local` | Follows new releases and keeps the hardware footprint |
-| The same model, abliterated by a third party | `model:qwen/text/core-open/35b-a3b/q4:3.6~huihui-abliterated@local` | Derivation |
+| Meta Llama Guard 4, 12B | `model:meta/text/core-guard-weights/12b:4@local` | Safety guardrail (`guard`) |
+| LightOnOCR 3, 0.8B | `model:lightonai/text/core-ocr-open/0.8b:3@local` | Document OCR (`ocr`) |
+| Cohere Command A Translate, current | `model:cohere/text/core-translate` | Dedicated translation (`translate`) |
+| Qwen 3.6 MoE, 35B total, 3B active, MXFP4 | `model:alibaba/text/core-open/35b-a3b/mxfp4:3.6@local` | Open licence, size, precision, version and host, each on its own |
+| The newest Qwen at that size and precision | `model:alibaba/text/core-open/35b-a3b/mxfp4@local` | Follows new releases and keeps the hardware footprint |
+| The same model, abliterated by a third party | `model:alibaba/text/core-open/35b-a3b/q4:3.6~huihui-abliterated@local` | Derivation |
 | Gemma 4, 26B total, 4B active, Q4 | `model:google/text/core-weights/26b-a4b/q4:4@local` | Downloadable under the publisher's own terms |
-| Whisper large-v3, FP16 | `model:openai/audio/high-open/fp16:3@local` | A scope other than `text` |
+| Whisper large-v3, FP16 | `model:openai/transcribe/high-open/fp16:3@local` | Speech-to-text (`transcribe`) |
+| Gemini 3.5 Transcribe Live | `model:google/transcribe/core-rt:3.5` | Streaming speech-to-text (`-rt`) |
+| Gemini 3.8 Flash TTS | `model:google/tts/core:3.8` | Text-to-speech (`tts`) |
+| Lyria 3.5 | `model:google/audio/core:3.5` | Non-speech audio and music (`audio`) |
+| GPT Realtime 2.1 | `model:openai/omni/core-rt:2.1` | Real-time duplex voice (`omni` + `-rt`) |
+| Gemini Decision 1 | `model:google/decision/core:1` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 
 The `weights` and `open` suffixes follow the licences as commonly reported and must be checked against each model card.
@@ -324,7 +401,6 @@ RFC 7595 recommends avoiding very general scheme names. The name `model` is gene
 - Are six rungs enough, and are `high` and `max` acceptable names when at least one publisher also uses them as levels of reasoning effort?
 - Will two publishers with four models each place them on the same rungs? The line between `high` and `ultra` is thin, and the rule "fill the rungs closest to `core` first" may not be enough.
 - Should an empty rung fall back to the nearest filled one, or always be reported as empty?
-- Are the `weights` and `open` suffixes enough to separate the closed and downloadable families of one publisher, or does the syntax need a "family" part?
 - Tier of open-weights models: role within the publisher's family, or fixed bands by parameter count?
 - Third-party quantisations: whoever quantised the weights does not appear. Should it?
 - Is the list of derivation kinds complete, and how are chained derivations written?

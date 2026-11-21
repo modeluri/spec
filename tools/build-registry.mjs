@@ -63,7 +63,7 @@ for (const e of entries.filter((e) => e.current)) {
 entries.sort((a, b) => a.uri.split("/")[0].localeCompare(b.uri.split("/")[0]) || b.released.localeCompare(a.released) || a.uri.localeCompare(b.uri));
 
 const registry = {
-  spec: "0.1.2",
+  spec: "0.2.0",
   updated: "2026-11-20",
   license: "CC0-1.0",
   note: "Tiers are assigned by the registry with the rule in SPEC.md section 3.2, as of 2026-11-20, and frozen from then on. `current` marks the models on sale on that date. Native names come from https://models.dev; on bedrock the bare model id is listed, and the bedrock-runtime endpoint needs a geographic or global inference profile (us., eu., global.) in front of it. Entries are added through pull requests and need an evidence link for every registry-assigned tier. See SPEC.md, section 5.",

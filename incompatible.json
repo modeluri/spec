@@ -1,0 +1,7 @@
+{
+  "spec": "0.2.0",
+  "updated": "2026-11-21",
+  "license": "CC0-1.0",
+  "note": "Real models from external catalogues that cannot be assigned a canonical model URI under SPEC.md without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
+  "entries": []
+}

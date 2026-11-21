@@ -1,0 +1,108 @@
+// SPDX-License-Identifier: MIT
+// Licence normalisation and -open / -weights classification helpers (SPEC.md section 3.3).
+
+/** Unmodified Open Source Initiative approved SPDX identifiers eligible for `-open`. */
+export const OSI_SPDX = new Set([
+  "Apache-2.0",
+  "MIT",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "0BSD",
+  "MPL-2.0",
+  "LGPL-2.1-only",
+  "LGPL-3.0-only",
+  "GPL-2.0-only",
+  "GPL-3.0-only",
+  "AGPL-3.0-only",
+  "EUPL-1.2",
+  "UPL-1.0",
+  "Unlicense",
+]);
+
+const PLACEHOLDERS = new Set(["other", "unknown", "none", "unspecified"]);
+
+const ALIASES = new Map([
+  ["apache-2.0", "Apache-2.0"],
+  ["apache 2.0", "Apache-2.0"],
+  ["apache2", "Apache-2.0"],
+  ["apache license 2.0", "Apache-2.0"],
+  ["mit", "MIT"],
+  ["mit license", "MIT"],
+  ["agpl-3.0", "AGPL-3.0-only"],
+  ["agpl-3.0-only", "AGPL-3.0-only"],
+  ["agplv3", "AGPL-3.0-only"],
+  ["gpl-3.0", "GPL-3.0-only"],
+  ["gpl-3.0-only", "GPL-3.0-only"],
+  ["gpl-2.0", "GPL-2.0-only"],
+  ["gpl-2.0-only", "GPL-2.0-only"],
+  ["lgpl-3.0", "LGPL-3.0-only"],
+  ["lgpl-3.0-only", "LGPL-3.0-only"],
+  ["lgpl-2.1", "LGPL-2.1-only"],
+  ["lgpl-2.1-only", "LGPL-2.1-only"],
+  ["bsd-3-clause", "BSD-3-Clause"],
+  ["bsd 3-clause", "BSD-3-Clause"],
+  ["bsd-2-clause", "BSD-2-Clause"],
+  ["bsd 2-clause", "BSD-2-Clause"],
+  ["mpl-2.0", "MPL-2.0"],
+  ["isc", "ISC"],
+  ["0bsd", "0BSD"],
+  ["eupl-1.2", "EUPL-1.2"],
+  ["upl-1.0", "UPL-1.0"],
+  ["unlicense", "Unlicense"],
+  ["cc-by-nc-4.0", "CC-BY-NC-4.0"],
+  ["cc-by-4.0", "CC-BY-4.0"],
+  ["cc-by-sa-4.0", "CC-BY-SA-4.0"],
+  ["openmdw-1.1", "OpenMDW-1.1"],
+  ["gemma", "Gemma Terms of Use"],
+  ["gemma terms of use", "Gemma Terms of Use"],
+  ["proprietary", "proprietary"],
+]);
+
+/**
+ * Normalise a raw catalogue licence string into a canonical SPDX identifier or publisher licence name.
+ * Returns null for empty or placeholder values.
+ */
+export function normalizeLicense(raw) {
+  if (typeof raw !== "string") return null;
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+  const key = trimmed.toLowerCase();
+  if (PLACEHOLDERS.has(key)) return null;
+  return ALIASES.get(key) ?? trimmed;
+}
+
+/**
+ * Return `"open"`, `"weights"`, `undefined` (closed proprietary), or `null` (unverifiable).
+ */
+export function weightsSuffixFor(raw) {
+  const norm = normalizeLicense(raw);
+  if (norm === null) return null;
+  if (norm === "proprietary") return undefined;
+  return OSI_SPDX.has(norm) ? "open" : "weights";
+}
+
+/**
+ * Check that a parsed URI's `weights` suffix matches the entry's normalised `license` field.
+ */
+export function checkLicenseConsistency(weightsSuffix, license) {
+  if (typeof license !== "string" || normalizeLicense(license) !== license) {
+    return { ok: false, error: `unnormalised or missing license: ${license}` };
+  }
+  if (!weightsSuffix) {
+    return license === "proprietary"
+      ? { ok: true }
+      : { ok: false, error: `closed model without weights suffix must use "proprietary", got ${license}` };
+  }
+  if (weightsSuffix === "open") {
+    return OSI_SPDX.has(license)
+      ? { ok: true }
+      : { ok: false, error: `-open requires an unmodified OSI-approved SPDX licence, got ${license}` };
+  }
+  if (weightsSuffix === "weights") {
+    return license !== "proprietary" && !OSI_SPDX.has(license)
+      ? { ok: true }
+      : { ok: false, error: `-weights cannot be used with ${license}` };
+  }
+  return { ok: false, error: `unknown weights suffix: ${weightsSuffix}` };
+}

@@ -2,10 +2,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parse, resolve, litellmAliases } from "./model-uri.mjs";
+import { parse, resolve, litellmAliases, URI_RE } from "./model-uri.mjs";
+import { normalizeLicense, weightsSuffixFor, checkLicenseConsistency } from "../tools/licenses.mjs";
 
 const read = (f) => readFileSync(new URL(`../${f}`, import.meta.url), "utf8");
 const registry = JSON.parse(read("registry.json"));
+const incompatible = JSON.parse(read("incompatible.json"));
 const spec = read("SPEC.md");
 
 // Section 8 of the spec: every backticked model URI in the examples is valid.
@@ -22,8 +24,59 @@ test("invalid strings are rejected", () => {
 });
 
 test("size starts with a digit and quant with a letter, so one alone is unambiguous", () => {
-  assert.equal(parse("model:qwen/text/core-open/35b-a3b").size, "35b-a3b");
-  assert.equal(parse("model:qwen/text/core-open/mxfp4").quant, "mxfp4");
+  assert.equal(parse("model:alibaba/text/core-open/35b-a3b").size, "35b-a3b");
+  assert.equal(parse("model:alibaba/text/core-open/mxfp4").quant, "mxfp4");
+});
+
+test("trillion-parameter sizes parse and unsupported size units are rejected", () => {
+  assert.equal(parse("model:mistral/text/max/1t:4").size, "1t");
+  assert.equal(parse("model:alibaba/text/max-weights/2.4t-a95b:3.8").size, "2.4t-a95b");
+  assert.equal(parse("model:example/text/max/2.4t-a1.2t").size, "2.4t-a1.2t");
+  assert.equal(parse("model:example/text/nano/500k"), null);
+  assert.equal(parse("model:example/text/core/2.4g"), null);
+});
+
+test("URI_RE matches the reference regex in SPEC.md", () => {
+  const m = spec.match(/Reference regex:\s*```text\s*([^\n]+)\s*```/);
+  assert.ok(m, "Reference regex block not found in SPEC.md");
+  assert.equal(new RegExp(m[1]).source, URI_RE.source);
+});
+
+test("all supported scopes and -rt combinations parse, unsupported scopes are rejected", () => {
+  for (const s of ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision"]) {
+    assert.equal(parse(`model:example/${s}/core`)?.scope, s, s);
+  }
+  const omniRt = parse("model:openai/omni/core-rt:2.1");
+  assert.equal(omniRt?.scope, "omni");
+  assert.equal(omniRt?.special, "rt");
+  const transcribeRt = parse("model:google/transcribe/core-rt:3.5");
+  assert.equal(transcribeRt?.scope, "transcribe");
+  assert.equal(transcribeRt?.special, "rt");
+  for (const bad of ["speech", "stt", "realtime", "music"]) {
+    assert.equal(parse(`model:example/${bad}/core`), null, bad);
+  }
+});
+
+test("non-standard publisher size notations are rejected as size", () => {
+  assert.equal(parse("model:mistral/text/core-open/8x7b:0.1"), null);
+  assert.equal(parse("model:meta/text/core-weights/17b-16e:4"), null);
+  assert.equal(parse("model:google/text/light-weights/e4b/q4:4"), null);
+  assert.equal(parse("model:google/text/light-weights/e4b:4")?.size, undefined);
+});
+
+test("all supported special suffixes parse and out-of-spec specialisations are rejected", () => {
+  for (const sp of ["code", "rt", "base", "guard", "ocr", "translate"]) {
+    assert.equal(parse(`model:example/text/core-${sp}`)?.special, sp, sp);
+  }
+  const guard = parse("model:meta/text/core-guard-weights/12b:4@local");
+  assert.equal(guard?.special, "guard");
+  assert.equal(guard?.weights, "weights");
+  assert.equal(guard?.size, "12b");
+  assert.equal(guard?.version, "4");
+  assert.equal(guard?.host, "local");
+  for (const bad of ["fast", "thinking", "reasoning", "cyber", "med", "fin", "research"]) {
+    assert.equal(parse(`model:example/text/core-${bad}`), null, bad);
+  }
 });
 
 // A small registry, so these tests do not move when the real one is updated.
@@ -80,6 +133,8 @@ test("registry: valid, unique, with evidence, tier source and native name", () =
     assert.match(x.evidence, /^https:\/\//, x.uri);
     assert.equal(x.tier_source, "registry");
     assert.ok(x.native[parse(x.uri).publisher], `${x.uri} has no name on the publisher API`);
+    const lic = checkLicenseConsistency(parse(x.uri).weights, x.license);
+    assert.equal(lic.ok, true, `${x.uri}: ${lic.error}`);
   }
 });
 
@@ -109,4 +164,138 @@ test("litellm aliases: pinned URIs for every entry, version-less ones for curren
   assert.equal(new Set(names).size, names.length);
   assert.ok(yaml.includes('model_name: "model:anthropic/text/core"\n    litellm_params:\n      model: "anthropic/claude-sonnet-5-5"'));
   assert.equal(read("aliases/litellm.yaml"), yaml);
+});
+
+const INCOMPATIBLE_REASONS = [
+  "rolling-alias",
+  "opaque-size",
+  "parameter-split",
+  "slot-collision",
+  "unmapped-special",
+  "unmapped-scope",
+  "missing-evidence",
+];
+
+function validateIncompatible(doc, reg) {
+  assert.ok(typeof doc?.spec === "string" && doc.spec.length > 0, "spec is required");
+  assert.match(doc.updated, /^\d{4}-\d{2}-\d{2}$/, "updated must be YYYY-MM-DD");
+  assert.equal(doc.license, "CC0-1.0");
+  assert.ok(typeof doc.note === "string" && doc.note.trim().length > 0, "note is required");
+  assert.ok(Array.isArray(doc.entries), "entries must be an array");
+
+  const registered = new Set();
+  for (const e of reg.entries) {
+    const pub = parse(e.uri)?.publisher;
+    if (pub && e.native?.[pub]) registered.add(`${pub}/${e.native[pub]}`);
+  }
+
+  const seenIds = new Set();
+  for (const entry of doc.entries) {
+    assert.match(entry.id, /^[^/\s]+\/[^/\s]+$/, `invalid id: ${entry.id}`);
+    assert.ok(!seenIds.has(entry.id), `duplicate id: ${entry.id}`);
+    seenIds.add(entry.id);
+    assert.match(entry.publisher, /^[a-z][a-z0-9-]*$/, `invalid publisher: ${entry.publisher}`);
+    if ("name" in entry && entry.name !== undefined) {
+      assert.ok(typeof entry.name === "string" && entry.name.trim().length > 0, `invalid name: ${entry.id}`);
+    }
+    assert.ok(INCOMPATIBLE_REASONS.includes(entry.reason), `invalid reason: ${entry.reason}`);
+    assert.ok(typeof entry.detail === "string" && entry.detail.trim().length > 0, `missing detail: ${entry.id}`);
+    assert.match(entry.evidence, /^https:\/\//, `evidence must be https: ${entry.id}`);
+    if (entry.reason === "slot-collision" || entry.reason === "parameter-split") {
+      assert.ok(typeof entry.conflicts_with === "string" && entry.conflicts_with.length > 0, `missing conflicts_with: ${entry.id}`);
+    }
+    if (entry.conflicts_with !== undefined) {
+      assert.ok(parse(entry.conflicts_with) !== null, `invalid conflicts_with URI: ${entry.conflicts_with}`);
+    }
+    const slug = entry.id.split("/")[1];
+    assert.ok(!registered.has(entry.id) && !registered.has(`${entry.publisher}/${slug}`), `overlap with registry.json: ${entry.id}`);
+  }
+}
+
+test("incompatible.json conforms to SPEC.md section 5.1 and is mutually exclusive with registry.json", () => {
+  const sec51 = spec.slice(spec.indexOf("### 5.1 Incompatible models"), spec.indexOf("## 6."));
+  const specReasons = [...sec51.matchAll(/^\| `([a-z-]+)` \|/gm)].map((m) => m[1]);
+  assert.deepEqual(specReasons, INCOMPATIBLE_REASONS);
+  validateIncompatible(incompatible, registry);
+});
+
+test("validateIncompatible accepts valid entries and rejects schema or overlap errors", () => {
+  const baseDoc = (entries) => ({
+    spec: "0.2.0",
+    updated: "2026-11-21",
+    license: "CC0-1.0",
+    note: "Test incompatible registry",
+    entries,
+  });
+  const opaque = {
+    id: "google/gemma-4-E4B-it",
+    publisher: "google",
+    name: "Gemma 4 E4B IT",
+    reason: "opaque-size",
+    detail: "Proprietary effective-parameter label.",
+    evidence: "https://huggingface.co/google/gemma-4-E4B-it",
+  };
+  const split = {
+    id: "xai/grok-4.20-0309-non-reasoning",
+    publisher: "xai",
+    reason: "parameter-split",
+    conflicts_with: "model:xai/text/core:4.20",
+    detail: "Reasoning toggle exposed as a separate model ID.",
+    evidence: "https://models.dev",
+  };
+  validateIncompatible(baseDoc([opaque, split]), registry);
+
+  assert.throws(() => validateIncompatible(baseDoc([{ ...opaque, reason: "bad-reason" }]), registry), /invalid reason/);
+  assert.throws(() => validateIncompatible(baseDoc([{ ...split, conflicts_with: undefined }]), registry), /missing conflicts_with/);
+  assert.throws(() => validateIncompatible(baseDoc([{ ...opaque, reason: "slot-collision" }]), registry), /missing conflicts_with/);
+  assert.throws(() => validateIncompatible(baseDoc([{ ...split, conflicts_with: "not-a-uri" }]), registry), /invalid conflicts_with URI/);
+  assert.throws(() => validateIncompatible(baseDoc([opaque, opaque]), registry), /duplicate id/);
+  assert.throws(() => validateIncompatible(baseDoc([{ ...opaque, id: "anthropic/claude-sonnet-5-5", publisher: "anthropic" }]), registry), /overlap with registry\.json/);
+});
+
+test("license normalization and strict OSI boundary (-open vs -weights)", () => {
+  assert.equal(normalizeLicense("Apache 2.0"), "Apache-2.0");
+  assert.equal(normalizeLicense("apache-2.0"), "Apache-2.0");
+  assert.equal(normalizeLicense("MIT License"), "MIT");
+  assert.equal(normalizeLicense("AGPL-3.0"), "AGPL-3.0-only");
+  for (const osi of ["Apache 2.0", "apache-2.0", "MIT License", "AGPL-3.0"]) {
+    assert.equal(weightsSuffixFor(osi), "open", osi);
+  }
+
+  for (const nonOsi of [
+    "Modified MIT",
+    "OpenMDW-1.1",
+    "CC-BY-NC-4.0",
+    "CC-BY-4.0",
+    "Gemma",
+    "Gemma Terms of Use",
+    "Llama 4 Community License",
+    "Nace.AI Open RAIL-M",
+    "DeepSeek Model License",
+    "nvidia-open-model-license",
+    "LFM Open License v1.0",
+    "Muse Model License",
+    "qwen-research",
+    "qwen3.8-max",
+    "MiniMax H3 Community License Agreement",
+  ]) {
+    assert.equal(weightsSuffixFor(nonOsi), "weights", nonOsi);
+  }
+
+  assert.equal(weightsSuffixFor("proprietary"), undefined);
+  for (const missing of ["", "  ", null, undefined, "other", "Unknown", "none", "unspecified"]) {
+    assert.equal(weightsSuffixFor(missing), null, String(missing));
+  }
+
+  assert.equal(checkLicenseConsistency("open", "Apache-2.0").ok, true);
+  assert.equal(checkLicenseConsistency("weights", "Modified MIT").ok, true);
+  assert.equal(checkLicenseConsistency("weights", "OpenMDW-1.1").ok, true);
+  assert.equal(checkLicenseConsistency(undefined, "proprietary").ok, true);
+
+  assert.equal(checkLicenseConsistency("open", "Modified MIT").ok, false);
+  assert.equal(checkLicenseConsistency("open", "OpenMDW-1.1").ok, false);
+  assert.equal(checkLicenseConsistency("open", "Apache 2.0").ok, false);
+  assert.equal(checkLicenseConsistency("weights", "Apache-2.0").ok, false);
+  assert.equal(checkLicenseConsistency("weights", "proprietary").ok, false);
+  assert.equal(checkLicenseConsistency(undefined, "MIT").ok, false);
 });

@@ -7,9 +7,10 @@ model:anthropic/text/core:5.5@bedrock
 ```
 
 - Site: <https://modeluri.org>
-- Specification: [SPEC.md](SPEC.md), working draft 0.1.2
+- Specification: [SPEC.md](SPEC.md), working draft 0.2.0
 - Signatories: [SIGNATORIES.md](SIGNATORIES.md)
 - Registry: [registry.json](registry.json)
+- Incompatible models: [incompatible.json](incompatible.json)
 
 ## Try it
 
@@ -46,6 +47,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | --- | --- |
 | `SPEC.md` | The specification |
 | `registry.json` | The public registry of model URIs |
+| `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
 | `cli/` | The resolver (`model-uri.mjs`) and its tests: `node --test cli/` |
 | `tools/` | Builds `registry.json` from the models.dev catalogue |
 | `aliases/` | Gateway alias files generated from the registry |
@@ -54,8 +56,8 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 ## Licence
 
 - Specification (`SPEC.md`): [CC BY 4.0](LICENSE).
-- Registry (`registry.json`, `tools/classification.mjs`) and generated alias files (`aliases/`): dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
-- Code (`cli/`, `tools/build-registry.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
+- Registry (`registry.json`, `incompatible.json`, `tools/classification.mjs`) and generated alias files (`aliases/`): dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- Code (`cli/`, `tools/build-registry.mjs`, `tools/licenses.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
 
 ## Citation
 
