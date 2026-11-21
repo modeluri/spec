@@ -12,3 +12,6 @@
 /site
 /draft
 /wrangler.jsonc
+
+# Local catalog snapshots and pilot batches
+/.cache

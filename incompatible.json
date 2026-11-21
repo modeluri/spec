@@ -2,6 +2,1336 @@
   "spec": "0.2.0",
   "updated": "2026-11-21",
   "license": "CC0-1.0",
-  "note": "Real models from external catalogues that cannot be assigned a canonical model URI under SPEC.md without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
-  "entries": []
+  "note": "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.2.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
+  "entries": [
+    {
+      "id": "alibaba/qwen-flash",
+      "publisher": "alibaba",
+      "name": "Qwen Flash",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias on Alibaba Cloud whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-flash.toml"
+    },
+    {
+      "id": "alibaba/qwen-max",
+      "publisher": "alibaba",
+      "name": "Qwen Max",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias on Alibaba Cloud whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-max.toml"
+    },
+    {
+      "id": "alibaba/qwen-plus",
+      "publisher": "alibaba",
+      "name": "Qwen Plus",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias on Alibaba Cloud whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-plus.toml"
+    },
+    {
+      "id": "alibaba/qwen-turbo",
+      "publisher": "alibaba",
+      "name": "Qwen Turbo",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias on Alibaba Cloud whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-turbo.toml"
+    },
+    {
+      "id": "alibaba/qwen-vl-max",
+      "publisher": "alibaba",
+      "name": "Qwen-VL Max",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias for Qwen-VL Max whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-vl-max.toml"
+    },
+    {
+      "id": "alibaba/qwen-vl-plus",
+      "publisher": "alibaba",
+      "name": "Qwen-VL Plus",
+      "reason": "rolling-alias",
+      "detail": "Unversioned rolling alias for Qwen-VL Plus whose underlying checkpoint updates silently over time.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-vl-plus.toml"
+    },
+    {
+      "id": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "publisher": "alibaba",
+      "name": "Qwen3 235B-A22B Thinking 2507",
+      "reason": "parameter-split",
+      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+      "detail": "Thinking/reasoning mode split of Qwen3 235B-A22B 2507 alongside the instruct release.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507"
+    },
+    {
+      "id": "alibaba/qwen3-next-80b-a3b-thinking",
+      "publisher": "alibaba",
+      "name": "Qwen3-Next 80B-A3B (Thinking)",
+      "reason": "parameter-split",
+      "conflicts_with": "model:alibaba/text/high-open/80b-a3b:3.next",
+      "detail": "Thinking/reasoning mode split of Qwen3-Next 80B-A3B alongside the instruct release.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking"
+    },
+    {
+      "id": "alibaba/qwen3-omni-30b-a3b-thinking",
+      "publisher": "alibaba",
+      "name": "Qwen3 Omni 30B A3B Thinking",
+      "reason": "parameter-split",
+      "conflicts_with": "model:alibaba/text/light-open/30b-a3b:3.2507",
+      "detail": "Thinking/reasoning mode variant with text-only output colliding on the alibaba/text/light-open/30b-a3b slot.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Thinking"
+    },
+    {
+      "id": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "publisher": "alibaba",
+      "name": "Qwen3 VL 235B A22B Instruct",
+      "reason": "slot-collision",
+      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+      "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/max-open/235b-a22b slot with Qwen3 235B-A22B.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct"
+    },
+    {
+      "id": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "publisher": "alibaba",
+      "name": "Qwen3 VL 235B A22B Thinking",
+      "reason": "parameter-split",
+      "conflicts_with": "model:alibaba/text/max-open/235b-a22b:3.2507",
+      "detail": "Thinking/reasoning mode split of Qwen3-VL 235B-A22B alongside the instruct release.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking"
+    },
+    {
+      "id": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "publisher": "alibaba",
+      "name": "Qwen3 VL 30B A3B Instruct",
+      "reason": "slot-collision",
+      "conflicts_with": "model:alibaba/text/light-open/30b-a3b:3.2507",
+      "detail": "Parallel qwen3-vl vision-language family colliding on the alibaba/text/light-open/30b-a3b slot with Qwen3 30B-A3B.",
+      "evidence": "https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct"
+    },
+    {
+      "id": "alibaba/qwen3-vl-flash",
+      "publisher": "alibaba",
+      "name": "Qwen3 VL Flash (Alibaba Cloud)",
+      "reason": "missing-evidence",
+      "detail": "Closed vision-language variant with no pricing or first-party/major-host listing in models.dev to establish a verifiable tier.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3-vl-flash.toml"
+    },
+    {
+      "id": "alibaba/qwen3.8-max-prime",
+      "publisher": "alibaba",
+      "name": "Qwen 3.8 Max Prime",
+      "reason": "parameter-split",
+      "conflicts_with": "model:alibaba/text/max:3.8",
+      "detail": "High-throughput serving edition of Qwen3.8 Max; deployment/throughput variant rather than a distinct model tier.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.8-max-prime.toml"
+    },
+    {
+      "id": "alibaba/qwen3.8-omni-flash",
+      "publisher": "alibaba",
+      "name": "Qwen3.8 Omni Flash",
+      "reason": "slot-collision",
+      "conflicts_with": "model:alibaba/text/light:3.8",
+      "detail": "Text-output omni-input variant whose primary output is text, colliding on the alibaba/text/light:3.8 slot with Qwen3.8 Flash.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen3.8-omni-flash.toml"
+    },
+    {
+      "id": "alibaba/qwq-32b",
+      "publisher": "alibaba",
+      "name": "QwQ 32B",
+      "reason": "slot-collision",
+      "conflicts_with": "model:alibaba/text/core-open/32b:3",
+      "detail": "Parallel QwQ reasoning family colliding on the alibaba/text/core-open/32b slot with Qwen3 32B.",
+      "evidence": "https://huggingface.co/Qwen/QwQ-32B"
+    },
+    {
+      "id": "alibaba/qwq-plus",
+      "publisher": "alibaba",
+      "name": "QwQ Plus",
+      "reason": "slot-collision",
+      "conflicts_with": "model:alibaba/text/core",
+      "detail": "Parallel QwQ reasoning family colliding on the closed alibaba/text/core slot.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwq-plus.toml"
+    },
+    {
+      "id": "baichuan/baichuan-m2-32b",
+      "publisher": "baichuan",
+      "name": "Baichuan M2 32B",
+      "reason": "unmapped-special",
+      "detail": "Medical domain model for clinical reasoning and patient interaction; medicine is outside the closed `special` set (SPEC.md §3.3).",
+      "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B"
+    },
+    {
+      "id": "baidu/ernie-4.5-vl-424b-a47b",
+      "publisher": "baidu",
+      "name": "ERNIE 4.5 VL 424B A47B ",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but no licence or Hugging Face weights repository is recorded (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/baidu/ernie-4.5-vl-424b-a47b.toml"
+    },
+    {
+      "id": "black-forest-labs/flux-1-kontext-dev",
+      "publisher": "black-forest-labs",
+      "name": "FLUX.1 Kontext [dev]",
+      "reason": "slot-collision",
+      "conflicts_with": "model:black-forest-labs/image/core-weights:1",
+      "detail": "Parallel instruction-editing family (flux-kontext-dev) under FLUX.1 [dev] Non-Commercial License collides on the black-forest-labs/image/core-weights:1 slot held by primary flux-1-dev.",
+      "evidence": "https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev"
+    },
+    {
+      "id": "bytedance-seed/seed-1-6-vision",
+      "publisher": "bytedance-seed",
+      "name": "Seed 1.6 Vision",
+      "reason": "slot-collision",
+      "conflicts_with": "model:bytedance-seed/text/core:1.6",
+      "detail": "Separate vision checkpoint of the Seed 1.6 release at identical pricing ($0.11875/$1.18747), colliding with primary `bytedance-seed/seed-1-6` on `model:bytedance-seed/text/core:1.6`.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-1-6-vision.toml"
+    },
+    {
+      "id": "bytedance-seed/seed-character",
+      "publisher": "bytedance-seed",
+      "name": "Seed Character",
+      "reason": "unmapped-special",
+      "detail": "Character-driven dialogue and roleplay specialisation is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-character.toml"
+    },
+    {
+      "id": "bytedance-seed/seed-evolving",
+      "publisher": "bytedance-seed",
+      "name": "Seed Evolving",
+      "reason": "rolling-alias",
+      "detail": "Explicitly described as a rolling unpinned model (`doubao-seed-evolving`) whose underlying release updates silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/bytedance-seed/seed-evolving.toml"
+    },
+    {
+      "id": "canopylabs/orpheus-arabic-saudi",
+      "publisher": "canopylabs",
+      "name": "Orpheus Arabic Saudi",
+      "reason": "slot-collision",
+      "conflicts_with": "model:canopylabs/tts/core:1",
+      "detail": "Saudi Arabic language-specific TTS edition colliding on model:canopylabs/tts/core with primary English Orpheus V1 because the URI grammar has no language component.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/canopylabs/orpheus-arabic-saudi.toml"
+    },
+    {
+      "id": "cohere/c4ai-aya-vision-32b",
+      "publisher": "cohere",
+      "name": "Aya Vision 32B",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/high-weights/32b:1",
+      "detail": "Parallel vision-language 32B Aya family colliding on the same model:cohere/text/high-weights/32b slot as c4ai-aya-expanse-32b.",
+      "evidence": "https://huggingface.co/CohereLabs/aya-vision-32b"
+    },
+    {
+      "id": "cohere/c4ai-aya-vision-8b",
+      "publisher": "cohere",
+      "name": "Aya Vision 8B",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/light-weights/8b:1",
+      "detail": "Parallel vision-language 8B Aya family colliding on the same model:cohere/text/light-weights/8b slot as c4ai-aya-expanse-8b.",
+      "evidence": "https://huggingface.co/CohereLabs/aya-vision-8b"
+    },
+    {
+      "id": "cohere/command-a-plus-05-2026",
+      "publisher": "cohere",
+      "name": "Command A Plus",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/cohere/command-a-plus-05-2026.toml"
+    },
+    {
+      "id": "cohere/command-a-reasoning-08-2025",
+      "publisher": "cohere",
+      "name": "Command A Reasoning",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but the Hugging Face repository returned HTTP 401 and raw_license is null, leaving normalized_license unverifiable.",
+      "evidence": "https://huggingface.co/CohereLabs/c4ai-command-a-reasoning-08-2025"
+    },
+    {
+      "id": "cohere/command-a-translate-08-2025",
+      "publisher": "cohere",
+      "name": "Command A Translate",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but the Hugging Face repository returned HTTP 401 and raw_license is null, leaving normalized_license unverifiable.",
+      "evidence": "https://huggingface.co/CohereLabs/c4ai-command-a-translate-08-2025"
+    },
+    {
+      "id": "cohere/command-a-vision-07-2025",
+      "publisher": "cohere",
+      "name": "Command A Vision",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but the Hugging Face repository returned HTTP 401 and raw_license is null, leaving normalized_license unverifiable.",
+      "evidence": "https://huggingface.co/CohereLabs/c4ai-command-a-vision-07-2025"
+    },
+    {
+      "id": "cohere/command-r7b-arabic-02-2025",
+      "publisher": "cohere",
+      "name": "Command R7B Arabic",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/nano-weights/7b:2412",
+      "detail": "Regional Arabic-specialized Command R7B edition colliding on the same model:cohere/text/nano-weights/7b slot as command-r7b-12-2024.",
+      "evidence": "https://huggingface.co/CohereLabs/c4ai-command-r7b-arabic-02-2025"
+    },
+    {
+      "id": "cohere/north-mini-code-1-0",
+      "publisher": "cohere",
+      "name": "North Mini Code",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/cohere/north-mini-code-1-0.toml"
+    },
+    {
+      "id": "cohere/tiny-aya-earth",
+      "publisher": "cohere",
+      "name": "Tiny Aya Earth",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/light-weights:1",
+      "detail": "Regional variant (West Asian and African languages) colliding on the same model:cohere/text/light-weights slot as tiny-aya-global.",
+      "evidence": "https://huggingface.co/CohereLabs/tiny-aya-earth"
+    },
+    {
+      "id": "cohere/tiny-aya-fire",
+      "publisher": "cohere",
+      "name": "Tiny Aya Fire",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/light-weights:1",
+      "detail": "Regional variant (South Asian languages) colliding on the same model:cohere/text/light-weights slot as tiny-aya-global.",
+      "evidence": "https://huggingface.co/CohereLabs/tiny-aya-fire"
+    },
+    {
+      "id": "cohere/tiny-aya-water",
+      "publisher": "cohere",
+      "name": "Tiny Aya Water",
+      "reason": "slot-collision",
+      "conflicts_with": "model:cohere/text/light-weights:1",
+      "detail": "Regional variant (European and Asia-Pacific languages) colliding on the same model:cohere/text/light-weights slot as tiny-aya-global.",
+      "evidence": "https://huggingface.co/CohereLabs/tiny-aya-water"
+    },
+    {
+      "id": "deepreinforce/ornith-1.0-31b",
+      "publisher": "deepreinforce",
+      "name": "Ornith 1.0 31B",
+      "reason": "missing-evidence",
+      "detail": "Open-weights model has no downloadable weights URL and zero provider listings in models.dev, so no native identifier can be verified.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/deepreinforce/ornith-1.0-31b.toml"
+    },
+    {
+      "id": "deepseek/deepseek-chat",
+      "publisher": "deepseek",
+      "name": "DeepSeek Chat",
+      "reason": "rolling-alias",
+      "detail": "Unpinned rolling API alias whose underlying DeepSeek checkpoint changes silently without a version bump.",
+      "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2"
+    },
+    {
+      "id": "deepseek/deepseek-ocr-2",
+      "publisher": "deepseek",
+      "name": "DeepSeek OCR 2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/deepseek/deepseek-ocr-2.toml"
+    },
+    {
+      "id": "deepseek/deepseek-reasoner",
+      "publisher": "deepseek",
+      "name": "DeepSeek Reasoner",
+      "reason": "rolling-alias",
+      "detail": "Unpinned rolling API alias whose underlying DeepSeek reasoning checkpoint changes silently without a version bump.",
+      "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2"
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-vision-exp",
+      "publisher": "deepseek",
+      "name": "DeepSeek V4 Flash Vision Exp",
+      "reason": "slot-collision",
+      "conflicts_with": "model:deepseek/text/light-open:4",
+      "detail": "Experimental vision-input split of DeepSeek V4 Flash with text output; vision input has no separate scope and collides on model:deepseek/text/light-open:4.",
+      "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+    },
+    {
+      "id": "google/deep-research-max-preview-04-2026",
+      "publisher": "google",
+      "name": "Deep Research Max Preview",
+      "reason": "unmapped-special",
+      "detail": "Agentic deep-research workflow vertical is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-max-preview-04-2026.toml"
+    },
+    {
+      "id": "google/deep-research-preview-04-2026",
+      "publisher": "google",
+      "name": "Gemini Deep Research Preview",
+      "reason": "unmapped-special",
+      "detail": "Agentic deep-research workflow vertical is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/deep-research-preview-04-2026.toml"
+    },
+    {
+      "id": "google/diffusiongemma-26b-a4b-it",
+      "publisher": "google",
+      "name": "DiffusionGemma 26B A4B IT",
+      "reason": "slot-collision",
+      "conflicts_with": "model:google/text/core-open/26b-a4b:4",
+      "detail": "Parallel discrete-diffusion family (`diffusiongemma`) collides on the same `google/text/*-open/26b-a4b` slot as Gemma 4 26B A4B.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/diffusiongemma-26b-a4b-it.toml"
+    },
+    {
+      "id": "google/gemini-2.5-computer-use-preview-10-2025",
+      "publisher": "google",
+      "name": "Gemini 2.5 Computer Use Preview",
+      "reason": "unmapped-special",
+      "detail": "Browser/UI computer-use vertical is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-computer-use-preview-10-2025.toml"
+    },
+    {
+      "id": "google/gemini-3.1-pro-preview-customtools",
+      "publisher": "google",
+      "name": "Gemini 3.1 Pro Preview Custom Tools",
+      "reason": "parameter-split",
+      "conflicts_with": "model:google/text/max:3.1",
+      "detail": "Tool-use parameter/behaviour variant of Gemini 3.1 Pro Preview rather than a separate tier or release.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-3.1-pro-preview-customtools.toml"
+    },
+    {
+      "id": "google/gemini-flash-latest",
+      "publisher": "google",
+      "name": "Gemini Flash Latest",
+      "reason": "rolling-alias",
+      "detail": "Unpinned rolling pointer (`-latest`) whose underlying model changes silently without a version bump.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-flash-latest.toml"
+    },
+    {
+      "id": "google/gemini-flash-lite-latest",
+      "publisher": "google",
+      "name": "Gemini Flash-Lite Latest",
+      "reason": "rolling-alias",
+      "detail": "Unpinned rolling pointer (`-latest`) whose underlying model changes silently without a version bump.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-flash-lite-latest.toml"
+    },
+    {
+      "id": "google/gemini-nano-banana-2.1",
+      "publisher": "google",
+      "name": "Nano Banana 2.1",
+      "reason": "slot-collision",
+      "conflicts_with": "model:google/image/core:3.1",
+      "detail": "Parallel `nano-banana` 2.1 branding collides with the primary `gemini-*-image` `core` image slot (`gemini-3.1-flash-image`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-nano-banana-2.1.toml"
+    },
+    {
+      "id": "google/gemini-omni-1.1-flash",
+      "publisher": "google",
+      "name": "Gemini Omni 1.1 Flash",
+      "reason": "slot-collision",
+      "conflicts_with": "model:google/video/light",
+      "detail": "Parallel `gemini-omni` video family collides on Google's `video` lineup held by primary `veo`.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-omni-1.1-flash.toml"
+    },
+    {
+      "id": "google/gemini-omni-flash-preview",
+      "publisher": "google",
+      "name": "Gemini Omni Flash Preview",
+      "reason": "slot-collision",
+      "conflicts_with": "model:google/video/light",
+      "detail": "Parallel `gemini-omni` video family collides on Google's `video` lineup held by primary `veo`.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-omni-flash-preview.toml"
+    },
+    {
+      "id": "google/gemini-robotics-er-1.6-preview",
+      "publisher": "google",
+      "name": "Gemini Robotics-ER 1.6 Preview",
+      "reason": "unmapped-special",
+      "detail": "Embodied robotics domain (`gemini-robotics-er`) is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-robotics-er-1.6-preview.toml"
+    },
+    {
+      "id": "google/gemma-2-27b-it",
+      "publisher": "google",
+      "name": "Gemma 2 27B",
+      "reason": "missing-evidence",
+      "detail": "Open-weights release lacks a verifiable licence in both models.dev metadata and Hugging Face cache.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemma-2-27b-it.toml"
+    },
+    {
+      "id": "google/gemma-3n-e2b-it",
+      "publisher": "google",
+      "name": "Gemma 3n E2B IT",
+      "reason": "opaque-size",
+      "detail": "Published with proprietary effective-parameter label (`E2B`) without verifiable total/active physical parameter counts.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemma-3n-e2b-it.toml"
+    },
+    {
+      "id": "google/gemma-3n-e4b-it",
+      "publisher": "google",
+      "name": "Gemma 3n E4B IT",
+      "reason": "opaque-size",
+      "detail": "Published with proprietary effective-parameter label (`E4B`) without verifiable total/active physical parameter counts.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemma-3n-e4b-it.toml"
+    },
+    {
+      "id": "google/gemma-4-E2B-it",
+      "publisher": "google",
+      "name": "Gemma 4 E2B IT",
+      "reason": "opaque-size",
+      "detail": "Published with proprietary effective-parameter label (`E2B`) without verifiable total/active physical parameter counts.",
+      "evidence": "https://huggingface.co/google/gemma-4-E2B-it"
+    },
+    {
+      "id": "google/gemma-4-E4B-it",
+      "publisher": "google",
+      "name": "Gemma 4 E4B IT",
+      "reason": "opaque-size",
+      "detail": "Published with proprietary effective-parameter label (`E4B`) without verifiable total/active physical parameter counts.",
+      "evidence": "https://huggingface.co/google/gemma-4-E4B-it"
+    },
+    {
+      "id": "google/veo-3.1-fast-generate-preview",
+      "publisher": "google",
+      "name": "Veo 3.1 Fast Preview",
+      "reason": "parameter-split",
+      "conflicts_with": "model:google/video/core:3.1",
+      "detail": "Fast serving-latency variant of Veo 3.1 rather than a separate tier or release.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/veo-3.1-fast-generate-preview.toml"
+    },
+    {
+      "id": "huawei/openpangu-2.0-flash",
+      "publisher": "huawei",
+      "name": "openPangu 2.0 Flash",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but normalized_license is null (Hugging Face returned no machine-readable SPDX licence identifier).",
+      "evidence": "https://huggingface.co/openpangu/openPangu-2.0-Flash"
+    },
+    {
+      "id": "huawei/openpangu-2.0-pro",
+      "publisher": "huawei",
+      "name": "openPangu 2.0 Pro",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but normalized_license is null (Hugging Face returned no machine-readable SPDX licence identifier).",
+      "evidence": "https://huggingface.co/openpangu/openPangu-2.0-Pro"
+    },
+    {
+      "id": "ibm/granite-4.2-8b",
+      "publisher": "ibm",
+      "name": "Granite 4.2 8B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/ibm/granite-4.2-8b.toml"
+    },
+    {
+      "id": "inclusionai/ling-3.0-flash-fin",
+      "publisher": "inclusionai",
+      "name": "Ling 3.0 Flash Fin",
+      "reason": "unmapped-special",
+      "detail": "Finance domain specialisation (`fin`) is outside the closed `special` vocabulary.",
+      "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin"
+    },
+    {
+      "id": "inclusionai/ling-3.0-flash-sante",
+      "publisher": "inclusionai",
+      "name": "Ling 3.0 Flash Sante",
+      "reason": "unmapped-special",
+      "detail": "Health and medical specialisation (`sante`) is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.0-flash-sante.toml"
+    },
+    {
+      "id": "inclusionai/ling-3.0-flash-vl",
+      "publisher": "inclusionai",
+      "name": "Ling 3.0 Flash VL",
+      "reason": "slot-collision",
+      "conflicts_with": "model:inclusionai/text/core-open:3.0",
+      "detail": "Separate multimodal vision-language checkpoint of Ling 3.0 Flash under MIT at identical pricing ($0.075/$0.224), colliding with `inclusionai/ling-3.0-flash` on `model:inclusionai/text/core-open:3.0`.",
+      "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL"
+    },
+    {
+      "id": "inclusionai/ling-3.1-flash",
+      "publisher": "inclusionai",
+      "name": "Ling 3.1 Flash",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.1-flash.toml"
+    },
+    {
+      "id": "meituan/longcat-2.0",
+      "publisher": "meituan",
+      "name": "LongCat-2.0",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/meituan/longcat-2.0.toml"
+    },
+    {
+      "id": "microsoft/phi-4-mini",
+      "publisher": "microsoft",
+      "name": "Phi-4-mini",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
+      "evidence": "https://huggingface.co/microsoft/Phi-4-mini-instruct"
+    },
+    {
+      "id": "minimax/MiniMax-M2-Her",
+      "publisher": "minimax",
+      "name": "MiniMax-M2 Her",
+      "reason": "unmapped-special",
+      "detail": "Conversational and character-driven roleplay edition (`Her`) is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/minimax/MiniMax-M2-Her.toml"
+    },
+    {
+      "id": "minimax/MiniMax-M2.5-highspeed",
+      "publisher": "minimax",
+      "name": "MiniMax-M2.5-highspeed",
+      "reason": "parameter-split",
+      "conflicts_with": "model:minimax/text/core-weights:2.5",
+      "detail": "High-speed serving latency tier of MiniMax-M2.5 exposed as a separate model ID rather than a deployment/request parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/minimax/MiniMax-M2.5-highspeed.toml"
+    },
+    {
+      "id": "minimax/MiniMax-M2.7",
+      "publisher": "minimax",
+      "name": "MiniMax-M2.7",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true`, but Hugging Face reported `license: \"other\"` with placeholder `license_name: \"other\"`, leaving `normalized_license: null`.",
+      "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7"
+    },
+    {
+      "id": "minimax/MiniMax-M2.7-highspeed",
+      "publisher": "minimax",
+      "name": "MiniMax-M2.7-highspeed",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` without a verifiable licence (`normalized_license: null`), and also splits a high-speed serving latency mode as a separate model ID.",
+      "evidence": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7"
+    },
+    {
+      "id": "mistral/codestral-latest",
+      "publisher": "mistral",
+      "name": "Codestral (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/codestral-latest.toml"
+    },
+    {
+      "id": "mistral/devstral-2512",
+      "publisher": "mistral",
+      "name": "Devstral 2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but Hugging Face returned license=\"other\" with no license_name, leaving normalized_license null.",
+      "evidence": "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512"
+    },
+    {
+      "id": "mistral/devstral-medium-2507",
+      "publisher": "mistral",
+      "name": "Devstral Medium",
+      "reason": "slot-collision",
+      "conflicts_with": "model:mistral/text/core-code:25.08",
+      "detail": "Closed coding model family (devstral-medium) colliding with primary codestral on model:mistral/text/core-code (and has no active native host).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/devstral-medium-2507.toml"
+    },
+    {
+      "id": "mistral/devstral-medium-latest",
+      "publisher": "mistral",
+      "name": "Devstral 2 (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/devstral-medium-latest.toml"
+    },
+    {
+      "id": "mistral/magistral-medium-latest",
+      "publisher": "mistral",
+      "name": "Magistral Medium (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/magistral-medium-latest.toml"
+    },
+    {
+      "id": "mistral/ministral-3b",
+      "publisher": "mistral",
+      "name": "Ministral 3B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence, no weights URL, and no active native host.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/ministral-3b.toml"
+    },
+    {
+      "id": "mistral/mistral-large-latest",
+      "publisher": "mistral",
+      "name": "Mistral Large (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-large-latest.toml"
+    },
+    {
+      "id": "mistral/mistral-medium-2604",
+      "publisher": "mistral",
+      "name": "Mistral Medium 3.5",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but Hugging Face returned license=\"other\" with no license_name, leaving normalized_license null.",
+      "evidence": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
+    },
+    {
+      "id": "mistral/mistral-medium-latest",
+      "publisher": "mistral",
+      "name": "Mistral Medium (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-medium-latest.toml"
+    },
+    {
+      "id": "mistral/mistral-small-24b-instruct-2501",
+      "publisher": "mistral",
+      "name": "Mistral Small 3",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-small-24b-instruct-2501.toml"
+    },
+    {
+      "id": "mistral/mistral-small-latest",
+      "publisher": "mistral",
+      "name": "Mistral Small (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-small-latest.toml"
+    },
+    {
+      "id": "mistral/mixtral-8x22b-instruct",
+      "publisher": "mistral",
+      "name": "Mixtral 8x22B Instruct",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license (and uses opaque 8x22B expert-count shorthand).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mixtral-8x22b-instruct.toml"
+    },
+    {
+      "id": "mistral/mixtral-8x7b-instruct-v0.1",
+      "publisher": "mistral",
+      "name": "Mixtral 8x7B Instruct v0.1",
+      "reason": "opaque-size",
+      "detail": "Published with expert-count shorthand (8x7B) rather than verifiable total and active physical parameter counts in the catalogue record.",
+      "evidence": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
+    },
+    {
+      "id": "mistral/pixtral-large-2502",
+      "publisher": "mistral",
+      "name": "Pixtral Large (25.02)",
+      "reason": "slot-collision",
+      "conflicts_with": "model:mistral/text/max:4",
+      "detail": "Parallel closed vision-language flagship family (pixtral-large) occupying the same model:mistral/text/max slot as mistral-large.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/pixtral-large-2502.toml"
+    },
+    {
+      "id": "mistral/pixtral-large-latest",
+      "publisher": "mistral",
+      "name": "Pixtral Large (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/pixtral-large-latest.toml"
+    },
+    {
+      "id": "mistral/voxtral-mini-3b-2507",
+      "publisher": "mistral",
+      "name": "Voxtral Mini 3B 2507",
+      "reason": "slot-collision",
+      "conflicts_with": "model:mistral/text/nano-open/3b:3",
+      "detail": "Parallel audio-input 3B Apache-2.0 text family (voxtral-mini) colliding with ministral-3-3b on model:mistral/text/nano-open/3b.",
+      "evidence": "https://huggingface.co/mistralai/Voxtral-Mini-3B-2507"
+    },
+    {
+      "id": "mistral/voxtral-small-24b-2507",
+      "publisher": "mistral",
+      "name": "Voxtral Small 24B 2507",
+      "reason": "slot-collision",
+      "conflicts_with": "model:mistral/text/core-open/24b:3.2",
+      "detail": "Parallel audio-input 24B Apache-2.0 text family (voxtral-small) colliding with mistral-small 24B on model:mistral/text/core-open/24b.",
+      "evidence": "https://huggingface.co/mistralai/Voxtral-Small-24B-2507"
+    },
+    {
+      "id": "mistral/voxtral-small-latest",
+      "publisher": "mistral",
+      "name": "Voxtral Small (latest)",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/voxtral-small-latest.toml"
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "publisher": "moonshotai",
+      "name": "Kimi K2 0711",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.toml"
+    },
+    {
+      "id": "moonshotai/kimi-k2-thinking",
+      "publisher": "moonshotai",
+      "name": "Kimi K2 Thinking",
+      "reason": "parameter-split",
+      "conflicts_with": "model:moonshotai/text/core-weights:2",
+      "detail": "Extended-reasoning mode of Kimi K2 exposed as a separate model ID rather than a reasoning effort parameter.",
+      "evidence": "https://huggingface.co/moonshotai/Kimi-K2-Thinking"
+    },
+    {
+      "id": "moonshotai/kimi-k2-thinking-turbo",
+      "publisher": "moonshotai",
+      "name": "Kimi K2 Thinking Turbo",
+      "reason": "parameter-split",
+      "conflicts_with": "model:moonshotai/text/core-weights:2",
+      "detail": "Extended-reasoning and turbo latency mode of Kimi K2 exposed as a separate model ID.",
+      "evidence": "https://huggingface.co/moonshotai/Kimi-K2-Thinking"
+    },
+    {
+      "id": "moonshotai/kimi-k2.7-code-highspeed",
+      "publisher": "moonshotai",
+      "name": "Kimi K2.7 Code Highspeed",
+      "reason": "parameter-split",
+      "conflicts_with": "model:moonshotai/text/core-code-weights:2.7",
+      "detail": "Low-latency serving tier of Kimi K2.7 Code exposed as a separate model ID rather than a deployment parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.7-code-highspeed.toml"
+    },
+    {
+      "id": "moonshotai/kimi-k3",
+      "publisher": "moonshotai",
+      "name": "Kimi K3",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k3.toml"
+    },
+    {
+      "id": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "publisher": "nvidia",
+      "name": "Llama 3.1 Nemotron 70B Instruct",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-70b-instruct.toml"
+    },
+    {
+      "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+      "publisher": "nvidia",
+      "name": "Llama 3.1 Nemotron Safety Guard 8B v3",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-safety-guard-8b-v3.toml"
+    },
+    {
+      "id": "nvidia/llama-3.1-nemotron-ultra-253b",
+      "publisher": "nvidia",
+      "name": "Llama 3.1 Nemotron Ultra 253B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-ultra-253b.toml"
+    },
+    {
+      "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "publisher": "nvidia",
+      "name": "Llama 3.3 Nemotron Super 49B v1",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.3-nemotron-super-49b-v1.toml"
+    },
+    {
+      "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "publisher": "nvidia",
+      "name": "Llama 3.3 Nemotron Super 49B v1.5",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.3-nemotron-super-49b-v1.5.toml"
+    },
+    {
+      "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
+      "publisher": "nvidia",
+      "name": "Llama Nemotron Embed VL 1B v2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-nemotron-embed-vl-1b-v2.toml"
+    },
+    {
+      "id": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+      "publisher": "nvidia",
+      "name": "Llama Nemotron Rerank VL 1B v2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-nemotron-rerank-vl-1b-v2.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3-content-safety",
+      "publisher": "nvidia",
+      "name": "Nemotron 3 Content Safety",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-content-safety.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-30b-a3b",
+      "publisher": "nvidia",
+      "name": "Nemotron 3 Nano 30B A3B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-nano-30b-a3b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+      "publisher": "nvidia",
+      "name": "Nemotron 3 Nano Omni 30B A3B Reasoning",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "publisher": "nvidia",
+      "name": "Nemotron 3 Super 120B A12B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-super-120b-a12b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra-550b-a55b",
+      "publisher": "nvidia",
+      "name": "Nemotron 3 Ultra 550B A55B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-ultra-550b-a55b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3.5-content-safety",
+      "publisher": "nvidia",
+      "name": "Nemotron 3.5 Content Safety",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-content-safety.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning",
+      "publisher": "nvidia",
+      "name": "Nemotron 3.5 Lightning 30B A3B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-lightning.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3.5-super-120b-a12b",
+      "publisher": "nvidia",
+      "name": "Nemotron 3.5 Super 120B A12B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-super-120b-a12b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "publisher": "nvidia",
+      "name": "Nemotron 3.5 Super VL 120B A12B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-super-vl-120b-a12b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-cascade-2-30b-a3b",
+      "publisher": "nvidia",
+      "name": "Nemotron Cascade 2 30B A3B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-cascade-2-30b-a3b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-content-safety-reasoning-4b",
+      "publisher": "nvidia",
+      "name": "Nemotron Content Safety Reasoning 4B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-content-safety-reasoning-4b.toml"
+    },
+    {
+      "id": "nvidia/nemotron-mini-4b-instruct",
+      "publisher": "nvidia",
+      "name": "Nemotron Mini 4B Instruct",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-mini-4b-instruct.toml"
+    },
+    {
+      "id": "nvidia/nemotron-nano-12b-v2-vl",
+      "publisher": "nvidia",
+      "name": "Nemotron Nano 12B v2 VL",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-nano-12b-v2-vl.toml"
+    },
+    {
+      "id": "nvidia/nemotron-nano-9b-v2",
+      "publisher": "nvidia",
+      "name": "Nemotron Nano 9B v2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-nano-9b-v2.toml"
+    },
+    {
+      "id": "nvidia/nemotron-voicechat",
+      "publisher": "nvidia",
+      "name": "Nemotron VoiceChat",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-voicechat.toml"
+    },
+    {
+      "id": "openai/gpt-5-chat-latest",
+      "publisher": "openai",
+      "name": "GPT-5 Chat (latest)",
+      "reason": "rolling-alias",
+      "detail": "Unpinned *-chat-latest rolling alias whose underlying checkpoint changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5-chat-latest.toml"
+    },
+    {
+      "id": "openai/gpt-5.1-chat-latest",
+      "publisher": "openai",
+      "name": "GPT-5.1 Chat",
+      "reason": "rolling-alias",
+      "detail": "Unpinned *-chat-latest rolling alias whose underlying checkpoint changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.1-chat-latest.toml"
+    },
+    {
+      "id": "openai/gpt-5.2-chat-latest",
+      "publisher": "openai",
+      "name": "GPT-5.2 Chat",
+      "reason": "rolling-alias",
+      "detail": "Unpinned *-chat-latest rolling alias whose underlying checkpoint changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.2-chat-latest.toml"
+    },
+    {
+      "id": "openai/gpt-5.3-chat-latest",
+      "publisher": "openai",
+      "name": "GPT-5.3 Chat (latest)",
+      "reason": "rolling-alias",
+      "detail": "Unpinned *-chat-latest rolling alias whose underlying checkpoint changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.3-chat-latest.toml"
+    },
+    {
+      "id": "openai/gpt-5.3-codex-spark",
+      "publisher": "openai",
+      "name": "GPT-5.3 Codex Spark",
+      "reason": "slot-collision",
+      "conflicts_with": "model:openai/text/core-code:5.3",
+      "detail": "Parallel Codex Spark release on 2026-02-05 with identical pricing ($1.75/$14) and description, colliding on model:openai/text/core-code:5.3.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.3-codex-spark.toml"
+    },
+    {
+      "id": "openai/gpt-5.4-image-2",
+      "publisher": "openai",
+      "name": "GPT-5.4 Image 2",
+      "reason": "slot-collision",
+      "conflicts_with": "model:openai/image/core:2",
+      "detail": "Parallel image model released on 2026-04-21 colliding on the openai/image/core:2 slot held by first-party openai/gpt-image-2.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.4-image-2.toml"
+    },
+    {
+      "id": "openai/gpt-5.5-instant",
+      "publisher": "openai",
+      "name": "GPT-5.5 Instant",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/core:5.5",
+      "detail": "Low-latency serving variant of GPT-5.5 at identical pricing ($5/$30) exposed as a separate model ID (SPEC.md section 3.3 / 5.1).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-5.5-instant.toml"
+    },
+    {
+      "id": "openai/gpt-6-astra-fast",
+      "publisher": "openai",
+      "name": "GPT-6 Astra (Fast)",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/max:6",
+      "detail": "Low-latency serving variant of GPT-6 Astra exposed as a separate model ID (SPEC.md section 3.3 / 5.1).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-6-astra-fast.toml"
+    },
+    {
+      "id": "openai/gpt-image-2.5-flare",
+      "publisher": "openai",
+      "name": "GPT Image 2.5 Flare",
+      "reason": "missing-evidence",
+      "detail": "Published alongside gpt-image-2.5-sunburst with identical description, zero pricing data, and no parameter count; tier cannot be assigned without guessing.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-image-2.5-flare.toml"
+    },
+    {
+      "id": "openai/gpt-image-2.5-sunburst",
+      "publisher": "openai",
+      "name": "GPT Image 2.5 Sunburst",
+      "reason": "missing-evidence",
+      "detail": "Published alongside gpt-image-2.5-flare with identical description, zero pricing data, and no parameter count; tier cannot be assigned without guessing.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-image-2.5-sunburst.toml"
+    },
+    {
+      "id": "openai/o3-deep-research",
+      "publisher": "openai",
+      "name": "o3-deep-research",
+      "reason": "unmapped-special",
+      "detail": "Deep-research specialisation outside the closed special vocabulary (code|rt|base|guard|ocr|translate).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o3-deep-research.toml"
+    },
+    {
+      "id": "openai/o4-mini-deep-research",
+      "publisher": "openai",
+      "name": "o4-mini-deep-research",
+      "reason": "unmapped-special",
+      "detail": "Deep-research specialisation outside the closed special vocabulary (code|rt|base|guard|ocr|translate).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/o4-mini-deep-research.toml"
+    },
+    {
+      "id": "openai/whisper-large-v3",
+      "publisher": "openai",
+      "name": "Whisper 3 Large",
+      "reason": "missing-evidence",
+      "detail": "Open-weights transcription model with normalized_license=null and no verifiable Hugging Face licence record.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/whisper-large-v3.toml"
+    },
+    {
+      "id": "openai/whisper-large-v3-turbo",
+      "publisher": "openai",
+      "name": "Whisper Large v3 Turbo",
+      "reason": "missing-evidence",
+      "detail": "Open-weights transcription model with normalized_license=null and no verifiable Hugging Face licence record.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/whisper-large-v3-turbo.toml"
+    },
+    {
+      "id": "openbmb/minicpm-v-4.7-1b",
+      "publisher": "openbmb",
+      "name": "MiniCPM-V 4.7 1B",
+      "reason": "slot-collision",
+      "conflicts_with": "model:openbmb/text/nano-open/1b:5",
+      "detail": "Parallel 1B vision-language family (minicpm-v) with text output collides on the openbmb/text/nano-open/1b slot held by primary minicpm5-1b.",
+      "evidence": "https://huggingface.co/openbmb/MiniCPM-V-4.7-1B"
+    },
+    {
+      "id": "perplexity/sonar-deep-research",
+      "publisher": "perplexity",
+      "name": "Sonar Deep Research",
+      "reason": "unmapped-special",
+      "detail": "Autonomous deep-research report vertical is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-deep-research.toml"
+    },
+    {
+      "id": "perplexity/sonar-reasoning-pro",
+      "publisher": "perplexity",
+      "name": "Sonar Reasoning Pro",
+      "reason": "parameter-split",
+      "conflicts_with": "model:perplexity/text/high:1",
+      "detail": "Reasoning-mode variant of Sonar Pro exposed as a separate model ID rather than a request parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-reasoning-pro.toml"
+    },
+    {
+      "id": "poolside/laguna-m.1",
+      "publisher": "poolside",
+      "name": "Laguna M.1",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-m.1.toml"
+    },
+    {
+      "id": "poolside/laguna-s-2.1",
+      "publisher": "poolside",
+      "name": "Laguna S 2.1",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-s-2.1.toml"
+    },
+    {
+      "id": "poolside/laguna-xs-2.1",
+      "publisher": "poolside",
+      "name": "Laguna XS 2.1",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-xs-2.1.toml"
+    },
+    {
+      "id": "poolside/laguna-xs.2",
+      "publisher": "poolside",
+      "name": "Laguna XS.2",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev with no licence or weights repository (normalized_license is null), and zero active providers.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-xs.2.toml"
+    },
+    {
+      "id": "rekaai/reka-edge",
+      "publisher": "rekaai",
+      "name": "Reka Edge",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/rekaai/reka-edge.toml"
+    },
+    {
+      "id": "rekaai/reka-flash-3",
+      "publisher": "rekaai",
+      "name": "Reka Flash 3",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/rekaai/reka-flash-3.toml"
+    },
+    {
+      "id": "sarvam/sarvam-105b",
+      "publisher": "sarvam",
+      "name": "Sarvam 105B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-105b.toml"
+    },
+    {
+      "id": "sarvam/sarvam-30b",
+      "publisher": "sarvam",
+      "name": "Sarvam 30B",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-30b.toml"
+    },
+    {
+      "id": "sdaia/allam-2-7b",
+      "publisher": "sdaia",
+      "name": "ALLaM-2-7b",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but the Hugging Face weights repository returned HTTP 401 and raw_license is null, leaving normalized_license unverifiable.",
+      "evidence": "https://huggingface.co/ALLaM-AI/ALLaM-2.0-7B-Instruct"
+    },
+    {
+      "id": "stepfun/step-5-preview",
+      "publisher": "stepfun",
+      "name": "Step 5 Preview",
+      "reason": "missing-evidence",
+      "detail": "Marked open_weights=true, but Hugging Face returned license=\"other\" with a custom LICENSE.txt and normalized_license is null.",
+      "evidence": "https://huggingface.co/stepfun-ai/Step-5-Preview"
+    },
+    {
+      "id": "tencent/hy-mt2-1.8b",
+      "publisher": "tencent",
+      "name": "Hy-MT2-1.8B",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-1.8b.toml"
+    },
+    {
+      "id": "tencent/hy-mt2-30b-a3b",
+      "publisher": "tencent",
+      "name": "Hy-MT2-30B-A3B",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-30b-a3b.toml"
+    },
+    {
+      "id": "tencent/hy-mt2-7b",
+      "publisher": "tencent",
+      "name": "Hy-MT2-7B",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-7b.toml"
+    },
+    {
+      "id": "tencent/hy3-preview",
+      "publisher": "tencent",
+      "name": "Hy3 preview",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true`, but Hugging Face returned `license: \"other\"` with no `license_name`, leaving `normalized_license: null`.",
+      "evidence": "https://huggingface.co/tencent/Hy3-preview"
+    },
+    {
+      "id": "tencent/hy4-preview",
+      "publisher": "tencent",
+      "name": "Hy4 preview",
+      "reason": "missing-evidence",
+      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy4-preview.toml"
+    },
+    {
+      "id": "typesafe/jev-latest",
+      "publisher": "typesafe",
+      "name": "Jev",
+      "reason": "rolling-alias",
+      "detail": "Rolling `-latest` alias whose underlying release changes silently.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/typesafe/jev-latest.toml"
+    },
+    {
+      "id": "unbiased/pareto",
+      "publisher": "unbiased",
+      "name": "Pareto",
+      "reason": "rolling-alias",
+      "detail": "Unpinned rolling pointer sharing first_party_id `pareto` with the versioned `unbiased/pareto-26.10` release.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/unbiased/pareto.toml"
+    },
+    {
+      "id": "xai/grok-4-fast-non-reasoning",
+      "publisher": "xai",
+      "name": "X-Ai/Grok-4-Fast-Non-Reasoning",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xai/text/light:4",
+      "detail": "Fast latency and non-reasoning parameter variant of Grok 4 rather than a distinct model release.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4-fast-non-reasoning.toml"
+    },
+    {
+      "id": "xai/grok-4.1-fast",
+      "publisher": "xai",
+      "name": "Grok 4.1 Fast",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xai/text/light:4.1",
+      "detail": "Non-reasoning variant of Grok 4.1 Fast; reasoning mode is a request parameter rather than a separate model URI.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4.1-fast.toml"
+    },
+    {
+      "id": "xai/grok-4.20-0309-non-reasoning",
+      "publisher": "xai",
+      "name": "Grok 4.20 (Non-Reasoning)",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xai/text/core:4.20",
+      "detail": "Non-reasoning toggle variant of Grok 4.20 (`0309`), which is a request parameter rather than a separate model URI.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4.20-0309-non-reasoning.toml"
+    },
+    {
+      "id": "xiaomi/mimo-v2.5-pro-ultraspeed",
+      "publisher": "xiaomi",
+      "name": "MiMo-V2.5-Pro-UltraSpeed",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xiaomi/text/high-open:2.5",
+      "detail": "Ultra-low-latency serving tier of MiMo-V2.5-Pro exposed as a separate model ID rather than a deployment parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-pro-ultraspeed.toml"
+    },
+    {
+      "id": "xiaomi/mimo-v2.5-tts-voiceclone",
+      "publisher": "xiaomi",
+      "name": "MiMo-V2.5-TTS-VoiceClone",
+      "reason": "unmapped-special",
+      "detail": "Voice cloning specialisation on `tts` is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voiceclone.toml"
+    },
+    {
+      "id": "xiaomi/mimo-v2.5-tts-voicedesign",
+      "publisher": "xiaomi",
+      "name": "MiMo-V2.5-TTS-VoiceDesign",
+      "reason": "unmapped-special",
+      "detail": "Prompt-driven voice design specialisation on `tts` is outside the closed `special` vocabulary.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-tts-voicedesign.toml"
+    },
+    {
+      "id": "xiaomi/mimo-v2.6-pro-ultraspeed",
+      "publisher": "xiaomi",
+      "name": "MiMo-V2.6-Pro-UltraSpeed",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xiaomi/text/high-open:2.6",
+      "detail": "Ultra-low-latency serving tier of MiMo-V2.6-Pro exposed as a separate model ID rather than a deployment parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.6-pro-ultraspeed.toml"
+    },
+    {
+      "id": "zhipuai/autoglm-phone-9b-multilingual",
+      "publisher": "zhipuai",
+      "name": "AutoGLM Phone 9B Multilingual",
+      "reason": "unmapped-special",
+      "detail": "Specialized mobile GUI/phone-agent model outside the closed SPEC special set (code, rt, base, guard, ocr, translate).",
+      "evidence": "https://huggingface.co/zai-org/AutoGLM-Phone-9B-Multilingual"
+    },
+    {
+      "id": "zhipuai/glm-4.5v",
+      "publisher": "zhipuai",
+      "name": "GLM-4.5V",
+      "reason": "slot-collision",
+      "conflicts_with": "model:zhipuai/text/core-open:4.5",
+      "detail": "Vision-input GLM-4.5V release with text output colliding on the model:zhipuai/text/core-open:4.5 slot held by glm-4.5.",
+      "evidence": "https://huggingface.co/zai-org/GLM-4.5V"
+    },
+    {
+      "id": "zhipuai/glm-4.6v",
+      "publisher": "zhipuai",
+      "name": "GLM-4.6V",
+      "reason": "slot-collision",
+      "conflicts_with": "model:zhipuai/text/core-open:4.6",
+      "detail": "Vision-input GLM-4.6V release with text output colliding on the model:zhipuai/text/core-open:4.6 slot held by glm-4.6.",
+      "evidence": "https://huggingface.co/zai-org/GLM-4.6V"
+    },
+    {
+      "id": "zhipuai/glm-5v-turbo",
+      "publisher": "zhipuai",
+      "name": "GLM-5V-Turbo",
+      "reason": "slot-collision",
+      "conflicts_with": "model:zhipuai/text/core:5",
+      "detail": "Closed vision-input GLM-5V-Turbo variant with text output colliding on the model:zhipuai/text/core:5 slot held by glm-5-turbo.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/zhipuai/glm-5v-turbo.toml"
+    }
+  ]
 }

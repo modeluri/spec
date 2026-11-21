@@ -56,6 +56,16 @@ const ALIASES = new Map([
   ["openmdw-1.1", "OpenMDW-1.1"],
   ["gemma", "Gemma Terms of Use"],
   ["gemma terms of use", "Gemma Terms of Use"],
+  ["mrl", "Mistral Research License"],
+  ["mnpl", "Mistral AI Non-Production License"],
+  ["llama4", "Llama 4 Community License"],
+  ["llama3.3", "Llama 3.3 Community License"],
+  ["llama3.2", "Llama 3.2 Community License"],
+  ["llama3.1", "Llama 3.1 Community License"],
+  ["llama3", "Llama 3 Community License"],
+  ["llama2", "Llama 2 Community License"],
+  ["modified-mit", "Modified MIT"],
+  ["modified mit", "Modified MIT"],
   ["proprietary", "proprietary"],
 ]);
 

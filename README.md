@@ -49,7 +49,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `registry.json` | The public registry of model URIs |
 | `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
 | `cli/` | The resolver (`model-uri.mjs`) and its tests: `node --test cli/` |
-| `tools/` | Builds `registry.json` from the models.dev catalogue |
+| `tools/` | Builds `registry.json` and `incompatible.json` from the models.dev catalogue |
 | `aliases/` | Gateway alias files generated from the registry |
 | `SIGNATORIES.md` | People and organisations who signed |
 
@@ -57,7 +57,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 
 - Specification (`SPEC.md`): [CC BY 4.0](LICENSE).
 - Registry (`registry.json`, `incompatible.json`, `tools/classification.mjs`) and generated alias files (`aliases/`): dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
-- Code (`cli/`, `tools/build-registry.mjs`, `tools/licenses.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
+- Code (`cli/`, `tools/*.mjs` except `tools/classification.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
 
 ## Citation
 

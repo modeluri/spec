@@ -129,11 +129,16 @@ test("registry: valid, unique, with evidence, tier source and native name", () =
   const uris = registry.entries.map((x) => x.uri);
   assert.equal(new Set(uris).size, uris.length);
   for (const x of registry.entries) {
-    assert.ok(parse(x.uri)?.version, x.uri);
+    const g = parse(x.uri);
+    assert.ok(g?.version, x.uri);
     assert.match(x.evidence, /^https:\/\//, x.uri);
     assert.equal(x.tier_source, "registry");
-    assert.ok(x.native[parse(x.uri).publisher], `${x.uri} has no name on the publisher API`);
-    const lic = checkLicenseConsistency(parse(x.uri).weights, x.license);
+    const hostKeys = Object.keys(x.native);
+    assert.ok(hostKeys.length > 0, `${x.uri} has no native hosts`);
+    for (const k of hostKeys) {
+      assert.ok(k === g.publisher || /^[a-z][a-z0-9]*$/.test(k), `${x.uri} has invalid native key: ${k}`);
+    }
+    const lic = checkLicenseConsistency(g.weights, x.license);
     assert.equal(lic.ok, true, `${x.uri}: ${lic.error}`);
   }
 });
@@ -157,11 +162,16 @@ test("the cross-publisher switch table resolves, and the empty rung reports itse
   assert.match(resolve(registry, "model:google/text/nano").error, /only older releases/);
 });
 
-test("litellm aliases: pinned URIs for every entry, version-less ones for current models, file up to date", () => {
+test("litellm aliases: pinned URIs for every eligible entry, version-less ones for current models, file up to date", () => {
   const yaml = litellmAliases(registry);
   const names = [...yaml.matchAll(/model_name: "([^"]+)"/g)].map((m) => m[1]);
-  assert.equal(names.length, registry.entries.length + registry.entries.filter((x) => x.current).length);
+  const eligible = registry.entries.filter((x) => {
+    const pub = parse(x.uri).publisher;
+    return ["anthropic", "openai", "google", "xai"].includes(pub) && Boolean(x.native[pub]);
+  });
+  assert.equal(names.length, eligible.length + eligible.filter((x) => x.current).length);
   assert.equal(new Set(names).size, names.length);
+  assert.equal(yaml.includes("/undefined"), false);
   assert.ok(yaml.includes('model_name: "model:anthropic/text/core"\n    litellm_params:\n      model: "anthropic/claude-sonnet-5-5"'));
   assert.equal(read("aliases/litellm.yaml"), yaml);
 });
@@ -258,8 +268,18 @@ test("license normalization and strict OSI boundary (-open vs -weights)", () => 
   assert.equal(normalizeLicense("apache-2.0"), "Apache-2.0");
   assert.equal(normalizeLicense("MIT License"), "MIT");
   assert.equal(normalizeLicense("AGPL-3.0"), "AGPL-3.0-only");
+  assert.equal(normalizeLicense("mrl"), "Mistral Research License");
+  assert.equal(normalizeLicense("mnpl"), "Mistral AI Non-Production License");
+  assert.equal(normalizeLicense("llama4"), "Llama 4 Community License");
+  assert.equal(normalizeLicense("llama3.2"), "Llama 3.2 Community License");
+  assert.equal(normalizeLicense("llama3.1"), "Llama 3.1 Community License");
+  assert.equal(normalizeLicense("llama3.3"), "Llama 3.3 Community License");
+  assert.equal(normalizeLicense("modified-mit"), "Modified MIT");
   for (const osi of ["Apache 2.0", "apache-2.0", "MIT License", "AGPL-3.0"]) {
     assert.equal(weightsSuffixFor(osi), "open", osi);
+  }
+  for (const hfShort of ["mrl", "mnpl", "llama4", "llama3.2", "llama3.1", "llama3.3", "modified-mit"]) {
+    assert.equal(weightsSuffixFor(hfShort), "weights", hfShort);
   }
 
   for (const nonOsi of [

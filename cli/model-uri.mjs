@@ -67,7 +67,7 @@ export function litellmAliases(registry) {
   for (const e of registry.entries) {
     const publisher = parse(e.uri).publisher;
     const target = LITELLM[publisher];
-    if (!target) continue;
+    if (!target || !e.native[publisher]) continue;
     const names = e.current ? [e.uri.slice(0, e.uri.indexOf(":", 6)), e.uri] : [e.uri];
     for (const name of names)
       out.push(`  - model_name: ${q(name)}`, "    litellm_params:", `      model: ${q(`${target[0]}/${e.native[publisher]}`)}`, `      api_key: os.environ/${target[1]}`);

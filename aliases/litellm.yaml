@@ -64,6 +64,18 @@ model_list:
     litellm_params:
       model: "anthropic/claude-opus-4-6"
       api_key: os.environ/ANTHROPIC_API_KEY
+  - model_name: "model:anthropic/text/max:4.5"
+    litellm_params:
+      model: "anthropic/claude-opus-4-5"
+      api_key: os.environ/ANTHROPIC_API_KEY
+  - model_name: "model:anthropic/text/light:4.5"
+    litellm_params:
+      model: "anthropic/claude-haiku-4-5"
+      api_key: os.environ/ANTHROPIC_API_KEY
+  - model_name: "model:anthropic/text/core:4.5"
+    litellm_params:
+      model: "anthropic/claude-sonnet-4-5"
+      api_key: os.environ/ANTHROPIC_API_KEY
   - model_name: "model:google/text/high"
     litellm_params:
       model: "gemini/gemini-4-neon"
@@ -116,6 +128,38 @@ model_list:
     litellm_params:
       model: "gemini/gemini-3.5-flash-lite"
       api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/light"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-lite-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/light:3.1"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-lite-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/omni/core-translate"
+    litellm_params:
+      model: "gemini/gemini-3.5-live-translate-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/omni/core-translate:3.5"
+    litellm_params:
+      model: "gemini/gemini-3.5-live-translate-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/core"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/core:3.1"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/max"
+    litellm_params:
+      model: "gemini/gemini-3-pro-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/max:3"
+    litellm_params:
+      model: "gemini/gemini-3-pro-image"
+      api_key: os.environ/GEMINI_API_KEY
   - model_name: "model:google/text/core:3.5"
     litellm_params:
       model: "gemini/gemini-3.5-flash"
@@ -123,6 +167,90 @@ model_list:
   - model_name: "model:google/text/nano:3.1"
     litellm_params:
       model: "gemini/gemini-3.1-flash-lite"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/embed/core"
+    litellm_params:
+      model: "gemini/gemini-embedding-2"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/embed/core:2"
+    litellm_params:
+      model: "gemini/gemini-embedding-2"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/tts/core"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-tts-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/tts/core:3.1"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-tts-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-open/26b-a4b"
+    litellm_params:
+      model: "gemini/gemma-4-26b-a4b-it"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core-open/26b-a4b:4"
+    litellm_params:
+      model: "gemini/gemma-4-26b-a4b-it"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max-open/31b"
+    litellm_params:
+      model: "gemini/gemma-4-31b-it"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max-open/31b:4"
+    litellm_params:
+      model: "gemini/gemma-4-31b-it"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/omni/core-rt"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-live-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/omni/core-rt:3.1"
+    litellm_params:
+      model: "gemini/gemini-3.1-flash-live-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/audio/core"
+    litellm_params:
+      model: "gemini/lyria-3-pro-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/audio/core:3"
+    litellm_params:
+      model: "gemini/lyria-3-pro-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/audio/light"
+    litellm_params:
+      model: "gemini/lyria-3-clip-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/audio/light:3"
+    litellm_params:
+      model: "gemini/lyria-3-clip-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max:3.1"
+    litellm_params:
+      model: "gemini/gemini-pro-latest"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/light:3"
+    litellm_params:
+      model: "gemini/gemini-3-flash-preview"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/image/core:2.5"
+    litellm_params:
+      model: "gemini/gemini-2.5-flash-image"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/core:2.5"
+    litellm_params:
+      model: "gemini/gemini-2.5-flash"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/max:2.5"
+    litellm_params:
+      model: "gemini/gemini-2.5-pro"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/text/nano:2.5"
+    litellm_params:
+      model: "gemini/gemini-2.5-flash-lite"
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: "model:google/embed/core:001"
+    litellm_params:
+      model: "gemini/gemini-embedding-001"
       api_key: os.environ/GEMINI_API_KEY
   - model_name: "model:openai/text/core"
     litellm_params:
@@ -168,6 +296,14 @@ model_list:
     litellm_params:
       model: "openai/gpt-6-astra"
       api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max-restricted"
+    litellm_params:
+      model: "openai/gpt-daybreak-red-latest"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max-restricted:5.6"
+    litellm_params:
+      model: "openai/gpt-daybreak-red-latest"
+      api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/core:5.6"
     litellm_params:
       model: "openai/gpt-5.6-terra"
@@ -180,6 +316,14 @@ model_list:
     litellm_params:
       model: "openai/gpt-5.6-sol"
       api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/omni/core-rt"
+    litellm_params:
+      model: "openai/gpt-realtime-2.1"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/omni/core-rt:2.1"
+    litellm_params:
+      model: "openai/gpt-realtime-2.1"
+      api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/core:5.5"
     litellm_params:
       model: "openai/gpt-5.5"
@@ -187,6 +331,14 @@ model_list:
   - model_name: "model:openai/text/max:5.5"
     litellm_params:
       model: "openai/gpt-5.5-pro"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/image/core"
+    litellm_params:
+      model: "openai/gpt-image-2"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/image/core:2"
+    litellm_params:
+      model: "openai/gpt-image-2"
       api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/light:5.4"
     litellm_params:
@@ -208,6 +360,102 @@ model_list:
     litellm_params:
       model: "openai/gpt-5.3-codex"
       api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:5.2"
+    litellm_params:
+      model: "openai/gpt-5.2"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max:5.2"
+    litellm_params:
+      model: "openai/gpt-5.2-pro"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/image/core:1.5"
+    litellm_params:
+      model: "openai/gpt-image-1.5"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:5.1"
+    litellm_params:
+      model: "openai/gpt-5.1"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max:5"
+    litellm_params:
+      model: "openai/gpt-5-pro"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:5"
+    litellm_params:
+      model: "openai/gpt-5"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:5"
+    litellm_params:
+      model: "openai/gpt-5-mini"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/nano:5"
+    litellm_params:
+      model: "openai/gpt-5-nano"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max:o3"
+    litellm_params:
+      model: "openai/o3-pro"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:o3"
+    litellm_params:
+      model: "openai/o3"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:o4"
+    litellm_params:
+      model: "openai/o4-mini"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:4.1"
+    litellm_params:
+      model: "openai/gpt-4.1"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:4.1"
+    litellm_params:
+      model: "openai/gpt-4.1-mini"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/nano:4.1"
+    litellm_params:
+      model: "openai/gpt-4.1-nano"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/max:o1"
+    litellm_params:
+      model: "openai/o1-pro"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:o3"
+    litellm_params:
+      model: "openai/o3-mini"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:o1"
+    litellm_params:
+      model: "openai/o1"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:4o"
+    litellm_params:
+      model: "openai/gpt-4o-mini"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:4o"
+    litellm_params:
+      model: "openai/gpt-4o"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:4"
+    litellm_params:
+      model: "openai/gpt-4"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/light:4"
+    litellm_params:
+      model: "openai/gpt-4-turbo"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:openai/text/core:3.5"
+    litellm_params:
+      model: "openai/gpt-3.5-turbo"
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: "model:xai/video/light"
+    litellm_params:
+      model: "xai/grok-imagine-video-1.5-lite"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/video/light:1.5"
+    litellm_params:
+      model: "xai/grok-imagine-video-1.5-lite"
+      api_key: os.environ/XAI_API_KEY
   - model_name: "model:xai/text/max"
     litellm_params:
       model: "xai/grok-4.7"
@@ -224,6 +472,14 @@ model_list:
     litellm_params:
       model: "xai/grok-4.5"
       api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/video/core"
+    litellm_params:
+      model: "xai/grok-imagine-video-1.5"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/video/core:1.5"
+    litellm_params:
+      model: "xai/grok-imagine-video-1.5"
+      api_key: os.environ/XAI_API_KEY
   - model_name: "model:xai/text/core"
     litellm_params:
       model: "xai/grok-4.3"
@@ -235,4 +491,8 @@ model_list:
   - model_name: "model:xai/text/core:4.20"
     litellm_params:
       model: "xai/grok-4.20-0309-reasoning"
+      api_key: os.environ/XAI_API_KEY
+  - model_name: "model:xai/image/core:1"
+    litellm_params:
+      model: "xai/grok-imagine-image"
       api_key: os.environ/XAI_API_KEY
