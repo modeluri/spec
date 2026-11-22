@@ -4,8 +4,6 @@
 // Usage: model-uri.mjs <model-uri> [--json] [--registry <file>]
 //        model-uri.mjs aliases --format litellm [--registry <file>]
 // Exit codes: 0 resolved, 1 not resolved (empty rung, unknown version, host does not serve it), 2 invalid input.
-import { readFile } from "node:fs/promises";
-import { pathToFileURL } from "node:url";
 
 // SPEC.md section 2, reference regex.
 export const URI_RE = /^model:(?<publisher>[a-z][a-z0-9-]*)\/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)\/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>(?!(?:restricted|gov|internal|weights|open)(?=[-/:~@]|$))[a-z]+))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:\/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:\/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$/;
@@ -105,7 +103,7 @@ export function litellmAliases(registry) {
   return out.join("\n") + "\n";
 }
 
-async function main(argv) {
+async function main(argv, readFile) {
   const args = argv.slice(2);
   const take = (flag) => { const i = args.indexOf(flag); return i < 0 ? null : args.splice(i, 2)[1]; };
   const regPath = take("--registry") ?? new URL("../registry.json", import.meta.url);
@@ -125,4 +123,9 @@ async function main(argv) {
   return r.ok ? 0 : r.code;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) process.exitCode = await main(process.argv);
+if (typeof process !== "undefined" && process.argv?.[1]) {
+  (async () => {
+    const [{ readFile }, { pathToFileURL }] = await Promise.all([import("node:fs/promises"), import("node:url")]);
+    if (import.meta.url === pathToFileURL(process.argv[1]).href) process.exitCode = await main(process.argv, readFile);
+  })();
+}

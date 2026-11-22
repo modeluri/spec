@@ -38,6 +38,23 @@ The registry is a first seed: tiers are assigned by the rule in SPEC.md section 
 
 `registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs --fetch` (or `--catalog <catalog.json>` with a local snapshot). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix and two current models in one slot.
 
+## MCP server
+
+Read-only [Model Context Protocol](https://modelcontextprotocol.io/) tools (`resolve_model_uri`, `lookup_native_model`, `list_models`, `validate_model_uri`) and resources (`modeluri://specials`, `modeluri://summary`) so coding agents resolve current native IDs instead of guessing from stale training data.
+
+- **Remote (Streamable HTTP, no auth):** `https://modeluri.org/mcp`
+- **Local (stdio, offline):** `node cli/mcp.mjs`
+
+```json
+{
+  "mcpServers": {
+    "modeluri": {
+      "url": "https://modeluri.org/mcp"
+    }
+  }
+}
+```
+
 ## Sign
 
 The moratorium is an appeal. By signing, developers ask publishers, routers, gateways and inference engines to adopt the four commitments listed on the [site](https://modeluri.org/#moratorium), and adopt model URIs in their own configuration files and documentation, with the native name as a fallback until both sides support them.
@@ -60,7 +77,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `SPEC.md` | The specification |
 | `registry.json` | The public registry of model URIs |
 | `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
-| `cli/` | The resolver (`model-uri.mjs`) and its tests: `node --test cli/` |
+| `cli/` | The resolver (`model-uri.mjs`), MCP server (`mcp.mjs`, `mcp-core.mjs`) and tests: `node --test cli/` |
 | `tools/` | The classification table (`classification.mjs`) and the build that turns it into `registry.json` and `incompatible.json` |
 | `aliases/` | Gateway alias files generated from the registry |
 | `SIGNATORIES.md` | People and organisations who signed |

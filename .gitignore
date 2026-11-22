@@ -11,6 +11,7 @@
 # The site is maintained locally, not in this repository
 /site
 /draft
+/worker
 /wrangler.jsonc
 
 # Local catalog snapshots and pilot batches
