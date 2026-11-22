@@ -72,6 +72,9 @@ export function resolve(registry, input) {
   const native = entry.native[host];
   const base = quantFallback ? entry.uri.replace(/:(?=[^:]*$)/, `/${g.quant}:`) : entry.uri;
   const pinned = base + (g.host ? `@${g.host}` : "");
+  if (!native && !Object.keys(entry.native).length) {
+    return { ok: false, code: 1, error: `${entry.uri} is no longer served by any host in the registry` };
+  }
   if (!native) {
     const known = registry.entries.some((e) => g.host in e.native);
     const why = selfHosted

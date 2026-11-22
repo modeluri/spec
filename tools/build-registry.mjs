@@ -110,8 +110,9 @@ const entries = CLASSIFICATION.map((item) => {
 
   const native = resolveNativeHosts(catalog, byCanonical, item.id, g.publisher, incompatibleIds);
   const hostKeys = Object.keys(native);
-  if (hostKeys.length === 0) {
-    throw new Error(`[registry] ${item.id} resolved zero native hosts`);
+  // A withdrawn release keeps its entry so its pinned URI still answers (SPEC.md section 4, rule 2); only a current model must be callable.
+  if (hostKeys.length === 0 && item.current) {
+    throw new Error(`[registry] ${item.id} resolved zero native hosts: if no host serves it any more, set current: false`);
   }
   for (const k of hostKeys) {
     if (k !== g.publisher && !/^[a-z][a-z0-9]*$/.test(k)) {

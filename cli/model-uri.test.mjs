@@ -183,6 +183,13 @@ test("registry: local resolves for downloadable models", () => {
   assert.equal(resolve(registry, "model:openai/text/core@local").code, 2);
 });
 
+test("a withdrawn release keeps its pinned URI and says no host serves it", () => {
+  const reg = { entries: [{ uri: "model:example/decision/core:1", native: {}, current: false }] };
+  assert.match(resolve(reg, "model:example/decision/core:1").error, /no longer served by any host/);
+  assert.match(resolve(reg, "model:example/decision/core:1@vercel").error, /no longer served by any host/);
+  assert.match(resolve(reg, "model:example/decision/core").error, /no current model/);
+});
+
 test("derived models and invalid input are refused", () => {
   assert.equal(resolve(fixture, "model:p/text/core~x-ft").code, 1);
   assert.equal(resolve(fixture, "nope").code, 2);
@@ -202,7 +209,7 @@ test("registry: valid, unique, with evidence, tier source and native name", () =
     assert.match(x.evidence, /^https:\/\//, x.uri);
     assert.equal(x.tier_source, "registry");
     const hostKeys = Object.keys(x.native);
-    assert.ok(hostKeys.length > 0, `${x.uri} has no native hosts`);
+    assert.ok(hostKeys.length > 0 || !x.current, `${x.uri} is current but has no native hosts`);
     for (const k of hostKeys) {
       assert.ok(k === g.publisher || /^[a-z][a-z0-9]*$/.test(k), `${x.uri} has invalid native key: ${k}`);
     }

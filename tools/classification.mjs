@@ -1605,7 +1605,7 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/liquid/d1.toml",
-    "current": true
+    "current": false
   },
   {
     "id": "liquid/lfm2-24b-a2b",

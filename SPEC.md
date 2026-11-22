@@ -254,12 +254,12 @@ The registry covers what the identifier leaves out: the native name to call, the
 Each entry holds:
 
 - `uri`: the pinned model URI.
-- `native`: the real identifier for each host, for example the string passed to the API. The key is the host name; the publisher's own API uses the publisher's name. For downloadable models, `huggingface` holds the repository of the published weights, which is also what `@local` and `@edge` resolve to.
+- `native`: the real identifier for each host, for example the string passed to the API. It is empty only for a release no host serves any more. The key is the host name; the publisher's own API uses the publisher's name. For downloadable models, `huggingface` holds the repository of the published weights, which is also what `@local` and `@edge` resolve to.
 - `released`: the release date.
 - `license`: `"proprietary"` for closed models (no weights suffix); a canonical SPDX identifier of an unmodified OSI-approved licence for `-open` models; or an SPDX identifier / the publisher's exact licence name for `-weights` models. It justifies the `weights` suffix.
 - `tier_source`: `publisher` if the tier is declared, `registry` if it is assigned with the rule in section 3.2.
 - `evidence`: a link to the price list, model card or announcement that justifies the tier.
-- `current`: `true` if the model is on sale and holds its slot, so that a model URI without a version resolves to it. At most one entry per slot is current. A pinned URI resolves to any entry, current or not.
+- `current`: `true` if the model is on sale and holds its slot, so that a model URI without a version resolves to it. At most one entry per slot is current. A pinned URI resolves to any entry, current or not. A withdrawn release keeps its entry with `current: false`, so its pinned URI still answers and the resolver says that no host serves it.
 
 Example entry:
 
@@ -406,7 +406,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | MiMo-V2.5-TTS VoiceDesign | `model:xiaomi/tts/core-voicedesign:2.5` | A voice generated from a text description (`tts` + `voicedesign`) |
 | Lyria 3 Pro Preview | `model:google/audio/core:3` | Non-speech audio and music (`audio`) |
 | GPT Realtime 2.1 | `model:openai/omni/core-rt:2.1` | Real-time duplex voice (`omni` + `-rt`) |
-| Liquid d1 | `model:liquid/decision/core:1@vercel` | Typed probabilistic decision (`decision`) |
+| Jev 1.14 | `model:typesafe/decision/core:1.14.0@openrouter` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 
 Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. Whisper large-v3 is not in the models.dev catalogue and is illustrative too. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.

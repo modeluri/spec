@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
   "specials": {
@@ -1548,7 +1548,7 @@
     {
       "uri": "model:deepreinforce/text/ultra-code-open:1.5",
       "native": {
-        "commandcode": "ornith/ornith-1.5-122b"
+        "huggingface": "ornith-ai/Ornith-1.5-122B"
       },
       "released": "2026-10-20",
       "license": "MIT",
@@ -2495,14 +2495,12 @@
     },
     {
       "uri": "model:liquid/decision/core:1",
-      "native": {
-        "vercel": "liquid/d1"
-      },
+      "native": {},
       "released": "2026-09-29",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/liquid/d1.toml",
-      "current": true
+      "current": false
     },
     {
       "uri": "model:liquid/text/core-weights/24b-a2b:2",
@@ -4624,7 +4622,8 @@
         "tencent": "hy4",
         "openrouter": "tencent/hy4",
         "vercel": "tencent/hy4",
-        "huggingface": "tencent/Hy4"
+        "huggingface": "tencent/Hy4",
+        "deepinfra": "tencent/Hy4"
       },
       "released": "2026-11-04",
       "license": "proprietary",
