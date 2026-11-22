@@ -38,7 +38,7 @@ Always include a link to the publisher's own page, model card or price list.
    ```
 4. Open a pull request. CI runs the tests, rebuilds the registry from the snapshot and fails if `registry.json`, `incompatible.json` or `aliases/litellm.yaml` differ from what you committed.
 
-To refresh the snapshot, run `node tools/build-registry.mjs --fetch`: it saves the live catalogue to `tools/snapshot/catalog.json` and the date to `tools/snapshot/meta.json`. Classify or skip the new catalogue models until the build passes, then regenerate the aliases and run the tests.
+To refresh the snapshot, run `node tools/build-registry.mjs --fetch`: it saves the live catalogue to `tools/snapshot/catalog.json` and the date and models.dev commit to `tools/snapshot/meta.json`. Classify or skip the new catalogue models until the build passes, then regenerate the aliases and run the tests.
 
 ## 4. Propose a change to the specification
 

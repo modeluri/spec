@@ -79,7 +79,7 @@ export async function loadCatalog(catalogPath = DEFAULT_CATALOG_PATH) {
 }
 
 export async function loadMeta(metaPath = DEFAULT_META_PATH) {
-  if (!existsSync(metaPath)) return { models_dev_commit: "main", fetched_at: null };
+  if (!existsSync(metaPath)) return { models_dev_commit: "HEAD", fetched_at: null };
   return JSON.parse(await readFile(metaPath, "utf8"));
 }
 

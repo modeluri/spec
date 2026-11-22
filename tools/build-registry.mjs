@@ -43,7 +43,14 @@ if (!catalog?.models || !catalog?.providers) {
 
 if (fetchMode) {
   await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog) + "\n");
-  await writeFile(DEFAULT_META_PATH, JSON.stringify({ source: "https://models.dev/catalog.json?type=all", fetched_at: new Date().toISOString().slice(0, 10) }, null, 2) + "\n");
+  // shortcut: the HEAD of the default branch at fetch time, which can be a few minutes ahead of the deployed catalogue.
+  const head = await fetch("https://api.github.com/repos/anomalyco/models.dev/commits/HEAD").then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  if (!head?.sha) console.warn("warning: could not read the models.dev commit; links will point to HEAD");
+  await writeFile(DEFAULT_META_PATH, JSON.stringify({
+    source: "https://models.dev/catalog.json?type=all",
+    fetched_at: new Date().toISOString().slice(0, 10),
+    models_dev_commit: head?.sha || "HEAD",
+  }, null, 2) + "\n");
 }
 
 const meta = await loadMeta();

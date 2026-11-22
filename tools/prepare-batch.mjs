@@ -53,7 +53,7 @@ for (const entry of registry.entries) {
   });
 }
 
-const commit = meta.models_dev_commit || "main";
+const commit = meta.models_dev_commit || "HEAD";
 const models = [];
 for (const [id, m] of Object.entries(catalog.models)) {
   const publisher = id.split("/")[0];
