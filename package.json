@@ -1,0 +1,17 @@
+{
+  "name": "model-uri",
+  "version": "0.2.0",
+  "description": "Resolve model URIs to native model names, and serve them over MCP",
+  "license": "MIT",
+  "type": "module",
+  "repository": "github:modeluri/spec",
+  "homepage": "https://modeluri.org",
+  "private": true,
+  "engines": { "node": ">=18" },
+  "bin": {
+    "model-uri": "cli/model-uri.mjs",
+    "model-uri-mcp": "cli/mcp.mjs"
+  },
+  "files": ["cli/model-uri.mjs", "cli/mcp-core.mjs", "cli/mcp.mjs", "registry.json", "incompatible.json"],
+  "scripts": { "test": "node --test cli/" }
+}

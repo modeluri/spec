@@ -128,7 +128,8 @@ async function main(argv, readFile) {
 
 if (typeof process !== "undefined" && process.argv?.[1]) {
   (async () => {
-    const [{ readFile }, { pathToFileURL }] = await Promise.all([import("node:fs/promises"), import("node:url")]);
-    if (import.meta.url === pathToFileURL(process.argv[1]).href) process.exitCode = await main(process.argv, readFile);
+    const [{ readFile, realpath }, { pathToFileURL }] = await Promise.all([import("node:fs/promises"), import("node:url")]);
+    // realpath: an npm bin is a symlink, while import.meta.url is the resolved file.
+    if (import.meta.url === pathToFileURL(await realpath(process.argv[1])).href) process.exitCode = await main(process.argv, readFile);
   })();
 }

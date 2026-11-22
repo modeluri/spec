@@ -18,6 +18,8 @@ model:anthropic/text/core:5.5@bedrock
 
 Needs Node 18 or later (or Bun), nothing to install.
 
+Without cloning: `npx github:modeluri/spec <model-uri>`, and `npx -p github:modeluri/spec model-uri-mcp` for the local MCP server on stdio.
+
 ```text
 $ node cli/model-uri.mjs model:anthropic/text/core@bedrock
 model:anthropic/text/core:5.5@bedrock
