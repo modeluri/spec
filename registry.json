@@ -2496,6 +2496,9 @@
     {
       "uri": "model:liquid/decision/core:1",
       "native": {},
+      "former_native": {
+        "vercel": "liquid/d1"
+      },
       "released": "2026-09-29",
       "license": "proprietary",
       "tier_source": "registry",

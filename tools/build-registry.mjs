@@ -112,7 +112,15 @@ const entries = CLASSIFICATION.map((item) => {
   const hostKeys = Object.keys(native);
   // A withdrawn release keeps its entry so its pinned URI still answers (SPEC.md section 4, rule 2); only a current model must be callable.
   if (hostKeys.length === 0 && item.current) {
-    throw new Error(`[registry] ${item.id} resolved zero native hosts: if no host serves it any more, set current: false`);
+    throw new Error(`[registry] ${item.id} resolved zero native hosts: if no host serves it any more, set current: false and record former_native`);
+  }
+  if (item.former_native !== undefined) {
+    const fn = item.former_native;
+    if (hostKeys.length || item.current) throw new Error(`[registry] former_native on ${item.id} is only for a withdrawn release with no native host`);
+    if (!fn || typeof fn !== "object" || !Object.keys(fn).length) throw new Error(`[registry] former_native on ${item.id} must map hosts to IDs`);
+    for (const [k, v] of Object.entries(fn)) {
+      if (!/^[a-z][a-z0-9-]*$/.test(k) || typeof v !== "string" || !v) throw new Error(`[registry] invalid former_native on ${item.id}: ${k}`);
+    }
   }
   for (const k of hostKeys) {
     if (k !== g.publisher && !/^[a-z][a-z0-9]*$/.test(k)) {
@@ -124,6 +132,7 @@ const entries = CLASSIFICATION.map((item) => {
   return {
     uri: item.uri,
     native,
+    ...(item.former_native && { former_native: item.former_native }),
     released: model.release_date,
     license: item.license,
     tier_source: item.tier_source,

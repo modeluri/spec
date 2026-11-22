@@ -190,6 +190,10 @@ test("a withdrawn release keeps its pinned URI and says no host serves it", () =
   assert.match(resolve(reg, "model:example/decision/core").error, /no current model/);
 });
 
+test("an over-long input is not echoed back", () => {
+  assert.equal(resolve({ entries: [] }, "model:" + "a".repeat(500)).error, "not a valid model URI: longer than 128 characters");
+});
+
 test("derived models and invalid input are refused", () => {
   assert.equal(resolve(fixture, "model:p/text/core~x-ft").code, 1);
   assert.equal(resolve(fixture, "nope").code, 2);
@@ -210,6 +214,7 @@ test("registry: valid, unique, with evidence, tier source and native name", () =
     assert.equal(x.tier_source, "registry");
     const hostKeys = Object.keys(x.native);
     assert.ok(hostKeys.length > 0 || !x.current, `${x.uri} is current but has no native hosts`);
+    if (x.former_native) assert.ok(!x.current && !hostKeys.length, `${x.uri} has former_native but is still served`);
     for (const k of hostKeys) {
       assert.ok(k === g.publisher || /^[a-z][a-z0-9]*$/.test(k), `${x.uri} has invalid native key: ${k}`);
     }

@@ -254,7 +254,8 @@ The registry covers what the identifier leaves out: the native name to call, the
 Each entry holds:
 
 - `uri`: the pinned model URI.
-- `native`: the real identifier for each host, for example the string passed to the API. It is empty only for a release no host serves any more. The key is the host name; the publisher's own API uses the publisher's name. For downloadable models, `huggingface` holds the repository of the published weights, which is also what `@local` and `@edge` resolve to.
+- `native`: the real identifier for each host, for example the string passed to the API. It is empty only for a release no host serves any more.
+- `former_native` (optional): for such a withdrawn release, the identifiers it had, so that a lookup by an old name still finds it. A resolver never returns them. The key is the host name; the publisher's own API uses the publisher's name. For downloadable models, `huggingface` holds the repository of the published weights, which is also what `@local` and `@edge` resolve to.
 - `released`: the release date.
 - `license`: `"proprietary"` for closed models (no weights suffix); a canonical SPDX identifier of an unmodified OSI-approved licence for `-open` models; or an SPDX identifier / the publisher's exact licence name for `-weights` models. It justifies the `weights` suffix.
 - `tier_source`: `publisher` if the tier is declared, `registry` if it is assigned with the rule in section 3.2.

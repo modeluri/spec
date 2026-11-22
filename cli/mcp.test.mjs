@@ -106,3 +106,36 @@ test("resources/read returns specials and summary", () => {
   assert.equal(summary.counts.registry_entries, registry.entries.length);
   assert.equal(summary.counts.incompatible_entries, incompatible.entries.length);
 });
+
+test("lookup_native_model finds a withdrawn release by its former native ID", () => {
+  const { data } = callTool("lookup_native_model", { query: "liquid/d1" });
+  const hit = data.registry_matches.find((m) => m.uri === "model:liquid/decision/core:1");
+  assert.ok(hit, "withdrawn Liquid d1 not found");
+  assert.deepEqual(hit.native, {});
+  assert.equal(hit.former_native.vercel, "liquid/d1");
+  assert.equal(callTool("resolve_model_uri", { uri: "model:liquid/decision/core:1" }).isError, true);
+});
+
+test("tool arguments are checked against the input schema", () => {
+  for (const [name, args, msg] of [
+    ["list_models", { tier: "mega" }, /tier must be one of/],
+    ["list_models", { limit: 0 }, /limit must be at least 1/],
+    ["list_models", { limit: 2.5 }, /limit must be an integer/],
+    ["list_models", { current_only: "no" }, /current_only must be a boolean/],
+    ["list_models", { colour: "red" }, /unknown argument: colour/],
+    ["resolve_model_uri", { uri: 42 }, /uri must be a string/],
+    ["lookup_native_model", [], /arguments must be an object/],
+  ]) {
+    const r = callTool(name, args);
+    assert.equal(r.isError, true, `${name} ${JSON.stringify(args)}`);
+    assert.match(r.data.error, msg);
+  }
+  assert.equal(callTool("list_models", { tier: "core", limit: 5 }).isError, false);
+  assert.equal(callTool("list_models").isError, false);
+});
+
+test("validate_model_uri does not echo an over-long input", () => {
+  const { data } = callTool("validate_model_uri", { uri: "model:" + "a".repeat(10000) });
+  assert.equal(data.valid, false);
+  assert.ok(data.uri.length < 100);
+});

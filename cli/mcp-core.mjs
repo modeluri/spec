@@ -99,6 +99,21 @@ export const RESOURCES = [
   },
 ];
 
+// The subset of JSON Schema the tool schemas above use: types, enums, integer bounds, no unknown keys.
+function checkArgs(schema, args) {
+  if (!args || typeof args !== "object" || Array.isArray(args)) return "arguments must be an object";
+  for (const [k, v] of Object.entries(args)) {
+    const p = schema.properties[k];
+    if (!p) return `unknown argument: ${k}`;
+    const type = p.type === "integer" ? (Number.isInteger(v) ? "integer" : typeof v) : typeof v;
+    if (type !== p.type) return `${k} must be ${p.type === "integer" ? "an integer" : `a ${p.type}`}`;
+    if (p.enum && !p.enum.includes(v)) return `${k} must be one of: ${p.enum.join(", ")}`;
+    if (p.minimum !== undefined && v < p.minimum) return `${k} must be at least ${p.minimum}`;
+    if (p.maximum !== undefined && v > p.maximum) return `${k} must be at most ${p.maximum}`;
+  }
+  return null;
+}
+
 function toolResult(data, isError = false) {
   return {
     content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
@@ -160,7 +175,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
       const exact = [];
       const partial = [];
       for (const { entry, parsed } of indexed) {
-        const pairs = Object.entries(entry.native).filter(([h]) => !hostFilter || h === hostFilter);
+        const pairs = Object.entries({ ...entry.former_native, ...entry.native }).filter(([h]) => !hostFilter || h === hostFilter);
         const exactHost = pairs.find(([, id]) => id.toLowerCase() === q);
         const partialHost = !exactHost && pairs.find(([, id]) => id.toLowerCase().includes(q));
         const uriMatch = !exactHost && !partialHost && !hostFilter && entry.uri.toLowerCase().includes(q);
@@ -174,6 +189,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
           released: entry.released,
           license: entry.license,
           native: entry.native,
+          ...(entry.former_native && { former_native: entry.former_native }),
           evidence: entry.evidence,
         };
         if (exactHost) exact.push(record);
@@ -241,18 +257,19 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
         return toolResult({ valid: false, errors: ["uri must be a string"] }, true);
       }
       const input = args.uri.trim();
+      const shown = input.length > 128 ? `${input.slice(0, 64)}…` : input;
       const errors = [];
       const warnings = [];
       if (input.length > 128) errors.push(`exceeds 128-character limit (${input.length} chars)`);
       const m = URI_RE.exec(input);
       if (!m) {
         errors.push("does not match the Model URI reference grammar (SPEC.md section 2)");
-        return toolResult({ valid: false, uri: input, errors, warnings });
+        return toolResult({ valid: false, uri: shown, errors, warnings });
       }
       const raw = { ...m.groups };
       if (SELF_HOSTED.has(raw.host) && !raw.weights) {
         errors.push(`closed model cannot be self-hosted: @${raw.host} requires -open or -weights (SPEC.md rule 8)`);
-        return toolResult({ valid: false, uri: input, errors, warnings });
+        return toolResult({ valid: false, uri: shown, errors, warnings });
       }
       if (raw.version === "latest") {
         warnings.push("':latest' is accepted but non-canonical; omit the version to mean the current model (SPEC.md section 3.6)");
@@ -375,8 +392,12 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
         return ok({ tools: TOOLS });
       case "tools/call": {
         const name = msg.params?.name;
-        const result = callTool(name, msg.params?.arguments || {});
-        if (!result) return err(-32602, `Unknown tool: ${name}`);
+        const tool = TOOLS.find((t) => t.name === name);
+        if (!tool) return err(-32602, `Unknown tool: ${name}`);
+        const args = msg.params?.arguments ?? {};
+        const invalid = checkArgs(tool.inputSchema, args);
+        if (invalid) return ok(toolResult({ ok: false, error: invalid }, true));
+        const result = callTool(name, args);
         return ok(result);
       }
       case "resources/list":

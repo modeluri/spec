@@ -36,7 +36,7 @@ export function resolve(registry, input) {
     const raw = input.length <= 128 && URI_RE.exec(input)?.groups;
     const error = raw && closedSelfHosted(raw)
       ? `closed model, no downloadable weights: @${raw.host} needs -open or -weights`
-      : `not a valid model URI: ${input}`;
+      : input.length > 128 ? "not a valid model URI: longer than 128 characters" : `not a valid model URI: ${input}`;
     return { ok: false, code: 2, error };
   }
   if (g.author) return { ok: false, code: 1, error: "derived models are not in the registry" };
