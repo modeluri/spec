@@ -6,9 +6,10 @@
 
 ## Registry entry
 
-- [ ] The `uri` passes the reference regex in `SPEC.md`.
-- [ ] `tier_source` is set, and a registry-assigned tier has an `evidence` link.
-- [ ] The `uri` does not collide with an existing entry.
+- [ ] I edited `tools/classification.mjs` (not `registry.json` or `incompatible.json` directly).
+- [ ] I rebuilt `registry.json`, `incompatible.json` (`node tools/build-registry.mjs --fetch`) and `aliases/litellm.yaml`.
+- [ ] Every new or updated entry has a verifiable `evidence` link and a licence matching its `-open` / `-weights` suffix.
+- [ ] `node --test cli/` passes.
 
 ## Change to the specification
 

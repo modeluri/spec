@@ -9,6 +9,8 @@ body:
         - A real model the grammar cannot express
         - Two real models collide on the same model URI
         - A tier the price-list rule gets wrong
+        - A model in incompatible.json that does fit (or a registry entry that should not be there)
+        - A new special value needed by a real model
         - Something else
     validations:
       required: true
