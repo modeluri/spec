@@ -16,3 +16,6 @@
 
 # Local catalog snapshots and pilot batches
 /.cache
+
+# Impeccable product context, local only
+/PRODUCT.md
