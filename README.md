@@ -44,6 +44,7 @@ Read-only [Model Context Protocol](https://modelcontextprotocol.io/) tools (`res
 
 - **Remote (Streamable HTTP, no auth):** `https://modeluri.org/mcp`
 - **Local (stdio, offline):** `node cli/mcp.mjs`
+- **In-browser (WebMCP):** registered automatically on [modeluri.org](https://modeluri.org) via `navigator.modelContext`
 
 ```json
 {
