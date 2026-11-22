@@ -189,4 +189,15 @@ test("HTTP header checks for 2026-07-28 and batches", () => {
   assert.equal(checkHttpHeaders(legacy, h({ "MCP-Protocol-Version": "2025-11-25" })), null);
   assert.equal(checkHttpHeaders([legacy], h({})), null);
   assert.equal(checkHttpHeaders([legacy], h({ "MCP-Protocol-Version": "2025-06-18" })).error.code, -32600);
+  // A batch cannot smuggle a stateless message past the header mirror, nor grow without bound.
+  assert.equal(checkHttpHeaders([msg], h({})).error.code, -32600);
+  assert.equal(checkHttpHeaders(Array(16).fill(legacy), h({})), null);
+  assert.equal(checkHttpHeaders(Array(17).fill(legacy), h({})).error.code, -32600);
+});
+
+test("Object.prototype names are not registry keys", () => {
+  assert.equal(callTool("resolve_model_uri", { uri: "model:anthropic/text/core@constructor" }).isError, true);
+  const v = callTool("validate_model_uri", { uri: "model:anthropic/text/core-constructor" }).data;
+  assert.ok(v.warnings.some((w) => w.startsWith("unregistered special")), JSON.stringify(v));
+  for (const host of ["constructor", "__proto__"]) assert.equal(callTool("list_models", { host }).data.total, 0);
 });

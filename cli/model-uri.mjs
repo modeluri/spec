@@ -40,7 +40,7 @@ export function resolve(registry, input) {
     return { ok: false, code: 2, error };
   }
   if (g.author) return { ok: false, code: 1, error: "derived models are not in the registry" };
-  if (g.special && registry.specials && !(g.special in registry.specials)) {
+  if (g.special && registry.specials && !Object.hasOwn(registry.specials, g.special)) {
     return { ok: false, code: 1, error: `unregistered special: ${g.special}` };
   }
 
@@ -69,14 +69,14 @@ export function resolve(registry, input) {
 
   // local and edge resolve to the repository the weights are published in.
   const host = selfHosted ? "huggingface" : (g.host ?? g.publisher);
-  const native = entry.native[host];
+  const native = Object.hasOwn(entry.native, host) ? entry.native[host] : undefined;
   const base = quantFallback ? entry.uri.replace(/:(?=[^:]*$)/, `/${g.quant}:`) : entry.uri;
   const pinned = base + (g.host ? `@${g.host}` : "");
   if (!native && !Object.keys(entry.native).length) {
     return { ok: false, code: 1, error: `${entry.uri} is no longer served by any host in the registry` };
   }
   if (!native) {
-    const known = registry.entries.some((e) => g.host in e.native);
+    const known = registry.entries.some((e) => Object.hasOwn(e.native, g.host));
     const why = selfHosted
       ? `${entry.uri} has no published weights repository in the registry`
       : !g.host ? "no native name for the publisher's own API" : known ? `${entry.uri} is not served on ${g.host} in the registry` : `unregistered host: ${g.host}`;
@@ -84,7 +84,7 @@ export function resolve(registry, input) {
   }
   const hint = quantFallback
     ? `the registry lists no ${g.quant} release; this is the repository of the weights as published, quantise them yourself or pick a ${g.quant} build`
-    : HINTS[g.host];
+    : Object.hasOwn(HINTS, g.host) ? HINTS[g.host] : undefined;
   return { ok: true, uri: pinned, native, ...(hint && { hint }) };
 }
 

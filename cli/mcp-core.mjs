@@ -8,6 +8,7 @@ export const STATELESS_PROTOCOL = "2026-07-28";
 const INITIALIZE_PROTOCOLS = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
 export const SUPPORTED_PROTOCOLS = [STATELESS_PROTOCOL, ...INITIALIZE_PROTOCOLS];
 const META = "io.modelcontextprotocol/";
+const MAX_BATCH = 16;
 const CACHEABLE = new Set(["server/discover", "tools/list", "resources/list", "resources/read"]);
 const INSTRUCTIONS =
   "Use resolve_model_uri to turn a canonical Model URI (e.g. model:anthropic/text/core@bedrock) into a verified native model ID, lookup_native_model to check if a hardcoded model ID is current or superseded, list_models to find cross-publisher equivalents, and validate_model_uri to lint URIs.";
@@ -27,7 +28,12 @@ export function checkHttpHeaders(msg, header) {
   const fail = (code, message, data) => ({ jsonrpc: "2.0", id, error: { code, message, ...(data && { data }) } });
   const hv = header("MCP-Protocol-Version");
   if (hv && !SUPPORTED_PROTOCOLS.includes(hv)) return fail(-32022, "Unsupported protocol version", { supported: SUPPORTED_PROTOCOLS, requested: hv });
-  if (Array.isArray(msg)) return hv && hv > "2025-03-26" ? fail(-32600, `JSON-RPC batches are not part of protocol ${hv}`) : null;
+  if (Array.isArray(msg)) {
+    // Batches exist only up to 2025-03-26; a later version in the header or in any element's _meta rules them out.
+    const late = [hv, ...msg.map((m) => m?.params?._meta?.[`${META}protocolVersion`])].find((v) => typeof v === "string" && v > "2025-03-26");
+    if (late) return fail(-32600, `JSON-RPC batches are not part of protocol ${late}`);
+    return msg.length > MAX_BATCH ? fail(-32600, `JSON-RPC batch exceeds ${MAX_BATCH} messages`) : null;
+  }
   const bv = msg?.params?._meta?.[`${META}protocolVersion`];
   if (hv !== STATELESS_PROTOCOL && bv !== STATELESS_PROTOCOL) return null;
   if (hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv ?? "(missing)"}`);
@@ -135,7 +141,7 @@ export const RESOURCES = [
 function checkArgs(schema, args) {
   if (!args || typeof args !== "object" || Array.isArray(args)) return "arguments must be an object";
   for (const [k, v] of Object.entries(args)) {
-    const p = schema.properties[k];
+    const p = Object.hasOwn(schema.properties, k) && schema.properties[k];
     if (!p) return `unknown argument: ${k}`;
     const type = p.type === "integer" ? (Number.isInteger(v) ? "integer" : typeof v) : typeof v;
     if (type !== p.type) return `${k} must be ${p.type === "integer" ? "an integer" : `a ${p.type}`}`;
@@ -267,7 +273,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
         }
         if (targetHost) {
           if (SELF_HOSTED.has(targetHost) && !parsed.weights) continue;
-          if (!(hostKey in entry.native)) continue;
+          if (!Object.hasOwn(entry.native, hostKey)) continue;
         }
         filtered.push({
           uri: entry.uri,
@@ -309,7 +315,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
       if (!publishers.has(raw.publisher)) {
         warnings.push(`unregistered publisher: ${raw.publisher}`);
       }
-      if (raw.special && registry.specials && !(raw.special in registry.specials)) {
+      if (raw.special && registry.specials && !Object.hasOwn(registry.specials, raw.special)) {
         warnings.push(`unregistered special: ${raw.special}`);
       }
       if (raw.host && !SELF_HOSTED.has(raw.host) && !hosts.has(raw.host)) {

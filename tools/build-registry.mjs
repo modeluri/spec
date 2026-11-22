@@ -126,6 +126,10 @@ const entries = CLASSIFICATION.map((item) => {
     if (k !== g.publisher && !/^[a-z][a-z0-9]*$/.test(k)) {
       throw new Error(`[registry] invalid native host key on ${item.id}: ${k}`);
     }
+    // Native IDs come from the upstream catalog and end up in YAML and agent context: printable ASCII only.
+    if (typeof native[k] !== "string" || !/^[\x21-\x7e]{1,256}$/.test(native[k])) {
+      throw new Error(`[registry] invalid native ID on ${item.id}@${k}: ${JSON.stringify(native[k])}`);
+    }
   }
   if (native[g.publisher]) registeredPublisherNative.add(`${g.publisher}/${native[g.publisher]}`);
 

@@ -31,7 +31,11 @@ let newlyFetched = 0;
 
 for (const [repo, url] of targets.entries()) {
   if (cache[repo] && cache[repo].http_status === 200) continue;
-  const apiUrl = `https://huggingface.co/api/models/${repo}`;
+  if (repo.split("/").some((s) => s === "." || s === "..")) {
+    console.warn(`skipping malformed Hugging Face repo id: ${repo}`);
+    continue;
+  }
+  const apiUrl = `https://huggingface.co/api/models/${repo.split("/").map(encodeURIComponent).join("/")}`;
   try {
     const res = await fetch(apiUrl, {
       headers: { "User-Agent": "modeluri-registry-tool/0.2.0 (+https://modeluri.org)" },
