@@ -1,6 +1,6 @@
 # Model URI
 
-Working draft 0.2.0, 21 November 2026
+Working draft 0.2.0, 22 November 2026
 
 A sane, canonical URI for any AI model.
 
