@@ -7,6 +7,7 @@ model:anthropic/text/core:5.5@bedrock
 ```
 
 - Site: <https://modeluri.org>
+- MCP server (remote, no auth): `https://modeluri.org/mcp`
 - Updates: [@modeluri](https://x.com/modeluri) on X
 - Specification: [SPEC.md](SPEC.md), working draft 0.2.0
 - Signatories: [SIGNATORIES.md](SIGNATORIES.md)
