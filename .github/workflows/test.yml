@@ -18,3 +18,8 @@ jobs:
           node-version: lts/*
       # Validates registry.json, incompatible.json, the SPEC examples and the LiteLLM aliases.
       - run: node --test cli/
+      # The generated files must match a rebuild from the committed snapshot.
+      - run: |
+          node tools/build-registry.mjs
+          node cli/model-uri.mjs aliases --format litellm > aliases/litellm.yaml
+          git diff --exit-code -- registry.json incompatible.json aliases/litellm.yaml

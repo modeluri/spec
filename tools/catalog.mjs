@@ -3,8 +3,8 @@
 import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
-export const DEFAULT_CATALOG_PATH = new URL("../.cache/models.dev/catalog.json", import.meta.url);
-export const DEFAULT_META_PATH = new URL("../.cache/models.dev/meta.json", import.meta.url);
+export const DEFAULT_CATALOG_PATH = new URL("./snapshot/catalog.json", import.meta.url);
+export const DEFAULT_META_PATH = new URL("./snapshot/meta.json", import.meta.url);
 export const DEFAULT_HF_CACHE_PATH = new URL("../.cache/hf-licenses.json", import.meta.url);
 
 // Publisher slugs whose first-party API uses a different provider ID in models.dev.

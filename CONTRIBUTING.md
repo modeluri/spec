@@ -26,17 +26,19 @@ Always include a link to the publisher's own page, model card or price list.
 1. Edit [`tools/classification.mjs`](tools/classification.mjs) (entries in `CLASSIFICATION`, `INCOMPATIBLE`, `SKIPPED`, or the controlled `SPECIALS` vocabulary).
    - A new `special` value requires at least one real published model that would otherwise collide with the general lineup ([`SPEC.md` section 5](SPEC.md#5-registry)).
    - Every registry entry must have a verifiable `evidence` HTTPS link and a normalised SPDX identifier or exact licence title matching its `-open` / `-weights` suffix.
-2. Rebuild the generated files (requires Node 18+ or Bun, no dependencies to install):
+2. Rebuild the generated files from the committed models.dev snapshot in [`tools/snapshot/`](tools/snapshot) (requires Node 18+ or Bun, no dependencies to install):
    ```sh
-   node tools/build-registry.mjs --fetch
+   node tools/build-registry.mjs
    node cli/model-uri.mjs aliases --format litellm > aliases/litellm.yaml
    ```
-   (If you have a local models.dev snapshot, pass `--catalog <path>` instead of `--fetch`.)
+   Do not pass `--fetch` in a classification pull request: it replaces the snapshot with the live catalogue, whose new models the table does not account for yet. Refreshing the snapshot is a pull request of its own.
 3. Run the test suite:
    ```sh
    node --test cli/
    ```
-4. Open a pull request.
+4. Open a pull request. CI runs the tests, rebuilds the registry from the snapshot and fails if `registry.json`, `incompatible.json` or `aliases/litellm.yaml` differ from what you committed.
+
+To refresh the snapshot, run `node tools/build-registry.mjs --fetch`: it saves the live catalogue to `tools/snapshot/catalog.json` and the date to `tools/snapshot/meta.json`. Classify or skip the new catalogue models until the build passes, then regenerate the aliases and run the tests.
 
 ## 4. Propose a change to the specification
 

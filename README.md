@@ -36,7 +36,7 @@ BAAI/bge-m3
 
 The registry is a first seed: tiers are assigned by the rule in SPEC.md section 3.2 from the [models.dev](https://models.dev) catalogue, and none is declared by a publisher.
 
-`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs --fetch` (or `--catalog <catalog.json>` with a local snapshot). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix and two current models in one slot.
+`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs`, which builds from the models.dev snapshot committed in `tools/snapshot/` (`--fetch` refreshes the snapshot from the live catalogue, `--catalog <catalog.json>` uses another file). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix and two current models in one slot. CI runs the tests on every push and pull request, rebuilds the registry from the snapshot and fails when the committed files differ.
 
 ## MCP server
 
@@ -80,6 +80,8 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
 | `cli/` | The resolver (`model-uri.mjs`), MCP server (`mcp.mjs`, `mcp-core.mjs`) and tests: `node --test cli/` |
 | `tools/` | The classification table (`classification.mjs`) and the build that turns it into `registry.json` and `incompatible.json` |
+| `tools/snapshot/` | The models.dev catalogue snapshot the build reads, with its date (`meta.json`) and licence |
+| `.github/workflows/` | CI: tests and a reproducible rebuild of the generated files |
 | `aliases/` | Gateway alias files generated from the registry |
 | `SIGNATORIES.md` | People and organisations who signed |
 
@@ -88,6 +90,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 - Specification (`SPEC.md`): [CC BY 4.0](LICENSE).
 - Registry (`registry.json`, `incompatible.json`, `tools/classification.mjs`) and generated alias files (`aliases/`): dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 - Code (`cli/`, `tools/*.mjs` except `tools/classification.mjs`) and code snippets in the specification: [MIT](LICENSE-CODE).
+- models.dev snapshot (`tools/snapshot/catalog.json`): a copy of the [models.dev](https://github.com/anomalyco/models.dev) catalogue under its [MIT licence](tools/snapshot/LICENSE-models.dev).
 
 ## Citation
 

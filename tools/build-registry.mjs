@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Builds registry.json and incompatible.json from the local models.dev snapshot and classification.mjs.
 // Usage: node tools/build-registry.mjs [--catalog <catalog.json>] [--fetch]
+// --fetch downloads the live catalogue and saves it as the committed snapshot in tools/snapshot/, so later builds reproduce it.
 import { readFile, writeFile } from "node:fs/promises";
 import { CLASSIFICATION, INCOMPATIBLE, SKIPPED, SPECIALS } from "./classification.mjs";
 import { URI_RE, parse } from "../cli/model-uri.mjs";
-import { DEFAULT_CATALOG_PATH, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
+import { DEFAULT_CATALOG_PATH, DEFAULT_META_PATH, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
 import { checkLicenseConsistency } from "./licenses.mjs";
 
 const OUT_REGISTRY = new URL("../registry.json", import.meta.url);
@@ -38,6 +39,11 @@ const catalog = ci >= 0
 
 if (!catalog?.models || !catalog?.providers) {
   throw new Error("Invalid catalog format: expected { providers, models } (use catalog.json?type=all).");
+}
+
+if (fetchMode) {
+  await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog) + "\n");
+  await writeFile(DEFAULT_META_PATH, JSON.stringify({ source: "https://models.dev/catalog.json?type=all", fetched_at: new Date().toISOString().slice(0, 10) }, null, 2) + "\n");
 }
 
 const meta = await loadMeta();

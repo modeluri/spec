@@ -224,6 +224,17 @@ test("registry: every plain versioned text example of SPEC.md section 8 is there
   for (const u of wanted) assert.ok(registry.entries.some((x) => x.uri === u), `${u} is in the spec but not in the registry`);
 });
 
+test("every example of SPEC.md section 8 resolves, except the illustrative rows", () => {
+  // The spec names them under the table: the `example` publisher, `-restricted` / `-internal` models, derivations, and Whisper large-v3 (not in models.dev).
+  const illustrative = ["model:openai/transcribe/high-open/fp16:3@local"];
+  const wanted = examples.filter((u) => {
+    const g = parse(u);
+    return g.publisher !== "example" && !g.access && !g.kind && !illustrative.includes(u);
+  });
+  assert.ok(wanted.length >= 30);
+  for (const u of wanted) assert.equal(resolve(registry, u).ok, true, `${u} does not resolve`);
+});
+
 test("the cross-publisher switch table resolves, and the empty rung reports itself", () => {
   for (const p of ["openai", "google", "anthropic"])
     for (const t of ["ultra", "core"]) assert.equal(resolve(registry, `model:${p}/text/${t}`).ok, true, `${p} ${t}`);
