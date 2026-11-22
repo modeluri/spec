@@ -389,24 +389,24 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Gemini 3.5 Live Translate Preview | `model:google/omni/core-translate:3.5` | Live speech translation (`omni` + `translate`) |
 | Gemini Deep Research Preview | `model:google/text/core-research:2026.04` | Autonomous deep research (`research`) |
 | Gemini 2.5 Computer Use | `model:google/text/core-gui:2.5` | GUI and computer control (`gui`) |
-| Gemini Robotics-ER 1.6 | `model:google/text/core-robotics:1.6` | Embodied robotics (`robotics`) |
+| Gemini Robotics-ER 1.6 | `model:google/text/core-robotics:1.6@orcarouter` | Embodied robotics (`robotics`) |
 | Baichuan M2, 32B | `model:baichuan/text/core-medical-open/32b:2@local` | Medical domain (`medical`) |
-| Ling 3.0 Flash Fin | `model:inclusionai/text/core-finance-open:3.0` | Finance domain (`finance`) |
+| Ling 3.0 Flash Fin | `model:inclusionai/text/core-finance-open:3.0@local` | Finance domain (`finance`) |
 | Doubao Seed Character | `model:bytedance-seed/text/core-roleplay:26.06` | Character dialogue (`roleplay`) |
-| Qwen 3.5 MoE base, 35B total, 3B active | `model:alibaba/text/core-base-open/35b-a3b:3.5` | Pre-trained weights without instruction tuning (`base`) |
+| Qwen 3.5 MoE base, 35B total, 3B active | `model:alibaba/text/core-base-open/35b-a3b:3.5@local` | Pre-trained weights without instruction tuning (`base`) |
 | Qwen 3.6 MoE, 35B total, 3B active, MXFP4 | `model:alibaba/text/core-open/35b-a3b/mxfp4:3.6@local` | Open licence, size, precision, version and host, each on its own |
 | The newest Qwen at that size and precision | `model:alibaba/text/core-open/35b-a3b/mxfp4@local` | Follows new releases and keeps the hardware footprint |
 | The same model, abliterated by a third party | `model:alibaba/text/core-open/35b-a3b/q4:3.6~huihui-abliterated@local` | Derivation |
 | Gemma 4, 26B total, 4B active, Q4 | `model:google/text/core-open/26b-a4b/q4:4@local` | Downloadable under Apache-2.0 (`open`) |
 | Meta Llama 4 Maverick | `model:meta/text/core-weights:4@local` | Downloadable under the publisher's community licence (`weights`) |
 | Whisper large-v3, FP16 | `model:openai/transcribe/high-open/fp16:3@local` | Speech-to-text (`transcribe`) |
-| Gemini 3.5 Transcribe Live | `model:google/transcribe/core-rt:3.5` | Streaming speech-to-text (`-rt`) |
+| Gemini 3.5 Transcribe Live | `model:google/transcribe/core-rt:3.5@vercel` | Streaming speech-to-text (`-rt`) |
 | Gemini 3.1 Flash TTS Preview | `model:google/tts/core:3.1` | Text-to-speech (`tts`) |
 | MiMo-V2.5-TTS VoiceClone | `model:xiaomi/tts/core-voiceclone:2.5` | Voice cloning (`tts` + `voiceclone`) |
 | MiMo-V2.5-TTS VoiceDesign | `model:xiaomi/tts/core-voicedesign:2.5` | A voice generated from a text description (`tts` + `voicedesign`) |
 | Lyria 3 Pro Preview | `model:google/audio/core:3` | Non-speech audio and music (`audio`) |
 | GPT Realtime 2.1 | `model:openai/omni/core-rt:2.1` | Real-time duplex voice (`omni` + `-rt`) |
-| Liquid d1 | `model:liquid/decision/core:1` | Typed probabilistic decision (`decision`) |
+| Liquid d1 | `model:liquid/decision/core:1@vercel` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 
 Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. Whisper large-v3 is not in the models.dev catalogue and is illustrative too. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.
