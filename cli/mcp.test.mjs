@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { createMcpHandler } from "./mcp-core.mjs";
+import { SUPPORTED_PROTOCOLS, checkHttpHeaders, createMcpHandler } from "./mcp-core.mjs";
 
 const read = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), "utf8"));
 const registry = read("registry.json");
@@ -138,4 +138,55 @@ test("validate_model_uri does not echo an over-long input", () => {
   const { data } = callTool("validate_model_uri", { uri: "model:" + "a".repeat(10000) });
   assert.equal(data.valid, false);
   assert.ok(data.uri.length < 100);
+});
+
+const V = "2026-07-28";
+const meta = { _meta: { "io.modelcontextprotocol/protocolVersion": V } };
+
+test("initialize negotiates every initialize-era version and falls back to the newest", () => {
+  for (const v of ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"]) {
+    assert.equal(call("initialize", { protocolVersion: v }).result.protocolVersion, v);
+  }
+  assert.equal(call("initialize", { protocolVersion: "1900-01-01" }).result.protocolVersion, "2025-11-25");
+  assert.equal(call("tools/list").result.resultType, undefined);
+});
+
+test("protocol 2026-07-28: discover, resultType, caching hints, serverInfo, and errors", () => {
+  const d = call("server/discover", meta).result;
+  assert.deepEqual(d.supportedVersions, SUPPORTED_PROTOCOLS);
+  assert.equal(d.resultType, "complete");
+  assert.equal(d.cacheScope, "public");
+  assert.ok(d.ttlMs > 0 && d.instructions);
+  assert.equal(d._meta["io.modelcontextprotocol/serverInfo"].name, "modeluri");
+
+  const list = call("tools/list", meta).result;
+  assert.equal(list.resultType, "complete");
+  assert.ok(list.ttlMs > 0 && list.tools.length === 4);
+  const tool = call("tools/call", { ...meta, name: "resolve_model_uri", arguments: { uri: "model:anthropic/text/core" } }).result;
+  assert.equal(tool.resultType, "complete");
+  assert.equal(tool.ttlMs, undefined);
+  assert.equal(call("resources/read", { ...meta, uri: "modeluri://nope" }).error.code, -32602);
+  assert.equal(call("resources/read", { uri: "modeluri://nope" }).error.code, -32002);
+
+  const bad = call("tools/list", { _meta: { "io.modelcontextprotocol/protocolVersion": "1900-01-01" } }).error;
+  assert.equal(bad.code, -32022);
+  assert.equal(bad.data.requested, "1900-01-01");
+});
+
+test("HTTP header checks for 2026-07-28 and batches", () => {
+  const msg = { jsonrpc: "2.0", id: 1, method: "tools/call", params: { ...meta, name: "list_models", arguments: {} } };
+  const h = (o) => (name) => o[name] ?? null;
+  const good = { "MCP-Protocol-Version": V, "Mcp-Method": "tools/call", "Mcp-Name": "list_models" };
+  assert.equal(checkHttpHeaders(msg, h(good)), null);
+  assert.equal(checkHttpHeaders(msg, h({ ...good, "Mcp-Name": `=?base64?${btoa("list_models")}?=` })), null);
+  for (const o of [{ ...good, "Mcp-Name": "nope" }, { ...good, "Mcp-Method": "tools/list" }, { ...good, "MCP-Protocol-Version": undefined }]) {
+    assert.equal(checkHttpHeaders(msg, h(o)).error.code, -32020);
+  }
+  assert.equal(checkHttpHeaders(msg, h({ "MCP-Protocol-Version": "1900-01-01" })).error.code, -32022);
+  // Legacy clients: no header, or an older version, need no mirrored headers.
+  const legacy = { jsonrpc: "2.0", id: 1, method: "tools/list" };
+  assert.equal(checkHttpHeaders(legacy, h({})), null);
+  assert.equal(checkHttpHeaders(legacy, h({ "MCP-Protocol-Version": "2025-11-25" })), null);
+  assert.equal(checkHttpHeaders([legacy], h({})), null);
+  assert.equal(checkHttpHeaders([legacy], h({ "MCP-Protocol-Version": "2025-06-18" })).error.code, -32600);
 });

@@ -46,6 +46,8 @@ Read-only [Model Context Protocol](https://modelcontextprotocol.io/) tools (`res
 - **Local (stdio, offline):** `node cli/mcp.mjs`
 - **In-browser (WebMCP):** registered automatically on [modeluri.org](https://modeluri.org) via `navigator.modelContext`
 
+Both servers speak protocol versions 2024-11-05 to 2025-11-25 through `initialize`, and the stateless 2026-07-28 revision (`server/discover`, version in each request's `_meta`); the remote one also checks the `MCP-Protocol-Version`, `Mcp-Method` and `Mcp-Name` headers that 2026-07-28 requires.
+
 ```json
 {
   "mcpServers": {

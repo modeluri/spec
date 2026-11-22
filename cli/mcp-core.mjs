@@ -3,8 +3,40 @@
 // Shared between the local stdio server (cli/mcp.mjs) and the remote Cloudflare Worker (https://modeluri.org/mcp).
 import { URI_RE, SELF_HOSTED, parse, resolve } from "./model-uri.mjs";
 
-const SUPPORTED_PROTOCOLS = new Set(["2025-03-26", "2024-11-05"]);
-const DEFAULT_PROTOCOL = "2025-03-26";
+// 2026-07-28 is stateless (no initialize, version in every request's _meta); the older ones negotiate with initialize.
+export const STATELESS_PROTOCOL = "2026-07-28";
+const INITIALIZE_PROTOCOLS = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
+export const SUPPORTED_PROTOCOLS = [STATELESS_PROTOCOL, ...INITIALIZE_PROTOCOLS];
+const META = "io.modelcontextprotocol/";
+const CACHEABLE = new Set(["server/discover", "tools/list", "resources/list", "resources/read"]);
+const INSTRUCTIONS =
+  "Use resolve_model_uri to turn a canonical Model URI (e.g. model:anthropic/text/core@bedrock) into a verified native model ID, lookup_native_model to check if a hardcoded model ID is current or superseded, list_models to find cross-publisher equivalents, and validate_model_uri to lint URIs.";
+
+const decodeHeader = (v) => {
+  const m = /^=\?base64\?(.*)\?=$/.exec(v ?? "");
+  if (!m) return v;
+  try { return new TextDecoder().decode(Uint8Array.from(atob(m[1]), (c) => c.charCodeAt(0))); } catch { return null; }
+};
+
+/**
+ * Streamable HTTP checks of protocol 2026-07-28: the MCP-Protocol-Version, Mcp-Method and Mcp-Name headers must mirror the body.
+ * Returns a JSON-RPC error reply (sent with 400) or null. `header` reads a request header by name.
+ */
+export function checkHttpHeaders(msg, header) {
+  const id = msg && !Array.isArray(msg) ? (msg.id ?? null) : null;
+  const fail = (code, message, data) => ({ jsonrpc: "2.0", id, error: { code, message, ...(data && { data }) } });
+  const hv = header("MCP-Protocol-Version");
+  if (hv && !SUPPORTED_PROTOCOLS.includes(hv)) return fail(-32022, "Unsupported protocol version", { supported: SUPPORTED_PROTOCOLS, requested: hv });
+  if (Array.isArray(msg)) return hv && hv > "2025-03-26" ? fail(-32600, `JSON-RPC batches are not part of protocol ${hv}`) : null;
+  const bv = msg?.params?._meta?.[`${META}protocolVersion`];
+  if (hv !== STATELESS_PROTOCOL && bv !== STATELESS_PROTOCOL) return null;
+  if (hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv ?? "(missing)"}`);
+  if (header("Mcp-Method") !== msg.method) return fail(-32020, `Header mismatch: Mcp-Method header does not match body method ${msg.method}`);
+  const name = msg.method === "tools/call" ? msg.params?.name : msg.method === "resources/read" ? msg.params?.uri : undefined;
+  if (name !== undefined && decodeHeader(header("Mcp-Name")) !== name) return fail(-32020, "Header mismatch: Mcp-Name header does not match the body");
+  return null;
+}
+
 const SCOPES = ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision"];
 const TIERS = ["nano", "light", "core", "high", "max", "ultra"];
 
@@ -368,19 +400,33 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
     }
 
     const isNotification = !("id" in msg) || msg.id === undefined;
-    const ok = (result) => (isNotification ? null : { jsonrpc: "2.0", id: msg.id, result });
-    const err = (code, message) => (isNotification ? null : { jsonrpc: "2.0", id: msg.id, error: { code, message } });
+    const requested = msg.params?._meta?.[`${META}protocolVersion`];
+    const stateless = requested === STATELESS_PROTOCOL || msg.method === "server/discover";
+    const err = (code, message, data) => (isNotification ? null : { jsonrpc: "2.0", id: msg.id, error: { code, message, ...(data && { data }) } });
+    if (requested !== undefined && !SUPPORTED_PROTOCOLS.includes(requested)) {
+      return err(-32022, "Unsupported protocol version", { supported: SUPPORTED_PROTOCOLS, requested });
+    }
+    const serverInfo = { name: "modeluri", version };
+    const ok = (result) => {
+      if (isNotification) return null;
+      if (stateless) {
+        // The registry changes only on deploy and holds no per-user data.
+        result = { resultType: "complete", ...result, ...(CACHEABLE.has(msg.method) && { ttlMs: 3600000, cacheScope: "public" }), _meta: { [`${META}serverInfo`]: serverInfo } };
+      }
+      return { jsonrpc: "2.0", id: msg.id, result };
+    };
 
     switch (msg.method) {
+      case "server/discover":
+        return ok({ supportedVersions: SUPPORTED_PROTOCOLS, capabilities: { tools: {}, resources: {} }, instructions: INSTRUCTIONS });
       case "initialize": {
         const clientProto = msg.params?.protocolVersion;
-        const protocolVersion = SUPPORTED_PROTOCOLS.has(clientProto) ? clientProto : DEFAULT_PROTOCOL;
+        const protocolVersion = INITIALIZE_PROTOCOLS.includes(clientProto) ? clientProto : INITIALIZE_PROTOCOLS[0];
         return ok({
           protocolVersion,
           capabilities: { tools: {}, resources: {} },
-          serverInfo: { name: "modeluri", version },
-          instructions:
-            "Use resolve_model_uri to turn a canonical Model URI (e.g. model:anthropic/text/core@bedrock) into a verified native model ID, lookup_native_model to check if a hardcoded model ID is current or superseded, list_models to find cross-publisher equivalents, and validate_model_uri to lint URIs.",
+          serverInfo,
+          instructions: INSTRUCTIONS,
         });
       }
       case "notifications/initialized":
@@ -405,7 +451,8 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
       case "resources/read": {
         const uri = msg.params?.uri;
         const result = readResource(uri);
-        if (!result) return err(-32002, `Resource not found: ${uri}`);
+        // 2026-07-28 replaced -32002 with -32602.
+        if (!result) return err(stateless ? -32602 : -32002, `Resource not found: ${uri}`);
         return ok(result);
       }
       default:
