@@ -22,3 +22,6 @@
 
 # Impeccable product context, local only
 /PRODUCT.md
+
+# Local Claude instructions
+/CLAUDE.local.md
