@@ -651,15 +651,6 @@
       "evidence": "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B"
     },
     {
-      "id": "nvidia/nemotron-content-safety-reasoning-4b",
-      "publisher": "nvidia",
-      "name": "Nemotron Content Safety Reasoning 4B",
-      "reason": "slot-collision",
-      "conflicts_with": "model:nvidia/text/core-guard-weights",
-      "detail": "Unversioned content-safety model parallel to the numbered Nemotron 3 and 3.5 Content Safety releases on the model:nvidia/text/core-guard-weights slot.",
-      "evidence": "https://huggingface.co/nvidia/Nemotron-Content-Safety-Reasoning-4B"
-    },
-    {
       "id": "nvidia/nemotron-voicechat",
       "publisher": "nvidia",
       "name": "Nemotron VoiceChat",

@@ -226,6 +226,8 @@ A derivation marks weights modified by someone other than the publisher. The pub
 
 Labels such as "uncensored" are not accepted, because they do not name a verifiable technique. Such a model is classified by how it was made.
 
+A model trained from another publisher's weights is a derivation as long as it keeps the base model's scope, even when it has a new name or is published for a `special` such as `code`, `guard`, `ocr`, `medical` or `roleplay`. When the training changes the scope, for example a language model turned into an `embed`, `rerank` or `decision` model, no slot of the base model describes its output, and the organisation that releases it is its publisher. Weights from another organisation of the same company count as the publisher's own.
+
 ### 3.8 Host
 
 When the host is missing, the model runs on the publisher's own API. Other hosts are registered names: the keys of `native` in the registry, such as `bedrock`, `vertex`, `azure`, `openrouter`, `together` or `groq`.
@@ -391,7 +393,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Gemini Deep Research Preview | `model:google/text/core-research:2026.04` | Autonomous deep research (`research`) |
 | Gemini 2.5 Computer Use | `model:google/text/core-gui:2.5@mergegateway` | GUI and computer control (`gui`) |
 | Gemini Robotics-ER 1.6 | `model:google/text/core-robotics:1.6@orcarouter` | Embodied robotics (`robotics`) |
-| Baichuan M2, 32B | `model:baichuan/text/core-medical-open/32b:2@local` | Medical domain (`medical`) |
+| Ling 3.0 Flash Sante on Vercel | `model:inclusionai/text/core-medical:3.0@vercel` | Medical domain (`medical`) |
 | Ling 3.0 Flash Fin | `model:inclusionai/text/core-finance-open:3.0@local` | Finance domain (`finance`) |
 | Doubao Seed Character | `model:bytedance-seed/text/core-roleplay:26.06` | Character dialogue (`roleplay`) |
 | Qwen 3.5 MoE base, 35B total, 3B active | `model:alibaba/text/core-base-open/35b-a3b:3.5@local` | Pre-trained weights without instruction tuning (`base`) |
@@ -400,7 +402,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | The same model, abliterated by a third party | `model:alibaba/text/core-open/35b-a3b/q4:3.6~huihui-abliterated@local` | Derivation |
 | Gemma 4, 26B total, 4B active, Q4 | `model:google/text/core-open/26b-a4b/q4:4@local` | Downloadable under Apache-2.0 (`open`) |
 | Meta Llama 4 Maverick | `model:meta/text/core-weights:4@local` | Downloadable under the publisher's community licence (`weights`) |
-| Whisper large-v3, FP16 | `model:openai/transcribe/high-open/fp16:3@local` | Speech-to-text (`transcribe`) |
+| Whisper large-v3, FP16 | `model:openai/transcribe/core-open/1.55b/fp16:3@local` | Speech-to-text (`transcribe`) |
 | Gemini 3.5 Transcribe Live | `model:google/transcribe/core-rt:3.5@vercel` | Streaming speech-to-text (`-rt`) |
 | Gemini 3.1 Flash TTS Preview | `model:google/tts/core:3.1` | Text-to-speech (`tts`) |
 | MiMo-V2.5-TTS VoiceClone | `model:xiaomi/tts/core-voiceclone:2.5` | Voice cloning (`tts` + `voiceclone`) |
@@ -410,7 +412,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Jev 1.14 | `model:typesafe/decision/core:1.14.0@openrouter` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 
-Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. Whisper large-v3 is not in the models.dev catalogue and is illustrative too. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.
+Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.
 
 ### Switching publisher
 

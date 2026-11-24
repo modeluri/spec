@@ -464,14 +464,6 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
-    "id": "allenai/olmocr-2-7b",
-    "uri": "model:allenai/text/core-ocr-open/7b:2",
-    "license": "Apache-2.0",
-    "tier_source": "registry",
-    "evidence": "https://huggingface.co/allenai/olmOCR-2-7B-1025",
-    "current": true
-  },
-  {
     "id": "amazon/nova-pro",
     "uri": "model:amazon/text/core:1",
     "license": "proprietary",
@@ -688,14 +680,6 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
-    "id": "apodex/apodex-1.1-mini",
-    "uri": "model:apodex/text/light-open:1.1",
-    "license": "Apache-2.0",
-    "tier_source": "registry",
-    "evidence": "https://huggingface.co/apodex/Apodex-1.1-mini",
-    "current": true
-  },
-  {
     "id": "arcee-ai/trinity-mini",
     "uri": "model:arcee-ai/text/core-weights/26b-a3b:1",
     "license": "OpenMDW-1.1",
@@ -749,14 +733,6 @@ export const CLASSIFICATION = [
     "license": "Apache-2.0",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/BAAI/bge-reranker-v2-m3",
-    "current": true
-  },
-  {
-    "id": "baichuan/baichuan-m2-32b",
-    "uri": "model:baichuan/text/core-medical-open/32b:2",
-    "license": "Apache-2.0",
-    "tier_source": "registry",
-    "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B",
     "current": true
   },
   {
@@ -2391,14 +2367,6 @@ export const CLASSIFICATION = [
     "tier_source": "registry",
     "evidence": "https://huggingface.co/nvidia/Nemotron-Mini-4B-Instruct",
     "current": true
-  },
-  {
-    "id": "nvidia/nemotron-3-content-safety",
-    "uri": "model:nvidia/text/core-guard-weights:3",
-    "license": "NVIDIA Nemotron Open Model License",
-    "tier_source": "registry",
-    "evidence": "https://huggingface.co/nvidia/Nemotron-3-Content-Safety",
-    "current": false
   },
   {
     "id": "nvidia/nemotron-3.5-content-safety",
@@ -4378,15 +4346,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B"
   },
   {
-    "id": "nvidia/nemotron-content-safety-reasoning-4b",
-    "publisher": "nvidia",
-    "name": "Nemotron Content Safety Reasoning 4B",
-    "reason": "slot-collision",
-    "conflicts_with": "model:nvidia/text/core-guard-weights",
-    "detail": "Unversioned content-safety model parallel to the numbered Nemotron 3 and 3.5 Content Safety releases on the model:nvidia/text/core-guard-weights slot.",
-    "evidence": "https://huggingface.co/nvidia/Nemotron-Content-Safety-Reasoning-4B"
-  },
-  {
     "id": "nvidia/nemotron-voicechat",
     "publisher": "nvidia",
     "name": "Nemotron VoiceChat",
@@ -4651,6 +4610,11 @@ export const SKIPPED = [
     "detail": "Superseded pre-release preview snapshot of Qwen3.8 Max (model:alibaba/text/ultra:3.8) with no first-party or extended-host listing."
   },
   {
+    "id": "allenai/olmocr-2-7b",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party OCR fine-tune by Ai2 of Alibaba's Qwen2.5-VL 7B Instruct (SPEC section 3.7)."
+  },
+  {
     "id": "amazon/nova-2-lite-v1",
     "skip_reason": "snapshot-duplicate",
     "detail": "API-versioned `-v1` duplicate of the 2025-12-02 Nova 2 Lite release already registered via `amazon/nova-2-lite` (`model:amazon/text/light:2`)."
@@ -4714,6 +4678,16 @@ export const SKIPPED = [
     "id": "anthropic/claude-sonnet-4-5-20250929",
     "skip_reason": "snapshot-duplicate",
     "detail": "Dated snapshot duplicate of anthropic/claude-sonnet-4-5."
+  },
+  {
+    "id": "apodex/apodex-1.1-mini",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party fine-tune of Alibaba's Qwen3.5-35B-A3B (SPEC section 3.7)."
+  },
+  {
+    "id": "baichuan/baichuan-m2-32b",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party medical fine-tune by Baichuan of Alibaba's Qwen2.5 32B (SPEC section 3.7)."
   },
   {
     "id": "cognitivecomputations/dolphin-mistral-24b-venice-edition",
@@ -4954,6 +4928,16 @@ export const SKIPPED = [
     "id": "nvidia/mistral-nemotron",
     "skip_reason": "restricted-not-on-sale",
     "detail": "Closed model with zero native hosts (native_preview: {}) and provider_count === 0 in models.dev."
+  },
+  {
+    "id": "nvidia/nemotron-3-content-safety",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party safety fine-tune by NVIDIA of Google's Gemma 3 4B IT (SPEC section 3.7)."
+  },
+  {
+    "id": "nvidia/nemotron-content-safety-reasoning-4b",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party safety fine-tune by NVIDIA of Google's Gemma 3 4B IT (SPEC section 3.7)."
   },
   {
     "id": "openai/gpt-4o-2024-05-13",

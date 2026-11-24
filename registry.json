@@ -723,17 +723,6 @@
       "current": true
     },
     {
-      "uri": "model:allenai/text/core-ocr-open/7b:2",
-      "native": {
-        "huggingface": "allenai/olmOCR-2-7B-1025"
-      },
-      "released": "2025-10-22",
-      "license": "Apache-2.0",
-      "tier_source": "registry",
-      "evidence": "https://huggingface.co/allenai/olmOCR-2-7B-1025",
-      "current": true
-    },
-    {
       "uri": "model:amazon/text/light:2",
       "native": {
         "bedrock": "amazon.nova-2-lite-v1:0",
@@ -1101,17 +1090,6 @@
       "current": false
     },
     {
-      "uri": "model:apodex/text/light-open:1.1",
-      "native": {
-        "huggingface": "apodex/Apodex-1.1-mini"
-      },
-      "released": "2026-08-24",
-      "license": "Apache-2.0",
-      "tier_source": "registry",
-      "evidence": "https://huggingface.co/apodex/Apodex-1.1-mini",
-      "current": true
-    },
-    {
       "uri": "model:arcee-ai/text/ultra-weights:1",
       "native": {
         "huggingface": "arcee-ai/Trinity-Large-Thinking"
@@ -1186,17 +1164,6 @@
       "license": "MIT",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/BAAI/bge-m3",
-      "current": true
-    },
-    {
-      "uri": "model:baichuan/text/core-medical-open/32b:2",
-      "native": {
-        "huggingface": "baichuan-inc/Baichuan-M2-32B"
-      },
-      "released": "2025-08-13",
-      "license": "Apache-2.0",
-      "tier_source": "registry",
-      "evidence": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B",
       "current": true
     },
     {
@@ -3687,17 +3654,6 @@
       "tier_source": "registry",
       "evidence": "https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety",
       "current": true
-    },
-    {
-      "uri": "model:nvidia/text/core-guard-weights:3",
-      "native": {
-        "huggingface": "nvidia/Nemotron-3-Content-Safety"
-      },
-      "released": "2026-03-16",
-      "license": "NVIDIA Nemotron Open Model License",
-      "tier_source": "registry",
-      "evidence": "https://huggingface.co/nvidia/Nemotron-3-Content-Safety",
-      "current": false
     },
     {
       "uri": "model:nvidia/text/core-weights:3",

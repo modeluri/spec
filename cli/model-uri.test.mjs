@@ -237,11 +237,10 @@ test("registry: every plain versioned text example of SPEC.md section 8 is there
 });
 
 test("every example of SPEC.md section 8 resolves, except the illustrative rows", () => {
-  // The spec names them under the table: the `example` publisher, `-restricted` / `-internal` models, derivations, and Whisper large-v3 (not in models.dev).
-  const illustrative = ["model:openai/transcribe/high-open/fp16:3@local"];
+  // The spec names them under the table: the `example` publisher, `-restricted` / `-internal` models and derivations.
   const wanted = examples.filter((u) => {
     const g = parse(u);
-    return g.publisher !== "example" && !g.access && !g.kind && !illustrative.includes(u);
+    return g.publisher !== "example" && !g.access && !g.kind;
   });
   assert.ok(wanted.length >= 30);
   for (const u of wanted) assert.equal(resolve(registry, u).ok, true, `${u} does not resolve`);
