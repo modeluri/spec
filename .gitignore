@@ -1,9 +1,12 @@
 # Working notes, not part of the public repository
 /note
 
-# Local CLI state
+# Local CLI state and secrets
 /.cloudflare
 /.wrangler
+.env*
+.dev.vars
+.dev.vars.*
 
 # Design hook suppressions, local only
 /.impeccable

@@ -201,3 +201,31 @@ test("Object.prototype names are not registry keys", () => {
   assert.ok(v.warnings.some((w) => w.startsWith("unregistered special")), JSON.stringify(v));
   for (const host of ["constructor", "__proto__"]) assert.equal(callTool("list_models", { host }).data.total, 0);
 });
+
+test("validate_model_uri rejects over-long backtracking input before running URI_RE", () => {
+  const payload = "model:a/text/core/q" + "0".repeat(60000) + "!";
+  const t0 = performance.now();
+  const { data } = callTool("validate_model_uri", { uri: payload });
+  const elapsed = performance.now() - t0;
+  assert.equal(data.valid, false);
+  assert.ok(data.errors.some((e) => e.includes("128-character limit")));
+  assert.ok(elapsed < 50, `took ${elapsed.toFixed(1)} ms`);
+});
+
+test("non-coercible JSON objects in method, tool name, resource URI, or _meta do not throw", () => {
+  const bad = { toString: 1 };
+  const h = (o) => (name) => o[name] ?? null;
+  assert.equal(call("tools/call", { name: bad }).error.code, -32602);
+  assert.equal(call("resources/read", { uri: bad }).error.code, -32002);
+  assert.equal(
+    checkHttpHeaders({ jsonrpc: "2.0", id: 1, method: bad, params: meta }, h({ "MCP-Protocol-Version": V })).error.code,
+    -32020,
+  );
+  assert.equal(
+    checkHttpHeaders(
+      { jsonrpc: "2.0", id: 1, method: "tools/list", params: { _meta: { "io.modelcontextprotocol/protocolVersion": bad } } },
+      h({ "MCP-Protocol-Version": V }),
+    ).error.code,
+    -32020,
+  );
+});

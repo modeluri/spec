@@ -18,6 +18,7 @@ const decodeHeader = (v) => {
   if (!m) return v;
   try { return new TextDecoder().decode(Uint8Array.from(atob(m[1]), (c) => c.charCodeAt(0))); } catch { return null; }
 };
+const show = (v) => (typeof v === "string" ? v : JSON.stringify(v));
 
 /**
  * Streamable HTTP checks of protocol 2026-07-28: the MCP-Protocol-Version, Mcp-Method and Mcp-Name headers must mirror the body.
@@ -36,8 +37,8 @@ export function checkHttpHeaders(msg, header) {
   }
   const bv = msg?.params?._meta?.[`${META}protocolVersion`];
   if (hv !== STATELESS_PROTOCOL && bv !== STATELESS_PROTOCOL) return null;
-  if (hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv ?? "(missing)"}`);
-  if (header("Mcp-Method") !== msg.method) return fail(-32020, `Header mismatch: Mcp-Method header does not match body method ${msg.method}`);
+  if (hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv == null ? "(missing)" : show(bv)}`);
+  if (header("Mcp-Method") !== msg.method) return fail(-32020, `Header mismatch: Mcp-Method header does not match body method ${show(msg.method)}`);
   const name = msg.method === "tools/call" ? msg.params?.name : msg.method === "resources/read" ? msg.params?.uri : undefined;
   if (name !== undefined && decodeHeader(header("Mcp-Name")) !== name) return fail(-32020, "Header mismatch: Mcp-Name header does not match the body");
   return null;
@@ -298,7 +299,10 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
       const shown = input.length > 128 ? `${input.slice(0, 64)}…` : input;
       const errors = [];
       const warnings = [];
-      if (input.length > 128) errors.push(`exceeds 128-character limit (${input.length} chars)`);
+      if (input.length > 128) {
+        errors.push(`exceeds 128-character limit (${input.length} chars)`);
+        return toolResult({ valid: false, uri: shown, errors, warnings });
+      }
       const m = URI_RE.exec(input);
       if (!m) {
         errors.push("does not match the Model URI reference grammar (SPEC.md section 2)");
@@ -445,7 +449,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
       case "tools/call": {
         const name = msg.params?.name;
         const tool = TOOLS.find((t) => t.name === name);
-        if (!tool) return err(-32602, `Unknown tool: ${name}`);
+        if (!tool) return err(-32602, `Unknown tool: ${show(name)}`);
         const args = msg.params?.arguments ?? {};
         const invalid = checkArgs(tool.inputSchema, args);
         if (invalid) return ok(toolResult({ ok: false, error: invalid }, true));
@@ -458,7 +462,7 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
         const uri = msg.params?.uri;
         const result = readResource(uri);
         // 2026-07-28 replaced -32002 with -32602.
-        if (!result) return err(stateless ? -32602 : -32002, `Resource not found: ${uri}`);
+        if (!result) return err(stateless ? -32602 : -32002, `Resource not found: ${show(uri)}`);
         return ok(result);
       }
       default:
