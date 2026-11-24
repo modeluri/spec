@@ -73,7 +73,13 @@ const ALIASES = new Map([
   ["qwen3.8-max", "Qwen3.8-Max License"],
   ["minimax-community", "MiniMax Community License"],
   ["kimi-k3.1-pro", "Kimi K3.1-Pro License"],
+  ["kimi-k3", "Kimi K3 License"],
   ["nvidia-open-model-license", "NVIDIA Open Model License Agreement"],
+  ["nvidia-nemotron-open-model-license", "NVIDIA Nemotron Open Model License"],
+  ["nvidia-open-model-agreement", "NVIDIA Open Model Agreement"],
+  // Hugging Face slug without a version; every card using it links the 1.1 text.
+  ["openmdw-license-agreement", "OpenMDW-1.1"],
+  ["reka-edge-2603-license", "BUSL-1.1"],
   ["glm-5.3", "GLM-5.3 License"],
   ["proprietary", "proprietary"],
 ]);

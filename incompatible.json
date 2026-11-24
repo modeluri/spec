@@ -151,14 +151,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwq-plus.toml"
     },
     {
-      "id": "baidu/ernie-4.5-vl-424b-a47b",
-      "publisher": "baidu",
-      "name": "ERNIE 4.5 VL 424B A47B ",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but no licence or Hugging Face weights repository is recorded (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/baidu/ernie-4.5-vl-424b-a47b.toml"
-    },
-    {
       "id": "black-forest-labs/flux-1-kontext-dev",
       "publisher": "black-forest-labs",
       "name": "FLUX.1 Kontext [dev]",
@@ -212,14 +204,6 @@
       "evidence": "https://huggingface.co/CohereLabs/aya-vision-8b"
     },
     {
-      "id": "cohere/command-a-plus-05-2026",
-      "publisher": "cohere",
-      "name": "Command A Plus",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/cohere/command-a-plus-05-2026.toml"
-    },
-    {
       "id": "cohere/command-a-reasoning-08-2025",
       "publisher": "cohere",
       "name": "Command A Reasoning",
@@ -251,14 +235,6 @@
       "conflicts_with": "model:cohere/text/nano-weights/7b:2412",
       "detail": "Regional Arabic-specialized Command R7B edition colliding on the same model:cohere/text/nano-weights/7b slot as command-r7b-12-2024.",
       "evidence": "https://huggingface.co/CohereLabs/c4ai-command-r7b-arabic-02-2025"
-    },
-    {
-      "id": "cohere/north-mini-code-1-0",
-      "publisher": "cohere",
-      "name": "North Mini Code",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/cohere/north-mini-code-1-0.toml"
     },
     {
       "id": "cohere/tiny-aya-earth",
@@ -302,14 +278,6 @@
       "reason": "rolling-alias",
       "detail": "Unpinned rolling API alias whose underlying DeepSeek checkpoint changes silently without a version bump.",
       "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2"
-    },
-    {
-      "id": "deepseek/deepseek-ocr-2",
-      "publisher": "deepseek",
-      "name": "DeepSeek OCR 2",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/deepseek/deepseek-ocr-2.toml"
     },
     {
       "id": "deepseek/deepseek-reasoner",
@@ -390,14 +358,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-omni-flash-preview.toml"
     },
     {
-      "id": "google/gemma-2-27b-it",
-      "publisher": "google",
-      "name": "Gemma 2 27B",
-      "reason": "missing-evidence",
-      "detail": "Open-weights release lacks a verifiable licence in both models.dev metadata and Hugging Face cache.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemma-2-27b-it.toml"
-    },
-    {
       "id": "google/gemma-3n-e2b-it",
       "publisher": "google",
       "name": "Gemma 3n E2B IT",
@@ -455,14 +415,6 @@
       "evidence": "https://huggingface.co/openpangu/openPangu-2.0-Pro"
     },
     {
-      "id": "ibm/granite-4.2-8b",
-      "publisher": "ibm",
-      "name": "Granite 4.2 8B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/ibm/granite-4.2-8b.toml"
-    },
-    {
       "id": "inclusionai/ling-3.0-flash-vl",
       "publisher": "inclusionai",
       "name": "Ling 3.0 Flash VL",
@@ -470,30 +422,6 @@
       "conflicts_with": "model:inclusionai/text/core-open:3.0",
       "detail": "Separate multimodal vision-language checkpoint of Ling 3.0 Flash under MIT at identical pricing ($0.075/$0.224), colliding with `inclusionai/ling-3.0-flash` on `model:inclusionai/text/core-open:3.0`.",
       "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL"
-    },
-    {
-      "id": "inclusionai/ling-3.1-flash",
-      "publisher": "inclusionai",
-      "name": "Ling 3.1 Flash",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/inclusionai/ling-3.1-flash.toml"
-    },
-    {
-      "id": "meituan/longcat-2.0",
-      "publisher": "meituan",
-      "name": "LongCat-2.0",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/meituan/longcat-2.0.toml"
-    },
-    {
-      "id": "microsoft/phi-4-mini",
-      "publisher": "microsoft",
-      "name": "Phi-4-mini",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-      "evidence": "https://huggingface.co/microsoft/Phi-4-mini-instruct"
     },
     {
       "id": "minimax/MiniMax-M2.5-highspeed",
@@ -594,14 +522,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-medium-latest.toml"
     },
     {
-      "id": "mistral/mistral-small-24b-instruct-2501",
-      "publisher": "mistral",
-      "name": "Mistral Small 3",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-small-24b-instruct-2501.toml"
-    },
-    {
       "id": "mistral/mistral-small-latest",
       "publisher": "mistral",
       "name": "Mistral Small (latest)",
@@ -613,9 +533,9 @@
       "id": "mistral/mixtral-8x22b-instruct",
       "publisher": "mistral",
       "name": "Mixtral 8x22B Instruct",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license (and uses opaque 8x22B expert-count shorthand).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mixtral-8x22b-instruct.toml"
+      "reason": "opaque-size",
+      "detail": "Published with expert-count shorthand (8x22B) rather than verifiable total and active physical parameter counts in the catalogue record.",
+      "evidence": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1"
     },
     {
       "id": "mistral/mixtral-8x7b-instruct-v0.1",
@@ -669,14 +589,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/voxtral-small-latest.toml"
     },
     {
-      "id": "moonshotai/kimi-k2",
-      "publisher": "moonshotai",
-      "name": "Kimi K2 0711",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.toml"
-    },
-    {
       "id": "moonshotai/kimi-k2-thinking",
       "publisher": "moonshotai",
       "name": "Kimi K2 Thinking",
@@ -704,124 +616,22 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.7-code-highspeed.toml"
     },
     {
-      "id": "moonshotai/kimi-k3",
-      "publisher": "moonshotai",
-      "name": "Kimi K3",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k3.toml"
-    },
-    {
-      "id": "nvidia/llama-3.1-nemotron-70b-instruct",
-      "publisher": "nvidia",
-      "name": "Llama 3.1 Nemotron 70B Instruct",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-70b-instruct.toml"
-    },
-    {
-      "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
-      "publisher": "nvidia",
-      "name": "Llama 3.1 Nemotron Safety Guard 8B v3",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-safety-guard-8b-v3.toml"
-    },
-    {
-      "id": "nvidia/llama-3.1-nemotron-ultra-253b",
-      "publisher": "nvidia",
-      "name": "Llama 3.1 Nemotron Ultra 253B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.1-nemotron-ultra-253b.toml"
-    },
-    {
-      "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
-      "publisher": "nvidia",
-      "name": "Llama 3.3 Nemotron Super 49B v1",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.3-nemotron-super-49b-v1.toml"
-    },
-    {
-      "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
-      "publisher": "nvidia",
-      "name": "Llama 3.3 Nemotron Super 49B v1.5",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-3.3-nemotron-super-49b-v1.5.toml"
-    },
-    {
       "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
       "publisher": "nvidia",
       "name": "Llama Nemotron Embed VL 1B v2",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-nemotron-embed-vl-1b-v2.toml"
-    },
-    {
-      "id": "nvidia/llama-nemotron-rerank-vl-1b-v2",
-      "publisher": "nvidia",
-      "name": "Llama Nemotron Rerank VL 1B v2",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/llama-nemotron-rerank-vl-1b-v2.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3-content-safety",
-      "publisher": "nvidia",
-      "name": "Nemotron 3 Content Safety",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-content-safety.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3-nano-30b-a3b",
-      "publisher": "nvidia",
-      "name": "Nemotron 3 Nano 30B A3B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-nano-30b-a3b.toml"
+      "reason": "slot-collision",
+      "conflicts_with": "model:nvidia/embed/core-weights/1b:2",
+      "detail": "Vision-language sibling of llama-nemotron-embed-1b-v2 with the same size and version on the model:nvidia/embed/core-weights/1b slot.",
+      "evidence": "https://huggingface.co/nvidia/llama-nemotron-embed-vl-1b-v2"
     },
     {
       "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
       "publisher": "nvidia",
       "name": "Nemotron 3 Nano Omni 30B A3B Reasoning",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3-super-120b-a12b",
-      "publisher": "nvidia",
-      "name": "Nemotron 3 Super 120B A12B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-super-120b-a12b.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3-ultra-550b-a55b",
-      "publisher": "nvidia",
-      "name": "Nemotron 3 Ultra 550B A55B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3-ultra-550b-a55b.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3.5-content-safety",
-      "publisher": "nvidia",
-      "name": "Nemotron 3.5 Content Safety",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-content-safety.toml"
-    },
-    {
-      "id": "nvidia/nemotron-3.5-lightning",
-      "publisher": "nvidia",
-      "name": "Nemotron 3.5 Lightning 30B A3B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-lightning.toml"
+      "reason": "slot-collision",
+      "conflicts_with": "model:nvidia/text/light-weights:3",
+      "detail": "Parallel omni-input Nemotron 3 Nano variant colliding on the same model:nvidia/text/light-weights slot and version as nemotron-3-nano-30b-a3b.",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16"
     },
     {
       "id": "nvidia/nemotron-3.5-super-120b-a12b",
@@ -832,60 +642,30 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-super-120b-a12b.toml"
     },
     {
-      "id": "nvidia/nemotron-3.5-super-vl-120b-a12b",
-      "publisher": "nvidia",
-      "name": "Nemotron 3.5 Super VL 120B A12B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-3.5-super-vl-120b-a12b.toml"
-    },
-    {
       "id": "nvidia/nemotron-cascade-2-30b-a3b",
       "publisher": "nvidia",
       "name": "Nemotron Cascade 2 30B A3B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-cascade-2-30b-a3b.toml"
+      "reason": "slot-collision",
+      "conflicts_with": "model:nvidia/text/light-weights",
+      "detail": "Parallel Nemotron Cascade family whose number (2) is not a release of the Nano lineup holding the model:nvidia/text/light-weights slot.",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B"
     },
     {
       "id": "nvidia/nemotron-content-safety-reasoning-4b",
       "publisher": "nvidia",
       "name": "Nemotron Content Safety Reasoning 4B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-content-safety-reasoning-4b.toml"
-    },
-    {
-      "id": "nvidia/nemotron-mini-4b-instruct",
-      "publisher": "nvidia",
-      "name": "Nemotron Mini 4B Instruct",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-mini-4b-instruct.toml"
-    },
-    {
-      "id": "nvidia/nemotron-nano-12b-v2-vl",
-      "publisher": "nvidia",
-      "name": "Nemotron Nano 12B v2 VL",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-nano-12b-v2-vl.toml"
-    },
-    {
-      "id": "nvidia/nemotron-nano-9b-v2",
-      "publisher": "nvidia",
-      "name": "Nemotron Nano 9B v2",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-nano-9b-v2.toml"
+      "reason": "slot-collision",
+      "conflicts_with": "model:nvidia/text/core-guard-weights",
+      "detail": "Unversioned content-safety model parallel to the numbered Nemotron 3 and 3.5 Content Safety releases on the model:nvidia/text/core-guard-weights slot.",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-Content-Safety-Reasoning-4B"
     },
     {
       "id": "nvidia/nemotron-voicechat",
       "publisher": "nvidia",
       "name": "Nemotron VoiceChat",
       "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/nvidia/nemotron-voicechat.toml"
+      "detail": "The Hugging Face link points to an 11B checkpoint released in 2026-08, not the 12B NIM release of 2026-03 this record describes, so its licence cannot be verified.",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B"
     },
     {
       "id": "openai/gpt-5-chat-latest",
@@ -972,22 +752,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-image-2.5-sunburst.toml"
     },
     {
-      "id": "openai/whisper-large-v3",
-      "publisher": "openai",
-      "name": "Whisper 3 Large",
-      "reason": "missing-evidence",
-      "detail": "Open-weights transcription model with normalized_license=null and no verifiable Hugging Face licence record.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/whisper-large-v3.toml"
-    },
-    {
-      "id": "openai/whisper-large-v3-turbo",
-      "publisher": "openai",
-      "name": "Whisper Large v3 Turbo",
-      "reason": "missing-evidence",
-      "detail": "Open-weights transcription model with normalized_license=null and no verifiable Hugging Face licence record.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/whisper-large-v3-turbo.toml"
-    },
-    {
       "id": "openbmb/minicpm-v-4.7-1b",
       "publisher": "openbmb",
       "name": "MiniCPM-V 4.7 1B",
@@ -1006,62 +770,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/perplexity/sonar-reasoning-pro.toml"
     },
     {
-      "id": "poolside/laguna-m.1",
-      "publisher": "poolside",
-      "name": "Laguna M.1",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-m.1.toml"
-    },
-    {
-      "id": "poolside/laguna-s-2.1",
-      "publisher": "poolside",
-      "name": "Laguna S 2.1",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-s-2.1.toml"
-    },
-    {
-      "id": "poolside/laguna-xs-2.1",
-      "publisher": "poolside",
-      "name": "Laguna XS 2.1",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but no licence or weights repository is recorded (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-xs-2.1.toml"
-    },
-    {
-      "id": "poolside/laguna-xs.2",
-      "publisher": "poolside",
-      "name": "Laguna XS.2",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev with no licence or weights repository (normalized_license is null), and zero active providers.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/poolside/laguna-xs.2.toml"
-    },
-    {
-      "id": "rekaai/reka-edge",
-      "publisher": "rekaai",
-      "name": "Reka Edge",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/rekaai/reka-edge.toml"
-    },
-    {
-      "id": "rekaai/reka-flash-3",
-      "publisher": "rekaai",
-      "name": "Reka Flash 3",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true with no verifiable licence in raw_license or hf_license and no Hugging Face weights URL.",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/rekaai/reka-flash-3.toml"
-    },
-    {
-      "id": "sarvam/sarvam-105b",
-      "publisher": "sarvam",
-      "name": "Sarvam 105B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-105b.toml"
-    },
-    {
       "id": "sdaia/allam-2-7b",
       "publisher": "sdaia",
       "name": "ALLaM-2-7b",
@@ -1078,44 +786,12 @@
       "evidence": "https://huggingface.co/stepfun-ai/Step-5-Preview"
     },
     {
-      "id": "tencent/hy-mt2-1.8b",
-      "publisher": "tencent",
-      "name": "Hy-MT2-1.8B",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-1.8b.toml"
-    },
-    {
-      "id": "tencent/hy-mt2-30b-a3b",
-      "publisher": "tencent",
-      "name": "Hy-MT2-30B-A3B",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-30b-a3b.toml"
-    },
-    {
-      "id": "tencent/hy-mt2-7b",
-      "publisher": "tencent",
-      "name": "Hy-MT2-7B",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy-mt2-7b.toml"
-    },
-    {
       "id": "tencent/hy3-preview",
       "publisher": "tencent",
       "name": "Hy3 preview",
       "reason": "missing-evidence",
       "detail": "Marked `open_weights: true`, but Hugging Face returned `license: \"other\"` with no `license_name`, leaving `normalized_license: null`.",
       "evidence": "https://huggingface.co/tencent/Hy3-preview"
-    },
-    {
-      "id": "tencent/hy4-preview",
-      "publisher": "tencent",
-      "name": "Hy4 preview",
-      "reason": "missing-evidence",
-      "detail": "Marked `open_weights: true` with no verifiable licence in `raw_license` or `hf_license` (`normalized_license: null`).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/tencent/hy4-preview.toml"
     },
     {
       "id": "typesafe/jev-latest",

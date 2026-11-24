@@ -61,12 +61,18 @@ for (const [id, m] of Object.entries(catalog.models)) {
   const slug = id.slice(publisher.length + 1);
   const hfRepo = extractHfRepo(m.weights);
   const hfInfo = hfRepo ? hfCache[hfRepo.repo] ?? null : null;
+  // A repo missing from the cache would read as "no licence" and get the model wrongly marked missing-evidence.
+  if (m.open_weights && !m.license && hfRepo && !hfInfo) {
+    console.error(`${id}: ${hfRepo.repo} is not in the Hugging Face licence cache; run node tools/fetch-hf-licenses.mjs first`);
+    process.exit(1);
+  }
 
   let normalizedLicense = null;
   if (!m.open_weights) {
     normalizedLicense = "proprietary";
   } else {
-    normalizedLicense = normalizeLicense(m.license) ?? hfInfo?.normalized ?? null;
+    // Re-normalise from the raw card fields: the cached `normalized` predates later ALIASES entries.
+    normalizedLicense = normalizeLicense(m.license) ?? normalizeLicense(hfInfo?.license) ?? normalizeLicense(hfInfo?.license_name) ?? null;
   }
 
   models.push({

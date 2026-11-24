@@ -1233,6 +1233,17 @@
       "current": true
     },
     {
+      "uri": "model:baidu/text/ultra-open/424b-a47b:4.5",
+      "native": {
+        "huggingface": "baidu/ERNIE-4.5-VL-424B-A47B-PT"
+      },
+      "released": "2025-06-30",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/baidu/ERNIE-4.5-VL-424B-A47B-PT",
+      "current": true
+    },
+    {
       "uri": "model:black-forest-labs/image/core-weights:1",
       "native": {
         "huggingface": "black-forest-labs/FLUX.1-dev"
@@ -1461,6 +1472,31 @@
       "current": true
     },
     {
+      "uri": "model:cohere/text/light-code-open:1.0",
+      "native": {
+        "cohere": "north-mini-code-1-0",
+        "huggingface": "CohereLabs/North-Mini-Code-1.0"
+      },
+      "released": "2026-06-09",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/CohereLabs/North-Mini-Code-1.0",
+      "current": true
+    },
+    {
+      "uri": "model:cohere/text/ultra-open:2605",
+      "native": {
+        "cohere": "command-a-plus-05-2026",
+        "openrouter": "cohere/command-a-plus",
+        "huggingface": "CohereLabs/command-a-plus-05-2026-bf16"
+      },
+      "released": "2026-05-20",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-bf16",
+      "current": true
+    },
+    {
       "uri": "model:cohere/text/light-weights:1",
       "native": {
         "cohere": "tiny-aya-global",
@@ -1650,6 +1686,17 @@
       "license": "MIT",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "current": true
+    },
+    {
+      "uri": "model:deepseek/text/core-ocr-open:2",
+      "native": {
+        "huggingface": "deepseek-ai/DeepSeek-OCR-2"
+      },
+      "released": "2026-01-27",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2",
       "current": true
     },
     {
@@ -2323,6 +2370,30 @@
       "current": false
     },
     {
+      "uri": "model:google/text/ultra-weights/27b:2",
+      "native": {
+        "openrouter": "google/gemma-2-27b-it",
+        "huggingface": "google/gemma-2-27b-it"
+      },
+      "released": "2024-07-13",
+      "license": "Gemma Terms of Use",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/google/gemma-2-27b-it",
+      "current": false
+    },
+    {
+      "uri": "model:ibm/text/light-open:4.2",
+      "native": {
+        "openrouter": "ibm-granite/granite-4.2-8b",
+        "huggingface": "ibm-granite/granite-4.2-8b"
+      },
+      "released": "2026-08-25",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+      "current": true
+    },
+    {
       "uri": "model:ibm/text/core-open:4.0",
       "native": {
         "huggingface": "ibm-granite/granite-4.0-h-small"
@@ -2342,7 +2413,7 @@
       "license": "Apache-2.0",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
-      "current": true
+      "current": false
     },
     {
       "uri": "model:inception/text/core:3",
@@ -2400,6 +2471,20 @@
       "current": true
     },
     {
+      "uri": "model:inclusionai/text/core-open:3.1",
+      "native": {
+        "inclusionai": "Ling-3.1-flash",
+        "openrouter": "inclusionai/ling-3.1-flash",
+        "vercel": "inclusionai/ling-3.1-flash",
+        "huggingface": "inclusionAI/Ling-3.1-flash"
+      },
+      "released": "2026-09-29",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+      "current": true
+    },
+    {
       "uri": "model:inclusionai/text/core-medical:3.0",
       "native": {
         "vercel": "inclusionai/ling-3.0-flash-sante"
@@ -2446,7 +2531,7 @@
       "license": "MIT",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
-      "current": true
+      "current": false
     },
     {
       "uri": "model:inference-net/text/core:2",
@@ -2539,6 +2624,18 @@
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/meituan/longcat-2.5-preview.toml",
       "current": false
+    },
+    {
+      "uri": "model:meituan/text/core-open:2.0",
+      "native": {
+        "meituan": "LongCat-2.0",
+        "huggingface": "meituan-longcat/LongCat-2.0"
+      },
+      "released": "2026-06-30",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/meituan-longcat/LongCat-2.0",
+      "current": true
     },
     {
       "uri": "model:meragpt/text/core:1",
@@ -2880,6 +2977,17 @@
       "current": true
     },
     {
+      "uri": "model:microsoft/text/light-open:4",
+      "native": {
+        "huggingface": "microsoft/Phi-4-mini-instruct"
+      },
+      "released": "2025-02-26",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "current": true
+    },
+    {
       "uri": "model:minimax/text/light-weights:3.1",
       "native": {
         "minimax": "MiniMax-M3.1-Flash",
@@ -3201,6 +3309,19 @@
       "current": false
     },
     {
+      "uri": "model:mistral/text/core-open/24b:3",
+      "native": {
+        "openrouter": "mistralai/mistral-small-24b-instruct-2501",
+        "deepinfra": "mistralai/Mistral-Small-24B-Instruct-2501",
+        "huggingface": "mistralai/Mistral-Small-24B-Instruct-2501"
+      },
+      "released": "2025-01-30",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501",
+      "current": false
+    },
+    {
       "uri": "model:mistral/text/ultra-weights:2.1",
       "native": {
         "huggingface": "mistralai/Mistral-Large-Instruct-2411"
@@ -3343,6 +3464,25 @@
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.8-preview.toml",
       "current": true
+    },
+    {
+      "uri": "model:moonshotai/text/ultra-weights:3",
+      "native": {
+        "moonshotai": "kimi-k3",
+        "bedrock": "global.moonshotai.kimi-k3",
+        "openrouter": "moonshotai/kimi-k3",
+        "vercel": "moonshotai/kimi-k3",
+        "huggingface": "moonshotai/Kimi-K3",
+        "deepinfra": "moonshotai/Kimi-K3",
+        "together": "moonshotai/Kimi-K3",
+        "fireworks": "accounts/fireworks/models/kimi-k3",
+        "ollama": "kimi-k3"
+      },
+      "released": "2026-07-16",
+      "license": "Kimi K3 License",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/moonshotai/Kimi-K3",
+      "current": false
     },
     {
       "uri": "model:moonshotai/text/core-code-weights:2.7",
@@ -3491,6 +3631,130 @@
       "current": true
     },
     {
+      "uri": "model:nvidia/text/core-weights:3.5",
+      "native": {
+        "nvidia": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "openrouter": "nvidia/nemotron-3.5-super-vl",
+        "vercel": "nvidia/nemotron-3.5-super-vl",
+        "together": "nvidia/NVIDIA-Nemotron-3.5-Super-VL",
+        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16"
+      },
+      "released": "2026-10-15",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/light-weights:3.5",
+      "native": {
+        "nvidia": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "openrouter": "nvidia/nemotron-3.5-lightning",
+        "vercel": "nvidia/nemotron-3.5-lightning",
+        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16"
+      },
+      "released": "2026-08-11",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/ultra-weights:3",
+      "native": {
+        "nvidia": "nvidia/nemotron-3-ultra-550b-a55b",
+        "openrouter": "nvidia/nemotron-3-ultra-550b-a55b",
+        "vercel": "nvidia/nemotron-3-ultra-550b-a55b",
+        "together": "nvidia/nemotron-3-ultra-550b-a55b",
+        "ollama": "nemotron-3-ultra",
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16"
+      },
+      "released": "2026-06-04",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/core-guard-weights:3.5",
+      "native": {
+        "nvidia": "nvidia/nemotron-3.5-content-safety",
+        "openrouter": "nvidia/nemotron-3.5-content-safety",
+        "huggingface": "nvidia/Nemotron-3.5-Content-Safety"
+      },
+      "released": "2026-06-02",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/core-guard-weights:3",
+      "native": {
+        "huggingface": "nvidia/Nemotron-3-Content-Safety"
+      },
+      "released": "2026-03-16",
+      "license": "NVIDIA Nemotron Open Model License",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-3-Content-Safety",
+      "current": false
+    },
+    {
+      "uri": "model:nvidia/text/core-weights:3",
+      "native": {
+        "bedrock": "nvidia.nemotron-super-3-120b",
+        "openrouter": "nvidia/nemotron-3-super-120b-a12b",
+        "vercel": "nvidia/nemotron-3-super-120b-a12b",
+        "ollama": "nemotron-3-super",
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+      },
+      "released": "2026-03-11",
+      "license": "NVIDIA Nemotron Open Model License",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+      "current": false
+    },
+    {
+      "uri": "model:nvidia/rerank/core-weights:2",
+      "native": {
+        "nvidia": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+        "huggingface": "nvidia/llama-nemotron-rerank-vl-1b-v2"
+      },
+      "released": "2025-12-18",
+      "license": "NVIDIA Open Model License Agreement",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/llama-nemotron-rerank-vl-1b-v2",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/light-weights:3",
+      "native": {
+        "bedrock": "nvidia.nemotron-nano-3-30b",
+        "openrouter": "nvidia/nemotron-3-nano-30b-a3b",
+        "deepinfra": "nvidia/Nemotron-3-Nano-30B-A3B",
+        "ollama": "nemotron-3-nano:30b",
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
+      },
+      "released": "2025-12-15",
+      "license": "NVIDIA Nemotron Open Model License",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "current": false
+    },
+    {
+      "uri": "model:nvidia/text/light-weights/12b:2",
+      "native": {
+        "bedrock": "nvidia.nemotron-nano-12b-v2",
+        "vercel": "nvidia/nemotron-nano-12b-v2-vl",
+        "huggingface": "nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16"
+      },
+      "released": "2025-10-28",
+      "license": "NVIDIA Open Model License Agreement",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-BF16",
+      "current": true
+    },
+    {
       "uri": "model:nvidia/embed/core-weights/1b:2",
       "native": {
         "huggingface": "nvidia/llama-nemotron-embed-1b-v2"
@@ -3499,6 +3763,30 @@
       "license": "NVIDIA Open Model License Agreement",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/nvidia/llama-nemotron-embed-1b-v2",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/light-weights/9b:2",
+      "native": {
+        "bedrock": "nvidia.nemotron-nano-9b-v2",
+        "vercel": "nvidia/nemotron-nano-9b-v2",
+        "huggingface": "nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+      },
+      "released": "2025-08-18",
+      "license": "NVIDIA Open Model License Agreement",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "current": true
+    },
+    {
+      "uri": "model:nvidia/text/nano-weights:1",
+      "native": {
+        "huggingface": "nvidia/Nemotron-Mini-4B-Instruct"
+      },
+      "released": "2024-08-21",
+      "license": "NVIDIA Open Model License Agreement",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/nvidia/Nemotron-Mini-4B-Instruct",
       "current": true
     },
     {
@@ -4182,6 +4470,18 @@
       "current": false
     },
     {
+      "uri": "model:openai/transcribe/core-open/809m:3",
+      "native": {
+        "groq": "whisper-large-v3-turbo",
+        "huggingface": "openai/whisper-large-v3-turbo"
+      },
+      "released": "2024-10-01",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/openai/whisper-large-v3-turbo",
+      "current": true
+    },
+    {
       "uri": "model:openai/text/light:4o",
       "native": {
         "openai": "gpt-4o-mini",
@@ -4230,6 +4530,18 @@
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-4-turbo.toml",
       "current": false
+    },
+    {
+      "uri": "model:openai/transcribe/core-open/1.55b:3",
+      "native": {
+        "groq": "whisper-large-v3",
+        "huggingface": "openai/whisper-large-v3"
+      },
+      "released": "2023-11-06",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/openai/whisper-large-v3",
+      "current": true
     },
     {
       "uri": "model:openai/text/core:3.5",
@@ -4364,6 +4676,53 @@
       "current": true
     },
     {
+      "uri": "model:poolside/text/core-code-weights:2.1",
+      "native": {
+        "poolside": "poolside/laguna-s-2.1",
+        "huggingface": "poolside/Laguna-S-2.1"
+      },
+      "released": "2026-07-21",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/poolside/Laguna-S-2.1",
+      "current": true
+    },
+    {
+      "uri": "model:poolside/text/light-code-weights:2.1",
+      "native": {
+        "poolside": "poolside/laguna-xs-2.1",
+        "huggingface": "poolside/Laguna-XS-2.1"
+      },
+      "released": "2026-07-02",
+      "license": "OpenMDW-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/poolside/Laguna-XS-2.1",
+      "current": true
+    },
+    {
+      "uri": "model:poolside/text/light-code-open:2",
+      "native": {
+        "huggingface": "poolside/Laguna-XS.2"
+      },
+      "released": "2026-04-28",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/poolside/Laguna-XS.2",
+      "current": true
+    },
+    {
+      "uri": "model:poolside/text/ultra-code-open:1",
+      "native": {
+        "poolside": "poolside/laguna-m.1",
+        "huggingface": "poolside/Laguna-M.1"
+      },
+      "released": "2026-04-28",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/poolside/Laguna-M.1",
+      "current": true
+    },
+    {
       "uri": "model:quiverai/image/core:2",
       "native": {
         "vercel": "quiverai/arrow-2"
@@ -4410,6 +4769,30 @@
       "license": "Apache-2.0",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "current": true
+    },
+    {
+      "uri": "model:rekaai/text/light-weights:2603",
+      "native": {
+        "openrouter": "rekaai/reka-edge",
+        "huggingface": "RekaAI/reka-edge-2603"
+      },
+      "released": "2026-03-11",
+      "license": "BUSL-1.1",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/RekaAI/reka-edge-2603",
+      "current": true
+    },
+    {
+      "uri": "model:rekaai/text/core-open:3",
+      "native": {
+        "openrouter": "rekaai/reka-flash-3",
+        "huggingface": "RekaAI/reka-flash-3"
+      },
+      "released": "2025-03-10",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/RekaAI/reka-flash-3",
       "current": true
     },
     {
@@ -4519,6 +4902,18 @@
       "current": false
     },
     {
+      "uri": "model:sarvam/text/ultra-open:1",
+      "native": {
+        "sarvam": "sarvam-105b",
+        "huggingface": "sarvamai/sarvam-105b"
+      },
+      "released": "2026-02-18",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/sarvamai/sarvam-105b",
+      "current": true
+    },
+    {
       "uri": "model:stepfun/text/light-open:3.7",
       "native": {
         "stepfun": "step-3.7-flash",
@@ -4621,6 +5016,21 @@
       "current": true
     },
     {
+      "uri": "model:tencent/text/core-open:4preview",
+      "native": {
+        "tencent": "hy4-preview",
+        "openrouter": "tencent/hy4-preview",
+        "vercel": "tencent/hy4-preview",
+        "huggingface": "tencent/Hy4-preview",
+        "deepinfra": "tencent/Hy4-preview"
+      },
+      "released": "2026-08-28",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/tencent/Hy4-preview",
+      "current": false
+    },
+    {
       "uri": "model:tencent/text/core-open:3",
       "native": {
         "tencent": "hy3",
@@ -4633,6 +5043,42 @@
       "license": "Apache-2.0",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/tencent/Hy3",
+      "current": true
+    },
+    {
+      "uri": "model:tencent/text/core-translate-open/1.8b:2",
+      "native": {
+        "openrouter": "tencent/hy-mt2-1.8b",
+        "huggingface": "tencent/Hy-MT2-1.8B"
+      },
+      "released": "2026-05-21",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/tencent/Hy-MT2-1.8B",
+      "current": true
+    },
+    {
+      "uri": "model:tencent/text/core-translate-open/30b-a3b:2",
+      "native": {
+        "openrouter": "tencent/hy-mt2-30b-a3b",
+        "huggingface": "tencent/Hy-MT2-30B-A3B"
+      },
+      "released": "2026-05-21",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/tencent/Hy-MT2-30B-A3B",
+      "current": true
+    },
+    {
+      "uri": "model:tencent/text/core-translate-open/7b:2",
+      "native": {
+        "openrouter": "tencent/hy-mt2-7b",
+        "huggingface": "tencent/Hy-MT2-7B"
+      },
+      "released": "2026-05-21",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/tencent/Hy-MT2-7B",
       "current": true
     },
     {
