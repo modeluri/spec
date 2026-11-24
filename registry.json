@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-22",
+  "updated": "2026-11-24",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
   "specials": {
@@ -94,7 +94,8 @@
       "native": {
         "openrouter": "qwen/qwen4-max",
         "vercel": "alibaba/qwen4-max",
-        "deepinfra": "Qwen/Qwen4-Max"
+        "deepinfra": "Qwen/Qwen4-Max",
+        "together": "Qwen/Qwen4-Max"
       },
       "released": "2026-11-16",
       "license": "proprietary",
@@ -2148,7 +2149,7 @@
     {
       "uri": "model:google/text/core-gui:2.5",
       "native": {
-        "google": "gemini-2.5-computer-use-preview-10-2025"
+        "mergegateway": "google/gemini-2.5-computer-use-preview-10-2025"
       },
       "released": "2025-10-07",
       "license": "proprietary",
@@ -2520,7 +2521,7 @@
     {
       "uri": "model:meituan/text/core:2.5",
       "native": {
-        "opencode": "longcat-2.5-free"
+        "meituan": "LongCat-2.5"
       },
       "released": "2026-11-02",
       "license": "proprietary",
@@ -2607,6 +2608,7 @@
       "native": {
         "openrouter": "meta/muse-glimmer-30b",
         "vercel": "meta/muse-glimmer-30b",
+        "together": "meta-models/Muse-Glimmer-30B",
         "huggingface": "meta-models/Muse-Glimmer-30B"
       },
       "released": "2026-08-10",
@@ -2884,6 +2886,7 @@
         "openrouter": "minimax/minimax-m3.1-flash",
         "vercel": "minimax/minimax-m3.1-flash",
         "huggingface": "MiniMaxAI/MiniMax-M3.1-Flash",
+        "together": "MiniMaxAI/MiniMax-M3.1-Flash",
         "fireworks": "accounts/fireworks/models/minimax-m3p1-flash",
         "ollama": "minimax-m3.1-flash"
       },
@@ -3144,7 +3147,6 @@
     {
       "uri": "model:mistral/text/core-open/24b:3.2",
       "native": {
-        "mistral": "mistral-small-2506",
         "huggingface": "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
       },
       "released": "2025-06-20",
@@ -3223,7 +3225,6 @@
     {
       "uri": "model:mistral/text/light-open/12b:2409",
       "native": {
-        "mistral": "pixtral-12b",
         "huggingface": "mistralai/Pixtral-12B-2409"
       },
       "released": "2024-09-11",
@@ -3662,18 +3663,6 @@
       "current": false
     },
     {
-      "uri": "model:openai/omni/core-rt:2.1",
-      "native": {
-        "openai": "gpt-realtime-2.1",
-        "vercel": "openai/gpt-realtime-2.1"
-      },
-      "released": "2026-07-06",
-      "license": "proprietary",
-      "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-realtime-2.1.toml",
-      "current": true
-    },
-    {
       "uri": "model:openai/transcribe/core-rt:1",
       "native": {
         "vercel": "openai/gpt-realtime-whisper"
@@ -4108,7 +4097,6 @@
     {
       "uri": "model:openai/text/light:o4",
       "native": {
-        "openai": "o4-mini",
         "azure": "o4-mini",
         "vercel": "openai/o4-mini"
       },
@@ -4149,7 +4137,6 @@
     {
       "uri": "model:openai/text/nano:4.1",
       "native": {
-        "openai": "gpt-4.1-nano",
         "azure": "gpt-4.1-nano",
         "openrouter": "openai/gpt-4.1-nano",
         "vercel": "openai/gpt-4.1-nano"
@@ -4163,7 +4150,7 @@
     {
       "uri": "model:openai/text/ultra:o1",
       "native": {
-        "openai": "o1-pro"
+        "poe": "openai/o1-pro"
       },
       "released": "2025-03-19",
       "license": "proprietary",
@@ -4174,7 +4161,6 @@
     {
       "uri": "model:openai/text/light:o3",
       "native": {
-        "openai": "o3-mini",
         "azure": "o3-mini",
         "vercel": "openai/o3-mini"
       },
@@ -4187,7 +4173,6 @@
     {
       "uri": "model:openai/text/core:o1",
       "native": {
-        "openai": "o1",
         "vercel": "openai/o1"
       },
       "released": "2024-12-05",
@@ -4227,7 +4212,6 @@
     {
       "uri": "model:openai/text/core:4",
       "native": {
-        "openai": "gpt-4",
         "openrouter": "openai/gpt-4"
       },
       "released": "2023-11-06",
@@ -4239,7 +4223,6 @@
     {
       "uri": "model:openai/text/light:4",
       "native": {
-        "openai": "gpt-4-turbo",
         "azure": "gpt-4-turbo"
       },
       "released": "2023-11-06",
@@ -4251,7 +4234,7 @@
     {
       "uri": "model:openai/text/core:3.5",
       "native": {
-        "openai": "gpt-3.5-turbo"
+        "impossibl": "openai/gpt-3.5-turbo"
       },
       "released": "2023-03-01",
       "license": "proprietary",
@@ -4611,7 +4594,8 @@
       "native": {
         "openrouter": "tencent/hy4-flash",
         "vercel": "tencent/hy4-flash",
-        "huggingface": "tencent/Hy4-flash"
+        "huggingface": "tencent/Hy4-flash",
+        "deepinfra": "tencent/Hy4-flash"
       },
       "released": "2026-11-16",
       "license": "proprietary",
@@ -4626,7 +4610,9 @@
         "openrouter": "tencent/hy4",
         "vercel": "tencent/hy4",
         "huggingface": "tencent/Hy4",
-        "deepinfra": "tencent/Hy4"
+        "deepinfra": "tencent/Hy4",
+        "together": "tencent/Hy4",
+        "ollama": "hy4"
       },
       "released": "2026-11-04",
       "license": "proprietary",
@@ -4650,12 +4636,25 @@
       "current": true
     },
     {
+      "uri": "model:thinkingmachines/text/light-open/26.4b-a3.4b:2",
+      "native": {
+        "openrouter": "thinkingmachines/inkling-2-mini",
+        "huggingface": "thinkingmachines/Inkling-2-Mini"
+      },
+      "released": "2026-11-20",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://thinkingmachines.ai/model-card/inkling-2-mini/",
+      "current": true
+    },
+    {
       "uri": "model:thinkingmachines/text/core-open/594b-a17b:2",
       "native": {
         "openrouter": "thinkingmachines/inkling-2-small",
         "vercel": "thinkingmachines/inkling-2-small",
         "huggingface": "thinkingmachines/Inkling-2-Small",
         "deepinfra": "thinkingmachines/Inkling-2-Small",
+        "together": "thinkingmachines/Inkling-2-Small",
         "ollama": "inkling-2-small"
       },
       "released": "2026-11-05",
@@ -4829,6 +4828,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/vivgrid/viv-fast.toml",
+      "current": true
+    },
+    {
+      "uri": "model:writer/text/light:1",
+      "native": {
+        "bedrock": "writer.palmyra-vision-7b"
+      },
+      "released": "2026-03-26",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/writer/palmyra-vision-7b.toml",
       "current": true
     },
     {
@@ -5101,7 +5111,6 @@
       "uri": "model:xiaomi/text/high-open:2.5",
       "native": {
         "xiaomi": "mimo-v2.5-pro",
-        "openrouter": "xiaomi/mimo-v2.5-pro",
         "huggingface": "XiaomiMiMo/MiMo-V2.5-Pro",
         "deepinfra": "XiaomiMiMo/MiMo-V2.5-Pro"
       },
@@ -5176,6 +5185,17 @@
       "tier_source": "registry",
       "evidence": "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash",
       "current": false
+    },
+    {
+      "uri": "model:zhipuai/text/ultra:5.4",
+      "native": {
+        "zaicodingplan": "glm-5.4"
+      },
+      "released": "2026-11-23",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/zhipuai/glm-5.4.toml",
+      "current": true
     },
     {
       "uri": "model:zhipuai/text/light-open:5.3",

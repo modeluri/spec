@@ -2281,14 +2281,6 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
-    "id": "openai/gpt-realtime-2.1",
-    "uri": "model:openai/omni/core-rt:2.1",
-    "license": "proprietary",
-    "tier_source": "registry",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-realtime-2.1.toml",
-    "current": true
-  },
-  {
     "id": "openai/gpt-5-codex",
     "uri": "model:openai/text/core-code:5",
     "license": "proprietary",
@@ -2977,6 +2969,14 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "thinkingmachines/inkling-2-mini",
+    "uri": "model:thinkingmachines/text/light-open/26.4b-a3.4b:2",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://thinkingmachines.ai/model-card/inkling-2-mini/",
+    "current": true
+  },
+  {
     "id": "thinkingmachines/inkling",
     "uri": "model:thinkingmachines/text/ultra-open/975b-a41b:1",
     "license": "Apache-2.0",
@@ -3094,6 +3094,14 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/writer/palmyra-x5.toml",
+    "current": true
+  },
+  {
+    "id": "writer/palmyra-vision-7b",
+    "uri": "model:writer/text/light:1",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/writer/palmyra-vision-7b.toml",
     "current": true
   },
   {
@@ -3414,6 +3422,14 @@ export const CLASSIFICATION = [
     "license": "GLM-5.3 License",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-5.3",
+    "current": true
+  },
+  {
+    "id": "zhipuai/glm-5.4",
+    "uri": "model:zhipuai/text/ultra:5.4",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/zhipuai/glm-5.4.toml",
     "current": true
   },
   {
@@ -4493,14 +4509,6 @@ export const INCOMPATIBLE = [
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-105b.toml"
   },
   {
-    "id": "sarvam/sarvam-30b",
-    "publisher": "sarvam",
-    "name": "Sarvam 30B",
-    "reason": "missing-evidence",
-    "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-30b.toml"
-  },
-  {
     "id": "sdaia/allam-2-7b",
     "publisher": "sdaia",
     "name": "ALLaM-2-7b",
@@ -4598,6 +4606,15 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:xai/text/core:4.20",
     "detail": "Non-reasoning toggle variant of Grok 4.20 (`0309`), which is a request parameter rather than a separate model URI.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4.20-0309-non-reasoning.toml"
+  },
+  {
+    "id": "xai/grok-4.20-multi-agent-0309",
+    "publisher": "xai",
+    "name": "Grok 4.20 Multi-Agent",
+    "reason": "parameter-split",
+    "conflicts_with": "model:xai/text/core:4.20",
+    "detail": "Multi-agent parallel execution variant of Grok 4.20 (0309) at identical pricing ($1.25/$2.50), exposed as a separate model ID rather than a request/orchestration mode.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/xai/grok-4.20-multi-agent-0309.toml"
   },
   {
     "id": "xiaomi/mimo-v2.5-pro-ultraspeed",
@@ -4968,6 +4985,11 @@ export const SKIPPED = [
     "detail": "Dated snapshot duplicate of openai/gpt-4o."
   },
   {
+    "id": "paperinstruments/ultramarine-1-flash",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party RL fine-tune by Paper Instruments built on Zhipu AI's GLM-5.3 Flash weights."
+  },
+  {
     "id": "openai/gpt-6-cyber",
     "skip_reason": "restricted-not-on-sale",
     "detail": "Restricted GPT-6 Cyber model with zero providers on sale (provider_count: 0)."
@@ -4991,11 +5013,6 @@ export const SKIPPED = [
     "id": "sao10k/l3.3-euryale-70b",
     "skip_reason": "third-party-derivation",
     "detail": "Third-party fine-tune/merge of Meta's Llama 3.3 70B."
-  },
-  {
-    "id": "sarvam/sarvam-m",
-    "skip_reason": "third-party-derivation",
-    "detail": "Third-party multilingual fine-tune built on Mistral Small weights."
   },
   {
     "id": "stepfun/step-3.5-flash-2603",

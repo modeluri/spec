@@ -389,7 +389,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Cohere North Small Translate 1.0 | `model:cohere/text/light-translate-weights:1.0` | Dedicated translation (`translate`), non-commercial licence (`weights`) |
 | Gemini 3.5 Live Translate Preview | `model:google/omni/core-translate:3.5` | Live speech translation (`omni` + `translate`) |
 | Gemini Deep Research Preview | `model:google/text/core-research:2026.04` | Autonomous deep research (`research`) |
-| Gemini 2.5 Computer Use | `model:google/text/core-gui:2.5` | GUI and computer control (`gui`) |
+| Gemini 2.5 Computer Use | `model:google/text/core-gui:2.5@mergegateway` | GUI and computer control (`gui`) |
 | Gemini Robotics-ER 1.6 | `model:google/text/core-robotics:1.6@orcarouter` | Embodied robotics (`robotics`) |
 | Baichuan M2, 32B | `model:baichuan/text/core-medical-open/32b:2@local` | Medical domain (`medical`) |
 | Ling 3.0 Flash Fin | `model:inclusionai/text/core-finance-open:3.0@local` | Finance domain (`finance`) |
@@ -406,7 +406,7 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | MiMo-V2.5-TTS VoiceClone | `model:xiaomi/tts/core-voiceclone:2.5` | Voice cloning (`tts` + `voiceclone`) |
 | MiMo-V2.5-TTS VoiceDesign | `model:xiaomi/tts/core-voicedesign:2.5` | A voice generated from a text description (`tts` + `voicedesign`) |
 | Lyria 3 Pro Preview | `model:google/audio/core:3` | Non-speech audio and music (`audio`) |
-| GPT Realtime 2.1 | `model:openai/omni/core-rt:2.1` | Real-time duplex voice (`omni` + `-rt`) |
+| Gemini 3.1 Flash Live Preview | `model:google/omni/core-rt:3.1` | Real-time duplex voice (`omni` + `-rt`) |
 | Jev 1.14 | `model:typesafe/decision/core:1.14.0@openrouter` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
 

@@ -248,14 +248,6 @@ model_list:
     litellm_params:
       model: "gemini/gemini-3-flash-preview"
       api_key: os.environ/GEMINI_API_KEY
-  - model_name: "model:google/text/core-gui"
-    litellm_params:
-      model: "gemini/gemini-2.5-computer-use-preview-10-2025"
-      api_key: os.environ/GEMINI_API_KEY
-  - model_name: "model:google/text/core-gui:2.5"
-    litellm_params:
-      model: "gemini/gemini-2.5-computer-use-preview-10-2025"
-      api_key: os.environ/GEMINI_API_KEY
   - model_name: "model:google/image/core:2.5"
     litellm_params:
       model: "gemini/gemini-2.5-flash-image"
@@ -340,14 +332,6 @@ model_list:
     litellm_params:
       model: "openai/gpt-5.6-sol"
       api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/omni/core-rt"
-    litellm_params:
-      model: "openai/gpt-realtime-2.1"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/omni/core-rt:2.1"
-    litellm_params:
-      model: "openai/gpt-realtime-2.1"
-      api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/core:5.5"
     litellm_params:
       model: "openai/gpt-5.5"
@@ -424,10 +408,6 @@ model_list:
     litellm_params:
       model: "openai/o3"
       api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/light:o4"
-    litellm_params:
-      model: "openai/o4-mini"
-      api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/core:4.1"
     litellm_params:
       model: "openai/gpt-4.1"
@@ -436,22 +416,6 @@ model_list:
     litellm_params:
       model: "openai/gpt-4.1-mini"
       api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/nano:4.1"
-    litellm_params:
-      model: "openai/gpt-4.1-nano"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/ultra:o1"
-    litellm_params:
-      model: "openai/o1-pro"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/light:o3"
-    litellm_params:
-      model: "openai/o3-mini"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/core:o1"
-    litellm_params:
-      model: "openai/o1"
-      api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:openai/text/light:4o"
     litellm_params:
       model: "openai/gpt-4o-mini"
@@ -459,18 +423,6 @@ model_list:
   - model_name: "model:openai/text/core:4o"
     litellm_params:
       model: "openai/gpt-4o"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/core:4"
-    litellm_params:
-      model: "openai/gpt-4"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/light:4"
-    litellm_params:
-      model: "openai/gpt-4-turbo"
-      api_key: os.environ/OPENAI_API_KEY
-  - model_name: "model:openai/text/core:3.5"
-    litellm_params:
-      model: "openai/gpt-3.5-turbo"
       api_key: os.environ/OPENAI_API_KEY
   - model_name: "model:xai/video/light"
     litellm_params:

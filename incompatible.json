@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-22",
+  "updated": "2026-11-24",
   "license": "CC0-1.0",
   "note": "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.2.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
   "entries": [
@@ -1062,14 +1062,6 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-105b.toml"
     },
     {
-      "id": "sarvam/sarvam-30b",
-      "publisher": "sarvam",
-      "name": "Sarvam 30B",
-      "reason": "missing-evidence",
-      "detail": "Marked open_weights=true in models.dev, but raw_license and hf_license are absent (normalized_license is null).",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/sarvam/sarvam-30b.toml"
-    },
-    {
       "id": "sdaia/allam-2-7b",
       "publisher": "sdaia",
       "name": "ALLaM-2-7b",
@@ -1167,6 +1159,15 @@
       "conflicts_with": "model:xai/text/core:4.20",
       "detail": "Non-reasoning toggle variant of Grok 4.20 (`0309`), which is a request parameter rather than a separate model URI.",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4.20-0309-non-reasoning.toml"
+    },
+    {
+      "id": "xai/grok-4.20-multi-agent-0309",
+      "publisher": "xai",
+      "name": "Grok 4.20 Multi-Agent",
+      "reason": "parameter-split",
+      "conflicts_with": "model:xai/text/core:4.20",
+      "detail": "Multi-agent parallel execution variant of Grok 4.20 (0309) at identical pricing ($1.25/$2.50), exposed as a separate model ID rather than a request/orchestration mode.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/2548b4583cce12f2bb3ec91f008472680310ff2e/models/xai/grok-4.20-multi-agent-0309.toml"
     },
     {
       "id": "xiaomi/mimo-v2.5-pro-ultraspeed",
