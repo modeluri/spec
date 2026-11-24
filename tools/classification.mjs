@@ -4013,8 +4013,8 @@ export const INCOMPATIBLE = [
     "publisher": "mistral",
     "name": "Ministral 3B",
     "reason": "missing-evidence",
-    "detail": "Marked open_weights=true with no verifiable licence, no weights URL, and no active native host.",
-    "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/ministral-3b.toml"
+    "detail": "Closed in models.dev (open_weights=false) with no first-party listing: only one third-party gateway (kilo) lists it, so no price list or model card supports a tier.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/d43f0a24289c13545a2f71ecd47d39027d5f6e30/models/mistral/ministral-3b.toml"
   },
   {
     "id": "mistral/mistral-large-latest",
