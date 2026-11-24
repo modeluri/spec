@@ -77,7 +77,7 @@ for (const entry of regList) {
   if (!parsed?.version) {
     errors.push(`[registry] URI must be pinned with a version: ${entry.uri}`);
   }
-  if (model && parsed.publisher !== model.publisher) {
+  if (model && parsed && parsed.publisher !== model.publisher) {
     errors.push(`[registry] publisher mismatch on ${entry.id}: expected ${model.publisher}, got ${parsed.publisher}`);
   }
   if (seenUris.has(entry.uri)) {

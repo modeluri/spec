@@ -42,7 +42,8 @@ if (!catalog?.models || !catalog?.providers) {
 }
 
 if (fetchMode) {
-  await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog) + "\n");
+  // One value per line, so a snapshot refresh is a reviewable diff.
+  await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog, null, 1) + "\n");
   // shortcut: the HEAD of the default branch at fetch time, which can be a few minutes ahead of the deployed catalogue.
   const head = await fetch("https://api.github.com/repos/anomalyco/models.dev/commits/HEAD").then((r) => (r.ok ? r.json() : null)).catch(() => null);
   if (!head?.sha) console.warn("warning: could not read the models.dev commit; links will point to HEAD");
@@ -119,7 +120,7 @@ const entries = CLASSIFICATION.map((item) => {
     if (hostKeys.length || item.current) throw new Error(`[registry] former_native on ${item.id} is only for a withdrawn release with no native host`);
     if (!fn || typeof fn !== "object" || !Object.keys(fn).length) throw new Error(`[registry] former_native on ${item.id} must map hosts to IDs`);
     for (const [k, v] of Object.entries(fn)) {
-      if (!/^[a-z][a-z0-9-]*$/.test(k) || typeof v !== "string" || !v) throw new Error(`[registry] invalid former_native on ${item.id}: ${k}`);
+      if (!/^[a-z][a-z0-9-]*$/.test(k) || typeof v !== "string" || !/^[\x21-\x7e]{1,256}$/.test(v)) throw new Error(`[registry] invalid former_native on ${item.id}: ${k}`);
     }
   }
   for (const k of hostKeys) {
@@ -160,6 +161,13 @@ const incompatibleEntries = INCOMPATIBLE.map((item) => {
   const catalogPub = item.id.split("/")[0];
   if (item.publisher !== catalogPub) {
     throw new Error(`[incompatible] publisher mismatch on ${item.id}: expected ${catalogPub}, got ${item.publisher}`);
+  }
+  // Like native IDs, these end up in agent context: printable ASCII only.
+  if (!/^[\x21-\x7e]{1,256}$/.test(item.id)) throw new Error(`[incompatible] invalid id: ${JSON.stringify(item.id)}`);
+  for (const k of ["name", "detail"]) {
+    if (item[k] !== undefined && (typeof item[k] !== "string" || !/^[\x20-\x7e]*$/.test(item[k]))) {
+      throw new Error(`[incompatible] non-printable ${k} on ${item.id}`);
+    }
   }
   if (!INCOMPATIBLE_REASONS.has(item.reason)) {
     throw new Error(`[incompatible] invalid reason on ${item.id}: ${item.reason}`);
