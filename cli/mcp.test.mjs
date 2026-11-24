@@ -2,6 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { SUPPORTED_PROTOCOLS, checkHttpHeaders, createMcpHandler } from "./mcp-core.mjs";
 
 const read = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), "utf8"));
@@ -187,6 +188,12 @@ test("HTTP header checks for 2026-07-28 and batches", () => {
   const legacy = { jsonrpc: "2.0", id: 1, method: "tools/list" };
   assert.equal(checkHttpHeaders(legacy, h({})), null);
   assert.equal(checkHttpHeaders(legacy, h({ "MCP-Protocol-Version": "2025-11-25" })), null);
+  // Optional for them, but a sent Mcp-Method/Mcp-Name must not contradict the body.
+  assert.equal(checkHttpHeaders(legacy, h({ "Mcp-Method": "tools/list" })), null);
+  assert.equal(checkHttpHeaders(legacy, h({ "Mcp-Method": "tools/call" })).error.code, -32020);
+  const legacyCall = { jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "list_models" } };
+  assert.equal(checkHttpHeaders(legacyCall, h({ "Mcp-Name": "list_models" })), null);
+  assert.equal(checkHttpHeaders(legacyCall, h({ "Mcp-Name": "validate_model_uri" })).error.code, -32020);
   assert.equal(checkHttpHeaders([legacy], h({})), null);
   assert.equal(checkHttpHeaders([legacy], h({ "MCP-Protocol-Version": "2025-06-18" })).error.code, -32600);
   // A batch cannot smuggle a stateless message past the header mirror, nor grow without bound.
@@ -228,4 +235,28 @@ test("non-coercible JSON objects in method, tool name, resource URI, or _meta do
     ).error.code,
     -32020,
   );
+});
+
+test("an unexpected throw fails only its own message with -32603", () => {
+  const broken = { ...registry, get specials() { throw new Error("boom"); } };
+  const { handleJsonRpc: h } = createMcpHandler({ registry: broken, incompatible });
+  const read = { jsonrpc: "2.0", method: "resources/read", params: { uri: "modeluri://specials" } };
+  assert.deepEqual(h({ ...read, id: 7 }), { jsonrpc: "2.0", id: 7, error: { code: -32603, message: "Internal error" } });
+  assert.equal(h(read), null);
+  assert.ok(h({ jsonrpc: "2.0", id: 8, method: "ping" }).result);
+});
+
+test("stdio server caps message size and batch length, then keeps serving", () => {
+  const ping = (id) => ({ jsonrpc: "2.0", id, method: "ping" });
+  const input = [JSON.stringify(Array.from({ length: 17 }, (_, i) => ping(i))), "x".repeat(70000), JSON.stringify(ping(99))].join("\n") + "\n";
+  const out = spawnSync(process.execPath, [new URL("./mcp.mjs", import.meta.url).pathname], {
+    input,
+    encoding: "utf8",
+    timeout: 10000,
+    env: { ...process.env, NODE_TEST_CONTEXT: undefined }, // else the child reports to the test runner instead of stdout
+  });
+  const [batch, big, last] = out.stdout.trim().split("\n").map(JSON.parse);
+  assert.match(batch.error.message, /batch exceeds 16/);
+  assert.match(big.error.message, /exceeds 65536 bytes/);
+  assert.equal(last.id, 99);
 });

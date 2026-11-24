@@ -4,7 +4,7 @@
 // Usage: node cli/mcp.mjs [--registry <file>] [--incompatible <file>]
 import { readFile } from "node:fs/promises";
 import { createInterface } from "node:readline";
-import { createMcpHandler } from "./mcp-core.mjs";
+import { MAX_BATCH, MAX_BODY_BYTES, createMcpHandler } from "./mcp-core.mjs";
 
 const args = process.argv.slice(2);
 const take = (flag) => {
@@ -23,16 +23,20 @@ const [registry, incompatible] = await Promise.all([
 const { handleJsonRpc } = createMcpHandler({ registry, incompatible });
 
 const rl = createInterface({ input: process.stdin, crlfDelay: Infinity });
+const fail = (code, message) => process.stdout.write(JSON.stringify({ jsonrpc: "2.0", id: null, error: { code, message } }) + "\n");
+
+// Same caps as the remote Worker, so a runaway client cannot queue unbounded work.
 rl.on("line", (line) => {
   const trimmed = line.trim();
   if (!trimmed) return;
+  if (Buffer.byteLength(trimmed) > MAX_BODY_BYTES) return fail(-32600, `Message exceeds ${MAX_BODY_BYTES} bytes`);
   let parsed;
   try {
     parsed = JSON.parse(trimmed);
   } catch {
-    process.stdout.write(JSON.stringify({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } }) + "\n");
-    return;
+    return fail(-32700, "Parse error");
   }
+  if (Array.isArray(parsed) && parsed.length > MAX_BATCH) return fail(-32600, `JSON-RPC batch exceeds ${MAX_BATCH} messages`);
   const reply = Array.isArray(parsed)
     ? parsed.map(handleJsonRpc).filter(Boolean)
     : handleJsonRpc(parsed);

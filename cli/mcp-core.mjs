@@ -8,7 +8,9 @@ export const STATELESS_PROTOCOL = "2026-07-28";
 const INITIALIZE_PROTOCOLS = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
 export const SUPPORTED_PROTOCOLS = [STATELESS_PROTOCOL, ...INITIALIZE_PROTOCOLS];
 const META = "io.modelcontextprotocol/";
-const MAX_BATCH = 16;
+export const MAX_BATCH = 16;
+// Bounds the work one anonymous request (or stdio line) can buy before any parsing.
+export const MAX_BODY_BYTES = 64 * 1024;
 const CACHEABLE = new Set(["server/discover", "tools/list", "resources/list", "resources/read"]);
 const INSTRUCTIONS =
   "Use resolve_model_uri to turn a canonical Model URI (e.g. model:anthropic/text/core@bedrock) into a verified native model ID, lookup_native_model to check if a hardcoded model ID is current or superseded, list_models to find cross-publisher equivalents, and validate_model_uri to lint URIs.";
@@ -22,6 +24,7 @@ const show = (v) => (typeof v === "string" ? v : JSON.stringify(v));
 
 /**
  * Streamable HTTP checks of protocol 2026-07-28: the MCP-Protocol-Version, Mcp-Method and Mcp-Name headers must mirror the body.
+ * Older versions do not require Mcp-Method/Mcp-Name, but when sent they must still mirror the body.
  * Returns a JSON-RPC error reply (sent with 400) or null. `header` reads a request header by name.
  */
 export function checkHttpHeaders(msg, header) {
@@ -36,11 +39,13 @@ export function checkHttpHeaders(msg, header) {
     return msg.length > MAX_BATCH ? fail(-32600, `JSON-RPC batch exceeds ${MAX_BATCH} messages`) : null;
   }
   const bv = msg?.params?._meta?.[`${META}protocolVersion`];
-  if (hv !== STATELESS_PROTOCOL && bv !== STATELESS_PROTOCOL) return null;
-  if (hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv == null ? "(missing)" : show(bv)}`);
-  if (header("Mcp-Method") !== msg.method) return fail(-32020, `Header mismatch: Mcp-Method header does not match body method ${show(msg.method)}`);
-  const name = msg.method === "tools/call" ? msg.params?.name : msg.method === "resources/read" ? msg.params?.uri : undefined;
-  if (name !== undefined && decodeHeader(header("Mcp-Name")) !== name) return fail(-32020, "Header mismatch: Mcp-Name header does not match the body");
+  const stateless = hv === STATELESS_PROTOCOL || bv === STATELESS_PROTOCOL;
+  if (stateless && hv !== bv) return fail(-32020, `Header mismatch: MCP-Protocol-Version header ${hv ?? "(missing)"} does not match body ${bv == null ? "(missing)" : show(bv)}`);
+  const method = header("Mcp-Method");
+  if ((stateless || method != null) && method !== msg?.method) return fail(-32020, `Header mismatch: Mcp-Method header does not match body method ${show(msg?.method)}`);
+  const name = msg?.method === "tools/call" ? msg.params?.name : msg?.method === "resources/read" ? msg.params?.uri : undefined;
+  const nameHeader = header("Mcp-Name");
+  if (name !== undefined && (stateless || nameHeader != null) && decodeHeader(nameHeader) !== name) return fail(-32020, "Header mismatch: Mcp-Name header does not match the body");
   return null;
 }
 
@@ -401,6 +406,15 @@ export function createMcpHandler({ registry, incompatible = { entries: [] }, ser
   }
 
   function handleJsonRpc(msg) {
+    try {
+      return dispatch(msg);
+    } catch {
+      // Last-resort guard: an unexpected throw fails only its own message, never the batch or the stdio server.
+      return msg.id === undefined ? null : { jsonrpc: "2.0", id: msg.id, error: { code: -32603, message: "Internal error" } };
+    }
+  }
+
+  function dispatch(msg) {
     if (!msg || typeof msg !== "object" || msg.jsonrpc !== "2.0" || typeof msg.method !== "string") {
       return {
         jsonrpc: "2.0",
