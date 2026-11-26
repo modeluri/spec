@@ -37,7 +37,7 @@ BAAI/bge-m3
 
 The registry is a first seed: tiers are assigned by the rule in SPEC.md section 3.2 from the [models.dev](https://models.dev) catalogue, and none is declared by a publisher.
 
-`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs`, which builds from the models.dev snapshot committed in `tools/snapshot/` (`--fetch` refreshes the snapshot from the live catalogue, `--catalog <catalog.json>` uses another file). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix and two current models in one slot. CI runs the tests on every push and pull request, rebuilds the registry from the snapshot and fails when the committed files differ.
+`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs`, which builds from the models.dev snapshot committed in `tools/snapshot/` (`--fetch` refreshes the snapshot from the live catalogue, `--catalog <catalog.json>` uses another file). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix, entries left with no host and no `former_native`, and two current models in one slot. CI runs the tests on every push and pull request, rebuilds the registry from the snapshot and fails when the committed files differ.
 
 ## MCP server
 

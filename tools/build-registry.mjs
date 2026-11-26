@@ -5,7 +5,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { CLASSIFICATION, INCOMPATIBLE, SKIPPED, SPECIALS } from "./classification.mjs";
 import { URI_RE, parse } from "../cli/model-uri.mjs";
-import { DEFAULT_CATALOG_PATH, DEFAULT_META_PATH, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
+import { DEFAULT_CATALOG_PATH, DEFAULT_META_PATH, carryOverV2Only, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
 import { checkLicenseConsistency } from "./licenses.mjs";
 
 const OUT_REGISTRY = new URL("../registry.json", import.meta.url);
@@ -41,7 +41,15 @@ if (!catalog?.models || !catalog?.providers) {
   throw new Error("Invalid catalog format: expected { providers, models } (use catalog.json?type=all).");
 }
 
+let carriedOver = [];
 if (fetchMode) {
+  const previous = await loadCatalog(DEFAULT_CATALOG_PATH);
+  const gone = CLASSIFICATION.map((x) => x.id).filter((id) => !catalog.models[id]);
+  if (gone.length) {
+    const v2 = await (await fetch("https://models.dev/experimental/v2.0/api.json")).json();
+    carriedOver = carryOverV2Only(catalog, previous, gone, v2);
+    console.warn(`carried over from the previous snapshot (v2-only upstream): ${carriedOver.join(", ")}`);
+  }
   // One value per line, so a snapshot refresh is a reviewable diff.
   await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog, null, 1) + "\n");
   // shortcut: the HEAD of the default branch at fetch time, which can be a few minutes ahead of the deployed catalogue.
@@ -51,6 +59,7 @@ if (fetchMode) {
     source: "https://models.dev/catalog.json?type=all",
     fetched_at: new Date().toISOString().slice(0, 10),
     models_dev_commit: head?.sha || "HEAD",
+    ...(carriedOver.length && { carried_over_v2_only: carriedOver }),
   }, null, 2) + "\n");
 }
 
@@ -114,6 +123,9 @@ const entries = CLASSIFICATION.map((item) => {
   // A withdrawn release keeps its entry so its pinned URI still answers (SPEC.md section 4, rule 2); only a current model must be callable.
   if (hostKeys.length === 0 && item.current) {
     throw new Error(`[registry] ${item.id} resolved zero native hosts: if no host serves it any more, set current: false and record former_native`);
+  }
+  if (hostKeys.length === 0 && item.former_native === undefined) {
+    throw new Error(`[registry] ${item.id} resolved zero native hosts: record its last IDs in former_native`);
   }
   if (item.former_native !== undefined) {
     const fn = item.former_native;

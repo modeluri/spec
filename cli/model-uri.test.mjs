@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse, resolve, litellmAliases, URI_RE } from "./model-uri.mjs";
 import { normalizeLicense, weightsSuffixFor, checkLicenseConsistency } from "../tools/licenses.mjs";
+import { carryOverV2Only, indexProvidersByCanonical, resolveNativeHosts } from "../tools/catalog.mjs";
 
 const read = (f) => readFileSync(new URL(`../${f}`, import.meta.url), "utf8");
 const registry = JSON.parse(read("registry.json"));
@@ -408,4 +409,25 @@ test("license normalization and strict OSI boundary (-open vs -weights)", () => 
   assert.equal(checkLicenseConsistency("weights", "Apache-2.0").ok, false);
   assert.equal(checkLicenseConsistency("weights", "proprietary").ok, false);
   assert.equal(checkLicenseConsistency(undefined, "MIT").ok, false);
+});
+
+test("--fetch carries over classified models that went v2-only, and refuses ones that left v2 too", () => {
+  const lab = { name: "X", release_date: "2026-01-01" };
+  const previous = {
+    models: { "x/tts": lab, "x/gone": lab },
+    providers: { "x-plan": { name: "X plan", models: { tts: { canonical_model_id: "x/tts" }, gone: { canonical_model_id: "x/gone" } } } },
+  };
+  const v2 = { x: { models: { tts: { canonical_id: "x/tts" } } } };
+  const fresh = { models: {}, providers: {} };
+  assert.deepEqual(carryOverV2Only(fresh, previous, ["x/tts"], v2), ["x/tts"]);
+  assert.equal(fresh.models["x/tts"], lab);
+  assert.deepEqual(Object.keys(fresh.providers["x-plan"].models), ["tts"]);
+  assert.throws(() => carryOverV2Only({ models: {}, providers: {} }, previous, ["x/gone"], v2), /not in the v2 API/);
+});
+
+test("the host fallback never picks a publisher ID that is classified incompatible", () => {
+  const catalog = { models: {}, providers: { unbiased: { models: { pareto: { canonical_model_id: "unbiased/pareto-26.10" } } } } };
+  const byCanonical = indexProvidersByCanonical(catalog);
+  assert.deepEqual(resolveNativeHosts(catalog, byCanonical, "unbiased/pareto-26.10", "unbiased", new Set(["unbiased/pareto"])), {});
+  assert.deepEqual(resolveNativeHosts(catalog, byCanonical, "unbiased/pareto-26.10", "unbiased"), { unbiased: "pareto" });
 });

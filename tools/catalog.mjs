@@ -108,6 +108,36 @@ export function indexProvidersByCanonical(catalog) {
   return byCanonical;
 }
 
+/**
+ * models.dev leaves `v2_only = true` models out of catalog.json (v1). For each classified id that left
+ * `fresh` but is still served in the v2 API (`v2`, the experimental/v2.0/api.json object) under the same
+ * canonical id, copy its lab model and provider entries from `previous` into `fresh`. Returns the ids copied.
+ * shortcut: reuses the previous snapshot's v1 data, so later upstream edits to these models are missed; upgrade by reading v2 directly.
+ */
+export function carryOverV2Only(fresh, previous, ids, v2) {
+  const inV2 = new Set();
+  for (const prov of Object.values(v2 || {})) {
+    for (const m of Object.values(prov?.models || {})) if (m?.canonical_id) inV2.add(m.canonical_id);
+  }
+  const carried = [];
+  for (const id of ids) {
+    if (fresh.models[id]) continue;
+    if (!previous.models[id]) throw new Error(`[carry-over] ${id} is in neither the fresh nor the previous catalogue`);
+    if (!inV2.has(id)) throw new Error(`[carry-over] ${id} left catalog.json and is not in the v2 API either: classify it as withdrawn`);
+    fresh.models[id] = previous.models[id];
+    for (const [pid, prov] of Object.entries(previous.providers)) {
+      for (const [mid, m] of Object.entries(prov.models || {})) {
+        if (m.canonical_model_id !== id) continue;
+        fresh.providers[pid] ??= { ...prov, models: {} };
+        fresh.providers[pid].models ??= {};
+        fresh.providers[pid].models[mid] ??= m;
+      }
+    }
+    carried.push(id);
+  }
+  return carried;
+}
+
 export function extractHfRepo(weights) {
   for (const w of weights || []) {
     const m = /^https:\/\/huggingface\.co\/([^/\s?#]+\/[^/\s?#]+?)(?:\.git)?\/?(?:[?#].*)?$/.exec(w?.url || "");
@@ -158,7 +188,7 @@ function sanitizeHostKey(pid) {
  */
 export function resolveNativeHosts(catalog, byCanonical, canonicalId, publisher, excludedFirstParty = null) {
   const slug = canonicalId.slice(publisher.length + 1);
-  const pmap = byCanonical.get(canonicalId);
+  let pmap = byCanonical.get(canonicalId);
   const native = {};
 
   const fp = pickFirstPartyMatch(catalog, pmap, canonicalId, publisher, slug);
@@ -179,6 +209,13 @@ export function resolveNativeHosts(catalog, byCanonical, canonicalId, publisher,
     if (hf) native.huggingface = hf.repo;
   }
 
+  if (Object.keys(native).length === 0 && pmap && pmap.size > 0) {
+    // The publisher's own IDs that are classified incompatible (e.g. rolling aliases) stay excluded here too.
+    const firstParty = FIRST_PARTY_PROVIDERS[publisher] ?? [publisher];
+    pmap = new Map([...pmap]
+      .map(([pid, hits]) => [pid, firstParty.includes(pid) ? hits.filter((h) => !excludedFirstParty?.has(`${publisher}/${h.id}`)) : hits])
+      .filter(([, hits]) => hits.length));
+  }
   if (Object.keys(native).length === 0 && pmap && pmap.size > 0) {
     const ordered = [
       ...FALLBACK_PROVIDER_PRIORITY.filter((p) => pmap.has(p)),
