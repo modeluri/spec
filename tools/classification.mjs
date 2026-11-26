@@ -93,7 +93,8 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/alibaba/qwen-omni-turbo.toml",
-    "current": false
+    "current": false,
+    "former_native": { "alibaba": "qwen-omni-turbo" }
   },
   {
     "id": "alibaba/qwen3-reranker-8b",
@@ -3254,7 +3255,8 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/unbiased/pareto-26.10.toml",
-    "current": true
+    "current": false,
+    "former_native": { "nanogpt": "unbiased/pareto-26.10" }
   },
   {
     "id": "upstage/solar-10.7b-instruct-v1.0",
@@ -3694,6 +3696,46 @@ export const CLASSIFICATION = [
     "license": "MIT",
     "tier_source": "registry",
     "evidence": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+    "current": true
+  },
+  {
+    "id": "zhipuai/glm-5.3-flashx-legal",
+    "uri": "model:zhipuai/text/light-legal:5.3",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/zhipuai/glm-5.3-flashx-legal.toml",
+    "current": true
+  },
+  {
+    "id": "zhipuai/glm-4-32b-0414-128k",
+    "uri": "model:zhipuai/text/core-open/32b:4.0414",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/zhipuai/glm-4-32b-0414-128k.toml",
+    "current": true
+  },
+  {
+    "id": "stepfun/stepaudio-2.5-chat",
+    "uri": "model:stepfun/text/core:2.5",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/stepfun/stepaudio-2.5-chat.toml",
+    "current": true
+  },
+  {
+    "id": "stepfun/step-1o-turbo-vision",
+    "uri": "model:stepfun/text/light:1o",
+    "license": "proprietary",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/stepfun/step-1o-turbo-vision.toml",
+    "current": true
+  },
+  {
+    "id": "ricursiveai/ripple-65b-preview",
+    "uri": "model:ricursiveai/text/core-code-open/65b:1preview",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/ricursiveai/ripple-65b-preview.toml",
     "current": true
   }
 ];
@@ -4575,6 +4617,51 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:zhipuai/text/core:5",
     "detail": "Closed vision-input GLM-5V-Turbo variant with text output colliding on the model:zhipuai/text/core:5 slot held by glm-5-turbo.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/zhipuai/glm-5v-turbo.toml"
+  },
+  {
+    "id": "moonshotai/kimi-k3.1-pro-highspeed",
+    "publisher": "moonshotai",
+    "name": "Kimi K3.1 Pro Highspeed",
+    "reason": "parameter-split",
+    "conflicts_with": "model:moonshotai/text/ultra-weights:3.1",
+    "detail": "Faster serving tier of Kimi K3.1 Pro exposed as a separate model ID rather than a deployment parameter.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/moonshotai/kimi-k3.1-pro-highspeed.toml"
+  },
+  {
+    "id": "openai/gpt-6-astra-healthcare",
+    "publisher": "openai",
+    "name": "GPT-6 Astra Healthcare",
+    "reason": "parameter-split",
+    "conflicts_with": "model:openai/text/ultra:6",
+    "detail": "GPT-6 Astra with a clinical harness and a medical search index, at the same price as GPT-6 Astra: a harness exposed as a separate model ID, not separate weights.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6-astra-healthcare.toml"
+  },
+  {
+    "id": "openai/gpt-6.2-astra-healthcare",
+    "publisher": "openai",
+    "name": "GPT-6.2 Astra Healthcare",
+    "reason": "parameter-split",
+    "conflicts_with": "model:openai/text/ultra:6.2",
+    "detail": "GPT-6.2 Astra with a clinical harness and a medical search index, at the same price as GPT-6.2 Astra: a harness exposed as a separate model ID, not separate weights.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.2-astra-healthcare.toml"
+  },
+  {
+    "id": "openai/gpt-6.1-sol-healthcare",
+    "publisher": "openai",
+    "name": "GPT-6.1 Sol Healthcare",
+    "reason": "parameter-split",
+    "conflicts_with": "model:openai/text/core:6.1",
+    "detail": "GPT-6.1 Sol with a clinical harness and a medical search index, at the same price as GPT-6.1 Sol: a harness exposed as a separate model ID, not separate weights.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.1-sol-healthcare.toml"
+  },
+  {
+    "id": "openai/gpt-6.2-sol-healthcare",
+    "publisher": "openai",
+    "name": "GPT-6.2 Sol Healthcare",
+    "reason": "parameter-split",
+    "conflicts_with": "model:openai/text/core:6.2",
+    "detail": "GPT-6.2 Sol with a clinical harness and a medical search index, at the same price as GPT-6.2 Sol: a harness exposed as a separate model ID, not separate weights.",
+    "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.2-sol-healthcare.toml"
   }
 ];
 
@@ -5015,8 +5102,18 @@ export const SKIPPED = [
     "detail": "Third-party SLERP merge of Llama 2 13B models."
   },
   {
-    "id": "xiaomi/mimo-v2-tts",
-    "skip_reason": "restricted-not-on-sale",
-    "detail": "Closed proprietary model with zero active providers (`provider_count: 0`, `native_preview: {}`)."
+    "id": "pipecat-ai/phonellm-mini-alpha-2",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party phone-agent fine-tune of NVIDIA Nemotron 3 Nano 30B-A3B (Hugging Face `base_model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16`)."
+  },
+  {
+    "id": "prism-ml/ternary-bonsai-27b",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party ternary-weight build of Alibaba's Qwen3.6 27B (Hugging Face `base_model: Qwen/Qwen3.6-27B`)."
+  },
+  {
+    "id": "elorian-labs/glimpse-1.0",
+    "skip_reason": "third-party-derivation",
+    "detail": "Closed visual-reasoning post-train of an undisclosed open-weights base; same text scope as the base (SPEC.md section 3.7)."
   }
 ];

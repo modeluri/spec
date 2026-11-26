@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-24",
+  "updated": "2026-11-26",
   "license": "CC0-1.0",
   "note": "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.2.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
   "entries": [
@@ -616,6 +616,15 @@
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/moonshotai/kimi-k2.7-code-highspeed.toml"
     },
     {
+      "id": "moonshotai/kimi-k3.1-pro-highspeed",
+      "publisher": "moonshotai",
+      "name": "Kimi K3.1 Pro Highspeed",
+      "reason": "parameter-split",
+      "conflicts_with": "model:moonshotai/text/ultra-weights:3.1",
+      "detail": "Faster serving tier of Kimi K3.1 Pro exposed as a separate model ID rather than a deployment parameter.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/moonshotai/kimi-k3.1-pro-highspeed.toml"
+    },
+    {
       "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
       "publisher": "nvidia",
       "name": "Llama Nemotron Embed VL 1B v2",
@@ -725,6 +734,42 @@
       "conflicts_with": "model:openai/text/ultra:6",
       "detail": "Low-latency serving variant of GPT-6 Astra exposed as a separate model ID (SPEC.md section 3.3 / 5.1).",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/openai/gpt-6-astra-fast.toml"
+    },
+    {
+      "id": "openai/gpt-6-astra-healthcare",
+      "publisher": "openai",
+      "name": "GPT-6 Astra Healthcare",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/ultra:6",
+      "detail": "GPT-6 Astra with a clinical harness and a medical search index, at the same price as GPT-6 Astra: a harness exposed as a separate model ID, not separate weights.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6-astra-healthcare.toml"
+    },
+    {
+      "id": "openai/gpt-6.1-sol-healthcare",
+      "publisher": "openai",
+      "name": "GPT-6.1 Sol Healthcare",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/core:6.1",
+      "detail": "GPT-6.1 Sol with a clinical harness and a medical search index, at the same price as GPT-6.1 Sol: a harness exposed as a separate model ID, not separate weights.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.1-sol-healthcare.toml"
+    },
+    {
+      "id": "openai/gpt-6.2-astra-healthcare",
+      "publisher": "openai",
+      "name": "GPT-6.2 Astra Healthcare",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/ultra:6.2",
+      "detail": "GPT-6.2 Astra with a clinical harness and a medical search index, at the same price as GPT-6.2 Astra: a harness exposed as a separate model ID, not separate weights.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.2-astra-healthcare.toml"
+    },
+    {
+      "id": "openai/gpt-6.2-sol-healthcare",
+      "publisher": "openai",
+      "name": "GPT-6.2 Sol Healthcare",
+      "reason": "parameter-split",
+      "conflicts_with": "model:openai/text/core:6.2",
+      "detail": "GPT-6.2 Sol with a clinical harness and a medical search index, at the same price as GPT-6.2 Sol: a harness exposed as a separate model ID, not separate weights.",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/openai/gpt-6.2-sol-healthcare.toml"
     },
     {
       "id": "openai/gpt-image-2.5-flare",

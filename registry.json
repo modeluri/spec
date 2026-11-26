@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-24",
+  "updated": "2026-11-26",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
   "specials": {
@@ -92,10 +92,12 @@
     {
       "uri": "model:alibaba/text/ultra:4",
       "native": {
+        "alibaba": "qwen4-max",
         "openrouter": "qwen/qwen4-max",
         "vercel": "alibaba/qwen4-max",
         "deepinfra": "Qwen/Qwen4-Max",
-        "together": "Qwen/Qwen4-Max"
+        "together": "Qwen/Qwen4-Max",
+        "fireworks": "accounts/fireworks/models/qwen4-max"
       },
       "released": "2026-11-16",
       "license": "proprietary",
@@ -131,7 +133,8 @@
         "alibaba": "qwen3.8-flash",
         "openrouter": "qwen/qwen3.8-flash",
         "vercel": "alibaba/qwen3.8-flash",
-        "deepinfra": "Qwen/Qwen3.8-Flash"
+        "deepinfra": "Qwen/Qwen3.8-Flash",
+        "together": "Qwen/Qwen3.8-Flash"
       },
       "released": "2026-08-26",
       "license": "proprietary",
@@ -160,7 +163,6 @@
         "openrouter": "qwen/qwen3.8-2.4t-a95b",
         "vercel": "alibaba/qwen3.8-2.4t-a95b",
         "huggingface": "Qwen/Qwen3.8-2.4T-A95B",
-        "deepinfra": "Qwen/Qwen3.8-2.4T-A95B",
         "fireworks": "accounts/fireworks/models/qwen3p8-2p4t-a95b"
       },
       "released": "2026-08-12",
@@ -200,7 +202,8 @@
       "native": {
         "alibaba": "qwen3.7-plus",
         "openrouter": "qwen/qwen3.7-plus",
-        "vercel": "alibaba/qwen3.7-plus"
+        "vercel": "alibaba/qwen3.7-plus",
+        "together": "Qwen/Qwen3.7-Plus"
       },
       "released": "2026-06-02",
       "license": "proprietary",
@@ -254,7 +257,7 @@
     {
       "uri": "model:alibaba/text/ultra:3.6",
       "native": {
-        "alibaba": "qwen3.6-max-preview"
+        "nanogpt": "qwen/qwen3.6-max-preview"
       },
       "released": "2026-04-20",
       "license": "proprietary",
@@ -379,8 +382,7 @@
       "native": {
         "alibaba": "qwen3.5-122b-a10b",
         "openrouter": "qwen/qwen3.5-122b-a10b",
-        "huggingface": "Qwen/Qwen3.5-122B-A10B",
-        "deepinfra": "Qwen/Qwen3.5-122B-A10B"
+        "huggingface": "Qwen/Qwen3.5-122B-A10B"
       },
       "released": "2026-02-23",
       "license": "Apache-2.0",
@@ -432,8 +434,7 @@
         "alibaba": "qwen3.5-397b-a17b",
         "openrouter": "qwen/qwen3.5-397b-a17b",
         "huggingface": "Qwen/Qwen3.5-397B-A17B",
-        "deepinfra": "Qwen/Qwen3.5-397B-A17B",
-        "together": "Qwen/Qwen3.5-397B-A17B"
+        "deepinfra": "Qwen/Qwen3.5-397B-A17B"
       },
       "released": "2026-02-15",
       "license": "Apache-2.0",
@@ -447,8 +448,7 @@
         "bedrock": "qwen.qwen3-coder-next",
         "openrouter": "qwen/qwen3-coder-next",
         "vercel": "alibaba/qwen3-coder-next",
-        "huggingface": "Qwen/Qwen3-Coder-Next",
-        "together": "Qwen/Qwen3-Coder-Next-FP8"
+        "huggingface": "Qwen/Qwen3-Coder-Next"
       },
       "released": "2026-02-03",
       "license": "Apache-2.0",
@@ -470,8 +470,7 @@
     {
       "uri": "model:alibaba/text/ultra:3",
       "native": {
-        "alibaba": "qwen3-max",
-        "deepinfra": "Qwen/Qwen3-Max"
+        "h302ai": "qwen3-max-2025-09-23"
       },
       "released": "2025-09-23",
       "license": "proprietary",
@@ -482,7 +481,6 @@
     {
       "uri": "model:alibaba/text/high-open/80b-a3b:3.next",
       "native": {
-        "alibaba": "qwen3-next-80b-a3b-instruct",
         "bedrock": "qwen.qwen3-next-80b-a3b",
         "openrouter": "qwen/qwen3-next-80b-a3b-instruct",
         "vercel": "alibaba/qwen3-next-80b-a3b-instruct",
@@ -498,7 +496,6 @@
     {
       "uri": "model:alibaba/text/light-code-open/30b-a3b:3",
       "native": {
-        "alibaba": "qwen3-coder-30b-a3b-instruct",
         "bedrock": "qwen.qwen3-coder-30b-a3b-v1:0",
         "openrouter": "qwen/qwen3-coder-30b-a3b-instruct",
         "vercel": "alibaba/qwen3-coder-30b-a3b",
@@ -548,7 +545,7 @@
     {
       "uri": "model:alibaba/text/core-code:3",
       "native": {
-        "alibaba": "qwen3-coder-plus"
+        "mergegateway": "qwen/qwen3-coder-plus"
       },
       "released": "2025-07-23",
       "license": "proprietary",
@@ -559,12 +556,10 @@
     {
       "uri": "model:alibaba/text/ultra-code-open/480b-a35b:3",
       "native": {
-        "alibaba": "qwen3-coder-480b-a35b-instruct",
         "bedrock": "qwen.qwen3-coder-480b-a35b-v1:0",
         "openrouter": "qwen/qwen3-coder",
         "huggingface": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-        "deepinfra": "Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo",
-        "together": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8"
+        "deepinfra": "Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo"
       },
       "released": "2025-07-22",
       "license": "Apache-2.0",
@@ -578,8 +573,7 @@
         "bedrock": "qwen.qwen3-235b-a22b-2507-v1:0",
         "openrouter": "qwen/qwen3-235b-a22b-2507",
         "huggingface": "Qwen/Qwen3-235B-A22B-Instruct-2507",
-        "deepinfra": "Qwen/Qwen3-235B-A22B-Instruct-2507",
-        "together": "Qwen/Qwen3-235B-A22B-Instruct-2507-tput"
+        "deepinfra": "Qwen/Qwen3-235B-A22B-Instruct-2507"
       },
       "released": "2025-07-21",
       "license": "Apache-2.0",
@@ -613,7 +607,6 @@
     {
       "uri": "model:alibaba/text/light-open/8b:3",
       "native": {
-        "alibaba": "qwen3-8b",
         "huggingface": "Qwen/Qwen3-8B"
       },
       "released": "2025-04-29",
@@ -625,7 +618,6 @@
     {
       "uri": "model:alibaba/text/core-open/32b:3",
       "native": {
-        "alibaba": "qwen3-32b",
         "bedrock": "qwen.qwen3-32b-v1:0",
         "openrouter": "qwen/qwen3-32b",
         "vercel": "alibaba/qwen-3-32b",
@@ -655,7 +647,6 @@
     {
       "uri": "model:alibaba/text/ultra-open/235b-a22b:3",
       "native": {
-        "alibaba": "qwen3-235b-a22b",
         "huggingface": "Qwen/Qwen3-235B-A22B"
       },
       "released": "2025-04-28",
@@ -678,7 +669,8 @@
     },
     {
       "uri": "model:alibaba/omni/core:1",
-      "native": {
+      "native": {},
+      "former_native": {
         "alibaba": "qwen-omni-turbo"
       },
       "released": "2025-01-19",
@@ -713,7 +705,6 @@
     {
       "uri": "model:alibaba/text/light-open/7b:2.5",
       "native": {
-        "together": "Qwen/Qwen2.5-7B-Instruct-Turbo",
         "huggingface": "Qwen/Qwen2.5-7B-Instruct"
       },
       "released": "2024-09-19",
@@ -737,7 +728,6 @@
     {
       "uri": "model:amazon/text/ultra:1",
       "native": {
-        "bedrock": "us.amazon.nova-premier-v1:0",
         "openrouter": "amazon/nova-premier-v1"
       },
       "released": "2025-04-30",
@@ -1235,7 +1225,7 @@
     {
       "uri": "model:bytedance-seed/text/light:2.1",
       "native": {
-        "bytedance-seed": "doubao-seed-2.1-lite"
+        "bytedance-seed": "doubao-seed-2-1-lite-260915"
       },
       "released": "2026-09-15",
       "license": "proprietary",
@@ -1292,7 +1282,6 @@
     {
       "uri": "model:bytedance-seed/text/core-code:2.0",
       "native": {
-        "bytedance-seed": "doubao-seed-2-0-code-preview-260215",
         "deepinfra": "ByteDance/Seed-2.0-code"
       },
       "released": "2026-02-14",
@@ -1352,7 +1341,7 @@
     {
       "uri": "model:bytedance-seed/text/core:1.8",
       "native": {
-        "bytedance-seed": "doubao-seed-1-8-251228"
+        "deepinfra": "ByteDance/Seed-1.8"
       },
       "released": "2025-12-28",
       "license": "proprietary",
@@ -1363,7 +1352,7 @@
     {
       "uri": "model:bytedance-seed/text/core:1.6",
       "native": {
-        "bytedance-seed": "doubao-seed-1-6-251015"
+        "qiniuai": "doubao-seed-1.6"
       },
       "released": "2025-10-15",
       "license": "proprietary",
@@ -1374,7 +1363,7 @@
     {
       "uri": "model:bytedance-seed/text/light:1.6",
       "native": {
-        "bytedance-seed": "doubao-seed-1-6-flash-250828"
+        "qiniuai": "doubao-seed-1.6-flash"
       },
       "released": "2025-08-28",
       "license": "proprietary",
@@ -1429,7 +1418,7 @@
     {
       "uri": "model:cohere/text/light-translate-weights:1.0",
       "native": {
-        "cohere": "north-small-translate-09-2026",
+        "cohere": "north-small-translate-1.0",
         "huggingface": "CohereLabs/North-Small-Translate-1.0"
       },
       "released": "2026-09-09",
@@ -1687,8 +1676,7 @@
         "bedrock": "deepseek.v3-v1:0",
         "vercel": "deepseek/deepseek-v3.1",
         "huggingface": "deepseek-ai/DeepSeek-V3.1",
-        "deepinfra": "deepseek-ai/DeepSeek-V3.1",
-        "together": "deepseek-ai/DeepSeek-V3-1"
+        "deepinfra": "deepseek-ai/DeepSeek-V3.1"
       },
       "released": "2025-08-21",
       "license": "MIT",
@@ -1712,8 +1700,7 @@
     {
       "uri": "model:deepseek/text/core-open:3.0324",
       "native": {
-        "huggingface": "deepseek-ai/DeepSeek-V3-0324",
-        "deepinfra": "deepseek-ai/DeepSeek-V3-0324"
+        "huggingface": "deepseek-ai/DeepSeek-V3-0324"
       },
       "released": "2025-03-24",
       "license": "MIT",
@@ -1726,8 +1713,7 @@
       "native": {
         "bedrock": "deepseek.r1-v1:0",
         "vercel": "deepseek/deepseek-r1",
-        "huggingface": "deepseek-ai/DeepSeek-R1",
-        "together": "deepseek-ai/DeepSeek-R1"
+        "huggingface": "deepseek-ai/DeepSeek-R1"
       },
       "released": "2025-01-20",
       "license": "MIT",
@@ -1739,8 +1725,7 @@
       "uri": "model:deepseek/text/core-weights:3",
       "native": {
         "huggingface": "deepseek-ai/DeepSeek-V3",
-        "deepinfra": "deepseek-ai/DeepSeek-V3",
-        "together": "deepseek-ai/DeepSeek-V3"
+        "deepinfra": "deepseek-ai/DeepSeek-V3"
       },
       "released": "2024-12-26",
       "license": "DeepSeek Model License",
@@ -1751,7 +1736,6 @@
     {
       "uri": "model:essentialai/text/core-open/8b:1",
       "native": {
-        "together": "essentialai/Rnj-1-Instruct",
         "huggingface": "EssentialAI/rnj-1-instruct"
       },
       "released": "2025-12-04",
@@ -2172,6 +2156,20 @@
       "current": true
     },
     {
+      "uri": "model:google/image/core:2.5",
+      "native": {
+        "google": "gemini-2.5-flash-image",
+        "vertex": "gemini-2.5-flash-image",
+        "openrouter": "google/gemini-2.5-flash-image",
+        "vercel": "google/gemini-2.5-flash-image"
+      },
+      "released": "2025-10-02",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-flash-image.toml",
+      "current": false
+    },
+    {
       "uri": "model:google/tts/core:2.5",
       "native": {
         "vertex": "gemini-2.5-flash-tts"
@@ -2194,17 +2192,30 @@
       "current": true
     },
     {
-      "uri": "model:google/image/core:2.5",
+      "uri": "model:google/text/nano:2.5",
       "native": {
-        "google": "gemini-2.5-flash-image",
-        "vertex": "gemini-2.5-flash-image",
-        "openrouter": "google/gemini-2.5-flash-image",
-        "vercel": "google/gemini-2.5-flash-image"
+        "google": "gemini-2.5-flash-lite",
+        "vertex": "gemini-2.5-flash-lite",
+        "openrouter": "google/gemini-2.5-flash-lite",
+        "vercel": "google/gemini-2.5-flash-lite"
       },
-      "released": "2025-08-26",
+      "released": "2025-07-22",
       "license": "proprietary",
       "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-flash-image.toml",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-flash-lite.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/embed/core:001",
+      "native": {
+        "google": "gemini-embedding-001",
+        "vertex": "gemini-embedding-001",
+        "vercel": "google/gemini-embedding-001"
+      },
+      "released": "2025-07-14",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-embedding-001.toml",
       "current": false
     },
     {
@@ -2221,20 +2232,6 @@
       "current": false
     },
     {
-      "uri": "model:google/text/nano:2.5",
-      "native": {
-        "google": "gemini-2.5-flash-lite",
-        "vertex": "gemini-2.5-flash-lite",
-        "openrouter": "google/gemini-2.5-flash-lite",
-        "vercel": "google/gemini-2.5-flash-lite"
-      },
-      "released": "2025-06-17",
-      "license": "proprietary",
-      "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-flash-lite.toml",
-      "current": false
-    },
-    {
       "uri": "model:google/text/ultra:2.5",
       "native": {
         "google": "gemini-2.5-pro",
@@ -2246,19 +2243,6 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.5-pro.toml",
-      "current": false
-    },
-    {
-      "uri": "model:google/embed/core:001",
-      "native": {
-        "google": "gemini-embedding-001",
-        "vertex": "gemini-embedding-001",
-        "vercel": "google/gemini-embedding-001"
-      },
-      "released": "2025-05-20",
-      "license": "proprietary",
-      "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-embedding-001.toml",
       "current": false
     },
     {
@@ -2304,25 +2288,25 @@
       "current": false
     },
     {
-      "uri": "model:google/text/core:2.0",
-      "native": {
-        "poe": "google/gemini-2.0-flash"
-      },
-      "released": "2024-12-11",
-      "license": "proprietary",
-      "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.0-flash.toml",
-      "current": false
-    },
-    {
       "uri": "model:google/text/nano:2.0",
       "native": {
         "h302ai": "gemini-2.0-flash-lite"
       },
-      "released": "2024-12-11",
+      "released": "2025-02-25",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.0-flash-lite.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/text/core:2.0",
+      "native": {
+        "poe": "google/gemini-2.0-flash"
+      },
+      "released": "2025-02-05",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.0-flash.toml",
       "current": false
     },
     {
@@ -2352,7 +2336,8 @@
       "uri": "model:ibm/text/light-open:4.2",
       "native": {
         "openrouter": "ibm-granite/granite-4.2-8b",
-        "huggingface": "ibm-granite/granite-4.2-8b"
+        "huggingface": "ibm-granite/granite-4.2-8b",
+        "deepinfra": "ibm-granite/granite-4.2-8b"
       },
       "released": "2026-08-25",
       "license": "Apache-2.0",
@@ -2492,7 +2477,8 @@
         "inclusionai": "Ling-3.0-flash",
         "openrouter": "inclusionai/ling-3.0-flash",
         "vercel": "inclusionai/ling-3.0-flash",
-        "huggingface": "inclusionAI/Ling-3.0-flash"
+        "huggingface": "inclusionAI/Ling-3.0-flash",
+        "deepinfra": "inclusionAI/Ling-3.0-flash"
       },
       "released": "2026-07-23",
       "license": "MIT",
@@ -2561,7 +2547,6 @@
     {
       "uri": "model:liquid/text/core-weights/24b-a2b:2",
       "native": {
-        "together": "LiquidAI/LFM2-24B-A2B",
         "huggingface": "LiquidAI/LFM2-24B-A2B"
       },
       "released": "2026-02-24",
@@ -2573,7 +2558,8 @@
     {
       "uri": "model:meituan/text/core:2.5",
       "native": {
-        "meituan": "LongCat-2.5"
+        "meituan": "LongCat-2.5",
+        "huggingface": "meituan-longcat/LongCat-2.5"
       },
       "released": "2026-11-02",
       "license": "proprietary",
@@ -2584,7 +2570,7 @@
     {
       "uri": "model:meituan/text/core:2.5preview",
       "native": {
-        "meituan": "LongCat-2.5-Preview"
+        "nanogpt": "meituan/longcat-2.5-preview"
       },
       "released": "2026-09-25",
       "license": "proprietary",
@@ -2618,7 +2604,9 @@
     {
       "uri": "model:meta/text/light:1.0",
       "native": {
-        "meta": "muse-ember-1.0"
+        "meta": "muse-ember-1.0",
+        "openrouter": "meta/muse-ember",
+        "vercel": "meta/muse-ember"
       },
       "released": "2026-11-09",
       "license": "proprietary",
@@ -2631,10 +2619,10 @@
       "native": {
         "openrouter": "meta/muse-spark-open",
         "vercel": "meta/muse-spark-open",
+        "huggingface": "meta-models/Muse-Spark-Open-816B-A42B",
         "together": "meta-models/Muse-Spark-Open-816B-A42B",
         "fireworks": "accounts/fireworks/models/muse-spark-open",
-        "ollama": "muse-spark-open",
-        "huggingface": "meta-models/Muse-Spark-Open-816B-A42B"
+        "ollama": "muse-spark-open"
       },
       "released": "2026-10-15",
       "license": "Muse Model License",
@@ -2646,6 +2634,7 @@
       "uri": "model:meta/text/ultra:1.0",
       "native": {
         "meta": "muse-wonder-1.0",
+        "openrouter": "meta/muse-wonder",
         "vercel": "meta/muse-wonder-1.0"
       },
       "released": "2026-10-12",
@@ -2672,8 +2661,9 @@
       "native": {
         "openrouter": "meta/muse-glimmer-30b",
         "vercel": "meta/muse-glimmer-30b",
-        "together": "meta-models/Muse-Glimmer-30B",
-        "huggingface": "meta-models/Muse-Glimmer-30B"
+        "huggingface": "meta-models/Muse-Glimmer-30B",
+        "deepinfra": "meta-models/Muse-Glimmer-30B",
+        "together": "meta-models/Muse-Glimmer-30B"
       },
       "released": "2026-08-10",
       "license": "Apache-2.0",
@@ -2750,7 +2740,6 @@
         "bedrock": "meta.llama4-maverick-17b-instruct-v1:0",
         "openrouter": "meta-llama/llama-4-maverick",
         "vercel": "meta/llama-4-maverick",
-        "deepinfra": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         "huggingface": "meta-llama/Llama-4-Maverick-17B-128E-Instruct"
       },
       "released": "2025-04-05",
@@ -2766,8 +2755,8 @@
         "vertex": "meta/llama-4-scout-17b-16e-instruct-maas",
         "openrouter": "meta-llama/llama-4-scout",
         "vercel": "meta/llama-4-scout",
-        "deepinfra": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
-        "huggingface": "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+        "huggingface": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "deepinfra": "meta-llama/Llama-4-Scout-17B-16E-Instruct"
       },
       "released": "2025-04-05",
       "license": "Llama 4 Community License",
@@ -2783,7 +2772,6 @@
         "vercel": "meta/llama-3.3-70b",
         "huggingface": "meta-llama/Llama-3.3-70B-Instruct",
         "deepinfra": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
-        "together": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
         "groq": "llama-3.3-70b-versatile"
       },
       "released": "2024-12-06",
@@ -2891,6 +2879,7 @@
         "openrouter": "meta-llama/llama-3.1-8b-instruct",
         "vercel": "meta/llama-3.1-8b",
         "huggingface": "meta-llama/Llama-3.1-8B-Instruct",
+        "deepinfra": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
         "groq": "llama-3.1-8b-instant"
       },
       "released": "2024-07-23",
@@ -2991,7 +2980,6 @@
         "vercel": "minimax/minimax-m3",
         "huggingface": "MiniMaxAI/MiniMax-M3",
         "deepinfra": "MiniMaxAI/MiniMax-M3",
-        "together": "MiniMaxAI/MiniMax-M3",
         "fireworks": "accounts/fireworks/models/minimax-m3",
         "ollama": "minimax-m3"
       },
@@ -3008,9 +2996,7 @@
         "bedrock": "minimax.minimax-m2.5",
         "openrouter": "minimax/minimax-m2.5",
         "vercel": "minimax/minimax-m2.5",
-        "huggingface": "MiniMaxAI/MiniMax-M2.5",
-        "deepinfra": "MiniMaxAI/MiniMax-M2.5",
-        "together": "MiniMaxAI/MiniMax-M2.5"
+        "huggingface": "MiniMaxAI/MiniMax-M2.5"
       },
       "released": "2026-02-12",
       "license": "Modified MIT",
@@ -3073,9 +3059,10 @@
         "mistral": "mistral-large-4",
         "openrouter": "mistralai/mistral-large-4-0",
         "vercel": "mistral/mistral-large-4",
+        "huggingface": "mistralai/Mistral-Large-4-1T-A52B",
         "ollama": "mistral-large-4"
       },
-      "released": "2026-10-06",
+      "released": "2026-10-05",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-large-4.toml",
@@ -3085,9 +3072,10 @@
       "uri": "model:mistral/text/high:3.5",
       "native": {
         "openrouter": "mistralai/mistral-medium-3-5",
-        "vercel": "mistral/mistral-medium-3.5"
+        "vercel": "mistral/mistral-medium-3.5",
+        "huggingface": "mistralai/Mistral-Medium-3.5-128B"
       },
-      "released": "2026-04-30",
+      "released": "2026-04-28",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-medium-3-5.toml",
@@ -3187,7 +3175,7 @@
     {
       "uri": "model:mistral/text/high:3.1",
       "native": {
-        "openrouter": "mistralai/mistral-medium-3.1"
+        "concentrate": "mistral-medium-3.1"
       },
       "released": "2025-08-12",
       "license": "proprietary",
@@ -3244,7 +3232,7 @@
     {
       "uri": "model:mistral/text/high:3",
       "native": {
-        "openrouter": "mistralai/mistral-medium-3"
+        "nanogpt": "mistralai/mistral-medium-3"
       },
       "released": "2025-05-07",
       "license": "proprietary",
@@ -3338,6 +3326,7 @@
       "native": {
         "openrouter": "mistralai/mistral-nemo",
         "vercel": "mistral/mistral-nemo",
+        "deepinfra": "mistralai/Mistral-Nemo-Instruct-2407",
         "huggingface": "mistralai/Mistral-Nemo-Instruct-2407"
       },
       "released": "2024-07-18",
@@ -3407,6 +3396,7 @@
       "native": {
         "moonshotai": "kimi-k3.1-pro",
         "bedrock": "global.moonshotai.kimi-k3.1",
+        "azure": "kimi-k3.1-pro",
         "openrouter": "moonshotai/kimi-k3.1-pro",
         "vercel": "moonshotai/kimi-k3.1-pro",
         "huggingface": "moonshotai/Kimi-K3.1-Pro",
@@ -3437,6 +3427,7 @@
       "native": {
         "moonshotai": "kimi-k3",
         "bedrock": "global.moonshotai.kimi-k3",
+        "azure": "fw-kimi-k3",
         "openrouter": "moonshotai/kimi-k3",
         "vercel": "moonshotai/kimi-k3",
         "huggingface": "moonshotai/Kimi-K3",
@@ -3459,7 +3450,6 @@
         "openrouter": "moonshotai/kimi-k2.7-code",
         "vercel": "moonshotai/kimi-k2.7-code",
         "huggingface": "moonshotai/Kimi-K2.7-Code",
-        "deepinfra": "moonshotai/Kimi-K2.7-Code",
         "ollama": "kimi-k2.7-code"
       },
       "released": "2026-06-12",
@@ -3492,8 +3482,7 @@
         "azure": "kimi-k2.5",
         "openrouter": "moonshotai/kimi-k2.5",
         "vercel": "moonshotai/kimi-k2.5",
-        "huggingface": "moonshotai/Kimi-K2.5",
-        "deepinfra": "moonshotai/Kimi-K2.5"
+        "huggingface": "moonshotai/Kimi-K2.5"
       },
       "released": "2026-01-27",
       "license": "Modified MIT",
@@ -3504,7 +3493,6 @@
     {
       "uri": "model:moonshotai/text/core-weights:2.0905",
       "native": {
-        "openrouter": "moonshotai/kimi-k2-0905",
         "huggingface": "moonshotai/Kimi-K2-Instruct-0905"
       },
       "released": "2025-09-05",
@@ -3565,7 +3553,6 @@
       "uri": "model:nace-ai/decision/core-weights/35b-a3b:2.0",
       "native": {
         "openrouter": "nace-ai/drex-v2.0",
-        "vercel": "nace-ai/drex-v2.0",
         "huggingface": "nace-ai/drex-v2.0"
       },
       "released": "2026-10-06",
@@ -3603,8 +3590,8 @@
         "nvidia": "nvidia/nemotron-3.5-super-vl-120b-a12b",
         "openrouter": "nvidia/nemotron-3.5-super-vl",
         "vercel": "nvidia/nemotron-3.5-super-vl",
-        "together": "nvidia/NVIDIA-Nemotron-3.5-Super-VL",
-        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16"
+        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+        "together": "nvidia/NVIDIA-Nemotron-3.5-Super-VL"
       },
       "released": "2026-10-15",
       "license": "OpenMDW-1.1",
@@ -3616,9 +3603,11 @@
       "uri": "model:nvidia/text/light-weights:3.5",
       "native": {
         "nvidia": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "azure": "fw-nemotron-lightning-3.5-30b-a3b",
         "openrouter": "nvidia/nemotron-3.5-lightning",
         "vercel": "nvidia/nemotron-3.5-lightning",
-        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16"
+        "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+        "deepinfra": "nvidia/NVIDIA-Nemotron-3.5-Lightning"
       },
       "released": "2026-08-11",
       "license": "OpenMDW-1.1",
@@ -3630,11 +3619,12 @@
       "uri": "model:nvidia/text/ultra-weights:3",
       "native": {
         "nvidia": "nvidia/nemotron-3-ultra-550b-a55b",
+        "azure": "fw-nemotron-3-ultra-nvfp4",
         "openrouter": "nvidia/nemotron-3-ultra-550b-a55b",
         "vercel": "nvidia/nemotron-3-ultra-550b-a55b",
-        "together": "nvidia/nemotron-3-ultra-550b-a55b",
-        "ollama": "nemotron-3-ultra",
-        "huggingface": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16"
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+        "deepinfra": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B",
+        "ollama": "nemotron-3-ultra"
       },
       "released": "2026-06-04",
       "license": "OpenMDW-1.1",
@@ -3661,8 +3651,9 @@
         "bedrock": "nvidia.nemotron-super-3-120b",
         "openrouter": "nvidia/nemotron-3-super-120b-a12b",
         "vercel": "nvidia/nemotron-3-super-120b-a12b",
-        "ollama": "nemotron-3-super",
-        "huggingface": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+        "deepinfra": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+        "ollama": "nemotron-3-super"
       },
       "released": "2026-03-11",
       "license": "NVIDIA Nemotron Open Model License",
@@ -3687,9 +3678,8 @@
       "native": {
         "bedrock": "nvidia.nemotron-nano-3-30b",
         "openrouter": "nvidia/nemotron-3-nano-30b-a3b",
-        "deepinfra": "nvidia/Nemotron-3-Nano-30B-A3B",
-        "ollama": "nemotron-3-nano:30b",
-        "huggingface": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
+        "huggingface": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+        "ollama": "nemotron-3-nano:30b"
       },
       "released": "2025-12-15",
       "license": "NVIDIA Nemotron Open Model License",
@@ -4147,8 +4137,8 @@
         "bedrock": "openai.gpt-oss-safeguard-20b",
         "openrouter": "openai/gpt-oss-safeguard-20b",
         "vercel": "openai/gpt-oss-safeguard-20b",
-        "groq": "openai/gpt-oss-safeguard-20b",
-        "huggingface": "openai/gpt-oss-safeguard-20b"
+        "huggingface": "openai/gpt-oss-safeguard-20b",
+        "groq": "openai/gpt-oss-safeguard-20b"
       },
       "released": "2025-10-29",
       "license": "Apache-2.0",
@@ -4247,6 +4237,7 @@
       "native": {
         "bedrock": "openai.gpt-oss-120b",
         "vertex": "openai/gpt-oss-120b-maas",
+        "azure": "gpt-oss-120b",
         "openrouter": "openai/gpt-oss-120b",
         "vercel": "openai/gpt-oss-120b",
         "huggingface": "openai/gpt-oss-120b",
@@ -4316,7 +4307,7 @@
     {
       "uri": "model:openai/image/core:1",
       "native": {
-        "azure": "gpt-image-1"
+        "digitalocean": "openai-gpt-image-1"
       },
       "released": "2025-04-24",
       "license": "proprietary",
@@ -4328,7 +4319,6 @@
       "uri": "model:openai/text/core:o3",
       "native": {
         "openai": "o3",
-        "azure": "o3",
         "openrouter": "openai/o3",
         "vercel": "openai/o3"
       },
@@ -4341,7 +4331,6 @@
     {
       "uri": "model:openai/text/light:o4",
       "native": {
-        "azure": "o4-mini",
         "vercel": "openai/o4-mini"
       },
       "released": "2025-04-16",
@@ -4405,7 +4394,6 @@
     {
       "uri": "model:openai/text/light:o3",
       "native": {
-        "azure": "o3-mini",
         "vercel": "openai/o3-mini"
       },
       "released": "2024-12-20",
@@ -4502,7 +4490,7 @@
     {
       "uri": "model:openai/text/core:3.5",
       "native": {
-        "impossibl": "openai/gpt-3.5-turbo"
+        "edenai": "gpt-3.5-turbo"
       },
       "released": "2023-03-01",
       "license": "proprietary",
@@ -4717,9 +4705,9 @@
         "reflection": "Beam-1.0-501B-A23B",
         "openrouter": "reflection/beam-1.0-501b-a23b",
         "vercel": "reflection/beam",
+        "huggingface": "reflection/Beam-1.0-501B-A23B",
         "together": "reflection/Beam-1.0-501B-A23B",
-        "ollama": "beam",
-        "huggingface": "reflection/Beam-1.0-501B-A23B"
+        "ollama": "beam"
       },
       "released": "2026-10-05",
       "license": "Apache-2.0",
@@ -4794,6 +4782,18 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/respan/span-01.toml",
+      "current": true
+    },
+    {
+      "uri": "model:ricursiveai/text/core-code-open/65b:1preview",
+      "native": {
+        "together": "ricursive-ai/Ripple-65B-Preview",
+        "huggingface": "ricursiveAI/Ripple-65B-Preview"
+      },
+      "released": "2026-11-04",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/ricursiveai/ripple-65b-preview.toml",
       "current": true
     },
     {
@@ -4875,13 +4875,23 @@
         "stepfun": "step-3.7-flash",
         "openrouter": "stepfun/step-3.7-flash",
         "vercel": "stepfun/step-3.7-flash",
-        "huggingface": "stepfun-ai/Step-3.7-Flash",
-        "deepinfra": "stepfun-ai/Step-3.7-Flash"
+        "huggingface": "stepfun-ai/Step-3.7-Flash"
       },
       "released": "2026-05-29",
       "license": "Apache-2.0",
       "tier_source": "registry",
       "evidence": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+      "current": true
+    },
+    {
+      "uri": "model:stepfun/text/core:2.5",
+      "native": {
+        "stepfun": "stepaudio-2.5-chat"
+      },
+      "released": "2026-05-09",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/stepfun/stepaudio-2.5-chat.toml",
       "current": true
     },
     {
@@ -4895,6 +4905,17 @@
       "tier_source": "registry",
       "evidence": "https://huggingface.co/stepfun-ai/Step-3.5-Flash",
       "current": false
+    },
+    {
+      "uri": "model:stepfun/text/light:1o",
+      "native": {
+        "stepfun": "step-1o-turbo-vision"
+      },
+      "released": "2025-01-21",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/stepfun/step-1o-turbo-vision.toml",
+      "current": true
     },
     {
       "uri": "model:swiss-ai/text/core-open/8b:1.5",
@@ -4943,10 +4964,12 @@
     {
       "uri": "model:tencent/text/light:4",
       "native": {
+        "tencent": "hy4-flash",
         "openrouter": "tencent/hy4-flash",
         "vercel": "tencent/hy4-flash",
         "huggingface": "tencent/Hy4-flash",
-        "deepinfra": "tencent/Hy4-flash"
+        "deepinfra": "tencent/Hy4-flash",
+        "fireworks": "accounts/fireworks/models/hy4-flash"
       },
       "released": "2026-11-16",
       "license": "proprietary",
@@ -4992,8 +5015,7 @@
         "tencent": "hy3",
         "openrouter": "tencent/hy3",
         "vercel": "tencent/hy3",
-        "huggingface": "tencent/Hy3",
-        "deepinfra": "tencent/Hy3"
+        "huggingface": "tencent/Hy3"
       },
       "released": "2026-07-06",
       "license": "Apache-2.0",
@@ -5040,8 +5062,11 @@
     {
       "uri": "model:thinkingmachines/text/light-open/26.4b-a3.4b:2",
       "native": {
+        "thinkingmachines": "thinkingmachines/Inkling-2-Mini",
         "openrouter": "thinkingmachines/inkling-2-mini",
-        "huggingface": "thinkingmachines/Inkling-2-Mini"
+        "vercel": "thinkingmachines/inkling-2-mini",
+        "huggingface": "thinkingmachines/Inkling-2-Mini",
+        "deepinfra": "thinkingmachines/Inkling-2-Mini"
       },
       "released": "2026-11-20",
       "license": "Apache-2.0",
@@ -5052,6 +5077,7 @@
     {
       "uri": "model:thinkingmachines/text/core-open/594b-a17b:2",
       "native": {
+        "thinkingmachines": "thinkingmachines/Inkling-2-Small",
         "openrouter": "thinkingmachines/inkling-2-small",
         "vercel": "thinkingmachines/inkling-2-small",
         "huggingface": "thinkingmachines/Inkling-2-Small",
@@ -5087,7 +5113,6 @@
         "openrouter": "thinkingmachines/inkling",
         "vercel": "thinkingmachines/inkling",
         "huggingface": "thinkingmachines/Inkling",
-        "deepinfra": "thinkingmachines/Inkling",
         "together": "thinkingmachines/Inkling"
       },
       "released": "2026-07-15",
@@ -5122,14 +5147,15 @@
     },
     {
       "uri": "model:unbiased/text/core:26.10",
-      "native": {
+      "native": {},
+      "former_native": {
         "nanogpt": "unbiased/pareto-26.10"
       },
       "released": "2026-10-15",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/unbiased/pareto-26.10.toml",
-      "current": true
+      "current": false
     },
     {
       "uri": "model:upstage/text/light:4",
@@ -5431,17 +5457,6 @@
       "current": false
     },
     {
-      "uri": "model:xai/text/light:4",
-      "native": {
-        "helicone": "grok-4-fast-reasoning"
-      },
-      "released": "2025-12-18",
-      "license": "proprietary",
-      "tier_source": "registry",
-      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4-fast-reasoning.toml",
-      "current": false
-    },
-    {
       "uri": "model:xai/text/light:4.1",
       "native": {
         "vertex": "xai/grok-4.1-fast-reasoning"
@@ -5453,11 +5468,22 @@
       "current": false
     },
     {
+      "uri": "model:xai/text/light:4",
+      "native": {
+        "helicone": "grok-4-fast-reasoning"
+      },
+      "released": "2025-09-19",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-4-fast-reasoning.toml",
+      "current": false
+    },
+    {
       "uri": "model:xai/text/light-code:1",
       "native": {
         "poe": "xai/grok-code-fast-1"
       },
-      "released": "2025-09-02",
+      "released": "2025-08-28",
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xai/grok-code-fast-1.toml",
@@ -5498,10 +5524,7 @@
     {
       "uri": "model:xiaomi/text/core-open:2.5",
       "native": {
-        "xiaomi": "mimo-v2.5",
-        "openrouter": "xiaomi/mimo-v2.5",
-        "huggingface": "XiaomiMiMo/MiMo-V2.5",
-        "deepinfra": "XiaomiMiMo/MiMo-V2.5"
+        "huggingface": "XiaomiMiMo/MiMo-V2.5"
       },
       "released": "2026-04-22",
       "license": "MIT",
@@ -5512,9 +5535,7 @@
     {
       "uri": "model:xiaomi/text/high-open:2.5",
       "native": {
-        "xiaomi": "mimo-v2.5-pro",
-        "huggingface": "XiaomiMiMo/MiMo-V2.5-Pro",
-        "deepinfra": "XiaomiMiMo/MiMo-V2.5-Pro"
+        "huggingface": "XiaomiMiMo/MiMo-V2.5-Pro"
       },
       "released": "2026-04-22",
       "license": "MIT",
@@ -5591,7 +5612,7 @@
     {
       "uri": "model:zhipuai/text/ultra:5.4",
       "native": {
-        "zaicodingplan": "glm-5.4"
+        "tencenttokenplan": "glm-5.4"
       },
       "released": "2026-11-23",
       "license": "proprietary",
@@ -5600,9 +5621,23 @@
       "current": true
     },
     {
+      "uri": "model:zhipuai/text/light-legal:5.3",
+      "native": {
+        "zhipuai": "glm-5.3-flashx-legal",
+        "openrouter": "z-ai/glm-5.3-flashx-legal",
+        "vercel": "zai/glm-5.3-flashx-legal"
+      },
+      "released": "2026-11-02",
+      "license": "proprietary",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/zhipuai/glm-5.3-flashx-legal.toml",
+      "current": true
+    },
+    {
       "uri": "model:zhipuai/text/light-open:5.3",
       "native": {
         "zhipuai": "glm-5.3-flash",
+        "azure": "fw-glm-5.3-flash",
         "openrouter": "z-ai/glm-5.3-flash",
         "vercel": "zai/glm-5.3-flash",
         "huggingface": "zai-org/GLM-5.3-Flash",
@@ -5622,6 +5657,7 @@
       "native": {
         "zhipuai": "glm-5.3",
         "bedrock": "global.zai.glm-5.3",
+        "azure": "fw-glm-5.3",
         "openrouter": "z-ai/glm-5.3",
         "vercel": "zai/glm-5.3",
         "huggingface": "zai-org/GLM-5.3",
@@ -5660,9 +5696,7 @@
         "zhipuai": "glm-5.1",
         "openrouter": "z-ai/glm-5.1",
         "vercel": "zai/glm-5.1",
-        "huggingface": "zai-org/GLM-5.1",
-        "deepinfra": "zai-org/GLM-5.1",
-        "together": "zai-org/GLM-5.1"
+        "huggingface": "zai-org/GLM-5.1"
       },
       "released": "2026-04-07",
       "license": "MIT",
@@ -5691,9 +5725,7 @@
         "vertex": "zai-org/glm-5-maas",
         "openrouter": "z-ai/glm-5",
         "vercel": "zai/glm-5",
-        "huggingface": "zai-org/GLM-5",
-        "deepinfra": "zai-org/GLM-5",
-        "together": "zai-org/GLM-5"
+        "huggingface": "zai-org/GLM-5"
       },
       "released": "2026-02-12",
       "license": "MIT",
@@ -5721,8 +5753,7 @@
         "bedrock": "zai.glm-4.7-flash",
         "openrouter": "z-ai/glm-4.7-flash",
         "vercel": "zai/glm-4.7-flash",
-        "huggingface": "zai-org/GLM-4.7-Flash",
-        "deepinfra": "zai-org/GLM-4.7-Flash"
+        "huggingface": "zai-org/GLM-4.7-Flash"
       },
       "released": "2026-01-19",
       "license": "MIT",
@@ -5832,6 +5863,18 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/zhipuai/glm-4.5-flash.toml",
+      "current": true
+    },
+    {
+      "uri": "model:zhipuai/text/core-open/32b:4.0414",
+      "native": {
+        "zhipuai": "glm-4-32b-0414-128k",
+        "huggingface": "zai-org/GLM-4-32B-0414"
+      },
+      "released": "2025-04-14",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/zhipuai/glm-4-32b-0414-128k.toml",
       "current": true
     }
   ]
