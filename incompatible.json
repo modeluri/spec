@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "license": "CC0-1.0",
   "note": "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.2.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
   "entries": [
@@ -889,6 +889,15 @@
       "conflicts_with": "model:xiaomi/text/high-open:2.5",
       "detail": "Ultra-low-latency serving tier of MiMo-V2.5-Pro exposed as a separate model ID rather than a deployment parameter.",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.5-pro-ultraspeed.toml"
+    },
+    {
+      "id": "xiaomi/mimo-v2.6-flash-mopd",
+      "publisher": "xiaomi",
+      "name": "MiMo-V2.6-Flash-MOPD",
+      "reason": "slot-collision",
+      "conflicts_with": "model:xiaomi/text/core-open:2.6",
+      "detail": "Separate MIT checkpoint of MiMo-V2.6-Flash distilled from domain teachers to cut repeated tool calls, with no registered special to tell it apart, colliding with `xiaomi/mimo-v2.6-flash` on `model:xiaomi/text/core-open:2.6`.",
+      "evidence": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-MOPD"
     },
     {
       "id": "xiaomi/mimo-v2.6-pro-ultraspeed",

@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
   "specials": {
@@ -1306,8 +1306,7 @@
       "uri": "model:bytedance-seed/text/nano:2.0",
       "native": {
         "bytedance-seed": "doubao-seed-2-0-mini-260428",
-        "openrouter": "bytedance-seed/seed-2.0-mini",
-        "deepinfra": "ByteDance/Seed-2.0-mini"
+        "openrouter": "bytedance-seed/seed-2.0-mini"
       },
       "released": "2026-02-14",
       "license": "proprietary",
@@ -1341,7 +1340,7 @@
     {
       "uri": "model:bytedance-seed/text/core:1.8",
       "native": {
-        "deepinfra": "ByteDance/Seed-1.8"
+        "zenmux": "bytedance/doubao-seed-1.8"
       },
       "released": "2025-12-28",
       "license": "proprietary",
@@ -2412,9 +2411,23 @@
       "current": false
     },
     {
+      "uri": "model:inclusionai/text/core-medical-open:3.1",
+      "native": {
+        "openrouter": "inclusionai/lingsante-3.1-air-vl",
+        "huggingface": "inclusionAI/LingSante-3.1-air-VL",
+        "deepinfra": "inclusionAI/LingSante-3.1-air-VL"
+      },
+      "released": "2026-11-19",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/inclusionAI/LingSante-3.1-air-VL",
+      "current": true
+    },
+    {
       "uri": "model:inclusionai/text/core:3.2",
       "native": {
-        "inclusionai": "Ling-3.2-flash"
+        "inclusionai": "Ling-3.2-flash",
+        "openrouter": "inclusionai/ling-3.2-flash:free"
       },
       "released": "2026-11-05",
       "license": "proprietary",
@@ -2463,6 +2476,7 @@
       "uri": "model:inclusionai/text/nano-open:3.0",
       "native": {
         "inclusionai": "Ling-3.0-tiny",
+        "openrouter": "inclusionai/ling-3.0-tiny",
         "huggingface": "inclusionAI/Ling-3.0-tiny"
       },
       "released": "2026-08-07",
@@ -3493,6 +3507,7 @@
     {
       "uri": "model:moonshotai/text/core-weights:2.0905",
       "native": {
+        "openrouter": "moonshotai/kimi-k2-0905",
         "huggingface": "moonshotai/Kimi-K2-Instruct-0905"
       },
       "released": "2025-09-05",
@@ -3591,6 +3606,7 @@
         "openrouter": "nvidia/nemotron-3.5-super-vl",
         "vercel": "nvidia/nemotron-3.5-super-vl",
         "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+        "deepinfra": "nvidia/NVIDIA-Nemotron-3.5-Super-VL",
         "together": "nvidia/NVIDIA-Nemotron-3.5-Super-VL"
       },
       "released": "2026-10-15",
@@ -3607,7 +3623,8 @@
         "openrouter": "nvidia/nemotron-3.5-lightning",
         "vercel": "nvidia/nemotron-3.5-lightning",
         "huggingface": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
-        "deepinfra": "nvidia/NVIDIA-Nemotron-3.5-Lightning"
+        "deepinfra": "nvidia/NVIDIA-Nemotron-3.5-Lightning",
+        "fireworks": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b"
       },
       "released": "2026-08-11",
       "license": "OpenMDW-1.1",
@@ -3624,6 +3641,7 @@
         "vercel": "nvidia/nemotron-3-ultra-550b-a55b",
         "huggingface": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
         "deepinfra": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B",
+        "fireworks": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
         "ollama": "nemotron-3-ultra"
       },
       "released": "2026-06-04",
@@ -5066,7 +5084,8 @@
         "openrouter": "thinkingmachines/inkling-2-mini",
         "vercel": "thinkingmachines/inkling-2-mini",
         "huggingface": "thinkingmachines/Inkling-2-Mini",
-        "deepinfra": "thinkingmachines/Inkling-2-Mini"
+        "deepinfra": "thinkingmachines/Inkling-2-Mini",
+        "fireworks": "accounts/fireworks/models/inkling-2-mini"
       },
       "released": "2026-11-20",
       "license": "Apache-2.0",
@@ -5083,6 +5102,7 @@
         "huggingface": "thinkingmachines/Inkling-2-Small",
         "deepinfra": "thinkingmachines/Inkling-2-Small",
         "together": "thinkingmachines/Inkling-2-Small",
+        "fireworks": "accounts/fireworks/models/inkling-2-small",
         "ollama": "inkling-2-small"
       },
       "released": "2026-11-05",
@@ -5495,9 +5515,9 @@
         "xiaomi": "mimo-v2.6-flash",
         "openrouter": "xiaomi/mimo-v2.6-flash",
         "vercel": "xiaomi/mimo-v2.6-flash",
+        "huggingface": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
         "deepinfra": "XiaomiMiMo/MiMo-V2.6-Flash",
-        "ollama": "mimo-v2.6-flash",
-        "huggingface": "XiaomiMiMo/MiMo-V2.6-Flash-RL"
+        "ollama": "mimo-v2.6-flash"
       },
       "released": "2026-09-22",
       "license": "MIT",
@@ -5511,9 +5531,9 @@
         "xiaomi": "mimo-v2.6-pro",
         "openrouter": "xiaomi/mimo-v2.6-pro",
         "vercel": "xiaomi/mimo-v2.6-pro",
+        "huggingface": "XiaomiMiMo/MiMo-V2.6-Pro-RL",
         "deepinfra": "XiaomiMiMo/MiMo-V2.6-Pro",
-        "ollama": "mimo-v2.6-pro",
-        "huggingface": "XiaomiMiMo/MiMo-V2.6-Pro-RL"
+        "ollama": "mimo-v2.6-pro"
       },
       "released": "2026-09-22",
       "license": "MIT",

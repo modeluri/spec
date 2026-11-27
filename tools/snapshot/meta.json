@@ -1,7 +1,7 @@
 {
   "source": "https://models.dev/catalog.json?type=all",
-  "fetched_at": "2026-11-26",
-  "models_dev_commit": "5267124fbd7665693c3375422215717210078d34",
+  "fetched_at": "2026-11-27",
+  "models_dev_commit": "d66aa6c9c4b4f75033fd55c9b0b0fcf9ccd2a472",
   "carried_over_v2_only": [
     "xiaomi/mimo-v2.5-tts-voiceclone",
     "xiaomi/mimo-v2.5-tts-voicedesign",

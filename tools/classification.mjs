@@ -1601,6 +1601,14 @@ export const CLASSIFICATION = [
     "current": true
   },
   {
+    "id": "inclusionai/lingsante-3.1-air-vl",
+    "uri": "model:inclusionai/text/core-medical-open:3.1",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/inclusionAI/LingSante-3.1-air-VL",
+    "current": true
+  },
+  {
     "id": "inference-net/schematron-v2-small",
     "uri": "model:inference-net/text/core:2",
     "license": "proprietary",
@@ -4590,6 +4598,15 @@ export const INCOMPATIBLE = [
     "conflicts_with": "model:xiaomi/text/high-open:2.6",
     "detail": "Ultra-low-latency serving tier of MiMo-V2.6-Pro exposed as a separate model ID rather than a deployment parameter.",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/xiaomi/mimo-v2.6-pro-ultraspeed.toml"
+  },
+  {
+    "id": "xiaomi/mimo-v2.6-flash-mopd",
+    "publisher": "xiaomi",
+    "name": "MiMo-V2.6-Flash-MOPD",
+    "reason": "slot-collision",
+    "conflicts_with": "model:xiaomi/text/core-open:2.6",
+    "detail": "Separate MIT checkpoint of MiMo-V2.6-Flash distilled from domain teachers to cut repeated tool calls, with no registered special to tell it apart, colliding with `xiaomi/mimo-v2.6-flash` on `model:xiaomi/text/core-open:2.6`.",
+    "evidence": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-MOPD"
   },
   {
     "id": "zhipuai/glm-4.5v",
