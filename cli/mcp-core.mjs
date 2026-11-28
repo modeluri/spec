@@ -49,7 +49,7 @@ export function checkHttpHeaders(msg, header) {
   return null;
 }
 
-const SCOPES = ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision"];
+const SCOPES = ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision", "timeseries"];
 const TIERS = ["nano", "light", "core", "high", "max", "ultra"];
 
 const slotOf = (g) => [g.publisher, g.scope, g.tier, g.special, g.access, g.weights, g.size, g.quant].join("|");
@@ -166,7 +166,7 @@ function toolResult(data, isError = false) {
 }
 
 export function createMcpHandler({ registry, incompatible = { entries: [] }, serverVersion }) {
-  const version = serverVersion || registry.spec || "0.2.0";
+  const version = serverVersion || registry.spec || "0.3.0";
 
   // Pre-index registry entries once for fast lookups.
   const indexed = registry.entries.map((entry) => ({ entry, parsed: parse(entry.uri) }));

@@ -81,6 +81,7 @@ const ALIASES = new Map([
   ["openmdw-license-agreement", "OpenMDW-1.1"],
   ["reka-edge-2603-license", "BUSL-1.1"],
   ["glm-5.3", "GLM-5.3 License"],
+  ["timesfm-non-commercial-license-v1.0", "TimesFM Non-Commercial License v1.0"],
   ["proprietary", "proprietary"],
 ]);
 

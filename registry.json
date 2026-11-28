@@ -1,8 +1,8 @@
 {
-  "spec": "0.2.0",
+  "spec": "0.3.0",
   "updated": "2026-11-28",
   "license": "CC0-1.0",
-  "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
+  "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id and the local supplement in tools/supplement.json; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.3.0 and need verifiable evidence.",
   "specials": {
     "code": "Published as specialised for code.",
     "rt": "Real-time streaming or duplex interaction (such as live voice on omni or streaming speech-to-text on transcribe).",
@@ -726,6 +726,17 @@
       "current": true
     },
     {
+      "uri": "model:amazon/timeseries/core-open:2",
+      "native": {
+        "huggingface": "amazon/chronos-2"
+      },
+      "released": "2025-10-30",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/amazon/chronos-2",
+      "current": true
+    },
+    {
       "uri": "model:amazon/text/ultra:1",
       "native": {
         "openrouter": "amazon/nova-premier-v1"
@@ -771,6 +782,17 @@
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/amazon/nova-micro.toml",
       "current": true
+    },
+    {
+      "uri": "model:amazon/timeseries/ultra-open:1",
+      "native": {
+        "huggingface": "amazon/chronos-t5-large"
+      },
+      "released": "2024-02-21",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/amazon/chronos-t5-large",
+      "current": false
     },
     {
       "uri": "model:anthropic/text/ultra:5.2",
@@ -1825,6 +1847,17 @@
       "current": true
     },
     {
+      "uri": "model:google/timeseries/core-weights:3.0",
+      "native": {
+        "huggingface": "google/timesfm-3.0-pytorch"
+      },
+      "released": "2026-08-24",
+      "license": "TimesFM Non-Commercial License v1.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/google/timesfm-3.0-pytorch",
+      "current": true
+    },
+    {
       "uri": "model:google/text/light:3.7",
       "native": {
         "google": "gemini-3.7-flash",
@@ -2191,6 +2224,17 @@
       "current": true
     },
     {
+      "uri": "model:google/timeseries/core-open:2.5",
+      "native": {
+        "huggingface": "google/timesfm-2.5-200m-pytorch"
+      },
+      "released": "2025-09-02",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/google/timesfm-2.5-200m-pytorch",
+      "current": true
+    },
+    {
       "uri": "model:google/text/nano:2.5",
       "native": {
         "google": "gemini-2.5-flash-lite",
@@ -2306,6 +2350,17 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/google/gemini-2.0-flash.toml",
+      "current": false
+    },
+    {
+      "uri": "model:google/timeseries/core-open:2.0",
+      "native": {
+        "huggingface": "google/timesfm-2.0-500m-pytorch"
+      },
+      "released": "2024-12-24",
+      "license": "Apache-2.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/google/timesfm-2.0-500m-pytorch",
       "current": false
     },
     {
@@ -3588,6 +3643,39 @@
       "tier_source": "registry",
       "evidence": "https://huggingface.co/nace-ai/drex-v1.5",
       "current": false
+    },
+    {
+      "uri": "model:neoquasar/timeseries/nano-finance-open:1",
+      "native": {
+        "huggingface": "NeoQuasar/Kronos-mini"
+      },
+      "released": "2025-07-01",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/NeoQuasar/Kronos-mini",
+      "current": true
+    },
+    {
+      "uri": "model:neoquasar/timeseries/core-finance-open:1",
+      "native": {
+        "huggingface": "NeoQuasar/Kronos-base"
+      },
+      "released": "2025-06-30",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/NeoQuasar/Kronos-base",
+      "current": true
+    },
+    {
+      "uri": "model:neoquasar/timeseries/light-finance-open:1",
+      "native": {
+        "huggingface": "NeoQuasar/Kronos-small"
+      },
+      "released": "2025-06-30",
+      "license": "MIT",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/NeoQuasar/Kronos-small",
+      "current": true
     },
     {
       "uri": "model:nex-agi/text/core-open/397b-a17b:2",
@@ -4874,6 +4962,50 @@
       "license": "proprietary",
       "tier_source": "registry",
       "evidence": "https://raw.githubusercontent.com/SakanaAI/fugu/refs/heads/main/configs/files/fugu.json",
+      "current": false
+    },
+    {
+      "uri": "model:salesforce/timeseries/light-weights:2.0",
+      "native": {
+        "huggingface": "Salesforce/moirai-2.0-R-small"
+      },
+      "released": "2025-08-06",
+      "license": "CC-BY-NC-4.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/Salesforce/moirai-2.0-R-small",
+      "current": true
+    },
+    {
+      "uri": "model:salesforce/timeseries/core-weights:1.1",
+      "native": {
+        "huggingface": "Salesforce/moirai-1.1-R-base"
+      },
+      "released": "2024-06-14",
+      "license": "CC-BY-NC-4.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-base",
+      "current": true
+    },
+    {
+      "uri": "model:salesforce/timeseries/high-weights:1.1",
+      "native": {
+        "huggingface": "Salesforce/moirai-1.1-R-large"
+      },
+      "released": "2024-06-14",
+      "license": "CC-BY-NC-4.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-large",
+      "current": true
+    },
+    {
+      "uri": "model:salesforce/timeseries/light-weights:1.1",
+      "native": {
+        "huggingface": "Salesforce/moirai-1.1-R-small"
+      },
+      "released": "2024-06-14",
+      "license": "CC-BY-NC-4.0",
+      "tier_source": "registry",
+      "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
       "current": false
     },
     {

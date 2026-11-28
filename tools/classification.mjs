@@ -3746,6 +3746,102 @@ export const CLASSIFICATION = [
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/5267124fbd7665693c3375422215717210078d34/models/ricursiveai/ripple-65b-preview.toml",
     "current": true
+  },
+  {
+    "id": "neoquasar/kronos-base",
+    "uri": "model:neoquasar/timeseries/core-finance-open:1",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/NeoQuasar/Kronos-base",
+    "current": true
+  },
+  {
+    "id": "neoquasar/kronos-small",
+    "uri": "model:neoquasar/timeseries/light-finance-open:1",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/NeoQuasar/Kronos-small",
+    "current": true
+  },
+  {
+    "id": "neoquasar/kronos-mini",
+    "uri": "model:neoquasar/timeseries/nano-finance-open:1",
+    "license": "MIT",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/NeoQuasar/Kronos-mini",
+    "current": true
+  },
+  {
+    "id": "amazon/chronos-2",
+    "uri": "model:amazon/timeseries/core-open:2",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/amazon/chronos-2",
+    "current": true
+  },
+  {
+    "id": "amazon/chronos-t5-large",
+    "uri": "model:amazon/timeseries/ultra-open:1",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/amazon/chronos-t5-large",
+    "current": false
+  },
+  {
+    "id": "google/timesfm-3.0-pytorch",
+    "uri": "model:google/timeseries/core-weights:3.0",
+    "license": "TimesFM Non-Commercial License v1.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/google/timesfm-3.0-pytorch",
+    "current": true
+  },
+  {
+    "id": "google/timesfm-2.5-200m-pytorch",
+    "uri": "model:google/timeseries/core-open:2.5",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/google/timesfm-2.5-200m-pytorch",
+    "current": true
+  },
+  {
+    "id": "google/timesfm-2.0-500m-pytorch",
+    "uri": "model:google/timeseries/core-open:2.0",
+    "license": "Apache-2.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/google/timesfm-2.0-500m-pytorch",
+    "current": false
+  },
+  {
+    "id": "salesforce/moirai-2.0-r-small",
+    "uri": "model:salesforce/timeseries/light-weights:2.0",
+    "license": "CC-BY-NC-4.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/Salesforce/moirai-2.0-R-small",
+    "current": true
+  },
+  {
+    "id": "salesforce/moirai-1.1-r-large",
+    "uri": "model:salesforce/timeseries/high-weights:1.1",
+    "license": "CC-BY-NC-4.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-large",
+    "current": true
+  },
+  {
+    "id": "salesforce/moirai-1.1-r-base",
+    "uri": "model:salesforce/timeseries/core-weights:1.1",
+    "license": "CC-BY-NC-4.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-base",
+    "current": true
+  },
+  {
+    "id": "salesforce/moirai-1.1-r-small",
+    "uri": "model:salesforce/timeseries/light-weights:1.1",
+    "license": "CC-BY-NC-4.0",
+    "tier_source": "registry",
+    "evidence": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+    "current": false
   }
 ];
 

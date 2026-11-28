@@ -5,7 +5,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { CLASSIFICATION, INCOMPATIBLE, SKIPPED, SPECIALS } from "./classification.mjs";
 import { URI_RE, parse } from "../cli/model-uri.mjs";
-import { DEFAULT_CATALOG_PATH, DEFAULT_META_PATH, carryOverV2Only, indexProvidersByCanonical, loadCatalog, loadMeta, resolveNativeHosts } from "./catalog.mjs";
+import { DEFAULT_CATALOG_PATH, DEFAULT_META_PATH, carryOverV2Only, indexProvidersByCanonical, loadCatalog, loadMeta, loadSupplement, mergeSupplement, resolveNativeHosts } from "./catalog.mjs";
 import { checkLicenseConsistency } from "./licenses.mjs";
 
 const OUT_REGISTRY = new URL("../registry.json", import.meta.url);
@@ -31,27 +31,27 @@ const args = process.argv.slice(2);
 const ci = args.indexOf("--catalog");
 const fetchMode = args.includes("--fetch");
 
-const catalog = ci >= 0
+const rawCatalog = ci >= 0
   ? JSON.parse(await readFile(args[ci + 1], "utf8"))
   : fetchMode
     ? await (await fetch("https://models.dev/catalog.json?type=all")).json()
     : await loadCatalog(DEFAULT_CATALOG_PATH);
 
-if (!catalog?.models || !catalog?.providers) {
+if (!rawCatalog?.models || !rawCatalog?.providers) {
   throw new Error("Invalid catalog format: expected { providers, models } (use catalog.json?type=all).");
 }
 
 let carriedOver = [];
 if (fetchMode) {
   const previous = await loadCatalog(DEFAULT_CATALOG_PATH);
-  const gone = CLASSIFICATION.map((x) => x.id).filter((id) => !catalog.models[id]);
+  const gone = CLASSIFICATION.map((x) => x.id).filter((id) => !rawCatalog.models[id]);
   if (gone.length) {
     const v2 = await (await fetch("https://models.dev/experimental/v2.0/api.json")).json();
-    carriedOver = carryOverV2Only(catalog, previous, gone, v2);
+    carriedOver = carryOverV2Only(rawCatalog, previous, gone, v2);
     console.warn(`carried over from the previous snapshot (v2-only upstream): ${carriedOver.join(", ")}`);
   }
   // One value per line, so a snapshot refresh is a reviewable diff.
-  await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(catalog, null, 1) + "\n");
+  await writeFile(DEFAULT_CATALOG_PATH, JSON.stringify(rawCatalog, null, 1) + "\n");
   // shortcut: the HEAD of the default branch at fetch time, which can be a few minutes ahead of the deployed catalogue.
   const head = await fetch("https://api.github.com/repos/anomalyco/models.dev/commits/HEAD").then((r) => (r.ok ? r.json() : null)).catch(() => null);
   if (!head?.sha) console.warn("warning: could not read the models.dev commit; links will point to HEAD");
@@ -62,6 +62,8 @@ if (fetchMode) {
     ...(carriedOver.length && { carried_over_v2_only: carriedOver }),
   }, null, 2) + "\n");
 }
+
+const catalog = ci < 0 ? mergeSupplement(rawCatalog, await loadSupplement()) : rawCatalog;
 
 const meta = await loadMeta();
 const updated = fetchMode ? new Date().toISOString().slice(0, 10) : (meta.fetched_at || "2026-11-21");
@@ -228,19 +230,19 @@ if (unaccounted.length > 0) {
 }
 
 const registryDoc = {
-  spec: "0.2.0",
+  spec: "0.3.0",
   updated,
   license: "CC0-1.0",
-  note: "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
+  note: "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id and the local supplement in tools/supplement.json; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.3.0 and need verifiable evidence.",
   specials: SPECIALS,
   entries,
 };
 
 const incompatibleDoc = {
-  spec: "0.2.0",
+  spec: "0.3.0",
   updated,
   license: "CC0-1.0",
-  note: "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.2.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
+  note: "Real models from https://models.dev that cannot be assigned a canonical model URI under SPEC.md v0.3.0 without bending the grammar or guessing unverifiable facts. A resolver never resolves entries from this file. See SPEC.md, section 5.1.",
   entries: incompatibleEntries,
 };
 

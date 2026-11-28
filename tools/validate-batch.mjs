@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Strictly validates a pilot or full classification batch output against SPEC.md v0.2.0 rules.
+// Strictly validates a pilot or full classification batch output against SPEC.md v0.3.0 rules.
 import { readFile } from "node:fs/promises";
 import { URI_RE, parse } from "../cli/model-uri.mjs";
 import { indexProvidersByCanonical, loadCatalog, resolveNativeHosts } from "./catalog.mjs";

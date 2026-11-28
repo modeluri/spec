@@ -5,6 +5,7 @@ import { existsSync } from "node:fs";
 
 export const DEFAULT_CATALOG_PATH = new URL("./snapshot/catalog.json", import.meta.url);
 export const DEFAULT_META_PATH = new URL("./snapshot/meta.json", import.meta.url);
+export const DEFAULT_SUPPLEMENT_PATH = new URL("./supplement.json", import.meta.url);
 export const DEFAULT_HF_CACHE_PATH = new URL("../.cache/hf-licenses.json", import.meta.url);
 
 // Publisher slugs whose first-party API uses a different provider ID in models.dev.
@@ -81,6 +82,48 @@ export async function loadCatalog(catalogPath = DEFAULT_CATALOG_PATH) {
 export async function loadMeta(metaPath = DEFAULT_META_PATH) {
   if (!existsSync(metaPath)) return { models_dev_commit: "HEAD", fetched_at: null };
   return JSON.parse(await readFile(metaPath, "utf8"));
+}
+
+export async function loadSupplement(supplementPath = DEFAULT_SUPPLEMENT_PATH) {
+  if (!existsSync(supplementPath)) return { models: {}, providers: {} };
+  const raw = JSON.parse(await readFile(supplementPath, "utf8"));
+  if (!raw?.models || typeof raw.models !== "object" || Array.isArray(raw.models)) {
+    throw new Error(`Invalid supplement format in ${supplementPath}: expected { models, providers }.`);
+  }
+  return { models: raw.models, providers: raw.providers || {} };
+}
+
+/**
+ * Merge local supplement entries into the upstream catalogue, failing if an upstream model now covers the same ID.
+ */
+export function mergeSupplement(catalog, supplement) {
+  const merged = {
+    ...catalog,
+    models: { ...catalog.models },
+    providers: { ...catalog.providers },
+  };
+  for (const [id, model] of Object.entries(supplement?.models || {})) {
+    if (Object.hasOwn(catalog.models, id)) {
+      throw new Error(`[supplement] ${id} is now in the upstream catalogue: remove it from tools/supplement.json`);
+    }
+    merged.models[id] = model;
+  }
+  for (const [pid, prov] of Object.entries(supplement?.providers || {})) {
+    if (Object.hasOwn(merged.providers, pid)) {
+      const existingModels = merged.providers[pid].models || {};
+      const nextModels = { ...existingModels };
+      for (const [mid, m] of Object.entries(prov?.models || {})) {
+        if (Object.hasOwn(existingModels, mid)) {
+          throw new Error(`[supplement] provider model ${pid}/${mid} is now in the upstream catalogue: remove it from tools/supplement.json`);
+        }
+        nextModels[mid] = m;
+      }
+      merged.providers[pid] = { ...merged.providers[pid], models: nextModels };
+    } else {
+      merged.providers[pid] = prov;
+    }
+  }
+  return merged;
 }
 
 /**

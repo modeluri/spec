@@ -1,6 +1,6 @@
 {
   "name": "model-uri",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Resolve model URIs to native model names, and serve them over MCP",
   "license": "MIT",
   "type": "module",

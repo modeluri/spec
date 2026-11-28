@@ -38,7 +38,7 @@ for (const [repo, url] of targets.entries()) {
   const apiUrl = `https://huggingface.co/api/models/${repo.split("/").map(encodeURIComponent).join("/")}`;
   try {
     const res = await fetch(apiUrl, {
-      headers: { "User-Agent": "modeluri-registry-tool/0.2.0 (+https://modeluri.org)" },
+      headers: { "User-Agent": "modeluri-registry-tool/0.3.0 (+https://modeluri.org)" },
     });
     if (!res.ok) {
       cache[repo] = {

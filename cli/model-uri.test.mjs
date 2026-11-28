@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse, resolve, litellmAliases, URI_RE } from "./model-uri.mjs";
 import { normalizeLicense, weightsSuffixFor, checkLicenseConsistency } from "../tools/licenses.mjs";
-import { carryOverV2Only, indexProvidersByCanonical, resolveNativeHosts } from "../tools/catalog.mjs";
+import { carryOverV2Only, indexProvidersByCanonical, mergeSupplement, resolveNativeHosts } from "../tools/catalog.mjs";
 
 const read = (f) => readFileSync(new URL(`../${f}`, import.meta.url), "utf8");
 const registry = JSON.parse(read("registry.json"));
@@ -44,7 +44,7 @@ test("URI_RE matches the reference regex in SPEC.md", () => {
 });
 
 test("all supported scopes and -rt combinations parse, unsupported scopes are rejected", () => {
-  for (const s of ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision"]) {
+  for (const s of ["text", "omni", "image", "video", "audio", "tts", "transcribe", "embed", "rerank", "decision", "timeseries"]) {
     assert.equal(parse(`model:example/${s}/core`)?.scope, s, s);
   }
   const omniRt = parse("model:openai/omni/core-rt:2.1");
@@ -53,7 +53,7 @@ test("all supported scopes and -rt combinations parse, unsupported scopes are re
   const transcribeRt = parse("model:google/transcribe/core-rt:3.5");
   assert.equal(transcribeRt?.scope, "transcribe");
   assert.equal(transcribeRt?.special, "rt");
-  for (const bad of ["speech", "stt", "realtime", "music"]) {
+  for (const bad of ["speech", "stt", "realtime", "music", "forecast"]) {
     assert.equal(parse(`model:example/${bad}/core`), null, bad);
   }
 });
@@ -178,6 +178,11 @@ test("a closed model cannot be self-hosted", () => {
 
 test("registry: local resolves for downloadable models", () => {
   assert.equal(resolve(registry, "model:baai/embed/core-open:m3@local").native, "BAAI/bge-m3");
+  assert.equal(resolve(registry, "model:neoquasar/timeseries/core-finance-open:1@local").native, "NeoQuasar/Kronos-base");
+  assert.equal(resolve(registry, "model:amazon/timeseries/core-open@local").native, "amazon/chronos-2");
+  assert.equal(resolve(registry, "model:google/timeseries/core-open@local").native, "google/timesfm-2.5-200m-pytorch");
+  assert.equal(resolve(registry, "model:google/timeseries/core-weights@local").native, "google/timesfm-3.0-pytorch");
+  assert.equal(resolve(registry, "model:salesforce/timeseries/core-weights@local").native, "Salesforce/moirai-1.1-R-base");
   const qwen = resolve(registry, "model:alibaba/text/core-open/35b-a3b/mxfp4@local");
   assert.equal(qwen.ok, true, qwen.error);
   assert.match(qwen.uri, /^model:alibaba\/text\/core-open\/35b-a3b\/mxfp4:[0-9.]+@local$/);
@@ -322,8 +327,8 @@ test("incompatible.json conforms to SPEC.md section 5.1 and is mutually exclusiv
 
 test("validateIncompatible accepts valid entries and rejects schema or overlap errors", () => {
   const baseDoc = (entries) => ({
-    spec: "0.2.0",
-    updated: "2026-11-21",
+    spec: "0.3.0",
+    updated: "2026-11-28",
     license: "CC0-1.0",
     note: "Test incompatible registry",
     entries,
@@ -430,4 +435,12 @@ test("the host fallback never picks a publisher ID that is classified incompatib
   const byCanonical = indexProvidersByCanonical(catalog);
   assert.deepEqual(resolveNativeHosts(catalog, byCanonical, "unbiased/pareto-26.10", "unbiased", new Set(["unbiased/pareto"])), {});
   assert.deepEqual(resolveNativeHosts(catalog, byCanonical, "unbiased/pareto-26.10", "unbiased"), { unbiased: "pareto" });
+});
+
+test("mergeSupplement adds local models without mutating upstream and rejects upstream duplicates", () => {
+  const upstream = { models: { "a/m1": { id: "a/m1" } }, providers: {} };
+  const merged = mergeSupplement(upstream, { models: { "b/m2": { id: "b/m2" } }, providers: {} });
+  assert.deepEqual(Object.keys(upstream.models), ["a/m1"]);
+  assert.deepEqual(Object.keys(merged.models).sort(), ["a/m1", "b/m2"]);
+  assert.throws(() => mergeSupplement(upstream, { models: { "a/m1": { id: "a/m1" } }, providers: {} }), /now in the upstream catalogue/);
 });

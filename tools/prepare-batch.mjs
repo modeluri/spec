@@ -107,7 +107,7 @@ models.sort((a, b) =>
 
 await mkdir(dirname(outPath), { recursive: true });
 await writeFile(outPath, JSON.stringify({
-  spec: "0.2.0",
+  spec: "0.3.0",
   models_dev_commit: commit,
   publishers,
   model_count: models.length,

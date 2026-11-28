@@ -9,7 +9,7 @@ model:anthropic/text/core:5.5@bedrock
 - Site: <https://modeluri.org>
 - MCP server (remote, no auth): `https://modeluri.org/mcp`
 - Updates: [@modeluri](https://x.com/modeluri) on X
-- Specification: [SPEC.md](SPEC.md), working draft 0.2.0
+- Specification: [SPEC.md](SPEC.md), working draft 0.3.0
 - Signatories: [SIGNATORIES.md](SIGNATORIES.md)
 - Registry: [registry.json](registry.json)
 - Incompatible models: [incompatible.json](incompatible.json)
@@ -37,7 +37,7 @@ BAAI/bge-m3
 
 The registry is a first seed: tiers are assigned by the rule in SPEC.md section 3.2 from the [models.dev](https://models.dev) catalogue, and none is declared by a publisher.
 
-`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs`, then run `node tools/build-registry.mjs`, which builds from the models.dev snapshot committed in `tools/snapshot/` (`--fetch` refreshes the snapshot from the live catalogue, `--catalog <catalog.json>` uses another file). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix, entries left with no host and no `former_native`, and two current models in one slot. CI runs the tests on every push and pull request, rebuilds the registry from the snapshot and fails when the committed files differ.
+`registry.json` and `incompatible.json` are generated: edit `tools/classification.mjs` (and `tools/supplement.json` for published models absent from `models.dev`), then run `node tools/build-registry.mjs`, which builds from the models.dev snapshot committed in `tools/snapshot/` plus `tools/supplement.json` (`--fetch` refreshes the snapshot from the live catalogue, `--catalog <catalog.json>` uses another file). The build fails on invalid or unpinned URIs, missing evidence, licences that contradict the `-open` / `-weights` suffix, entries left with no host and no `former_native`, upstream duplicates in `tools/supplement.json`, and two current models in one slot. CI runs the tests on every push and pull request, rebuilds the registry from the snapshot and fails when the committed files differ.
 
 ## MCP server
 
@@ -82,7 +82,7 @@ Open an [issue](https://github.com/modeluri/spec/issues). The most useful ones a
 | `registry.json` | The public registry of model URIs |
 | `incompatible.json` | Catalogue models that do not fit the standard, with reasons |
 | `cli/` | The resolver (`model-uri.mjs`), MCP server (`mcp.mjs`, `mcp-core.mjs`) and tests: `node --test cli/` |
-| `tools/` | The classification table (`classification.mjs`) and the build that turns it into `registry.json` and `incompatible.json` |
+| `tools/` | The classification table (`classification.mjs`), local supplement (`supplement.json`) and the build that turns them into `registry.json` and `incompatible.json` |
 | `tools/snapshot/` | The models.dev catalogue snapshot the build reads, with its date (`meta.json`) and licence |
 | `.github/workflows/` | CI: tests and a reproducible rebuild of the generated files |
 | `aliases/` | Gateway alias files generated from the registry |

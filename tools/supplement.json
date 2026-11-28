@@ -1,0 +1,161 @@
+{
+  "models": {
+    "neoquasar/kronos-base": {
+      "id": "neoquasar/kronos-base",
+      "name": "Kronos Base",
+      "release_date": "2025-06-30",
+      "open_weights": true,
+      "license": "MIT",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/NeoQuasar/Kronos-base"
+        }
+      ]
+    },
+    "neoquasar/kronos-small": {
+      "id": "neoquasar/kronos-small",
+      "name": "Kronos Small",
+      "release_date": "2025-06-30",
+      "open_weights": true,
+      "license": "MIT",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/NeoQuasar/Kronos-small"
+        }
+      ]
+    },
+    "neoquasar/kronos-mini": {
+      "id": "neoquasar/kronos-mini",
+      "name": "Kronos Mini",
+      "release_date": "2025-07-01",
+      "open_weights": true,
+      "license": "MIT",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/NeoQuasar/Kronos-mini"
+        }
+      ]
+    },
+    "amazon/chronos-2": {
+      "id": "amazon/chronos-2",
+      "name": "Chronos-2",
+      "release_date": "2025-10-30",
+      "open_weights": true,
+      "license": "Apache-2.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/amazon/chronos-2"
+        }
+      ]
+    },
+    "amazon/chronos-t5-large": {
+      "id": "amazon/chronos-t5-large",
+      "name": "Chronos-T5 Large",
+      "release_date": "2024-02-21",
+      "open_weights": true,
+      "license": "Apache-2.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/amazon/chronos-t5-large"
+        }
+      ]
+    },
+    "google/timesfm-3.0-pytorch": {
+      "id": "google/timesfm-3.0-pytorch",
+      "name": "TimesFM 3.0",
+      "release_date": "2026-08-24",
+      "open_weights": true,
+      "license": "TimesFM Non-Commercial License v1.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/google/timesfm-3.0-pytorch"
+        }
+      ]
+    },
+    "google/timesfm-2.5-200m-pytorch": {
+      "id": "google/timesfm-2.5-200m-pytorch",
+      "name": "TimesFM 2.5 200M",
+      "release_date": "2025-09-02",
+      "open_weights": true,
+      "license": "Apache-2.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/google/timesfm-2.5-200m-pytorch"
+        }
+      ]
+    },
+    "google/timesfm-2.0-500m-pytorch": {
+      "id": "google/timesfm-2.0-500m-pytorch",
+      "name": "TimesFM 2.0 500M",
+      "release_date": "2024-12-24",
+      "open_weights": true,
+      "license": "Apache-2.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/google/timesfm-2.0-500m-pytorch"
+        }
+      ]
+    },
+    "salesforce/moirai-2.0-r-small": {
+      "id": "salesforce/moirai-2.0-r-small",
+      "name": "Moirai 2.0 R Small",
+      "release_date": "2025-08-06",
+      "open_weights": true,
+      "license": "CC-BY-NC-4.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/Salesforce/moirai-2.0-R-small"
+        }
+      ]
+    },
+    "salesforce/moirai-1.1-r-large": {
+      "id": "salesforce/moirai-1.1-r-large",
+      "name": "Moirai 1.1 R Large",
+      "release_date": "2024-06-14",
+      "open_weights": true,
+      "license": "CC-BY-NC-4.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/Salesforce/moirai-1.1-R-large"
+        }
+      ]
+    },
+    "salesforce/moirai-1.1-r-base": {
+      "id": "salesforce/moirai-1.1-r-base",
+      "name": "Moirai 1.1 R Base",
+      "release_date": "2024-06-14",
+      "open_weights": true,
+      "license": "CC-BY-NC-4.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/Salesforce/moirai-1.1-R-base"
+        }
+      ]
+    },
+    "salesforce/moirai-1.1-r-small": {
+      "id": "salesforce/moirai-1.1-r-small",
+      "name": "Moirai 1.1 R Small",
+      "release_date": "2024-06-14",
+      "open_weights": true,
+      "license": "CC-BY-NC-4.0",
+      "weights": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/Salesforce/moirai-1.1-R-small"
+        }
+      ]
+    }
+  },
+  "providers": {}
+}

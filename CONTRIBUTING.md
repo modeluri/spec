@@ -23,7 +23,7 @@ Always include a link to the publisher's own page, model card or price list.
 
 `registry.json` and `incompatible.json` are generated files — do not edit them by hand.
 
-1. Edit [`tools/classification.mjs`](tools/classification.mjs) (entries in `CLASSIFICATION`, `INCOMPATIBLE`, `SKIPPED`, or the controlled `SPECIALS` vocabulary).
+1. Edit [`tools/classification.mjs`](tools/classification.mjs) (entries in `CLASSIFICATION`, `INCOMPATIBLE`, `SKIPPED`, or the controlled `SPECIALS` vocabulary) and, for published models absent from `models.dev`, add their catalogue record to [`tools/supplement.json`](tools/supplement.json).
    - A new `special` value requires at least one real published model that would otherwise collide with the general lineup ([`SPEC.md` section 5](SPEC.md#5-registry)).
    - Every registry entry must have a verifiable `evidence` HTTPS link and a normalised SPDX identifier or exact licence title matching its `-open` / `-weights` suffix.
 2. Rebuild the generated files from the committed models.dev snapshot in [`tools/snapshot/`](tools/snapshot) (requires Node 18+ or Bun, no dependencies to install):

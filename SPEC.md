@@ -1,6 +1,6 @@
 # Model URI
 
-Working draft 0.2.0, 22 November 2026
+Working draft 0.3.0, 28 November 2026
 
 A sane, canonical URI for any AI model.
 
@@ -51,7 +51,7 @@ model-uri  = "model:" publisher "/" scope "/" tier
              [ "/" size ] [ "/" quant ]
              [ ":" version ] [ "~" derivation ] [ "@" host ]
 publisher  = LOWER *( LOWER / DIGIT / "-" )
-scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision"
+scope      = "text" / "omni" / "image" / "video" / "audio" / "tts" / "transcribe" / "embed" / "rerank" / "decision" / "timeseries"
 tier       = "nano" / "light" / "core" / "high" / "max" / "ultra"
 special    = 1*LOWER                       ; registered in the registry, not an access or weights keyword
 access     = "restricted" / "gov" / "internal"
@@ -71,7 +71,7 @@ A size always starts with a digit and a quantisation always starts with a letter
 Reference regex:
 
 ```text
-^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision)/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>(?!(?:restricted|gov|internal|weights|open)(?=[-/:~@]|$))[a-z]+))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
+^model:(?<publisher>[a-z][a-z0-9-]*)/(?<scope>text|omni|image|video|audio|tts|transcribe|embed|rerank|decision|timeseries)/(?<tier>nano|light|core|high|max|ultra)(?:-(?<special>(?!(?:restricted|gov|internal|weights|open)(?=[-/:~@]|$))[a-z]+))?(?:-(?<access>restricted|gov|internal))?(?:-(?<weights>weights|open))?(?:/(?<size>\d+(?:\.\d+)?[mbt](?:-a\d+(?:\.\d+)?[mbt])?))?(?:/(?<quant>[a-z]+\d+[a-z0-9]*))?(?::(?<version>latest|[a-z0-9.]+))?(?:~(?<author>[a-z][a-z0-9-]*)-(?<kind>abliterated|ft|merge|distill))?(?:@(?<host>[a-z][a-z0-9]*))?$
 ```
 
 Under RFC 3986 a model URI has the scheme `model`, no authority and a rootless path. The form `model://` is not a model URI.
@@ -83,7 +83,7 @@ Lowercase ASCII only, 128 characters at most. One rule sits outside the regex: `
 | Part | Question it answers | Values | Decided by |
 | --- | --- | --- | --- |
 | `publisher` | Who made the model? | A registered organisation name: `anthropic`, `google`, `alibaba` | Registry |
-| `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision` | Specification |
+| `scope` | What does it produce? | `text`, `omni`, `image`, `video`, `audio`, `tts`, `transcribe`, `embed`, `rerank`, `decision`, `timeseries` | Specification |
 | `tier` | Which role in the lineup? | `nano`, `light`, `core`, `high`, `max`, `ultra` | Publisher, otherwise registry |
 | `special` | What is it published for? | A registered specialisation: `code`, `rt`, `base`, `guard`, `ocr`, `translate`, `research`, `gui`, `robotics`, `roleplay`, `medical`, `finance`, `legal`, `voiceclone`, `voicedesign`; absent means general use | Registry |
 | `access` | Who may use it? | `restricted`, `gov`, `internal`; absent means anyone | Publisher |
@@ -114,8 +114,9 @@ The scope names the model's primary output contract, so that two models on the s
 | `embed` | Vector embeddings |
 | `rerank` | Relevance scoring and reranking |
 | `decision` | Calibrated probabilities or typed discrete decisions (yes/no, choice, score, tag) without free-text generation |
+| `timeseries` | Numerical time-series forecasting, imputation or anomaly scoring over sequential observations (point forecasts, trajectories or quantile distributions) |
 
-A general language model that accepts audio input for chat or tool use stays `text`; `transcribe` is only for dedicated speech-to-text models. A model whose primary output is images or video stays `image` or `video` even when it also emits text or a soundtrack.
+A general language model that accepts audio input for chat or tool use stays `text`; `transcribe` is only for dedicated speech-to-text models. A model whose primary output is images or video stays `image` or `video` even when it also emits text or a soundtrack. A model that only emits a calibrated probability or discrete anomaly label without producing sequential forecasts, imputations or temporal profiles stays `decision`.
 
 ### 3.2 Tier
 
@@ -251,7 +252,7 @@ An environment with compliance requirements is a host of its own, for example `a
 
 The registry covers what the identifier leaves out: the native name to call, the licence, the controlled vocabulary of `special` values, and the tiers of publishers that have not adopted the standard. It is the file [`registry.json`](registry.json) in this repository: an object with the specification version it follows (`spec`), the snapshot date (`updated`), its licence (`license`), a `note`, the registered `specials` map and the list of `entries`.
 
-`registry.json` and `incompatible.json` are generated by `tools/build-registry.mjs` from the classification table `tools/classification.mjs` and a snapshot of the models.dev catalogue committed in `tools/snapshot/`, so that anyone can rebuild them and get the same files. Changes go through pull requests on the classification table, never on the generated files. The build rejects invalid or unpinned model URIs, unregistered `special` values, missing evidence, a licence that contradicts the `weights` suffix, two current models in one slot, and catalogue models that are not accounted for.
+`registry.json` and `incompatible.json` are generated by `tools/build-registry.mjs` from the classification table `tools/classification.mjs`, a snapshot of the models.dev catalogue committed in `tools/snapshot/`, and a local catalogue supplement in `tools/supplement.json` for published models not yet listed in `models.dev`, so that anyone can rebuild them and get the same files. Changes go through pull requests on the classification table (and `tools/supplement.json` when needed), never on the generated files. The build rejects invalid or unpinned model URIs, unregistered `special` values, missing evidence, a licence that contradicts the `weights` suffix, two current models in one slot, upstream duplicates in `tools/supplement.json`, and catalogue models that are not accounted for.
 
 Each entry holds:
 
@@ -411,6 +412,9 @@ Tiers are assigned with the registry rule from the publishers' own descriptions 
 | Gemini 3.1 Flash Live Preview | `model:google/omni/core-rt:3.1` | Real-time duplex voice (`omni` + `-rt`) |
 | Jev 1.14 | `model:typesafe/decision/core:1.14.0@openrouter` | Typed probabilistic decision (`decision`) |
 | BGE-M3 | `model:baai/embed/core-open:m3@local` | Non-numeric version |
+| Kronos Base (financial candlesticks, MIT) | `model:neoquasar/timeseries/core-finance-open:1@local` | Time-series forecasting (`timeseries` + `finance`) |
+| Chronos-2 (Apache-2.0) | `model:amazon/timeseries/core-open:2@local` | General time-series forecasting (`timeseries`) |
+| TimesFM 3.0 (non-commercial weights) | `model:google/timeseries/core-weights:3.0@local` | Time-series forecasting under non-OSI licence (`-weights`) |
 
 Every pinned model URI in this table is in the registry, except the illustrative rows: the `example` publisher, `-restricted` and `-internal` models, and rows with a quantisation or a derivation. The `weights` and `open` suffixes follow the licences recorded in the registry and must be checked against each model card.
 
@@ -440,3 +444,4 @@ RFC 7595 recommends avoiding very general scheme names. The name `model` is gene
 - Is the list of derivation kinds complete, and how are chained derivations written?
 - Access: should research previews have their own value?
 - Should `special` remain single, or allow multiple values in alphabetical order (for example `-base-code` or `-rt-voiceclone`)?
+- `timeseries` vs `forecast`: working draft 0.3.0 opts for `timeseries` because models in this class often handle forecasting, imputation and anomaly scoring with the same weights and input contract, matching the modality-named scopes (`image`, `video`, `audio`). Is `timeseries` too broad if a model only classifies anomalies, or is `forecast` sharper because it states the output contract directly?
