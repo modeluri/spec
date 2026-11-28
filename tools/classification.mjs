@@ -2055,7 +2055,8 @@ export const CLASSIFICATION = [
     "license": "proprietary",
     "tier_source": "registry",
     "evidence": "https://github.com/anomalyco/models.dev/blob/d204e701c4446a0d60885696b6b4664a0e55b3ec/models/mistral/mistral-medium-3.1.toml",
-    "current": false
+    "current": false,
+    "former_native": { "concentrate": "mistral-medium-3.1" }
   },
   {
     "id": "mistral/mistral-medium-3-5",
@@ -4927,6 +4928,11 @@ export const SKIPPED = [
     "id": "mindlab/macaron-v1-venti",
     "skip_reason": "third-party-derivation",
     "detail": "Third-party Mixture-of-LoRA fine-tune based on Zhipu's GLM-5.2 weights."
+  },
+  {
+    "id": "mindlab/macaron-v1.1-venti",
+    "skip_reason": "third-party-derivation",
+    "detail": "Third-party Mixture-of-LoRA fine-tune based on Zhipu's GLM-5.3 weights."
   },
   {
     "id": "minimax/image-01",

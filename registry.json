@@ -1,6 +1,6 @@
 {
   "spec": "0.2.0",
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "license": "CC0-1.0",
   "note": "Tiers are assigned by the registry with the rule in SPEC.md section 3.2 and frozen from release. `current` marks models on sale as of the snapshot date. Native identifiers come from https://models.dev via canonical_model_id; on bedrock the bare model id is listed when present, and bedrock-runtime needs a geographic or global inference profile (us., eu., global.) in front of it. Entries follow SPEC.md v0.2.0 and need verifiable evidence.",
   "specials": {
@@ -2427,7 +2427,7 @@
       "uri": "model:inclusionai/text/core:3.2",
       "native": {
         "inclusionai": "Ling-3.2-flash",
-        "openrouter": "inclusionai/ling-3.2-flash:free"
+        "openrouter": "inclusionai/ling-3.2-flash"
       },
       "released": "2026-11-05",
       "license": "proprietary",
@@ -3188,7 +3188,8 @@
     },
     {
       "uri": "model:mistral/text/high:3.1",
-      "native": {
+      "native": {},
+      "former_native": {
         "concentrate": "mistral-medium-3.1"
       },
       "released": "2025-08-12",
@@ -5742,7 +5743,6 @@
       "native": {
         "zhipuai": "glm-5",
         "bedrock": "zai.glm-5",
-        "vertex": "zai-org/glm-5-maas",
         "openrouter": "z-ai/glm-5",
         "vercel": "zai/glm-5",
         "huggingface": "zai-org/GLM-5"
